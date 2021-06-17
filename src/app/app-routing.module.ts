@@ -11,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'cursos',
-    component: CrearCursoComponent,
+    loadChildren: () =>
+      import('./curso/curso.module').then((m) => m.CursoModule),
   },
   {
     path: 'sugerencias',

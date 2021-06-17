@@ -1,0 +1,10 @@
+/* div {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+} */
+div{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
