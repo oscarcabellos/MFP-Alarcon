@@ -5,9 +5,10 @@ import { CursoRoutingModule } from './curso-routing.module';
 import { AgregarUsuarioComponent } from './componente/agregar-usuario/agregar-usuario.component';
 import { CrearCursoComponent } from './componente/crear-curso/crear-curso.component';
 import { FormsModule } from '@angular/forms';
+import { CursoComponent } from './componente/curso/curso.component';
 
 @NgModule({
-  declarations: [AgregarUsuarioComponent, CrearCursoComponent],
+  declarations: [AgregarUsuarioComponent, CrearCursoComponent, CursoComponent],
   imports: [CommonModule, FormsModule, CursoRoutingModule],
 })
 export class CursoModule {}
