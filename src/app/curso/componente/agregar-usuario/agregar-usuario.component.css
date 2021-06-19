@@ -1,0 +1,4 @@
+#listaAlumnos {
+    overflow-y: scroll;
+    height: 340px;
+}
