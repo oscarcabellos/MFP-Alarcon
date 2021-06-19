@@ -4,5 +4,5 @@ export class Curso{
     nombre: string;
     descripcion: string;
     conocimientoPrevio: string;
-
+    privacidad: string;
 }
