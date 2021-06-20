@@ -1,6 +1,8 @@
 .logintxt{
-    display: flex;
-    justify-content: center;
+    /*display: flex;
+    justify-content: center;*/
+    text-align: center;
+    font-weight: 800;
 }
 .loginbtnG{
     display: flex;
