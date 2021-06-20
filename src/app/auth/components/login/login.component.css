@@ -1,0 +1,31 @@
+.logintxt{
+    display: flex;
+    justify-content: center;
+}
+.loginbtnG{
+    display: flex;
+    justify-content: center;
+}
+.loginbtn1{
+    position: relative;
+    right: 30px;
+}   
+.loginbtn2{
+    position: relative;
+    left: 30px;
+}
+.loginform{
+    display: flex;
+    justify-content: center;
+}
+
+.logintx{
+    position: relative;
+    left: 98px;
+}
+
+.loginpass{
+    position: relative;
+    top: 40px;
+    right:90px;
+}
