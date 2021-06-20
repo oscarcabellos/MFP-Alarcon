@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../modelo/usuario';
 import { UsuarioService } from '../../servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -15,7 +16,9 @@ export class AgregarUsuarioComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
-    this.listarUsuarios(1);
+    if (true) {
+      this.listarUsuarios(1);
+    }
     this.usuarioProfesor = true;
   }
 
@@ -53,13 +56,21 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   agregarUsuario() {
-    if (this.correoUsuario != '') {
+    if (this.validarCorreo(this.correoUsuario)) {
       this.usuarios.push({
         idUsuario: this.usuarios.length,
         nombre: 'sin nombre',
         correo: this.correoUsuario,
       });
       this.correoUsuario = '';
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Do you want to continue',
+        // icon: 'error',
+        confirmButtonText: 'Cool',
+        width: '20rem',
+      });
     }
   }
 
@@ -70,5 +81,19 @@ export class AgregarUsuarioComponent implements OnInit {
 
   descargarUsuarios() {
     alert('Descargando archivo');
+  }
+
+  validarCorreo(correo: string) {
+    const regex = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$');
+    if (
+      regex.test(correo) &&
+      correo != null &&
+      correo != undefined &&
+      correo != '' &&
+      correo?.length > 0
+    ) {
+      return true;
+    }
+    return false;
   }
 }

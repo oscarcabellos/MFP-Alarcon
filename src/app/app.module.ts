@@ -12,7 +12,7 @@ import { HeaderComponent } from './layout/components/header/header.component';
 import { ListarSugerenciasComponent } from './sugerencia/components/listar-sugerencias/listar-sugerencias.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent, ListarSugerenciasComponent],
   imports: [
     BrowserModule,
     CommonModule,
