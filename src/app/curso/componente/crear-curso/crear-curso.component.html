@@ -11,6 +11,10 @@
                 <div class="card-body">
                     <form>
                         <div class="form-group">
+                            <label for="formGroupExampleInput">imagen:</label>
+                            <input type="file" (change)="onFileChange($event)" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
                             <label for="formGroupExampleInput">Nombre:</label>
                             <input type="text" [(ngModel)]="curso.nombre" class="form-control" id="" placeholder="Nombre">
                         </div>
