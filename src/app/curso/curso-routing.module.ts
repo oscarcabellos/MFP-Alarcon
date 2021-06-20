@@ -7,12 +7,12 @@ import { CursoComponent } from './componente/curso/curso.component';
 const routes: Routes = [
   {
     path: '',
+    component: CrearCursoComponent,
+  },
+  {
+    path: 'agregar-usuario',
     component: CursoComponent,
   },
-  /*  {
-    path: 'agregar-usuario',
-    component: AgregarUsuarioComponent,
-  }, */
 ];
 
 @NgModule({

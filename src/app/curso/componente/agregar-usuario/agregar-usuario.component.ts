@@ -16,8 +16,10 @@ export class AgregarUsuarioComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
-    this.listarUsuarios(1);
-    this.usuarioProfesor = false;
+    if (true) {
+      this.listarUsuarios(1);
+    }
+    this.usuarioProfesor = true;
   }
 
   listarUsuarios(id: number) {
