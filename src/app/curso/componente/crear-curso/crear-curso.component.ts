@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from '../../modelo/curso';
+import { CursoService } from '../../servicios/curso.service';
 
 @Component({
   selector: 'app-crear-curso',
@@ -10,7 +11,9 @@ export class CrearCursoComponent implements OnInit {
 
   curso: Curso=new Curso();
 
-  constructor() { }
+  constructor(
+    cursoService: CursoService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -18,9 +21,9 @@ export class CrearCursoComponent implements OnInit {
   
   obtenerPrivacidad(x: number){
     if(x==1){
-      this.curso.privacidad="PUBLICO";
+      this.curso.privacidad="1"; //publico
     }else{
-      this.curso.privacidad="PRIVADO";
+      this.curso.privacidad="0"; //privado
     }
   }
 

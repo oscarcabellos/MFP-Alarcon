@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppServiceBase } from 'src/app/core/appServiceBase';
+import { environment } from 'src/environments/environment';
 import { Curso } from '../modelo/curso';
 
 @Injectable({
@@ -10,10 +11,12 @@ import { Curso } from '../modelo/curso';
 })
 export class CursoService extends AppServiceBase {
 
+  url:string = `${environment.api.baseUrl}`;
+
   crearCurso(curso: Curso): Observable<any> {
-    return this.post(`/v1/sugerencia/create/sugerencia`, curso)
+    return this.post("", curso)
       .pipe(
-        map((response: any) => response.sugerencia as Curso),
+        /* map((response: any) => response.sugerencia as Curso), */
         catchError(this.handleError)
       );
   }
