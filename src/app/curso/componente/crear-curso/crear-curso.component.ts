@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CrearCursoComponent implements OnInit {
   curso: Curso = new Curso();
-  image: any;
+  image: any[];
   data: Data;
   constructor(
     private cursoService: CursoService,
@@ -39,11 +39,12 @@ export class CrearCursoComponent implements OnInit {
   }
 
   crearCurso(){
+    console.log("sss",this.image);
     this.cloudBinaryService.sendPhoto(this.image[0])
       .subscribe((response: Data) => this.curso.imagen = response.secure_url);
       console.log(this.curso.imagen);
       
-    this.curso.usuario_id=25;
+    /* this.curso.usuario_id=25;
     this.curso.categoria_id=1;
     console.log("curso: ", this.curso);
     this.cursoService.crearCurso(this.curso).subscribe(
@@ -52,10 +53,10 @@ export class CrearCursoComponent implements OnInit {
           title:'Curso creado', 
           text: `El curso se ha creado con exito`,
           icon: 'success',
-          confirmButtonColor: "#FFFFFF"
+          confirmButtonColor: "#2F6DF2"
         }); 
       }
-    );
+    ); */
   }
 
 }

@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
           title:'Curso creado', 
           text: `El curso se ha creado con exito`,
           icon: 'success',
-          confirmButtonColor: "#FFFFFF"
+          confirmButtonColor: "#2F6DF2"
         }); 
         this.router.navigate(['login']);
       }
