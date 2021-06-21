@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   usuarioRegistrado: boolean;
+  usuario: string;
   constructor() {}
 
   ngOnInit(): void {
-    this.usuarioRegistrado = false;
+    if (+sessionStorage.getItem('usuario_id') != 0) {
+      this.usuarioRegistrado = true;
+      this.usuario = sessionStorage.getItem('usuario_nombre');
+    } else {
+      this.usuarioRegistrado = false;
+    }
   }
 }
