@@ -1,7 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class AppServiceBase {
+  headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Cache-Control', 'no-cache');
+
   constructor(protected http: HttpClient) {}
 
   get(api: string) {
@@ -16,7 +25,7 @@ export class AppServiceBase {
 
   post(api: string, body: any) {
     const urlApi = `${environment.api.baseUrl}${api}`;
-    return this.http.post(urlApi, body);
+    return this.http.post(urlApi, body, { headers: this.headers });
   }
 
   put(api: string, body: any) {

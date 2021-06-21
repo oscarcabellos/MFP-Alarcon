@@ -1,0 +1,35 @@
+.procenter{
+    display: flex;
+    justify-content: center;
+}
+.loginform{
+    float: left;
+    position: relative;
+    left: 100px;
+}
+
+.profileicon{
+    float: left;
+    position: relative;
+}
+/* .protx{
+    position: relative;
+    left: 50px;
+} */
+
+/* .loginpass{
+    padding: 30px;
+} */
+.loginbtn1{
+    position: relative;
+    right: 250px;
+}
+.loginbtn2{
+    position: relative;
+    top: 40px;
+}
+
+.logintxt{
+    text-align: center;
+    font-weight: 800;
+}

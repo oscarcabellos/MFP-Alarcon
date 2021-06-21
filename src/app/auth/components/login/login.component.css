@@ -1,6 +1,13 @@
-.logintxt{
+.logintxt{ 
     display: flex;
     justify-content: center;
+    text-align: center;
+    font-weight: 800;
+} 
+.loginpass{
+    position: relative;
+    top: 50px;
+    right:110px;
 }
 .loginbtnG{
     display: flex;
@@ -9,10 +16,12 @@
 .loginbtn1{
     position: relative;
     right: 30px;
+    top: 30px;
 }   
 .loginbtn2{
     position: relative;
     left: 30px;
+    top: 30px;
 }
 .loginform{
     display: flex;
@@ -24,8 +33,3 @@
     left: 98px;
 }
 
-.loginpass{
-    position: relative;
-    top: 40px;
-    right:90px;
-}
