@@ -25,6 +25,7 @@
         <label for="nombre">Nombres : </label>
         <input
           class="form-control"
+          [(ngModel)]="usuario.usuario_nombre"
           type="text"
           placeholder="Ingrese sus nombres"
           id="nombre"
@@ -32,25 +33,28 @@
         <label for="apellidos">Apellidos : </label>
         <input
           class="form-control"
+          [(ngModel)]="usuario.usuario_apellidos"
           type="text"
           placeholder="Ingrese sus apellidos"
           id="apellido"
         />
-        <label for="nombre">correo : </label>
+        <label for="nombre">Correo : </label>
         <input
           class="form-control"
+          [(ngModel)]="usuario.correo"
           type="text"
           placeholder="Ingrese su correo"
           id="correo"
         />
-        <label for="pass">contraseña : </label>
+        <label for="pass">Contraseña : </label>
         <input
           class="form-control"
+          [(ngModel)]="usuario.password"
           type="password"
           placeholder="Ingrese su contraseña"
           id="password"
         />
-        <label for="pass">contraseña : </label>
+        <label for="pass">Confirmar contraseña : </label>
         <input
           class="form-control"
           type="password"
@@ -60,7 +64,7 @@
       </div>
     </form>
     <div class="loginbtn2">
-      <button type="button" class="btn btn-primary">Registrate</button>
+      <button type="button" (click)="crearUsuario()" class="btn btn-primary">Registrate</button>
     </div>
     <div class="loginbtn1">
       <button type="button" class="btn btn-primary" routerLink="/login">

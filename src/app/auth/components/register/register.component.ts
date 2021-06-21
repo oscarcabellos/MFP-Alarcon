@@ -22,6 +22,8 @@ export class RegisterComponent implements OnInit {
   }
 
   crearUsuario(){
+    console.log(this.usuario);
+    
     this.usuarioService.crearUsuario(this.usuario).subscribe(
       x=>{
         Swal.fire({
@@ -33,6 +35,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['login']);
       }
     )
+    
   }
 
 }
