@@ -2,30 +2,52 @@
   <div class="container">
     <h1>CURSOS</h1>
     <p class="lead text-muted">
-      Encuentra una gran variedad de cursos de distintas areas como ciencias, idiomas, informatica, letras, etc.
+      Encuentra una gran variedad de cursos de distintas areas como ciencias,
+      idiomas, informatica, letras, etc.
     </p>
-
   </div>
 </section>
 
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
-      <div class="col-md-4" *ngFor="let cursos of array">
+      <!-- <div class="col-md-4" *ngFor="let curso of cursos">
         <a href="#">
-         <!--  <h2>{{cursos?.nombre}}</h2>-->
+          <h2>{{ curso?.nombre }}</h2>
         </a>
         <div class="card mb-4 shadow-sm">
-           <!--     <img src=¨{{cursos.?imagen}}¨ class="cuadro__img">-->
+          <img src="¨{{ curso?.imagen }}¨" class="w-100" />
           <div class="card-body">
             <p class="card-text">
-           <!--    {{cursos?.descripccion}} -->
+              {{ curso?.descripcion }}
             </p>
-
-
           </div>
         </div>
+      </div> -->
+      <div class="col-md-4" *ngFor="let curso of cursos">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-light">
+            <h4 class="text-success text-center">{{ curso?.nombre }}</h4>
+          </div>
+          <img src="{{ curso?.imagen }}" alt="" />
 
+          <div class="card-body">
+            <p class="card-text">
+              {{ curso.descripcion }}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  Ver más
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                  Unirse
+                </button>
+              </div>
+              <small class="text-muted">{{ curso?.profesor }}</small>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

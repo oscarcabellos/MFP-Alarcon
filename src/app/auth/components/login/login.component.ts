@@ -13,10 +13,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     let usuario = new Usuario();
     usuario = {
-      usuario_nombre: 'usuario_dos',
+      usuario_nombre: 'usuario_cuatro',
       usuario_apellidos: 'usuario_apellido',
-      usuario_contrasenia: 'prueba2',
-      correo: 'prueba2@gmail.com',
+      correo: 'prueba4@gmail.com',
+      password: 'prueba',
       url: '',
     };
     //this.crearUsuario(usuario);

@@ -13,7 +13,7 @@ export class UsuarioService {
   url: string = `${environment.api.baseUrl}`;
   constructor(private http: HttpClient) {}
 
-  crearUsuario(usuario: Usuario): Observable<any> {
+  crearUsuario(usuario: Usuario) {
     return this.http
       .post(`${this.url}register`, usuario)
       .pipe(catchError(this.handleError));
