@@ -23,7 +23,7 @@
 </div>
 <div class="album py-5 bg-light">
   <div class="container">
-    <div class="row">
+    <div class="row my-2">
       <div class="col-6">
         <h3>Cursos más buscados</h3>
       </div>
@@ -57,7 +57,7 @@
             </p>
             <a routerLink="/cursos/curso/1" class="stretched-link">Ver curso</a>
           </div>
-          <div class="col-6 d-none d-lg-block">
+          <div class="col-6">
             <img
               src="http://www.electronicasi.com/wp-content/uploads/2013/05/portadaelectronicadigital.jpg"
               alt=""
@@ -68,14 +68,14 @@
     </div>
   </div>
 </div>
-<div class="container py-5">
+<div class="container py-5 mb-5">
   <div class="row">
     <div class="col-12 my-3">
       <h3 class="text-center">Mejores sugerencias</h3>
     </div>
   </div>
   <div class="row">
-    <div class="col-12 col-sm-3 col-md-4" *ngFor="let s of sugerencias">
+    <div class="col-12 col-md-4 col-md-4" *ngFor="let s of sugerencias">
       <div class="card border-info mb-3">
         <div class="card-body my-3">
           <h4 class="card-title text-center">Primary card title</h4>
@@ -85,6 +85,13 @@
             rerum deserunt nihil ullam dolorem magnam fugit, vitae temporibus.
             Dignissimos.
           </p>
+          <div class="row justify-content-center">
+            <i class="uil uil-star h2"></i>
+            <i class="uil uil-star h2"></i>
+            <i class="uil uil-star h2"></i>
+            <i class="uil uil-star h2"></i>
+            <i class="uil uil-star h2"></i>
+          </div>
         </div>
       </div>
     </div>
@@ -95,3 +102,4 @@
     </div>
   </div>
 </div>
+<div class="my-5"></div>
