@@ -31,7 +31,7 @@ export class AgregarUsuarioComponent implements OnInit {
         correo: 'correo@gmail.com',
         url: 'https://github.com/mdo.png',
         usuario_apellidos: '',
-        usuario_contrasenia: '',
+        password: '',
       },
       {
         idUsuario: 2,
@@ -39,7 +39,7 @@ export class AgregarUsuarioComponent implements OnInit {
         correo: 'correo@gmail.com',
         url: '',
         usuario_apellidos: '',
-        usuario_contrasenia: '',
+        password: '',
       },
       {
         idUsuario: 3,
@@ -47,7 +47,7 @@ export class AgregarUsuarioComponent implements OnInit {
         correo: 'correo@gmail.com',
         url: 'https://github.com/mdo.png',
         usuario_apellidos: '',
-        usuario_contrasenia: '',
+        password: '',
       },
       {
         idUsuario: 4,
@@ -55,7 +55,7 @@ export class AgregarUsuarioComponent implements OnInit {
         correo: 'correo@gmail.com',
         url: '',
         usuario_apellidos: '',
-        usuario_contrasenia: '',
+        password: '',
       },
       {
         idUsuario: 5,
@@ -63,7 +63,7 @@ export class AgregarUsuarioComponent implements OnInit {
         correo: 'correo@gmail.com',
         url: 'https://github.com/mdo.png',
         usuario_apellidos: '',
-        usuario_contrasenia: '',
+        password: '',
       },
     ];
   }
@@ -76,7 +76,7 @@ export class AgregarUsuarioComponent implements OnInit {
         correo: this.correoUsuario,
         url: '',
         usuario_apellidos: '',
-        usuario_contrasenia: '',
+        password: '',
       });
       this.correoUsuario = '';
     } else {

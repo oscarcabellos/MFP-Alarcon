@@ -21,14 +21,14 @@
             <form ><br/>
                 <div class="loginpass">        
                     <label for="nombre">Nombres :  </label>
-                    <input class="form-control" type="text" placeholder="Ingrese sus nombres" id="nombre">
+                    <input class="form-control" [(ngModel)]="usuario.usuario_nombre" type="text" placeholder="Ingrese sus nombres" id="nombre">
                     <label for="apellidos">Apellidos : </label>
-                    <input class="form-control" type="text" placeholder="Ingrese sus apellidos" id="apellido">
-                    <label for="nombre">correo : </label>
-                    <input class="form-control" type="text" placeholder="Ingrese su correo" id="correo">
-                    <label for="pass">contraseña : </label>
-                    <input class="form-control" type="password" placeholder="Ingrese su contraseña" id="password">
-                    <label for="pass">contraseña : </label>
+                    <input class="form-control" [(ngModel)]="usuario.usuario_apellidos"  type="text" placeholder="Ingrese sus apellidos" id="apellido">
+                    <label for="nombre">Correo : </label>
+                    <input class="form-control" [(ngModel)]="usuario.correo"  type="text" placeholder="Ingrese su correo" id="correo">
+                    <label for="pass">Contraseña : </label>
+                    <input class="form-control" [(ngModel)]="usuario.password"  type="password" placeholder="Ingrese su contraseña" id="password">
+                    <label for="pass">Confirmar contraseña : </label>
                     <input class="form-control" type="password" placeholder="Ingrese su contraseña" id="password">
                 </div>                                              
             </form>

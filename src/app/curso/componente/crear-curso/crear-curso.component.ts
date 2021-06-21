@@ -23,7 +23,7 @@ export class CrearCursoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.listar();
+
   }
   obtenerPrivacidad(x: number){
     if(x==1){
@@ -38,23 +38,6 @@ export class CrearCursoComponent implements OnInit {
       console.log(this.image[0]);
   }
 
-  /* {
-    "usuario_id": "25",
-    "categoria_id": "1",
-    "codigo": "asds",
-    "imagen": "asdasdas",
-    "curso_nombre": "hola",
-    "description": "khkjhikjh",
-    "conoci_previo": "jkkjhkjh",
-    "privacidad": "1"
-} */
-  listar(){
-    this.http.get("https://aprendeenlinea.herokuapp.com/users").subscribe(
-      x=>{
-         console.log(x);
-      
-    })
-  }
   crearCurso(){
     this.cloudBinaryService.sendPhoto(this.image[0])
       .subscribe((response: Data) => this.curso.imagen = response.secure_url);
