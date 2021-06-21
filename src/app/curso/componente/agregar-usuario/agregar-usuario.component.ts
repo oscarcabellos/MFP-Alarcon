@@ -16,9 +16,7 @@ export class AgregarUsuarioComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
-    if (true) {
-      this.listarUsuarios(1);
-    }
+    this.listarUsuarios(1);
     this.usuarioProfesor = true;
   }
 
@@ -29,28 +27,43 @@ export class AgregarUsuarioComponent implements OnInit {
     this.usuarios = [
       {
         idUsuario: 1,
-        nombre: 'nombre apelidopaterno apeliidomaterno',
+        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
         correo: 'correo@gmail.com',
+        url: 'https://github.com/mdo.png',
+        usuario_apellidos: '',
+        usuario_contrasenia: '',
       },
       {
         idUsuario: 2,
-        nombre: 'nombre apelidopaterno apeliidomaterno',
+        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
         correo: 'correo@gmail.com',
+        url: '',
+        usuario_apellidos: '',
+        usuario_contrasenia: '',
       },
       {
         idUsuario: 3,
-        nombre: 'nombre apelidopaterno apeliidomaterno',
+        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
         correo: 'correo@gmail.com',
+        url: 'https://github.com/mdo.png',
+        usuario_apellidos: '',
+        usuario_contrasenia: '',
       },
       {
         idUsuario: 4,
-        nombre: 'nombre apelidopaterno apeliidomaterno',
+        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
         correo: 'correo@gmail.com',
+        url: '',
+        usuario_apellidos: '',
+        usuario_contrasenia: '',
       },
       {
         idUsuario: 5,
-        nombre: 'nombre apelidopaterno apeliidomaterno',
+        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
         correo: 'correo@gmail.com',
+        url: 'https://github.com/mdo.png',
+        usuario_apellidos: '',
+        usuario_contrasenia: '',
       },
     ];
   }
@@ -59,24 +72,44 @@ export class AgregarUsuarioComponent implements OnInit {
     if (this.validarCorreo(this.correoUsuario)) {
       this.usuarios.push({
         idUsuario: this.usuarios.length,
-        nombre: 'sin nombre',
+        usuario_nombre: 'sin nombre',
         correo: this.correoUsuario,
+        url: '',
+        usuario_apellidos: '',
+        usuario_contrasenia: '',
       });
       this.correoUsuario = '';
     } else {
       Swal.fire({
         title: 'Error!',
-        text: 'Do you want to continue',
-        // icon: 'error',
-        confirmButtonText: 'Cool',
+        text: 'Correo ingresado no válido',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3085d6',
         width: '20rem',
       });
     }
   }
 
   eliminarUsuario(id: number) {
-    console.log(id);
-    this.usuarios = this.usuarios.filter((u) => u.idUsuario != id);
+    Swal.fire({
+      title: '¿Seguro de eliminar?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText: 'Cancelar',
+      width: '20rem',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarios = this.usuarios.filter((u) => u.idUsuario != id);
+        Swal.fire({
+          title: 'Eliminado',
+          icon: 'success',
+          showConfirmButton: false,
+          width: '20rem',
+        });
+      }
+    });
   }
 
   descargarUsuarios() {

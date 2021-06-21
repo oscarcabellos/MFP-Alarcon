@@ -1,20 +1,21 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { Usuario } from '../modelo/usuario';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AppServiceBase } from 'src/app/core/appServiceBase';
+import { environment } from 'src/environments/environment';
+import { Usuario } from '../modelos/usuario';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsuarioService {
-  url: string = `${environment.api.baseUrl}/usuario`;
+  url: string = `${environment.api.baseUrl}`;
   constructor(private http: HttpClient) {}
 
-  listarUsuarios(id: number) {
+  crearUsuario(usuario: Usuario): Observable<any> {
     return this.http
-      .get<Usuario[]>(`${this.url}/listar`)
+      .post(`${this.url}register`, usuario)
       .pipe(catchError(this.handleError));
   }
 
@@ -22,9 +23,11 @@ export class UsuarioService {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);
     } else {
+      // Error en el lado del servidor
       console.log('Error Status:', error.status);
       console.log('Error:', error.error);
     }
+    //catch and rethrow
     return throwError('Cannot perform the request, please try again later');
   }
 }

@@ -7,6 +7,8 @@ import { CrearCursoComponent } from './componente/crear-curso/crear-curso.compon
 import { FormsModule } from '@angular/forms';
 import { CursoComponent } from './componente/curso/curso.component';
 import { CursoPublicoComponent } from './componente/curso-publico/curso-publico.component';
+import { TareaCursoComponent } from './componente/tarea-curso/tarea-curso.component';
+import { VerCursoComponent } from './componente/ver-curso/ver-curso.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { CursoPublicoComponent } from './componente/curso-publico/curso-publico.
     CrearCursoComponent,
     CursoComponent,
     CursoPublicoComponent,
+    TareaCursoComponent,
+    VerCursoComponent,
   ],
   imports: [CommonModule, FormsModule, CursoRoutingModule],
 })

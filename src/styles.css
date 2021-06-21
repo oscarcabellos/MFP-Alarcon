@@ -7,3 +7,10 @@ body {
   margin: 0;
   margin-bottom: 40px;
 }
+body::-webkit-scrollbar{
+  width: 7px; 
+}
+body::-webkit-scrollbar-thumb{
+  background: #18bc9c;
+  border-radius: 5px;
+}
