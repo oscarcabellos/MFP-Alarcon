@@ -25,6 +25,7 @@
               <div class="col-12 my-4 px-4">
                 <input
                   class="form-control"
+                  [(ngModel)]="usuario.correo"
                   type="text"
                   placeholder="Ingrese su correo"
                 />
@@ -32,12 +33,13 @@
               <div class="col-12 my-4 px-4">
                 <input
                   class="form-control"
+                  [(ngModel)]="usuario.password"
                   type="password"
                   placeholder="Ingrese su contraseña"
                 />
               </div>
               <div class="col-12 my-4 d-flex justify-content-around">
-                <button type="button" class="btn btn-primary">
+                <button type="button" (click)="login()" class="btn btn-primary">
                   Iniciar Sesion
                 </button>
                 <button

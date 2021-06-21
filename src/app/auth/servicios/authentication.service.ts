@@ -23,30 +23,18 @@ export class AuthenticationService {
       .pipe(
         map((userData) => {
           console.log('userdata', userData);
-          if (userData.success) {
-            this.tokeString = 'Bearer ' + userData.data.accessToken;
-            console.log(this.tokeString);
-            sessionStorage.setItem('tokenAuth', btoa(this.tokeString));
-            sessionStorage.setItem(
-              'authData',
-              btoa(JSON.stringify(userData.data))
-            );
-          }
+
+            sessionStorage.setItem("usuario_id",userData.user.usuario_id);
+            sessionStorage.setItem("usuario_apellidos",userData.user.usuario_apellidos);
+            sessionStorage.setItem("usuario_nombre",userData.user.usuario_nombre);
+            sessionStorage.setItem("correo",userData.user.correo);
+           
           return userData;
         })
       );
   }
 
-  /*   recoveryPassword(user: any): Observable<any> {
-    return this.httpClient
-      .put<any>(`${environment.api.baseUrl}/v1/accounts/recovery/password`, user)
-      .pipe(
-        map(userData => {
-          return userData;
-        })
-      );
-  }
- */
+
   logout() {
     this.isAuthenticated = false;
     sessionStorage.removeItem('username');
