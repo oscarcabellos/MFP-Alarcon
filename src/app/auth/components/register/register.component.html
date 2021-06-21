@@ -1,45 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-<body>
-    <div class="procenter">
-        <div class="profileicon">
-            <h1 class="logintxt">Registrate</h1>
-                <div class="logintxt">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
-                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
-                    </svg>         
-                </div>
-                <br/>
-                <input class="form-control" type="text" placeholder="Usuario">
-        </div>
-        <div class="loginform">
-            <form ><br/>
-                <div class="loginpass">        
-                    <label for="nombre">Nombres :  </label>
-                    <input class="form-control" [(ngModel)]="usuario.usuario_nombre" type="text" placeholder="Ingrese sus nombres" id="nombre">
-                    <label for="apellidos">Apellidos : </label>
-                    <input class="form-control" [(ngModel)]="usuario.usuario_apellidos"  type="text" placeholder="Ingrese sus apellidos" id="apellido">
-                    <label for="nombre">Correo : </label>
-                    <input class="form-control" [(ngModel)]="usuario.correo"  type="text" placeholder="Ingrese su correo" id="correo">
-                    <label for="pass">Contraseña : </label>
-                    <input class="form-control" [(ngModel)]="usuario.password"  type="password" placeholder="Ingrese su contraseña" id="password">
-                    <label for="pass">Confirmar contraseña : </label>
-                    <input class="form-control" type="password" placeholder="Ingrese su contraseña" id="password">
-                </div>                                              
-            </form>
-
-            <div class="loginbtn2">
-                <button type="button" class="btn btn-primary" >Registrate</button>
-            </div> 
-            <div class="loginbtn1">
-                <button type="button" class="btn btn-primary" routerLink="/login">Atras</button>
-            </div> 
-        </div>  
-    </div> 
-</body>
-</html>
+<div class="procenter">
+  <div class="profileicon">
+    <h1 class="logintxt">Registrate</h1>
+    <div class="logintxt">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="100"
+        height="100"
+        fill="currentColor"
+        class="bi bi-file-person-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"
+        />
+      </svg>
+    </div>
+    <br />
+    <input class="form-control" type="text" placeholder="Usuario" />
+  </div>
+  <div class="loginform">
+    <form>
+      <br />
+      <div class="loginpass">
+        <label for="nombre">Nombres : </label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Ingrese sus nombres"
+          id="nombre"
+        />
+        <label for="apellidos">Apellidos : </label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Ingrese sus apellidos"
+          id="apellido"
+        />
+        <label for="nombre">correo : </label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Ingrese su correo"
+          id="correo"
+        />
+        <label for="pass">contraseña : </label>
+        <input
+          class="form-control"
+          type="password"
+          placeholder="Ingrese su contraseña"
+          id="password"
+        />
+        <label for="pass">contraseña : </label>
+        <input
+          class="form-control"
+          type="password"
+          placeholder="Ingrese su contraseña"
+          id="password"
+        />
+      </div>
+    </form>
+    <div class="loginbtn2">
+      <button type="button" class="btn btn-primary">Registrate</button>
+    </div>
+    <div class="loginbtn1">
+      <button type="button" class="btn btn-primary" routerLink="/login">
+        Atras
+      </button>
+    </div>
+  </div>
+</div>
