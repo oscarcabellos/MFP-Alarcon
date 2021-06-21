@@ -25,17 +25,9 @@ export class AuthenticationService {
         map(userData => {
           console.log('userdata', userData);
           if (userData.success) {
-            sessionStorage.setItem('username', userData.data.userName);
-            sessionStorage.setItem('presentacion', userData.data.presentacion);
-            sessionStorage.setItem('userId', userData.data.userId);
-            sessionStorage.setItem('rolUsuario', userData.data.rolUsuario);
             this.tokeString = 'Bearer ' + userData.data.accessToken;
             sessionStorage.setItem('tokenAuth', btoa(this.tokeString));
             sessionStorage.setItem('authData', btoa(JSON.stringify(userData.data)));
-            sessionStorage.setItem('unidadOrganica', userData.data.unidadOrganica);
-            sessionStorage.setItem('unidadOrganicaId', userData.data.unidadOrganicaId);
-            sessionStorage.setItem('subUnidadOrganica', userData.data.subUnidadOrganica);
-            sessionStorage.setItem('subUnidadOrganicaId', userData.data.subUnidadOrganicaId);
           }
           return userData;
         })

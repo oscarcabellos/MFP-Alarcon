@@ -11,3 +11,8 @@ img {
   height: 230px;
 }
 
+.my-pagination {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}

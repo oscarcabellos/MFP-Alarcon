@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CrearCursoComponent implements OnInit {
   curso: Curso = new Curso();
-  image: any;
+  image: any[];
   data: Data;
   constructor(
     private cursoService: CursoService,
@@ -21,9 +21,7 @@ export class CrearCursoComponent implements OnInit {
     private cloudBinaryService: CloudBinaryService
   ) {}
 
-  ngOnInit(): void {
-    this.listar();
-  }
+  ngOnInit(): void {}
   obtenerPrivacidad(x: number) {
     if (x == 1) {
       this.curso.privacidad_id = 1; //publico
@@ -37,23 +35,6 @@ export class CrearCursoComponent implements OnInit {
     console.log(this.image[0]);
   }
 
-  /* {
-    "usuario_id": "25",
-    "categoria_id": "1",
-    "codigo": "asds",
-    "imagen": "asdasdas",
-    "curso_nombre": "hola",
-    "description": "khkjhikjh",
-    "conoci_previo": "jkkjhkjh",
-    "privacidad": "1"
-} */
-  listar() {
-    this.http
-      .get('https://aprendeenlinea.herokuapp.com/users')
-      .subscribe((x) => {
-        console.log(x);
-      });
-  }
   crearCurso() {
     this.cloudBinaryService
       .sendPhoto(this.image[0])
@@ -68,7 +49,7 @@ export class CrearCursoComponent implements OnInit {
             title: 'Curso creado',
             text: `El curso se ha creado con exito`,
             icon: 'success',
-            confirmButtonColor: '#FFFFFF',
+            confirmButtonColor: '#2F6DF2',
           });
         });
       });
