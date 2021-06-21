@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
     this.recoveryForm = this.formBuilder.group({
       correo: ['', Validators.required],
     });
+
+    this.buscarUsuario();
   }
 
   validateAllFormFields(formGroup: FormGroup) {
@@ -81,5 +83,10 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }
+  buscarUsuario() {
+    this.authenticationService
+      .authUser({ correo: 'uno@gmail.com', password: 'prueba' })
+      .subscribe((x) => console.log(x));
   }
 }

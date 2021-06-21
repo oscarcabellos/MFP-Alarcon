@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
   isAuthenticated = false;
@@ -15,26 +15,29 @@ export class AuthenticationService {
   tokeString: any = '';
   isActivateAccount = false;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  
   authUser(signUsers: any): Observable<any> {
     return this.httpClient
-      .post<any>(`${environment.api.baseUrl}/login`, signUsers)
+      .post<any>(`${environment.api.baseUrl}login`, signUsers)
       .pipe(
-        map(userData => {
+        map((userData) => {
           console.log('userdata', userData);
           if (userData.success) {
             this.tokeString = 'Bearer ' + userData.data.accessToken;
+            console.log(this.tokeString);
             sessionStorage.setItem('tokenAuth', btoa(this.tokeString));
-            sessionStorage.setItem('authData', btoa(JSON.stringify(userData.data)));
+            sessionStorage.setItem(
+              'authData',
+              btoa(JSON.stringify(userData.data))
+            );
           }
           return userData;
         })
       );
   }
 
-/*   recoveryPassword(user: any): Observable<any> {
+  /*   recoveryPassword(user: any): Observable<any> {
     return this.httpClient
       .put<any>(`${environment.api.baseUrl}/v1/accounts/recovery/password`, user)
       .pipe(
