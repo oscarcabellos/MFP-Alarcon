@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/curso/modelo/usuario';
 import { AuthenticationService } from '../../servicios/authentication.service';
 
 @Component({
@@ -14,6 +15,8 @@ import { AuthenticationService } from '../../servicios/authentication.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+
+  usuario: Usuario = new Usuario();
   isFormValid = false;
   areCredentialsInvalid = false;
   signForm: FormGroup;
@@ -29,7 +32,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.signForm = this.formBuilder.group({
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
       correo: ['', Validators.required],
     });
 
-    this.buscarUsuario();
+    /* this.buscarUsuario(); */
   }
 
   validateAllFormFields(formGroup: FormGroup) {
@@ -55,34 +58,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (!this.signForm.valid) {
-      this.isFormValid = true;
-      this.areCredentialsInvalid = false;
-      this.validateAllFormFields(this.signForm);
-      return;
-    } else {
-      this.authenticationService.authUser(this.signForm.value).subscribe(
-        (response) => {
-          if (response.success) {
-            if (response.data.activaCuenta) {
-              this.router.navigate(['home']).then(() => {
-                window.location.reload();
-              });
-            } else {
-              this.router.navigate(['perfil']).then(() => {
-                window.location.reload();
-              });
-            }
-          } else {
-            this.showErrorMessage = true;
-          }
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+  login() {
+    this.authenticationService.authUser(this.usuario).subscribe(
+      (response) => { console.log(response);
+        /* this.router.navigate(['cursos/crear']); */
+        
+      }
+    );
+
   }
   buscarUsuario() {
     this.authenticationService

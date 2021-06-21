@@ -12,6 +12,7 @@ import { VerCursoComponent } from './componente/ver-curso/ver-curso.component';
 import { CursoComponent } from './componente/curso/curso.component';
 import { TareaCursoComponent } from './componente/tarea-curso/tarea-curso.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CursoPublicoComponent,
     TareaCursoComponent,
     VerCursoComponent,
+    FilterPipe,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, CursoRoutingModule,NgxPaginationModule],
 })
