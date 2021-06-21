@@ -31,6 +31,10 @@ export class CursoService extends AppServiceBase {
     return this.get('courses').pipe(catchError(this.handleError));
   }
 
+  obtenerCurso(id: number): Observable<any> {
+    return this.get(`courses/${id}`).pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);

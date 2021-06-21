@@ -8,10 +8,9 @@ import { CursoService } from '../../servicios/curso.service';
   styleUrls: ['./curso-publico.component.css'],
 })
 export class CursoPublicoComponent implements OnInit {
-
   pageActual: number;
-  previousLabel = "Anterior";
-  nextLabel = "Siguiente";
+  previousLabel = 'Anterior';
+  nextLabel = 'Siguiente';
   responsive: boolean = true;
   cursos: Curso[];
   constructor(private cursoService: CursoService) {}

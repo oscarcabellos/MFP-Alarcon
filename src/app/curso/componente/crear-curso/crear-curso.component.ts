@@ -36,22 +36,38 @@ export class CrearCursoComponent implements OnInit {
   }
 
   crearCurso() {
-    this.cloudBinaryService
-      .sendPhoto(this.image[0])
-      .subscribe((response: Data) => {
-        this.curso.imagen = response['secure_url'];
-        console.log(response);
-        this.curso.usuario_id = 25;
-        this.curso.categoria_id = 1;
+    console.log(this.image);
 
-        this.cursoService.crearCurso(this.curso).subscribe(() => {
-          Swal.fire({
-            title: 'Curso creado',
-            text: `El curso se ha creado con exito`,
-            icon: 'success',
-            confirmButtonColor: '#2F6DF2',
+    if (this.image != null && this.image != undefined) {
+      this.cloudBinaryService
+        .sendPhoto(this.image[0])
+        .subscribe((response: Data) => {
+          this.curso.imagen = response['secure_url'];
+          console.log(response);
+          this.curso.usuario_id = 25;
+          this.curso.categoria_id = 1;
+
+          this.cursoService.crearCurso(this.curso).subscribe(() => {
+            Swal.fire({
+              title: 'Curso creado',
+              text: `El curso se ha creado con exito`,
+              icon: 'success',
+              confirmButtonColor: '#2F6DF2',
+            });
           });
         });
+    } else {
+      this.curso.usuario_id = 25;
+      this.curso.categoria_id = 1;
+
+      this.cursoService.crearCurso(this.curso).subscribe(() => {
+        Swal.fire({
+          title: 'Curso creado',
+          text: `El curso se ha creado con exito`,
+          icon: 'success',
+          confirmButtonColor: '#2F6DF2',
+        });
       });
+    }
   }
 }

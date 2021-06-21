@@ -11,23 +11,16 @@
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
-      <!-- <div class="col-md-4" *ngFor="let curso of cursos">
-        <a href="#">
-          <h2>{{ curso?.nombre }}</h2>
-        </a>
-        <div class="card mb-4 shadow-sm">
-          <img src="¨{{ curso?.imagen }}¨" class="w-100" />
-          <div class="card-body">
-            <p class="card-text">
-              {{ curso?.descripcion }}
-            </p>
-          </div>
-        </div>
-      </div> -->
-      <div class="col-md-4" *ngFor="let curso of cursos | paginate: { itemsPerPage: 9, currentPage: pageActual}">
+      <div
+        class="col-12 col-md-6 col-lg-4"
+        *ngFor="
+          let curso of cursos
+            | paginate: { itemsPerPage: 9, currentPage: pageActual }
+        "
+      >
         <div class="card mb-4 shadow-sm">
           <div class="card-header bg-light">
-            <h4 class="text-success text-center">{{ curso?.curso_nombre }}</h4>
+            <h5 class="text-success text-center">{{ curso?.curso_nombre }}</h5>
           </div>
           <img
             src="{{ curso?.imagen }}"
@@ -41,14 +34,17 @@
             />
           </ng-template>
           <div class="card-body">
-            <p class="card-text">
-              {{ curso.descripcion }}
-            </p>
+            <!--  <p class="card-text">
+              {{ curso?.descripcion }}
+            </p> -->
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
+                <a
+                  class="btn btn-sm btn-outline-secondary"
+                  routerLink="/cursos/curso/{{ curso?.curso_id }}"
+                >
                   Ver más
-                </button>
+                </a>
                 <button type="button" class="btn btn-sm btn-outline-secondary">
                   Unirse
                 </button>
@@ -58,9 +54,17 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="row justify-content-center">
       <ng-container>
-        <pagination-controls class="my-pagination" maxSize="5" [responsive]="responsive"
-          [previousLabel]="previousLabel" [nextLabel]="nextLabel" (pageChange)="pageActual = $event"></pagination-controls>
+        <pagination-controls
+          class="my-pagination"
+          maxSize="5"
+          [responsive]="responsive"
+          [previousLabel]="previousLabel"
+          [nextLabel]="nextLabel"
+          (pageChange)="pageActual = $event"
+        ></pagination-controls>
       </ng-container>
     </div>
   </div>
