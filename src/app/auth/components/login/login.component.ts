@@ -15,15 +15,12 @@ import { AuthenticationService } from '../../servicios/authentication.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   usuario: Usuario = new Usuario();
   isFormValid = false;
   areCredentialsInvalid = false;
   signForm: FormGroup;
   token: any;
   authSucces: any;
-  unidadOrganicas: any;
-  subUnidadOrganicas: any;
   selectedValue: any = true;
   showErrorMessage = false;
   recoveryForm: FormGroup;
@@ -32,7 +29,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.signForm = this.formBuilder.group({
@@ -43,8 +40,6 @@ export class LoginComponent implements OnInit {
     this.recoveryForm = this.formBuilder.group({
       correo: ['', Validators.required],
     });
-
-    /* this.buscarUsuario(); */
   }
 
   validateAllFormFields(formGroup: FormGroup) {
@@ -59,17 +54,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authenticationService.authUser(this.usuario).subscribe(
-      (response) => { console.log(response);
-        /* this.router.navigate(['cursos/crear']); */
-        
-      }
-    );
-
-  }
-  buscarUsuario() {
-    this.authenticationService
-      .authUser({ correo: 'uno@gmail.com', password: 'prueba' })
-      .subscribe((x) => console.log(x));
+    this.authenticationService.authUser(this.usuario).subscribe((response) => {
+      console.log(response);
+      this.router.navigate(['cursos/dashboard']).then(() => {
+        window.location.reload();
+      });
+    });
   }
 }

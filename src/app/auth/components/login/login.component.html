@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <div class="row d-flex justify-content-center">
     <div class="col-6">
       <div class="card">
@@ -51,31 +51,58 @@
                 </button>
               </div>
             </div>
-            <!-- <div class="logintx"> -->
-            <!-- </div> -->
-            <!-- <br /> -->
-            <!-- <div class="loginpass"> -->
-            <!-- </div> -->
           </form>
-          <!-- <br /><br /> -->
-          <!-- <div class="loginbtnG">
-            <div class="loginbtn1">
-              <button type="button" class="btn btn-primary">
-                Iniciar Sesion
-              </button>
-            </div>
-            <div class="loginbtn2">
-              <button
-                type="button"
-                class="btn btn-primary"
-                routerLink="/login/register"
-              >
-                Registrate
-              </button>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
   </div>
 </div>
+ -->
+
+<form class="form-signin mt-4">
+  <div class="text-center my-4">
+    <img
+      class="my-4"
+      src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
+      alt=""
+      width="72"
+      height="72"
+    />
+    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam sed ut
+    </p>
+  </div>
+
+  <div class="form-label-group my-4">
+    <label for="inputEmail">Correo electrónico</label>
+    <input
+      type="email"
+      id="inputEmail"
+      class="form-control"
+      placeholder="Ingrese su correo"
+      required=""
+      autofocus=""
+      [(ngModel)]="usuario.correo"
+    />
+  </div>
+
+  <div class="form-label-group my-4">
+    <label for="inputPassword">Contraseña</label>
+    <input
+      type="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Ingrese su contraseña"
+      required=""
+      [(ngModel)]="usuario.password"
+    />
+  </div>
+  <button class="btn btn-lg btn-primary btn-block my-4" (click)="login()">
+    Iniciar Sesión
+  </button>
+  <p class="my-3">
+    Don't have an account yet?
+    <a class="link" routerLink="/login/register">Register now</a>
+  </p>
+</form>

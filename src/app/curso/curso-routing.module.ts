@@ -4,6 +4,7 @@ import { AgregarUsuarioComponent } from './componente/agregar-usuario/agregar-us
 import { CrearCursoComponent } from './componente/crear-curso/crear-curso.component';
 import { CursoPublicoComponent } from './componente/curso-publico/curso-publico.component';
 import { CursoComponent } from './componente/curso/curso.component';
+import { DashboardComponent } from './componente/dashboard/dashboard.component';
 import { VerCursoComponent } from './componente/ver-curso/ver-curso.component';
 
 const routes: Routes = [
@@ -16,8 +17,8 @@ const routes: Routes = [
     component: CrearCursoComponent,
   },
   {
-    path: 'agregar-usuario',
-    component: CursoComponent,
+    path: 'dashboard',
+    component: DashboardComponent,
   },
   {
     path: 'curso/:id',
