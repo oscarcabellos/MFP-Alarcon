@@ -14,11 +14,19 @@ export class CursoService extends AppServiceBase {
   url:string = `${environment.api.baseUrl}`;
 
   crearCurso(curso: Curso): Observable<any> {
-    return this.post("", curso)
+    return this.post(`courses`, curso)
       .pipe(
-        /* map((response: any) => response.sugerencia as Curso), */
-        catchError(this.handleError)
-      );
+        map((response: any) => response.curso as Curso),
+        catchError(e => {
+          if (e.status == 400) {
+            return throwError(e);
+          }
+          if (e.error.mensaje) {
+            console.error(e.error.mensaje);
+          }
+          return throwError(e);
+        }));
+      
   }
 
   private handleError(error: HttpErrorResponse) {
