@@ -1,71 +1,102 @@
 <div class="container">
-    <div class="row m-0">
-        <h1>CREAR CURSO</h1>
-    </div>
-    <div class="row m-0">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="text-primary">Detalle del curso</h4>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Imagen:</label><br>
-                            <input type="file" (change)="onFileChange($event)" id="file" class="input-file-input">
-                        </div>
-                        <!-- <div class="form-group">
+  <div class="row m-0">
+    <h1>CREAR CURSO</h1>
+  </div>
+  <div class="row m-0">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-primary">Detalle del curso</h4>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Imagen:</label><br />
+              <input
+                type="file"
+                (change)="onFileChange($event)"
+                id="file"
+                class="input-file-input"
+              />
+            </div>
+            <!-- <div class="form-group">
                             <label for="formGroupExampleInput">Imagen:</label>
                             <div class="custom-file">
                                 <input type="file" (change)="onFileChange($event)" class="custom-file-input" id="">
                                 <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
                             </div>
                         </div> -->
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Nombre:</label>
-                            <input type="text" [(ngModel)]="curso.curso_nombre" class="form-control" id=""
-                                placeholder="Nombre">
-                        </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Descripcion:</label>
-                            <textarea type="text" [(ngModel)]="curso.descripcion" class="form-control" id="" rows="4"
-                                placeholder="Descripcion"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Conocimiento previo:</label>
-                            <textarea type="text" [(ngModel)]="curso.conoci_previo" class="form-control" id=""
-                                rows="4" placeholder="Conocimiento previo"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <div class="row m-0">
-                                <p> Privacidad:</p>
-                                <div class="form-check ml-5">
-                                    <input class="form-check-input" type="radio" name="Privacidad"
-                                        (click)="obtenerPrivacidad(1)">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Publico
-                                    </label>
-                                </div>
-                                <div class="form-check ml-5">
-                                    <input class="form-check-input" type="radio" name="Privacidad"
-                                        (click)="obtenerPrivacidad(2)">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Privado
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Nombre:</label>
+              <input
+                type="text"
+                [(ngModel)]="curso.curso_nombre"
+                class="form-control"
+                id=""
+                placeholder="Nombre"
+              />
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Descripcion:</label>
+              <textarea
+                type="text"
+                [(ngModel)]="curso.descripcion"
+                class="form-control"
+                id=""
+                rows="4"
+                placeholder="Descripcion"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Conocimiento previo:</label>
+              <textarea
+                type="text"
+                [(ngModel)]="curso.conoci_previo"
+                class="form-control"
+                id=""
+                rows="4"
+                placeholder="Conocimiento previo"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <div class="row m-0">
+                <p>Privacidad:</p>
+                <div class="form-check ml-5">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="Privacidad"
+                    (click)="obtenerPrivacidad(1)"
+                  />
+                  <label class="form-check-label" for="defaultCheck1">
+                    Publico
+                  </label>
                 </div>
+                <div class="form-check ml-5">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="Privacidad"
+                    (click)="obtenerPrivacidad(2)"
+                  />
+                  <label class="form-check-label" for="defaultCheck1">
+                    Privado
+                  </label>
+                </div>
+              </div>
             </div>
-            <div class="row justify-content-center m-4">
-                <button class="btn btn-info mr-2 btn-lg" (click)="crearCurso()">Crear Curso</button>
-                <button class="btn btn-danger btn-lg">Volver</button>
-            </div>
+          </form>
         </div>
-        <div class="col">
-            <app-agregar-usuario></app-agregar-usuario>
-        </div>
+      </div>
+      <div class="row justify-content-center m-4">
+        <button class="btn btn-info mr-2 btn-lg" (click)="crearCurso()">
+          Crear Curso
+        </button>
+        <button class="btn btn-danger btn-lg">Volver</button>
+      </div>
     </div>
-
+    <div class="col">
+      <app-agregar-usuario></app-agregar-usuario>
+    </div>
+  </div>
 </div>
