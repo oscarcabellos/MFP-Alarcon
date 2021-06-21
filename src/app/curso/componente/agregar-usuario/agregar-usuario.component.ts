@@ -81,8 +81,8 @@ export class AgregarUsuarioComponent implements OnInit {
       this.correoUsuario = '';
     } else {
       Swal.fire({
-        title: 'Error!',
-        text: 'Correo ingresado no válido',
+        title: 'Correo no válido',
+        //text: 'Correo ingresado no válido',
         confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
         width: '20rem',
