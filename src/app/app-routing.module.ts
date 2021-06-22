@@ -20,9 +20,8 @@ const routes: Routes = [
     component: ListarSugerenciasComponent,
   },
   {
-    path: 'login',
-    loadChildren: () => 
-      import('./auth/auth.module').then((m) => m.AuthModule),
+    path: 'user',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
 ];
 @NgModule({

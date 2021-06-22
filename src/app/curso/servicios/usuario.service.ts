@@ -4,18 +4,14 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from '../modelo/usuario';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AppServiceBase } from 'src/app/core/appServiceBase';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsuarioService {
-  url: string = `${environment.api.baseUrl}/usuario`;
-  constructor(private http: HttpClient) {}
-
-  listarUsuarios(id: number) {
-    return this.http
-      .get<Usuario[]>(`${this.url}/listar`)
-      .pipe(catchError(this.handleError));
+export class UsuarioService extends AppServiceBase {
+  obtenerUsuario(id: number) {
+    return this.get(`users/${id}`).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
