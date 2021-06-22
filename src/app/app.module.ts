@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/components/home/home.component';
 import { FooterComponent } from './layout/components/footer/footer.component';
 import { HeaderComponent } from './layout/components/header/header.component';
-import { ListarSugerenciasComponent } from './sugerencia/components/listar-sugerencias/listar-sugerencias.component';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent],

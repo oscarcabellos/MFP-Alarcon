@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CrearCursoComponent } from './curso/componente/crear-curso/crear-curso.component';
-import { CursoPublicoComponent } from './curso/componente/curso-publico/curso-publico.component';
 import { HomeComponent } from './home/components/home/home.component';
-import { ListarSugerenciasComponent } from './sugerencia/components/listar-sugerencias/listar-sugerencias.component';
 
 const routes: Routes = [
   {
@@ -17,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'sugerencias',
-    component: ListarSugerenciasComponent,
+    loadChildren: () =>
+      import('./sugerencia/sugerencia.module').then((m) => m.SugerenciaModule),
   },
   {
     path: 'user',

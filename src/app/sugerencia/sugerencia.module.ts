@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { SugerenciaRoutingModule } from './sugerencia-routing.module';
-import { ListarSugerenciasComponent } from './components/listar-sugerencias/listar-sugerencias.component';
+import { ListaSugerenciaComponent } from './componentes/lista-sugerencia/lista-sugerencia.component';
+import { SugerenciaRoutingModule } from './sugerencia-touting.module';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NuevaSugerenciaComponent } from './componentes/nueva-sugerencia/nueva-sugerencia.component';
 
 @NgModule({
-  declarations: [ListarSugerenciasComponent],
-  imports: [CommonModule, SugerenciaRoutingModule],
+  declarations: [ListaSugerenciaComponent, NuevaSugerenciaComponent],
+  imports: [CommonModule, SugerenciaRoutingModule, NgxPaginationModule],
 })
 export class SugerenciaModule {}
