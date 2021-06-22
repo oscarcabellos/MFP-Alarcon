@@ -1,1 +1,27 @@
-<p>nueva-sugerencia works!</p>
+<div class="modal-header">
+  <h5 class="modal-title">Nueva Sugerencia</h5>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="closeModal('dismiss')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <label for="">Descripción</label>
+        <textarea name="" id="" class="form-control" rows="4"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary">Guardar</button>
+</div>

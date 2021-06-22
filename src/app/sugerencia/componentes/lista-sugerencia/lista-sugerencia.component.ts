@@ -1,4 +1,6 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
+import { NuevaSugerenciaComponent } from '../nueva-sugerencia/nueva-sugerencia.component';
 
 @Component({
   selector: 'app-lista-sugerencia',
@@ -11,29 +13,23 @@ export class ListaSugerenciaComponent implements OnInit {
   previousLabel = 'Anterior';
   nextLabel = 'Siguiente';
   responsive: boolean = true;
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.pageActual = 1;
   }
 
-  /* openModal() {
-    const modalRef = this.modalService.open(ModalTemplateComponent, {
+  openModal() {
+    const modalRef = this.modalService.open(NuevaSugerenciaComponent, {
       scrollable: true,
       windowClass: 'myCustomModalClass',
       size: 'lg',
     });
-    let data = {
-      idCaso: this.casosSeleccionados,
-      bandeja: 'caso',
-    };
+    let data = {};
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
-      (result) => {
-        this.casosSeleccionados = [];
-        $('#tablaDeCasos').DataTable().rows().invalidate('data').draw(false);
-      },
+      (result) => {},
       (reason) => {}
     );
-  } */
+  }
 }

@@ -32,7 +32,9 @@
     </div>
     <div class="col-8 mt-5">
       <div class="d-flex flex-row-reverse">
-        <button class="btn btn-outline-primary">Nuevo</button>
+        <button class="btn btn-outline-primary" (click)="openModal()">
+          Nuevo
+        </button>
       </div>
       <div class="card my-3" *ngFor="let c of categorias">
         <div class="card-body">

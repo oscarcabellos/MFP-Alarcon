@@ -11,8 +11,15 @@ img {
   height: 180px;
 }
 
-.my-pagination {
+/* .my-pagination {
   justify-content: center;
   align-items: center;
   display: flex;
+} */
+.my-pagination /deep/ .ngx-pagination.responsive {
+  padding: 0;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #18bc9c;
 }
