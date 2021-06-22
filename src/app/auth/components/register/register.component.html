@@ -1,396 +1,71 @@
-<!-- <div class="procenter mt-5">
-  <div class="profileicon">
-    <h1 class="logintxt">Registrate</h1>
-    <div class="logintxt">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="100"
-        height="100"
-        fill="currentColor"
-        class="bi bi-file-person-fill"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"
-        />
-      </svg>
-    </div>
-    <br />
-    <input class="form-control" type="text" placeholder="Usuario" />
-  </div>
-  <div class="loginform">
-    <form>
-      <br />
-      <div class="loginpass">
-        <label for="nombre">Nombres : </label>
-        <input
-          class="form-control"
-          [(ngModel)]="usuario.usuario_nombre"
-          type="text"
-          placeholder="Ingrese sus nombres"
-          id="nombre"
-        />
-        <label for="apellidos">Apellidos : </label>
-        <input
-          class="form-control"
-          [(ngModel)]="usuario.usuario_apellidos"
-          type="text"
-          placeholder="Ingrese sus apellidos"
-          id="apellido"
-        />
-        <label for="nombre">Correo : </label>
-        <input
-          class="form-control"
-          [(ngModel)]="usuario.correo"
-          type="text"
-          placeholder="Ingrese su correo"
-          id="correo"
-        />
-        <label for="pass">Contraseña : </label>
-        <input
-          class="form-control"
-          [(ngModel)]="usuario.password"
-          type="password"
-          placeholder="Ingrese su contraseña"
-          id="password"
-        />
-        <label for="pass">Confirmar contraseña : </label>
-        <input
-          class="form-control"
-          type="password"
-          placeholder="Ingrese su contraseña"
-          id="password"
-        />
-      </div>
-    </form>
-    <div class="loginbtn2">
-      <button type="button" (click)="crearUsuario()" class="btn btn-primary">
-        Registrate
-      </button>
-    </div>
-    <div class="loginbtn1">
-      <button type="button" class="btn btn-primary" routerLink="/login">
-        Atras
-      </button>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="container register">
-  <div class="row">
-    <div class="col-md-3 register-left">
-      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-      <h3>Welcome</h3>
-      <p>You are 30 seconds away from earning your own money!</p>
-      <input type="submit" name="" value="Login" /><br />
-    </div>
-    <div class="col-md-9 register-right">
-      <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            id="home-tab"
-            data-toggle="tab"
-            href="#home"
-            role="tab"
-            aria-controls="home"
-            aria-selected="true"
-            >Employee</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            id="profile-tab"
-            data-toggle="tab"
-            href="#profile"
-            role="tab"
-            aria-controls="profile"
-            aria-selected="false"
-            >Hirer</a
-          >
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div
-          class="tab-pane fade show active"
-          id="home"
-          role="tabpanel"
-          aria-labelledby="home-tab"
-        >
-          <h3 class="register-heading">Apply as a Employee</h3>
-          <div class="row register-form">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="First Name *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Last Name *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Password *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Confirm Password *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <div class="maxl">
-                  <label class="radio inline">
-                    <input type="radio" name="gender" value="male" checked />
-                    <span> Male </span>
-                  </label>
-                  <label class="radio inline">
-                    <input type="radio" name="gender" value="female" />
-                    <span>Female </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your Email *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  minlength="10"
-                  maxlength="10"
-                  name="txtEmpPhone"
-                  class="form-control"
-                  placeholder="Your Phone *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <select class="form-control">
-                  <option class="hidden" selected disabled>
-                    Please select your Sequrity Question
-                  </option>
-                  <option>What is your Birthdate?</option>
-                  <option>What is Your old Phone Number</option>
-                  <option>What is your Pet Name?</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter Your Answer *"
-                  value=""
-                />
-              </div>
-              <input type="submit" class="btnRegister" value="Register" />
-            </div>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade show"
-          id="profile"
-          role="tabpanel"
-          aria-labelledby="profile-tab"
-        >
-          <h3 class="register-heading">Apply as a Hirer</h3>
-          <div class="row register-form">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="First Name *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Last Name *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Email *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  maxlength="10"
-                  minlength="10"
-                  class="form-control"
-                  placeholder="Phone *"
-                  value=""
-                />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Password *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Confirm Password *"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
-                <select class="form-control">
-                  <option class="hidden" selected disabled>
-                    Please select your Sequrity Question
-                  </option>
-                  <option>What is your Birthdate?</option>
-                  <option>What is Your old Phone Number</option>
-                  <option>What is your Pet Name?</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="`Answer *"
-                  value=""
-                />
-              </div>
-              <input type="submit" class="btnRegister" value="Register" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <section class="testimonial py-5 mt-5" id="testimonial">
   <div class="container">
     <div class="row">
       <div class="col-md-4 py-5 bg-primary text-white text-center">
         <div class="">
           <div class="card-body">
-            <img
-              src="http://www.ansonika.com/mavia/img/registration_bg.svg"
-              style="width: 30%"
-            />
-            <h2 class="py-3">Registration</h2>
-            <p>
-              Tation argumentum et usu, dicit viderer evertitur te has. Eu
-              dictas concludaturque usu, facete detracto patrioque an per,
-              lucilius pertinacia eu vel.
-            </p>
+            <img src="http://www.ansonika.com/mavia/img/registration_bg.svg" style="width: 30%" />
+            <h2 class="py-3">Registro</h2>
           </div>
         </div>
       </div>
-      <div class="col-md-8 py-5 border">
-        <h4 class="pb-4">Please fill with your details</h4>
-        <form>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <input
-                id="Full Name"
-                name="Full Name"
-                placeholder="Full Name"
-                class="form-control"
-                type="text"
-              />
-            </div>
-            <div class="form-group col-md-6">
-              <input
-                type="email"
-                class="form-control"
-                id="inputEmail4"
-                placeholder="Email"
-              />
+      <div class="col-md-7 py-5 border">
+        <h4 class="pb-4">Por favor complete con sus datos</h4>
+        <form >
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label ml-5">Nombres : </label>
+            <div class="col-sm-7">
+              <input type="email" class="form-control" [(ngModel)]="usuario.usuario_nombre" placeholder="Nombres">
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <input
-                id="Mobile No."
-                name="Mobile No."
-                placeholder="Mobile No."
-                class="form-control"
-                required="required"
-                type="text"
-              />
-            </div>
-            <div class="form-group col-md-6">
-              <select id="inputState" class="form-control">
-                <option selected>Choose ...</option>
-                <option>New Buyer</option>
-                <option>Auction</option>
-                <option>Complaint</option>
-                <option>Feedback</option>
-              </select>
-            </div>
-            <div class="form-group col-md-12">
-              <textarea
-                id="comment"
-                name="comment"
-                cols="40"
-                rows="5"
-                class="form-control"
-              ></textarea>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label ml-5">Apellidos : </label>
+            <div class="col-sm-7">
+              <input type="email" class="form-control" [(ngModel)]="usuario.usuario_apellidos" placeholder="Apellidos">
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <div class="form-group">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="invalidCheck2"
-                    required
-                  />
-                  <label class="form-check-label" for="invalidCheck2">
-                    <small
-                      >By clicking Submit, you agree to our Terms & Conditions,
-                      Visitor Agreement and Privacy Policy.</small
-                    >
-                  </label>
-                </div>
-              </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label ml-5">Correo : </label>
+            <div class="col-sm-7">
+              <input type="email" class="form-control" [(ngModel)]="usuario.correo" placeholder="Correo">
             </div>
           </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label ml-5">Contraseña:</label>
+            <div class="col-sm-7">
+              <input type="password" class="form-control" [(ngModel)]="usuario.password" placeholder="Contraseña">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label ml-5">Confirmar contraseña : </label>
+            <div class="col-sm-7">
+              <input type="password" class="form-control" placeholder="Confirmar contraseña">
+            </div>
+          </div>
+<!-- 
+          <div class="form-inline">
+            <div class="form-group mb-2">
+              <p for="nombre">Nombres : </p>
+              <input class="form-control" [(ngModel)]="usuario.usuario_nombre" type="text"
+                placeholder="Ingrese sus nombres" id="nombre" />
+            </div>
+          </div>
+          <label for="apellidos">Apellidos : </label>
+          <input class="form-control" [(ngModel)]="usuario.usuario_apellidos" type="text"
+            placeholder="Ingrese sus apellidos" id="apellido" />
+          <label for="nombre">Correo : </label>
+          <input class="form-control" [(ngModel)]="usuario.correo" type="text" placeholder="Ingrese su correo"
+            id="correo" />
+          <label for="pass">Contraseña : </label>
+          <input class="form-control" [(ngModel)]="usuario.password" type="password" placeholder="Ingrese su contraseña"
+            id="password" />
+          <label for="pass">Confirmar contraseña : </label>
+          <input class="form-control" type="password" placeholder="Ingrese su contraseña" id="password" />
+ -->
 
-          <div class="form-row">
-            <button type="button" class="btn btn-danger">Submit</button>
+          <div class="form-row ml-5">
+            <button type="button" (click)="crearUsuario()" class="btn btn-info">Registrarse</button>
+            <button type="button" class="btn btn-danger ml-5" routerLink="/login">Volver</button>
           </div>
         </form>
       </div>
