@@ -45,13 +45,13 @@ export class VerCursoComponent implements OnInit {
   listarCursos() {
     this.cursoService.listarCursosPublicos().subscribe((x) => {
       for (let i = 1; i <= 3; i++) {
-        this.cursos.push(x['list'][i]);
+        this.cursos.push(x['cursos'][i]);
       }
     });
   }
 
   verCurso(id: number) {
-    this.router.navigate([`cursos/curso/${id}`]).then(() => {
+    this.router.navigate([`cursos/curso/vista/${id}`]).then(() => {
       window.location.reload();
     });
   }

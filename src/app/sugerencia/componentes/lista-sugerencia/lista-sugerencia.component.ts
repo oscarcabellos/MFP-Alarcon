@@ -32,4 +32,8 @@ export class ListaSugerenciaComponent implements OnInit {
       (reason) => {}
     );
   }
+
+  cambiarEstado(id: number) {
+    document.getElementById(`favorito${id}`).classList.toggle('presionado');
+  }
 }

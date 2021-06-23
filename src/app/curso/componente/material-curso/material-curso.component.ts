@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NuevaTareaComponent } from '../nueva-tarea/nueva-tarea.component';
+import { NuevoMaterialComponent } from '../nuevo-material/nuevo-material.component';
 
 @Component({
-  selector: 'app-tarea-curso',
-  templateUrl: './tarea-curso.component.html',
-  styleUrls: ['./tarea-curso.component.css'],
+  selector: 'app-material-curso',
+  templateUrl: './material-curso.component.html',
+  styleUrls: ['./material-curso.component.css'],
 })
-export class TareaCursoComponent implements OnInit {
-  tareas = [1, 2, 3, 4, 5];
+export class MaterialCursoComponent implements OnInit {
+  material = [1, 2, 3, 4, 5, 5];
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {}
-  entregar(id: number) {
-    alert('Entregado ' + id);
-  }
 
   openModal() {
-    const modalRef = this.modalService.open(NuevaTareaComponent, {
+    const modalRef = this.modalService.open(NuevoMaterialComponent, {
       scrollable: true,
       windowClass: 'myCustomModalClass',
       size: 'lg',

@@ -8,15 +8,14 @@ import { CursoService } from '../../servicios/curso.service';
   styleUrls: ['./curso-publico.component.css'],
 })
 export class CursoPublicoComponent implements OnInit {
-  
   //paginacion de cursos
   pageActual: number;
   previousLabel = 'Anterior';
   nextLabel = 'Siguiente';
   responsive: boolean = true;
   //filtro de cursos
-  cursoFilter: string="";
-  
+  cursoFilter: string = '';
+
   cursos: Curso[];
   constructor(private cursoService: CursoService) {}
 
@@ -27,7 +26,7 @@ export class CursoPublicoComponent implements OnInit {
 
   listarCursos() {
     this.cursoService.listarCursosPublicos().subscribe((x) => {
-      this.cursos = x['list'];
+      this.cursos = x['cursos'];
     });
   }
 }

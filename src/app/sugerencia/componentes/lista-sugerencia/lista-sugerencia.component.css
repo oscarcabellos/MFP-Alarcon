@@ -1,0 +1,6 @@
+.presionado{
+    color: red;
+}
+.sobre::hover{
+    color: red;
+}

@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row m-0">
-    <h1>CREAR CURSO</h1>
+  <div class="row m-3">
+    <h3>CREAR CURSO</h3>
   </div>
   <div class="row m-0">
     <div class="col">
@@ -11,13 +11,29 @@
         <div class="card-body">
           <form>
             <div class="form-group">
-              <label for="formGroupExampleInput">Imagen:</label><br />
+              <div class="input-group">
+                <div class="col-12 px-0">
+                  <label for="formGroupExampleInput">Imagen:</label>
+                </div>
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    lang="es"
+                    class="custom-file-input"
+                    id="file"
+                    aria-describedby="inputGroupFileAddon04"
+                    (change)="onFileChange($event)"
+                  />
+                  <label class="custom-file-label" for="file">Imagen</label>
+                </div>
+              </div>
+              <!-- <label for="formGroupExampleInput">Imagen:</label><br />
               <input
                 type="file"
                 (change)="onFileChange($event)"
                 id="file"
                 class="input-file-input"
-              />
+              /> -->
             </div>
             <!-- <div class="form-group">
                             <label for="formGroupExampleInput">Imagen:</label>
@@ -95,8 +111,8 @@
         <button class="btn btn-danger btn-lg">Volver</button>
       </div>
     </div>
-    <div class="col">
+    <!-- <div class="col">
       <app-agregar-usuario></app-agregar-usuario>
-    </div>
+    </div> -->
   </div>
 </div>

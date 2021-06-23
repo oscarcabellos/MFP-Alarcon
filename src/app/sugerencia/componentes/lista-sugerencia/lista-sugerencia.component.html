@@ -36,9 +36,9 @@
           Nuevo
         </button>
       </div>
-      <div class="card my-3" *ngFor="let c of categorias">
+      <div class="card my-3" *ngFor="let c of categorias; let i = index">
         <div class="card-body">
-          <h4 class="card-title">Nombre sugerencia</h4>
+          <h4 class="card-title">Nombre sugerencia {{ i }}</h4>
           <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
           <p class="card-text">
             contenido de la sugerencia. Lorem ipsum dolor sit amet consectetur
@@ -46,8 +46,16 @@
             sequi harum incidunt saepe, corporis fuga. Corporis explicabo
             nesciunt deserunt iusto natus porro obcaecati repudiandae.
           </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+          <div>
+            <span class="h4 d-flex flex-row-reverse align-items-center"
+              ><i
+                id="favorito{{ i }}"
+                class="sobre uil uil-star"
+                (click)="cambiarEstado(i)"
+              ></i>
+              <span class="mx-2 h5 mt-2">239</span></span
+            >
+          </div>
         </div>
       </div>
     </div>

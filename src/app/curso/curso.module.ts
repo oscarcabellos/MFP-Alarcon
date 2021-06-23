@@ -12,6 +12,11 @@ import { TareaCursoComponent } from './componente/tarea-curso/tarea-curso.compon
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from './pipe/filter.pipe';
 import { DashboardComponent } from './componente/dashboard/dashboard.component';
+import { ListaCursoComponent } from './componente/lista-curso/lista-curso.component';
+import { NotificacionComponent } from './componente/notificacion/notificacion.component';
+import { MaterialCursoComponent } from './componente/material-curso/material-curso.component';
+import { NuevaTareaComponent } from './componente/nueva-tarea/nueva-tarea.component';
+import { NuevoMaterialComponent } from './componente/nuevo-material/nuevo-material.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,11 @@ import { DashboardComponent } from './componente/dashboard/dashboard.component';
     VerCursoComponent,
     FilterPipe,
     DashboardComponent,
+    ListaCursoComponent,
+    NotificacionComponent,
+    MaterialCursoComponent,
+    NuevaTareaComponent,
+    NuevoMaterialComponent,
   ],
   imports: [
     CommonModule,

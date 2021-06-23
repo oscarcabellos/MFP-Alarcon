@@ -28,7 +28,7 @@ export class CursoService extends AppServiceBase {
   }
 
   listarCursosPublicos(): Observable<any> {
-    return this.get('courses').pipe(catchError(this.handleError));
+    return this.get('coursespublic').pipe(catchError(this.handleError));
   }
 
   obtenerCurso(id: number): Observable<any> {

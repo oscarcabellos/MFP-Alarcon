@@ -1,83 +1,90 @@
-<div id="accordion" class="card-expansion mt-3" *ngFor="let t of tareas">
-  <div class="card card-expansion-item">
-    <div
-      class="
-        card-header
-        border-0
-        d-flex
-        justify-content-between
-        align-items-center
-      "
-      id="{{ 'heading' + t }}"
-    >
-      <span>Tarea 1</span>
-      <button
-        class="btn btn-primary"
-        data-toggle="collapse"
-        [attr.data-target]="'#collapse' + t"
-        aria-expanded="false"
-        aria-controls="{{ 'collapse' + t }}"
-      >
-        <span>Ver</span>
-      </button>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-12 d-flex flex-row-reverse">
+      <button class="btn btn-info" (click)="openModal()">Nuevo</button>
     </div>
-    <div
-      id="{{ 'collapse' + t }}"
-      class="collapse"
-      aria-labelledby="{{ 'heading' + t }}"
-      data-parent="#accordion"
-    >
-      <div class="container m-3">
-        <div class="row">
-          <div class="col-12">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-            consectetur voluptatem ducimus rem fuga commodi molestias enim vel
-            sed sit placeat libero possimus at dolorum distinctio aliquam
-            deserunt fugiat suscipit quia impedit, repellendus exercitationem
-            quis? Nulla molestias quae optio nisi necessitatibus voluptate
-            veritatis eum temporibus. Quae quo optio molestiae corrupti.
-          </div>
-          <div class="col-12 col-md-6 ml-auto m-4">
-            <div class="input-group">
-              <div class="custom-file">
+  </div>
+  <div id="accordion" class="card-expansion mt-3" *ngFor="let t of tareas">
+    <div class="card card-expansion-item">
+      <div
+        class="
+          card-header
+          border-0
+          d-flex
+          justify-content-between
+          align-items-center
+        "
+        id="{{ 'heading' + t }}"
+      >
+        <span>Tarea 1</span>
+        <button
+          class="btn btn-primary"
+          data-toggle="collapse"
+          [attr.data-target]="'#collapse' + t"
+          aria-expanded="false"
+          aria-controls="{{ 'collapse' + t }}"
+        >
+          <span>Ver</span>
+        </button>
+      </div>
+      <div
+        id="{{ 'collapse' + t }}"
+        class="collapse"
+        aria-labelledby="{{ 'heading' + t }}"
+        data-parent="#accordion"
+      >
+        <div class="container m-3">
+          <div class="row">
+            <div class="col-12">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
+              consectetur voluptatem ducimus rem fuga commodi molestias enim vel
+              sed sit placeat libero possimus at dolorum distinctio aliquam
+              deserunt fugiat suscipit quia impedit, repellendus exercitationem
+              quis? Nulla molestias quae optio nisi necessitatibus voluptate
+              veritatis eum temporibus. Quae quo optio molestiae corrupti.
+            </div>
+            <div class="col-12 col-md-6 ml-auto m-4">
+              <div class="input-group">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    lang="es"
+                    class="custom-file-input"
+                    id="inputGroupFile04"
+                    aria-describedby="inputGroupFileAddon04"
+                  />
+                  <label class="custom-file-label" for="inputGroupFile04"
+                    >Elige el archivo</label
+                  >
+                </div>
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-outline-dark"
+                    type="button"
+                    id="inputGroupFileAddon04"
+                    (click)="entregar(t)"
+                  >
+                    Entregar
+                  </button>
+                </div>
+              </div>
+              <!-- <label for="formFile" class="form-label mt-4"
+                >Default file input example</label
+              >
+              <input class="form-control" type="file" id="formFile" /> -->
+              <!-- <div class="custom-file">
                 <input
                   type="file"
-                  lang="es"
                   class="custom-file-input"
-                  id="inputGroupFile04"
-                  aria-describedby="inputGroupFileAddon04"
+                  id="tf3"
+                  multiple
+                  lang="es"
+                  (change)="seleccionarEvidencia($event)"
+                  [disabled]="validarBusqueda"
                 />
-                <label class="custom-file-label" for="inputGroupFile04"
-                  >Elige el archivo</label
-                >
-              </div>
-              <div class="input-group-append">
-                <button
-                  class="btn btn-outline-dark"
-                  type="button"
-                  id="inputGroupFileAddon04"
-                  (click)="entregar(t)"
-                >
-                  Entregar
-                </button>
-              </div>
+                <label class="custom-file-label" for="tf3">Seleccionar</label>
+              </div> -->
             </div>
-            <!-- <label for="formFile" class="form-label mt-4"
-              >Default file input example</label
-            >
-            <input class="form-control" type="file" id="formFile" /> -->
-            <!-- <div class="custom-file">
-              <input
-                type="file"
-                class="custom-file-input"
-                id="tf3"
-                multiple
-                lang="es"
-                (change)="seleccionarEvidencia($event)"
-                [disabled]="validarBusqueda"
-              />
-              <label class="custom-file-label" for="tf3">Seleccionar</label>
-            </div> -->
           </div>
         </div>
       </div>
