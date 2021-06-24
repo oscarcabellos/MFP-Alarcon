@@ -4,18 +4,19 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-
   cambio: boolean;
+  certificados = [1, 2, 3];
 
-  constructor() { this.cambio = true }
-
-  ngOnInit(): void {
+  constructor() {
+    this.cambio = true;
   }
 
-  modificarDatos(){
+  ngOnInit(): void {}
+
+  modificarDatos() {
     this.cambio = !this.cambio;
   }
 }
