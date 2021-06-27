@@ -5,13 +5,12 @@ import { catchError, map } from 'rxjs/operators';
 import { AppServiceBase } from 'src/app/core/appServiceBase';
 import { environment } from 'src/environments/environment';
 import { Curso } from '../modelo/curso';
+import { Usuario } from '../modelo/usuario';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CursoService extends AppServiceBase {
-  url: string = `${environment.api.baseUrl}`;
-
   crearCurso(curso: Curso): Observable<any> {
     return this.post(`courses`, curso).pipe(
       map((response: any) => response.curso as Curso),
@@ -33,6 +32,14 @@ export class CursoService extends AppServiceBase {
 
   obtenerCurso(id: number): Observable<any> {
     return this.get(`courses/${id}`).pipe(catchError(this.handleError));
+  }
+
+  listarUsuariosPorCurso(id: number): Observable<any> {
+    return this.get(`/course-user/${id}`).pipe(catchError(this.handleError));
+  }
+
+  listarCursosPorUsuario(id: number): Observable<any> {
+    return this.get(`/cursos/${id}`).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -1,6 +1,9 @@
-.presionado{
-    color: tomato;
+.presionado {
+  color: tomato;
 }
-.sobre::hover{
-    color: red;
+.sobre::hover {
+  color: red;
+}
+button:focus {
+  outline: none;
 }

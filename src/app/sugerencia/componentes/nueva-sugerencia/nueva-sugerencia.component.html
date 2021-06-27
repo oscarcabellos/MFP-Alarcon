@@ -14,7 +14,15 @@
 <div class="modal-body">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-lg-6">
+        <label for="">Categoria</label>
+        <select name="" id="" class="custom-select">
+          <option value="">Seleccione</option>
+          <option value="">Categoria 1</option>
+          <option value="">Categoria 2</option>
+        </select>
+      </div>
+      <div class="col-12 mt-3">
         <label for="">Descripción</label>
         <textarea name="" id="" class="form-control" rows="4"></textarea>
       </div>
@@ -23,5 +31,7 @@
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary">Guardar</button>
+  <button type="button" class="btn btn-primary" (click)="guardarSugerencia()">
+    Guardar
+  </button>
 </div>
