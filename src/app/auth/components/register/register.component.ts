@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
           icon: 'success',
           confirmButtonColor: "#2F6DF2"
         }); 
-        this.router.navigate(['login']);
+        this.router.navigate(['user/login']);
       }
     )
     
