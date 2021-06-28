@@ -6,6 +6,8 @@ import { Data } from '../../../services/dataModel';
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 
+declare var $: any;
+
 @Component({
   selector: 'app-crear-curso',
   templateUrl: './crear-curso.component.html',
@@ -15,12 +17,15 @@ export class CrearCursoComponent implements OnInit {
   curso: Curso = new Curso();
   image: any[];
   data: Data;
+  usuario_id: number;
   constructor(
     private cursoService: CursoService,
     private cloudBinaryService: CloudBinaryService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.usuario_id = +sessionStorage.getItem('usuario_id');
+  }
   obtenerPrivacidad(x: number) {
     if (x == 1) {
       this.curso.privacidad_id = 1; //publico
@@ -35,17 +40,14 @@ export class CrearCursoComponent implements OnInit {
   }
 
   crearCurso() {
-    console.log(this.image);
-
-    if (this.image != null && this.image != undefined) {
+    this.curso.usuario_id = this.usuario_id;
+    this.curso.categoria_id = 1;
+    if (this.image != null || this.image != undefined) {
       this.cloudBinaryService
         .sendPhoto(this.image[0])
         .subscribe((response: Data) => {
           this.curso.imagen = response['secure_url'];
-          console.log(response);
-          this.curso.usuario_id = 25;
-          this.curso.categoria_id = 1;
-
+          
           this.cursoService.crearCurso(this.curso).subscribe(() => {
             Swal.fire({
               title: 'Curso creado',
@@ -56,9 +58,6 @@ export class CrearCursoComponent implements OnInit {
           });
         });
     } else {
-      this.curso.usuario_id = 25;
-      this.curso.categoria_id = 1;
-
       this.cursoService.crearCurso(this.curso).subscribe(() => {
         Swal.fire({
           title: 'Curso creado',
@@ -68,5 +67,8 @@ export class CrearCursoComponent implements OnInit {
         });
       });
     }
+    this.curso=new Curso();
+    
+    $('#Privacidad').prop('checked', false);
   }
 }
