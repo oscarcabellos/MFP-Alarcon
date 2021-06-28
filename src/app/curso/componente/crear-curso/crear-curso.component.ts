@@ -17,7 +17,6 @@ export class CrearCursoComponent implements OnInit {
   data: Data;
   constructor(
     private cursoService: CursoService,
-    private http: HttpClient,
     private cloudBinaryService: CloudBinaryService
   ) {}
 

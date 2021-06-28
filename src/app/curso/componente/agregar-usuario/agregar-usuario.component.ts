@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Usuario } from '../../modelo/usuario';
-import { UsuarioService } from '../../servicios/usuario.service';
 import Swal from 'sweetalert2';
+import { CursoService } from '../../servicios/curso.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -9,76 +10,42 @@ import Swal from 'sweetalert2';
   styleUrls: ['./agregar-usuario.component.css'],
 })
 export class AgregarUsuarioComponent implements OnInit {
+  @Input() cursoId: number;
   usuarios: Usuario[] = [];
   correoUsuario: string;
   usuarioProfesor: boolean;
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private cursoService: CursoService) {}
 
   ngOnInit(): void {
-    this.listarUsuarios(1);
+    this.listarUsuarios(this.cursoId);
     this.usuarioProfesor = true;
   }
 
   listarUsuarios(id: number) {
-    /* this.usuarioService.listarUsuarios(id).subscribe((x) => {
-      this.usuarios = x;
-    }); */
-    this.usuarios = [
-      {
-        idUsuario: 1,
-        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
-        correo: 'correo@gmail.com',
-        url: 'https://github.com/mdo.png',
-        usuario_apellidos: '',
-        password: '',
-      },
-      {
-        idUsuario: 2,
-        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
-        correo: 'correo@gmail.com',
-        url: '',
-        usuario_apellidos: '',
-        password: '',
-      },
-      {
-        idUsuario: 3,
-        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
-        correo: 'correo@gmail.com',
-        url: 'https://github.com/mdo.png',
-        usuario_apellidos: '',
-        password: '',
-      },
-      {
-        idUsuario: 4,
-        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
-        correo: 'correo@gmail.com',
-        url: '',
-        usuario_apellidos: '',
-        password: '',
-      },
-      {
-        idUsuario: 5,
-        usuario_nombre: 'nombre apelidopaterno apeliidomaterno',
-        correo: 'correo@gmail.com',
-        url: 'https://github.com/mdo.png',
-        usuario_apellidos: '',
-        password: '',
-      },
-    ];
+    this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
+      this.usuarios = x['data'];
+      console.log(this.usuarios);
+    });
   }
 
   agregarUsuario() {
     if (this.validarCorreo(this.correoUsuario)) {
-      this.usuarios.push({
+      /* this.usuarios.push({
         idUsuario: this.usuarios.length,
         usuario_nombre: 'sin nombre',
         correo: this.correoUsuario,
         url: '',
         usuario_apellidos: '',
         password: '',
-      });
+      }); */
+      this.cursoService
+        .agrearUsuarioCurso(this.cursoId, this.correoUsuario)
+        .subscribe((x) => {
+          console.log(x);
+        });
       this.correoUsuario = '';
+      this.listarUsuarios(this.cursoId);
     } else {
       Swal.fire({
         title: 'Correo no válido',

@@ -48,22 +48,32 @@
           "
         >
           <div class="col-6 p-4 d-flex flex-column position-static bg-white">
-            <strong class="d-inline-block mb-2 text-primary">categoria</strong>
-            <h3 class="mb-0">Nombre curso</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
+            <!-- <strong class="d-inline-block mb-2 text-primary">categoria</strong> -->
+            <h3 class="mb-0">{{ c?.curso_nombre }}</h3>
+            <div class="mb-1 text-muted">{{ c?.categoria_id }}</div>
             <p class="card-text mb-auto">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content.
+              {{ c?.descripcion }}
             </p>
-            <a routerLink="/cursos/curso/vista/1" class="stretched-link"
+            <a
+              routerLink="/cursos/curso/vista/{{ c?.curso_id }}"
+              class="stretched-link"
               >Ver curso</a
             >
           </div>
           <div class="col-6">
             <img
-              src="http://www.electronicasi.com/wp-content/uploads/2013/05/portadaelectronicadigital.jpg"
+              src="{{ c?.imagen }}"
               alt=""
+              class="img"
+              *ngIf="c?.imagen != null; else noimagen"
             />
+            <ng-template #noimagen>
+              <img
+                class="img"
+                src="https://vilmanunez.com/wp-content/uploads/2016/03/herramientas-y-recursos-para-crear-curso-online.png"
+                alt=""
+              />
+            </ng-template>
           </div>
         </div>
       </div>

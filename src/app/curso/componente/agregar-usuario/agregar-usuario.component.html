@@ -38,7 +38,7 @@
                   width="32"
                   height="32"
                   class="rounded-circle"
-                  *ngIf="usuario?.url != ''; else noimagen"
+                  *ngIf="usuario?.url != null; else noimagen"
                 />
                 <ng-template #noimagen>
                   <img
