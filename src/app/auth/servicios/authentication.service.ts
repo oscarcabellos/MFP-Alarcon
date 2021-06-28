@@ -24,16 +24,21 @@ export class AuthenticationService {
         map((userData) => {
           console.log('userdata', userData);
 
-            sessionStorage.setItem("usuario_id",userData.user.usuario_id);
-            sessionStorage.setItem("usuario_apellidos",userData.user.usuario_apellidos);
-            sessionStorage.setItem("usuario_nombre",userData.user.usuario_nombre);
-            sessionStorage.setItem("correo",userData.user.correo);
-           
+          sessionStorage.setItem('usuario_id', userData.user.usuario_id);
+          sessionStorage.setItem(
+            'usuario_apellidos',
+            userData.user.usuario_apellidos
+          );
+          sessionStorage.setItem(
+            'usuario_nombre',
+            userData.user.usuario_nombre
+          );
+          sessionStorage.setItem('correo', userData.user.correo);
+
           return userData;
         })
       );
   }
-
 
   logout() {
     this.isAuthenticated = false;
