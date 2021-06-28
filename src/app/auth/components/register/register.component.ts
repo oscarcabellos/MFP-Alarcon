@@ -27,8 +27,8 @@ export class RegisterComponent implements OnInit {
     this.usuarioService.crearUsuario(this.usuario).subscribe(
       x=>{
         Swal.fire({
-          title:'Curso creado', 
-          text: `El curso se ha creado con exito`,
+          title:'Registro exitoso', 
+          text: `La cuenta se ha creado con exito`,
           icon: 'success',
           confirmButtonColor: "#2F6DF2"
         }); 
