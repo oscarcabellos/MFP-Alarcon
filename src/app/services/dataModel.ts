@@ -1,3 +1,3 @@
 export interface Data {
-  secure_url: string
+  secure_url: string;
 }
