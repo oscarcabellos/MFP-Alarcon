@@ -14,9 +14,7 @@ export class ListaCursoComponent implements OnInit {
 
   ngOnInit(): void {
     let usuarioId = +sessionStorage.getItem('usuario_id');
-    //this.listarCursos(usuarioId);
-
-    this.listarCursos(25);
+    this.listarCursos(usuarioId);
   }
   unirseCurso() {
     Swal.fire({
