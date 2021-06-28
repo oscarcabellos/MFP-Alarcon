@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppServiceBase } from 'src/app/core/appServiceBase';
-import { environment } from 'src/environments/environment';
 import { Curso } from '../modelo/curso';
-import { Usuario } from '../modelo/usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -35,11 +33,17 @@ export class CursoService extends AppServiceBase {
   }
 
   listarUsuariosPorCurso(id: number): Observable<any> {
-    return this.get(`/course-user/${id}`).pipe(catchError(this.handleError));
+    return this.get(`course-user/${id}`).pipe(catchError(this.handleError));
   }
 
   listarCursosPorUsuario(id: number): Observable<any> {
-    return this.get(`/cursos/${id}`).pipe(catchError(this.handleError));
+    return this.get(`cursos/${id}`).pipe(catchError(this.handleError));
+  }
+
+  agrearUsuarioCurso(idCurso: number, correo: string): Observable<any> {
+    return this.post('coursesUsers', { curso_id: idCurso, correo }).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

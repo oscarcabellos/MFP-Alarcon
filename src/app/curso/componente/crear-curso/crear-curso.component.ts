@@ -20,7 +20,6 @@ export class CrearCursoComponent implements OnInit {
   usuario_id: number;
   constructor(
     private cursoService: CursoService,
-    private http: HttpClient,
     private cloudBinaryService: CloudBinaryService
   ) { }
 

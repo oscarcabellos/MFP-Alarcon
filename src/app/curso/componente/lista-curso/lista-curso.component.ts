@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { Curso } from '../../modelo/curso';
+import { CursoService } from '../../servicios/curso.service';
 
 @Component({
   selector: 'app-lista-curso',
@@ -7,10 +9,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./lista-curso.component.css'],
 })
 export class ListaCursoComponent implements OnInit {
-  cursos = [1, 2, 3, 4, 5];
-  constructor() {}
+  cursos: Curso[];
+  constructor(private cursoService: CursoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let usuarioId = +sessionStorage.getItem('usuario_id');
+    this.listarCursos(usuarioId);
+  }
   unirseCurso() {
     Swal.fire({
       title: 'Ingrese el código del curso',
@@ -47,6 +52,12 @@ export class ListaCursoComponent implements OnInit {
           imageUrl: result.value.avatar_url,
         }); */
       }
+    });
+  }
+
+  listarCursos(id: number) {
+    this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
+      this.cursos = x['list'];
     });
   }
 }
