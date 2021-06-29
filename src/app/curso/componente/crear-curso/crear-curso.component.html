@@ -1,120 +1,123 @@
 <div class="container">
-  <div class="row m-3">
-    <h3>CREAR CURSO</h3>
-  </div>
-  <div class="row m-0">
-    <div class="col">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="text-primary">Detalle del curso</h4>
+  <div class="card">
+    <div class="card-header">
+      <h4 class="text-primary">Detalle del curso</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="cursoForm">
+        <div class="form-group">
+          <label for="nombreCurso">Nombre:</label>
+          <input
+            id="nombreCurso"
+            type="text"
+            formControlName="curso_nombre"
+            class="form-control"
+            placeholder="Nombre"
+            [class.is-invalid]="nombreNoValido"
+          />
+          <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
+            >Ingrese el nombre del curso</small
+          >
         </div>
-        <div class="card-body">
-          <form>
-            <!-- <div class="form-group">
-                            <label for="formGroupExampleInput">Imagen:</label>
-                            <div class="custom-file">
-                                <input type="file" (change)="onFileChange($event)" class="custom-file-input" id="">
-                                <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
-                            </div>
-                        </div> -->
-            <div class="form-group">
-              <label for="formGroupExampleInput">Nombre:</label>
+        <div class="form-group">
+          <label for="descripcionCurso">Descripcion:</label>
+          <textarea
+            id="descripcionCurso"
+            type="text"
+            formControlName="descripcion"
+            class="form-control"
+            rows="4"
+            placeholder="Descripcion"
+            [class.is-invalid]="descripcioneNoValido"
+          ></textarea>
+          <small class="text-danger mt-3 mt-lg-0" *ngIf="descripcioneNoValido"
+            >Ingrese la descripcion del curso</small
+          >
+        </div>
+        <div class="form-group">
+          <div class="row m-0">
+            <p>Privacidad:</p>
+            <div class="form-check ml-5">
               <input
-                type="text"
-                [(ngModel)]="curso.curso_nombre"
-                class="form-control"
-                id=""
-                placeholder="Nombre"
+                class="form-check-input"
+                type="radio"
+                name="privacidad_id"
+                id="Privacidad1"
+                formControlName="privacidad_id"
+                [class.is-invalid]="privacidadNoValido"
+                value="1"
               />
+              <label class="form-check-label" for="Privacidad1">
+                Publico
+              </label>
             </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Descripcion:</label>
-              <textarea
-                type="text"
-                [(ngModel)]="curso.descripcion"
-                class="form-control"
-                id=""
-                rows="4"
-                placeholder="Descripcion"
-              ></textarea>
+            <div class="form-check ml-5">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="Privacidad2"
+                formControlName="privacidad_id"
+                [class.is-invalid]="privacidadNoValido"
+                name="privacidad_id"
+                value="2"
+              />
+              <label class="form-check-label" for="Privacidad2">
+                Privado
+              </label>
             </div>
-            <div class="form-group">
-              <div class="row m-0">
-                <p>Privacidad:</p>
-                <div class="form-check ml-5">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="Privacidad"
-                    id="Privacidad"
-                    (click)="obtenerPrivacidad(1)"
-                  />
-                  <label class="form-check-label" for="defaultCheck1">
-                    Publico
-                  </label>
-                </div>
-                <div class="form-check ml-5">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    id="Privacidad"
-                    name="Privacidad"
-                    (click)="obtenerPrivacidad(2)"
-                  />
-                  <label class="form-check-label" for="defaultCheck1">
-                    Privado
-                  </label>
-                </div>
-              </div>
+          </div>
+          <small class="text-danger mt-3 mt-lg-0" *ngIf="privacidadNoValido"
+            >Ingrese la privacidad del curso</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="categoriaCurso">Categoria:</label>
+          <select
+            name="categoriaCurso"
+            formContorlName="categoria"
+            class="custom-select"
+            id=""
+          >
+            <option value="1">seleccione</option>
+            <option value="2">seleccione</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="col-12 px-0">
+              <label for="formGroupExampleInput">Imagen:</label>
             </div>
-            <div class="form-group">
-              <div class="input-group">
-                <div class="col-12 px-0">
-                  <label for="formGroupExampleInput">Imagen:</label>
-                </div>
-                <div class="custom-file">
-                  <input
-                    type="file"
-                    lang="es"
-                    class="custom-file-input"
-                    id="file"
-                    aria-describedby="inputGroupFileAddon04"
-                    (change)="onFileChange($event)"
-                  />
-                  <label class="custom-file-label" for="file">Imagen</label>
-                </div>
-              </div>
-              <!-- <label for="formGroupExampleInput">Imagen:</label><br />
+            <div class="custom-file">
               <input
                 type="file"
-                (change)="onFileChange($event)"
+                lang="es"
+                class="custom-file-input"
                 id="file"
-                class="input-file-input"
-              /> -->
+                aria-describedby="inputGroupFileAddon04"
+                (change)="onFileChange($event)"
+              />
+              <label class="custom-file-label" for="file">Imagen</label>
             </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Conocimiento previo:</label>
-              <textarea
-                type="text"
-                [(ngModel)]="curso.conoci_previo"
-                class="form-control"
-                id=""
-                rows="4"
-                placeholder="Conocimiento previo"
-              ></textarea>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="row justify-content-center m-4">
-        <button class="btn btn-info mr-2 btn-lg" (click)="crearCurso()">
-          Crear Curso
-        </button>
-        <button class="btn btn-danger btn-lg">Volver</button>
-      </div>
+        <div class="form-group">
+          <label for="conocimientoCurso">Conocimiento previo:</label>
+          <textarea
+            type="text"
+            formControlName="conoci_previo"
+            [class.is-invalid]=""
+            class="form-control"
+            id="conocimientoCurso"
+            rows="4"
+            placeholder="Conocimiento previo"
+          ></textarea>
+        </div>
+        <div class="form-group d-flex justify-content-center">
+          <button class="btn btn-info mr-2 btn-lg" (click)="crearCurso()">
+            Crear Curso
+          </button>
+        </div>
+      </form>
     </div>
-    <!-- <div class="col">
-      <app-agregar-usuario></app-agregar-usuario>
-    </div> -->
   </div>
 </div>
