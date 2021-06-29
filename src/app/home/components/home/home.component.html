@@ -4,12 +4,8 @@
       <h1 class="display-4 font-italic">
         Aprenda en cualquier momento del dia
       </h1>
-      <p class="lead my-3">
-        <!-- Multiple lines of text that form the lede, informing new readers quickly
-        and efficiently about what’s most interesting in this post’s contents. -->
-        Web educativo gratuito
-      </p>
-      <p class="lead mb-0">
+      <p class="lead my-3">Web educativo gratuito</p>
+      <p class="lead mb-0 mt-5">
         <a
           routerLink="/user/login"
           class="text-white font-weight-bold btn btn-success"
@@ -49,7 +45,6 @@
           "
         >
           <div class="col-6 p-4 d-flex flex-column position-static bg-white">
-            <!-- <strong class="d-inline-block mb-2 text-primary">categoria</strong> -->
             <h3 class="mb-0">{{ c?.curso_nombre }}</h3>
             <div class="mb-1 text-muted">{{ c?.categoria_id }}</div>
             <p class="card-text mb-auto">
