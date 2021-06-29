@@ -37,6 +37,7 @@ import { NuevoMaterialComponent } from './componente/nuevo-material/nuevo-materi
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     CursoRoutingModule,
     NgxPaginationModule,
   ],

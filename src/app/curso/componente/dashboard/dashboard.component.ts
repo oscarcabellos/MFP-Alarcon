@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
     sessionStorage.removeItem('usuario_apellidos');
     sessionStorage.removeItem('usuario_nombre');
     sessionStorage.removeItem('correo');
+    sessionStorage.removeItem('url');
     this.router.navigate(['user/login']).then(() => {
       window.location.reload();
     });

@@ -41,19 +41,26 @@
             aria-expanded="false"
           >
             <img
-              src="https://github.com/mdo.png"
+              src="{{ iamgen }}"
               alt="mdo"
               width="32"
               height="32"
               class="rounded-circle"
+              *ngIf="imagen != null; else noimagen"
             />
+            <ng-template #noimagen>
+              <img
+                src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
+                alt="mdo"
+                width="32"
+                height="32"
+                class="rounded-circle"
+              />
+            </ng-template>
             <span class="ml-2">{{ usuario }}</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" routerLink="/user/profile">Perfil</a>
-            <a class="dropdown-item" routerLink="/cursos/dashboard"
-              >Notificaciones</a
-            >
             <a class="dropdown-item" routerLink="/cursos/dashboard">Cursos</a>
             <a class="dropdown-item" href="#" (click)="logout()">Salir</a>
           </div>

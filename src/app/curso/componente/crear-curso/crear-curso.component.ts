@@ -4,9 +4,8 @@ import { CursoService } from '../../servicios/curso.service';
 import { CloudBinaryService } from '../../../services/cloud-binary.service';
 import { Data } from '../../../services/dataModel';
 import Swal from 'sweetalert2';
-import { HttpClient } from '@angular/common/http';
-
-declare var $: any;
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-curso',
@@ -14,61 +13,94 @@ declare var $: any;
   styleUrls: ['./crear-curso.component.css'],
 })
 export class CrearCursoComponent implements OnInit {
-  curso: Curso = new Curso();
   image: any[];
-  data: Data;
   usuario_id: number;
+  cursoForm: FormGroup;
   constructor(
     private cursoService: CursoService,
-    private cloudBinaryService: CloudBinaryService
-  ) { }
+    private cloudBinaryService: CloudBinaryService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.usuario_id = +sessionStorage.getItem('usuario_id');
+    this.cursoForm = this.formBuilder.group({
+      curso_nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      conoci_previo: [''],
+      privacidad_id: ['', Validators.required],
+      categoria: [''],
+    });
   }
-  obtenerPrivacidad(x: number) {
-    if (x == 1) {
-      this.curso.privacidad_id = 1; //publico
-    } else {
-      this.curso.privacidad_id = 2; //privado
-    }
+
+  get nombreNoValido() {
+    return (
+      this.cursoForm.get('curso_nombre').invalid &&
+      this.cursoForm.get('curso_nombre').touched
+    );
+  }
+
+  get descripcioneNoValido() {
+    return (
+      this.cursoForm.get('descripcion').invalid &&
+      this.cursoForm.get('descripcion').touched
+    );
+  }
+
+  get privacidadNoValido() {
+    return (
+      this.cursoForm.get('privacidad_id').invalid &&
+      this.cursoForm.get('privacidad_id').touched
+    );
   }
 
   onFileChange(event) {
     this.image = event.target.files;
-    console.log(this.image[0]);
   }
 
   crearCurso() {
-    this.curso.usuario_id = this.usuario_id;
-    this.curso.categoria_id = 1;
-    if (this.image != null || this.image != undefined) {
-      this.cloudBinaryService
-        .sendPhoto(this.image[0])
-        .subscribe((response: Data) => {
-          this.curso.imagen = response['secure_url'];
-          
-          this.cursoService.crearCurso(this.curso).subscribe(() => {
-            Swal.fire({
-              title: 'Curso creado',
-              text: `El curso se ha creado con exito`,
-              icon: 'success',
-              confirmButtonColor: '#2F6DF2',
-            });
+    if (this.cursoForm.valid) {
+      if (this.image != null || this.image != undefined) {
+        this.cloudBinaryService
+          .sendPhoto(this.image[0])
+          .subscribe((response: Data) => {
+            let curso = new Curso();
+            curso = this.cursoForm.value;
+            curso.imagen = response['secure_url'];
+            curso.usuario_id = this.usuario_id;
+            this.guardar(curso);
           });
-        });
+      } else {
+        let curso = new Curso();
+        curso = this.cursoForm.value;
+        curso.usuario_id = this.usuario_id;
+        this.guardar(curso);
+      }
     } else {
-      this.cursoService.crearCurso(this.curso).subscribe(() => {
-        Swal.fire({
-          title: 'Curso creado',
-          text: `El curso se ha creado con exito`,
-          icon: 'success',
-          confirmButtonColor: '#2F6DF2',
-        });
+      Swal.fire({
+        title: 'Faltan completar campos',
+        icon: 'error',
+        confirmButtonColor: '#2F6DF2',
+      });
+      Object.values(this.cursoForm.controls).forEach((control) => {
+        control.markAsTouched();
       });
     }
-    this.curso=new Curso();
-    
-    $('#Privacidad').prop('checked', false);
+  }
+
+  guardar(curso: Curso) {
+    this.cursoService.crearCurso(curso).subscribe((x) => {
+      Swal.fire({
+        title: 'Curso creado',
+        text: `El curso se ha creado con exito`,
+        icon: 'success',
+        confirmButtonColor: '#2F6DF2',
+      }).then((res) => {
+        this.router.navigate(['cursos/dashboard']).then(() => {
+          window.location.reload();
+        });
+      });
+    });
   }
 }

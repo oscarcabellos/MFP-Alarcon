@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Usuario } from '../../modelo/usuario';
 import Swal from 'sweetalert2';
 import { CursoService } from '../../servicios/curso.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -25,20 +24,11 @@ export class AgregarUsuarioComponent implements OnInit {
   listarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       this.usuarios = x['data'];
-      console.log(this.usuarios);
     });
   }
 
   agregarUsuario() {
     if (this.validarCorreo(this.correoUsuario)) {
-      /* this.usuarios.push({
-        idUsuario: this.usuarios.length,
-        usuario_nombre: 'sin nombre',
-        correo: this.correoUsuario,
-        url: '',
-        usuario_apellidos: '',
-        password: '',
-      }); */
       this.cursoService
         .agrearUsuarioCurso(this.cursoId, this.correoUsuario)
         .subscribe((x) => {

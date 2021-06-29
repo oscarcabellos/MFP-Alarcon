@@ -22,8 +22,6 @@ export class AuthenticationService {
       .post<any>(`${environment.api.baseUrl}login`, signUsers)
       .pipe(
         map((userData) => {
-          console.log('userdata', userData);
-
           sessionStorage.setItem('usuario_id', userData.user.usuario_id);
           sessionStorage.setItem(
             'usuario_apellidos',
@@ -34,6 +32,7 @@ export class AuthenticationService {
             userData.user.usuario_nombre
           );
           sessionStorage.setItem('correo', userData.user.correo);
+          sessionStorage.setItem('imagen', userData.user.url);
 
           return userData;
         })
