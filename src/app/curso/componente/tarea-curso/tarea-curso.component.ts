@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NuevaTareaComponent } from '../nueva-tarea/nueva-tarea.component';
 
@@ -8,6 +8,8 @@ import { NuevaTareaComponent } from '../nueva-tarea/nueva-tarea.component';
   styleUrls: ['./tarea-curso.component.css'],
 })
 export class TareaCursoComponent implements OnInit {
+  @Input() usuarioProfesor: boolean;
+
   tareas = [1, 2, 3, 4, 5];
   constructor(private modalService: NgbModal) {}
 

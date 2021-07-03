@@ -10,9 +10,9 @@ import { CursoService } from '../../servicios/curso.service';
 })
 export class AgregarUsuarioComponent implements OnInit {
   @Input() cursoId: number;
+  @Input() usuarioProfesor: boolean;
   usuarios: Usuario[] = [];
   correoUsuario: string;
-  usuarioProfesor: boolean;
 
   constructor(private cursoService: CursoService) {}
 

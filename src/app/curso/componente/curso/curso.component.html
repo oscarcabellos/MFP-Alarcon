@@ -50,7 +50,9 @@
           role="tabpanel"
           aria-labelledby="home-tab"
         >
-          <app-material-curso></app-material-curso>
+          <app-material-curso
+            [usuarioProfesor]="pertenece"
+          ></app-material-curso>
         </div>
         <div
           class="tab-pane fade"
@@ -58,7 +60,7 @@
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <app-tarea-curso></app-tarea-curso>
+          <app-tarea-curso [usuarioProfesor]="pertenece"></app-tarea-curso>
         </div>
         <div
           class="tab-pane fade"
@@ -66,7 +68,10 @@
           role="tabpanel"
           aria-labelledby="contact-tab"
         >
-          <app-agregar-usuario [cursoId]="id"></app-agregar-usuario>
+          <app-agregar-usuario
+            [cursoId]="id"
+            [usuarioProfesor]="pertenece"
+          ></app-agregar-usuario>
         </div>
       </div>
     </div>
