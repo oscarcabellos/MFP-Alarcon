@@ -1,4 +1,4 @@
-.procenter{
+/* .procenter{
     display: flex;
     justify-content: center;
 }
@@ -11,7 +11,7 @@
 .profileicon{
     float: left;
     position: relative;
-}
+} */
 /* .protx{
     position: relative;
     left: 50px;
@@ -20,7 +20,7 @@
 /* .loginpass{
     padding: 30px;
 } */
-.loginbtn1{
+/* .loginbtn1{
     position: relative;
     right: 250px;
 }
@@ -32,4 +32,20 @@
 .logintxt{
     text-align: center;
     font-weight: 800;
+} */
+.registerper{
+    float: left;
+    position: relative;
+    left: 350px;
+}
+
+.registersec{
+float: left;
+position: relative;
+left: 500px;
+}
+.btns{
+    position: relative;
+    top: 380px;
+    right: 400px;
 }

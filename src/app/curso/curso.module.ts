@@ -13,7 +13,7 @@ import { CursoPublicoComponent } from './componente/curso-publico/curso-publico.
     AgregarUsuarioComponent,
     CrearCursoComponent,
     CursoComponent,
-    CursoPublicoComponent,
+    CursoPublicoComponent,    
   ],
   imports: [CommonModule, FormsModule, CursoRoutingModule],
 })
