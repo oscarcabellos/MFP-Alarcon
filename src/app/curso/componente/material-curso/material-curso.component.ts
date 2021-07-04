@@ -21,7 +21,9 @@ export class MaterialCursoComponent implements OnInit {
       windowClass: 'myCustomModalClass',
       size: 'lg',
     });
-    let data = {};
+    let data = {
+      tarea: false,
+    };
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
       (result) => {},

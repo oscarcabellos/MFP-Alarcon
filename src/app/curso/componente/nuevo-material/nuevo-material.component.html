@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h5 class="modal-title">Nuevo Material</h5>
+  <h5 class="modal-title">{{ tarea ? "Nueva Tarea" : "Nuevo Material" }}</h5>
   <button
     type="button"
     class="close"
@@ -15,12 +15,16 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-6 my-2">
-        <label for="">Nombre del material</label>
+        <label for="">Nombre de la tarea</label>
         <input type="text" class="form-control" name="" id="" />
       </div>
       <div class="col-12 my-2">
         <label for="">Descripcion</label>
         <textarea name="" class="form-control" id="" rows="4"></textarea>
+      </div>
+      <div class="col-12 col-lg-6 my-2" *ngIf="tarea">
+        <label for="">Fecha de entrega</label>
+        <input type="date" name="" class="form-control" id="" />
       </div>
       <div class="col-12 my-2">
         <div class="input-group">
@@ -44,10 +48,11 @@
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-borderless">
+                <caption></caption>
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th></th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>

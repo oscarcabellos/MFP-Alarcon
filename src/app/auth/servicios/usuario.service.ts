@@ -1,8 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AppServiceBase } from 'src/app/core/appServiceBase';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../modelos/usuario';
 

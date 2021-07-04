@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NuevaTareaComponent } from '../nueva-tarea/nueva-tarea.component';
+import { NuevoMaterialComponent } from '../nuevo-material/nuevo-material.component';
 
 @Component({
   selector: 'app-tarea-curso',
@@ -19,12 +19,14 @@ export class TareaCursoComponent implements OnInit {
   }
 
   openModal() {
-    const modalRef = this.modalService.open(NuevaTareaComponent, {
+    const modalRef = this.modalService.open(NuevoMaterialComponent, {
       scrollable: true,
       windowClass: 'myCustomModalClass',
       size: 'lg',
     });
-    let data = {};
+    let data = {
+      tarea: true,
+    };
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
       (result) => {},

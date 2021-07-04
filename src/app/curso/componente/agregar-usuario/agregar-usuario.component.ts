@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Usuario } from '../../modelo/usuario';
 import Swal from 'sweetalert2';
 import { CursoService } from '../../servicios/curso.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -12,13 +13,26 @@ export class AgregarUsuarioComponent implements OnInit {
   @Input() cursoId: number;
   @Input() usuarioProfesor: boolean;
   usuarios: Usuario[] = [];
-  correoUsuario: string;
+  agregarForm: FormGroup;
 
-  constructor(private cursoService: CursoService) {}
+  constructor(
+    private cursoService: CursoService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.listarUsuarios(this.cursoId);
     this.usuarioProfesor = true;
+    this.agregarForm = this.formBuilder.group({
+      correoUsuario: ['', [Validators.required, Validators.email]],
+    });
+  }
+
+  get correoNoValido() {
+    return (
+      this.agregarForm.get('correoUsuario').invalid &&
+      this.agregarForm.get('correoUsuario').touched
+    );
   }
 
   listarUsuarios(id: number) {
@@ -28,21 +42,25 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   agregarUsuario() {
-    if (this.validarCorreo(this.correoUsuario)) {
+    if (this.agregarForm.valid) {
       this.cursoService
-        .agrearUsuarioCurso(this.cursoId, this.correoUsuario)
+        .agrearUsuarioCurso(
+          this.cursoId,
+          this.agregarForm.get('correoUsuario').value
+        )
         .subscribe((x) => {
-          console.log(x);
+          this.listarUsuarios(this.cursoId);
+          this.agregarForm.get('correoUsuario').setValue('');
         });
-      this.correoUsuario = '';
-      this.listarUsuarios(this.cursoId);
     } else {
       Swal.fire({
         title: 'Correo no válido',
-        //text: 'Correo ingresado no válido',
         confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
         width: '20rem',
+      });
+      Object.values(this.agregarForm.controls).forEach((control) => {
+        control.markAsTouched();
       });
     }
   }
@@ -58,7 +76,7 @@ export class AgregarUsuarioComponent implements OnInit {
       width: '20rem',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usuarios = this.usuarios.filter((u) => u.idUsuario != id);
+        this.usuarios = this.usuarios.filter((u) => u.usuario_id != id);
         Swal.fire({
           title: 'Eliminado',
           icon: 'success',
@@ -71,19 +89,5 @@ export class AgregarUsuarioComponent implements OnInit {
 
   descargarUsuarios() {
     alert('Descargando archivo');
-  }
-
-  validarCorreo(correo: string) {
-    const regex = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$');
-    if (
-      regex.test(correo) &&
-      correo != null &&
-      correo != undefined &&
-      correo != '' &&
-      correo?.length > 0
-    ) {
-      return true;
-    }
-    return false;
   }
 }
