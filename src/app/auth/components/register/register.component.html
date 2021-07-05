@@ -14,16 +14,20 @@
       </div>
       <div class="col-md-8 py-3 border">
         <h4 class="py-4 px-5">Por favor complete con sus datos</h4>
-        <form>
+        <form [formGroup]="registroForm" autocomplete="off">
           <div class="form-group row">
             <label class="col-sm-3 col-form-label ml-5">Nombres : </label>
             <div class="col-sm-7">
               <input
                 type="email"
                 class="form-control"
-                [(ngModel)]="usuario.usuario_nombre"
+                formControlName="usuario_nombre"
                 placeholder="Nombres"
+                [class.is-invalid]="nombreNoValido"
               />
+              <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
+                >Ingrese el nombre del curso</small
+              >
             </div>
           </div>
           <div class="form-group row">
@@ -32,9 +36,13 @@
               <input
                 type="email"
                 class="form-control"
-                [(ngModel)]="usuario.usuario_apellidos"
+                formControlName="usuario_apellidos"
                 placeholder="Apellidos"
+                [class.is-invalid]="apellidoNoValido"
               />
+              <small class="text-danger mt-3 mt-lg-0" *ngIf="apellidoNoValido"
+                >Ingrese el nombre del curso</small
+              >
             </div>
           </div>
           <div class="form-group row">
@@ -43,9 +51,13 @@
               <input
                 type="email"
                 class="form-control"
-                [(ngModel)]="usuario.correo"
+                formControlName="correo"
                 placeholder="Correo"
+                [class.is-invalid]="correoNoValido"
               />
+              <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido"
+                >Ingrese el nombre del curso</small
+              >
             </div>
           </div>
           <div class="form-group row">
@@ -54,9 +66,13 @@
               <input
                 type="password"
                 class="form-control"
-                [(ngModel)]="usuario.password"
+                formControlName="password"
                 placeholder="Contraseña"
+                [class.is-invalid]="passwordNoValido"
               />
+              <small class="text-danger mt-3 mt-lg-0" *ngIf="passwordNoValido"
+                >Ingrese el nombre del curso</small
+              >
             </div>
           </div>
           <div class="form-group row">
@@ -76,7 +92,7 @@
             <div class="col-7 d-flex flex-row-reverse">
               <button
                 type="button"
-                (click)="crearUsuario()"
+                (click)="validarFormulario()"
                 class="btn btn-info"
               >
                 Registrarse

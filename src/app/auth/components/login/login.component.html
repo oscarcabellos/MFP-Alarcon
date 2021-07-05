@@ -1,5 +1,5 @@
 <div class="m-3">Login</div>
-<form class="form-signin mt-5 pb-5 border">
+<form class="form-signin mt-5 pb-5 border" [formGroup]="signForm">
   <div class="text-center my-2">
     <img
       class="my-3"
@@ -18,10 +18,13 @@
       id="inputEmail"
       class="form-control"
       placeholder="Ingrese su correo"
-      required=""
       autofocus=""
-      [(ngModel)]="usuario.correo"
+      formControlName="correo"
+      [class.is-invalid]="correoNoValido"
     />
+    <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido"
+      >Ingrese un correo válido</small
+    >
   </div>
 
   <div class="form-label-group my-4">
@@ -31,11 +34,17 @@
       id="inputPassword"
       class="form-control"
       placeholder="Ingrese su contraseña"
-      required=""
-      [(ngModel)]="usuario.password"
+      formControlName="password"
+      [class.is-invalid]="passwordNoValido"
     />
+    <small class="text-danger mt-3 mt-lg-0" *ngIf="passwordNoValido"
+      >Ingrese mínimo 5 caracteres y como máximo 15 caracteres</small
+    >
   </div>
-  <button class="btn btn-lg btn-primary btn-block my-4" (click)="login()">
+  <button
+    class="btn btn-lg btn-primary btn-block my-4"
+    (click)="validarValores()"
+  >
     Iniciar Sesión
   </button>
   <p class="my-3">

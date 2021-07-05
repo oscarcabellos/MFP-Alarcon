@@ -9,11 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthenticationService {
   isAuthenticated = false;
-  isAuthStorage: string;
-  authRequest: any = {};
-  storage: any;
-  tokeString: any = '';
-  isActivateAccount = false;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -53,15 +48,4 @@ export class AuthenticationService {
     }
     return this.isAuthenticated;
   }
-
-  /* getIsActivate(): boolean {
-    const jsonValue = sessionStorage.getItem('authData');
-    if (jsonValue != null) {
-      const user = JSON.parse(atob(sessionStorage.getItem('authData')));
-      if (user != null) {
-        return user.activaCuenta;
-      }
-    }
-    return false;
-  } */
 }
