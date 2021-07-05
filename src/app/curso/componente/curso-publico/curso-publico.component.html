@@ -5,15 +5,25 @@
       Encuentra una gran variedad de cursos de distintas areas como ciencias,
       idiomas, informatica, letras, etc.
     </p>
-    <div class="row justify-content-md-center">
-      <input
-        type="text"
-        class="form-control col-md-5"
-        placeholder="Ingrese nombre del curso"
-        [(ngModel)]="cursoFilter"
-        name="cursoFilter"
-        autocomplete="off"
-      />
+    <div class="row justify-content-center">
+      <div class="input-group mb-3 justify-content-center">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"
+            ><em class="uil uil-search"></em
+          ></span>
+        </div>
+        <input
+          type="text"
+          class="form-control col-md-5"
+          placeholder="Ingrese nombre del curso"
+          [(ngModel)]="cursoFilter"
+          name="cursoFilter"
+          autocomplete="off"
+        />
+        <button class="btn btn-outline-danger" (click)="borrarBusqueda()">
+          X
+        </button>
+      </div>
     </div>
   </div>
 </section>
