@@ -10,7 +10,9 @@ import { Injectable } from '@angular/core';
 })
 export class BasicAuthInterceptorService implements HttpInterceptor {
   tokenString: any;
-  constructor() {}
+  constructor() {
+    // Codigo de inicializacion del componente
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     this.tokenString = atob(sessionStorage.getItem('tokenAuth'));

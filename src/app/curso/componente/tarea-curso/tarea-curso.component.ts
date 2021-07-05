@@ -13,7 +13,9 @@ export class TareaCursoComponent implements OnInit {
   tareas = [1, 2, 3, 4, 5];
   constructor(private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
   entregar(id: number) {
     alert('Entregado ' + id);
   }
@@ -29,8 +31,12 @@ export class TareaCursoComponent implements OnInit {
     };
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
-      (result) => {},
-      (reason) => {}
+      (result) => {
+        //intencional
+      },
+      (reason) => {
+        //intencional
+      }
     );
   }
 }

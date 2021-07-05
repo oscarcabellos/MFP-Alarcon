@@ -13,7 +13,9 @@ export class MaterialCursoComponent implements OnInit {
   material = [1, 2, 3, 4, 5, 5];
   constructor(private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
 
   openModal() {
     const modalRef = this.modalService.open(NuevoMaterialComponent, {
@@ -26,8 +28,12 @@ export class MaterialCursoComponent implements OnInit {
     };
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
-      (result) => {},
-      (reason) => {}
+      (result) => {
+        //Intencional
+      },
+      (reason) => {
+        //Intencional
+      }
     );
   }
 }

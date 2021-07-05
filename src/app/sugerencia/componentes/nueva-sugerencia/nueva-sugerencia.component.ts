@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
 export class NuevaSugerenciaComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
   closeModal(sendData) {
     this.activeModal.close(sendData);
   }

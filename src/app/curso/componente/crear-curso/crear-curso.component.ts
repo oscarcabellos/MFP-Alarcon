@@ -60,19 +60,19 @@ export class CrearCursoComponent implements OnInit {
   }
 
   crearCurso() {
+    let curso = new Curso();
     if (this.cursoForm.valid) {
       if (this.image != null || this.image != undefined) {
         this.cloudBinaryService
           .sendPhoto(this.image[0])
           .subscribe((response: Data) => {
-            let curso = new Curso();
             curso = this.cursoForm.value;
             curso.imagen = response['secure_url'];
             curso.usuario_id = this.usuario_id;
             this.guardar(curso);
           });
       } else {
-        let curso = new Curso();
+        
         curso = this.cursoForm.value;
         curso.usuario_id = this.usuario_id;
         this.guardar(curso);

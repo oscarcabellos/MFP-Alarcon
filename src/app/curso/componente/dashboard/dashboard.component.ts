@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
 
   logout() {
     sessionStorage.removeItem('usuario_id');

@@ -31,17 +31,6 @@ export class ListaCursoComponent implements OnInit {
       confirmButtonColor: '#18bc9c',
       preConfirm: (login) => {
         console.log(login);
-
-        /* return fetch(`//api.github.com/users/${login}`)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(response.statusText);
-            }
-            return response.json();
-          })
-          .catch((error) => {
-            Swal.showValidationMessage(`Request failed: ${error}`);
-          }); */
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {

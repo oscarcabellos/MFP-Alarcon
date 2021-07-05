@@ -13,7 +13,9 @@ export class ProfileComponent implements OnInit {
     this.cambio = true;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
 
   modificarDatos() {
     this.cambio = !this.cambio;
