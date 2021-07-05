@@ -1,5 +1,8 @@
 export class Usuario {
   idUsuario: number;
-  nombre: string;
+  usuario_nombre: string;
+  usuario_apellidos: string;
+  password: string;
   correo: string;
+  url: string;
 }

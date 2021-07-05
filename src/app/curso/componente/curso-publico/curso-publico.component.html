@@ -1,31 +1,83 @@
-<section class="jumbotron text-center">
+<section class="jumbotron text-center mt-5">
   <div class="container">
     <h1>CURSOS</h1>
     <p class="lead text-muted">
-      Encuentra una gran variedad de cursos de distintas areas como ciencias, idiomas, informatica, letras, etc.
+      Encuentra una gran variedad de cursos de distintas areas como ciencias,
+      idiomas, informatica, letras, etc.
     </p>
-
+    <div class="row justify-content-md-center">
+      <input
+        type="text"
+        class="form-control col-md-5"
+        placeholder="Ingrese nombre del curso"
+        [(ngModel)]="cursoFilter"
+        name="cursoFilter"
+        autocomplete="off"
+      />
+    </div>
   </div>
 </section>
 
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
-      <div class="col-md-4" *ngFor="let cursos of array">
-        <a href="#">
-         <!--  <h2>{{cursos?.nombre}}</h2>-->
-        </a>
+      <div
+        class="col-12 col-sm-6 col-lg-4"
+        *ngFor="
+          let curso of cursos
+            | filter: { curso_nombre: cursoFilter }
+            | paginate: { itemsPerPage: 9, currentPage: pageActual }
+        "
+      >
         <div class="card mb-4 shadow-sm">
-           <!--     <img src=¨{{cursos.?imagen}}¨ class="cuadro__img">-->
+          <div class="card-header bg-light">
+            <h5 class="text-success text-center">{{ curso?.curso_nombre }}</h5>
+          </div>
+          <img
+            src="{{ curso?.imagen }}"
+            alt=""
+            *ngIf="curso?.imagen != null; else noimagen"
+          />
+          <ng-template #noimagen>
+            <img
+              src="https://vilmanunez.com/wp-content/uploads/2016/03/herramientas-y-recursos-para-crear-curso-online.png"
+              alt=""
+            />
+          </ng-template>
           <div class="card-body">
-            <p class="card-text">
-           <!--    {{cursos?.descripccion}} -->
-            </p>
-
-
+            <!--  <p class="card-text">
+              {{ curso?.descripcion }}
+            </p> -->
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a
+                  class="btn btn-sm btn-outline-secondary"
+                  routerLink="/cursos/curso/vista/{{ curso?.curso_id }}"
+                >
+                  Ver más
+                </a>
+                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">
+                  Unirse
+                </button> -->
+              </div>
+              <small class="text-muted">{{ curso?.usuario_id }}</small>
+            </div>
           </div>
         </div>
-
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <ng-container>
+          <pagination-controls
+            class="my-pagination"
+            maxSize="5"
+            [responsive]="responsive"
+            [previousLabel]="previousLabel"
+            [nextLabel]="nextLabel"
+            (pageChange)="pageActual = $event"
+          ></pagination-controls>
+        </ng-container>
       </div>
     </div>
   </div>

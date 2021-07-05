@@ -7,6 +7,7 @@ export const environment = {
   api: {
     baseUrl: 'https://aprendeenlinea.herokuapp.com/',
   },
+  useHash: false,
 };
 
 /*

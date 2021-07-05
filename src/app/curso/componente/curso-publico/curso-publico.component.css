@@ -1,10 +1,11 @@
-h2 {
-    text-align: center;
+img {
+  height: 180px;
 }
 
-a {
-    text-decoration: none;
+.my-pagination /deep/ .ngx-pagination.responsive {
+  padding: 0;
 }
-.cuadro__img{
-    height: 230px;
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #18bc9c;
 }

@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row mt-3 mt-md-0">
+    <div class="col-12 d-flex flex-row-reverse">
+      <button class="btn btn-outline-info" (click)="unirseCurso()">
+        Unirse
+      </button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-6" *ngFor="let c of cursos">
+      <div class="card border-primary mb-3">
+        <div class="card-header h4">{{ c?.curso_nombre }}</div>
+        <div class="card-body">
+          <!-- <h4 class="card-title">Primary card title</h4> -->
+          <p class="card-text">
+            {{ c?.descripcion }}
+          </p>
+          <a
+            routerLink="/cursos/curso/{{ c?.curso_id }}"
+            class="btn btn-warning"
+            >Ver</a
+          >
+          <button class="btn btn-warning ml-2">
+            Descargar lista de alumnos
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
