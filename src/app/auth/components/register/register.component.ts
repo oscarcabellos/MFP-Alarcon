@@ -54,6 +54,14 @@ export class RegisterComponent implements OnInit {
           Validators.maxLength(15),
         ],
       ],
+      passwordValidacion: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(15),
+        ],
+      ],
     });
   }
   get nombreNoValido() {
@@ -96,7 +104,13 @@ export class RegisterComponent implements OnInit {
   validarFormulario() {
     console.log(this.registroForm.valid);
 
-    if (this.registroForm.valid && this.validarPassword()) {
+    if (
+      this.registroForm.valid &&
+      this.validarPassword(
+        this.registroForm.get('password').value,
+        this.registroForm.get('passworValidacion').value
+      )
+    ) {
       const usuario = new Usuario();
       usuario.usuario_nombre = this.registroForm.get('usuario_nombre').value;
       usuario.usuario_apellidos =
@@ -110,7 +124,7 @@ export class RegisterComponent implements OnInit {
       this.validateAllFormFields(this.registroForm);
     }
   }
-  validarPassword() {
+  validarPassword(password: string, passwordValidadion: string) {
     return true;
   }
   validateAllFormFields(formGroup: FormGroup) {
