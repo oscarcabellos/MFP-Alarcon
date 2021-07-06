@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,9 +7,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./nuevo-material.component.css'],
 })
 export class NuevoMaterialComponent implements OnInit {
+  @Input() fromParent;
+  tarea: boolean;
   constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.fromParent);
+    this.tarea = this.fromParent.tarea;
+  }
   closeModal(sendData) {
     this.activeModal.close(sendData);
   }

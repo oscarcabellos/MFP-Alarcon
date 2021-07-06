@@ -1,22 +1,16 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppServiceBase } from 'src/app/core/appServiceBase';
-import { environment } from 'src/environments/environment';
 import { Usuario } from '../modelos/usuario';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsuarioService {
-  url: string = `${environment.api.baseUrl}`;
-  constructor(private http: HttpClient) {}
-
+export class UsuarioService extends AppServiceBase {
   crearUsuario(usuario: Usuario) {
-    return this.http
-      .post(`${this.url}register`, usuario)
-      .pipe(catchError(this.handleError));
+    return this.post('register', usuario).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

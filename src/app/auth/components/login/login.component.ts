@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/curso/modelo/usuario';
 import { AuthenticationService } from '../../servicios/authentication.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +16,7 @@ import { AuthenticationService } from '../../servicios/authentication.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  usuario: Usuario = new Usuario();
-  isFormValid = false;
-  areCredentialsInvalid = false;
   signForm: FormGroup;
-  token: any;
-  authSucces: any;
-  selectedValue: any = true;
-  showErrorMessage = false;
-  recoveryForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,13 +26,29 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.signForm = this.formBuilder.group({
-      correo: ['', Validators.required],
-      password: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(15),
+        ],
+      ],
     });
+  }
 
-    this.recoveryForm = this.formBuilder.group({
-      correo: ['', Validators.required],
-    });
+  get correoNoValido() {
+    return (
+      this.signForm.get('correo').invalid && this.signForm.get('correo').touched
+    );
+  }
+
+  get passwordNoValido() {
+    return (
+      this.signForm.get('password').invalid &&
+      this.signForm.get('password').touched
+    );
   }
 
   validateAllFormFields(formGroup: FormGroup) {
@@ -53,12 +62,34 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    this.authenticationService.authUser(this.usuario).subscribe((response) => {
-      console.log(response);
-      this.router.navigate(['cursos/dashboard']).then(() => {
-        window.location.reload();
-      });
+  login(usuario: Usuario) {
+    this.authenticationService.authUser(usuario).subscribe((response) => {
+      if (response['user']?.usuario_id != null) {
+        this.router.navigate(['cursos/dashboard']).then(() => {
+          window.location.reload();
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Credenciales no válidas',
+          timer: 1500,
+          timerProgressBar: true,
+          position: 'top-end',
+          width: '25rem',
+          showConfirmButton: false,
+        });
+      }
     });
+  }
+
+  validarValores() {
+    if (this.signForm.valid) {
+      const usuario: Usuario = new Usuario();
+      usuario.correo = this.signForm.get('correo').value;
+      usuario.password = this.signForm.get('password').value;
+      this.login(usuario);
+    } else {
+      this.validateAllFormFields(this.signForm);
+    }
   }
 }

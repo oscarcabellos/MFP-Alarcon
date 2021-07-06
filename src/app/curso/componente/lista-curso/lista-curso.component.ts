@@ -16,6 +16,7 @@ export class ListaCursoComponent implements OnInit {
     let usuarioId = +sessionStorage.getItem('usuario_id');
     this.listarCursos(usuarioId);
   }
+
   unirseCurso() {
     Swal.fire({
       title: 'Ingrese el código del curso',
@@ -30,33 +31,26 @@ export class ListaCursoComponent implements OnInit {
       confirmButtonColor: '#18bc9c',
       preConfirm: (login) => {
         console.log(login);
-
-        /* return fetch(`//api.github.com/users/${login}`)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(response.statusText);
-            }
-            return response.json();
-          })
-          .catch((error) => {
-            Swal.showValidationMessage(`Request failed: ${error}`);
-          }); */
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
       if (result.isConfirmed) {
         console.log('unido');
 
-        /*  Swal.fire({
-          title: `${result.value.login}'s avatar`,
-          imageUrl: result.value.avatar_url,
-        }); */
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
   }
 
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
+      console.log(x);
       this.cursos = x['list'];
     });
   }

@@ -55,4 +55,15 @@ export class VerCursoComponent implements OnInit {
       window.location.reload();
     });
   }
+
+  unirCurso(id: number) {
+    if (sessionStorage.getItem('correo') != null) {
+      console.log(id, sessionStorage.getItem('correo'));
+      this.cursoService
+        .agrearUsuarioCurso(id, sessionStorage.getItem('correo'))
+        .subscribe((x) => {
+          console.log(x);
+        });
+    }
+  }
 }

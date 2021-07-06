@@ -29,4 +29,7 @@ export class CursoPublicoComponent implements OnInit {
       this.cursos = x['cursos'];
     });
   }
+  borrarBusqueda() {
+    this.cursoFilter = '';
+  }
 }

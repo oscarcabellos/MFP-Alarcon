@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NuevaTareaComponent } from '../nueva-tarea/nueva-tarea.component';
+import { NuevoMaterialComponent } from '../nuevo-material/nuevo-material.component';
 
 @Component({
   selector: 'app-tarea-curso',
@@ -8,25 +8,35 @@ import { NuevaTareaComponent } from '../nueva-tarea/nueva-tarea.component';
   styleUrls: ['./tarea-curso.component.css'],
 })
 export class TareaCursoComponent implements OnInit {
+  @Input() usuarioProfesor: boolean;
+
   tareas = [1, 2, 3, 4, 5];
   constructor(private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
   entregar(id: number) {
     alert('Entregado ' + id);
   }
 
   openModal() {
-    const modalRef = this.modalService.open(NuevaTareaComponent, {
+    const modalRef = this.modalService.open(NuevoMaterialComponent, {
       scrollable: true,
       windowClass: 'myCustomModalClass',
       size: 'lg',
     });
-    let data = {};
+    let data = {
+      tarea: true,
+    };
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
-      (result) => {},
-      (reason) => {}
+      (result) => {
+        //intencional
+      },
+      (reason) => {
+        //intencional
+      }
     );
   }
 }

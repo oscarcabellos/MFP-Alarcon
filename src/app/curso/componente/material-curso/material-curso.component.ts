@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NuevoMaterialComponent } from '../nuevo-material/nuevo-material.component';
 
@@ -8,10 +8,14 @@ import { NuevoMaterialComponent } from '../nuevo-material/nuevo-material.compone
   styleUrls: ['./material-curso.component.css'],
 })
 export class MaterialCursoComponent implements OnInit {
+  @Input() usuarioProfesor: boolean;
+
   material = [1, 2, 3, 4, 5, 5];
   constructor(private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
 
   openModal() {
     const modalRef = this.modalService.open(NuevoMaterialComponent, {
@@ -19,11 +23,17 @@ export class MaterialCursoComponent implements OnInit {
       windowClass: 'myCustomModalClass',
       size: 'lg',
     });
-    let data = {};
+    let data = {
+      tarea: false,
+    };
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
-      (result) => {},
-      (reason) => {}
+      (result) => {
+        //Intencional
+      },
+      (reason) => {
+        //Intencional
+      }
     );
   }
 }

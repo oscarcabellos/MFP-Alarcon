@@ -1,4 +1,3 @@
-import { conditionallyCreateMapObjectLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,7 +13,9 @@ export class ProfileComponent implements OnInit {
     this.cambio = true;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
 
   modificarDatos() {
     this.cambio = !this.cambio;

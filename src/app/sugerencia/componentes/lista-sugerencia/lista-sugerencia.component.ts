@@ -28,8 +28,12 @@ export class ListaSugerenciaComponent implements OnInit {
     let data = {};
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
-      (result) => {},
-      (reason) => {}
+      (result) => {
+        // Intencional
+      },
+      (reason) => {
+        // Intencional
+      }
     );
   }
 

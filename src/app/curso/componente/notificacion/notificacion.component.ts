@@ -8,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class NotificacionComponent implements OnInit {
   notificaciones = [1, 2, 3, 4, 5];
 
-  constructor() {}
+  constructor() {
+    // Codigo de inicializacion del componente
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Codigo de inicializacion del componente
+  }
 }
