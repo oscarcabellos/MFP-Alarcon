@@ -9,7 +9,9 @@
           <p class="card-text">
             {{ curso?.descripcion }}
           </p>
-          <button class="btn btn-warning">Unirse</button>
+          <button class="btn btn-warning" (click)="unirCurso(curso?.curso_id)">
+            Unirse
+          </button>
         </div>
       </div>
     </div>
@@ -68,7 +70,7 @@
           </div>
         </div>
         <div class="row mt-2">
-          <div class="col-4" *ngFor="let c of cursos">
+          <div class="col-12 col-sm-4" *ngFor="let c of cursos">
             <div class="card bg-light mb-3" (click)="verCurso(c?.curso_id)">
               <div class="card-header">{{ c?.curso_nombre }}</div>
               <div class="card-body">
