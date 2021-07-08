@@ -26,7 +26,7 @@
                 [class.is-invalid]="nombreNoValido"
               />
               <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
-                >Ingrese el nombre del curso</small
+                >Ingrese su nombre</small
               >
             </div>
           </div>
@@ -41,7 +41,7 @@
                 [class.is-invalid]="apellidoNoValido"
               />
               <small class="text-danger mt-3 mt-lg-0" *ngIf="apellidoNoValido"
-                >Ingrese el nombre del curso</small
+                >Ingrese sus apellidos</small
               >
             </div>
           </div>
@@ -56,7 +56,7 @@
                 [class.is-invalid]="correoNoValido"
               />
               <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido"
-                >Ingrese el nombre del curso</small
+                >Ingrese su correo</small
               >
             </div>
           </div>
@@ -71,7 +71,7 @@
                 [class.is-invalid]="passwordNoValido"
               />
               <small class="text-danger mt-3 mt-lg-0" *ngIf="passwordNoValido"
-                >Ingrese el nombre del curso</small
+                >Ingrese su contraseña</small
               >
             </div>
           </div>
@@ -86,6 +86,10 @@
                 placeholder="Confirmar contraseña"
                 formControlName="passwordValidacion"
               />
+              <div class="err" *ngIf="submitted && f.confirmpassword.errors">
+                <div *ngIf="f.confirmpassword.errors.required">Confirmar contraseña</div>
+                <div *ngIf="f.confirmpassword.errors.validarPassword">La contraseña no coincide</div>
+              </div>
             </div>
           </div>
           <div class="form-group row py-3">

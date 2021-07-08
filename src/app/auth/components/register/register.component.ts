@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { left } from '@popperjs/core';
 import { Usuario } from 'src/app/curso/modelo/usuario';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../servicios/usuario.service';
@@ -62,6 +63,9 @@ export class RegisterComponent implements OnInit {
           Validators.maxLength(15),
         ],
       ],
+    },
+    {
+      Validators: this.validarPassword('password', 'passwordValidacion')
     });
   }
   get nombreNoValido() {
@@ -125,7 +129,19 @@ export class RegisterComponent implements OnInit {
     }
   }
   validarPassword(password: string, passwordValidadion: string) {
-    return true;
+      return (FormGroup:FormGroup) =>{
+        const control = FormGroup.controls[password];
+        const matchingControl = FormGroup.controls[passwordValidadion];
+        if (matchingControl.errors && !matchingControl.errors.validarPassword){
+          return
+        }
+        if (control.value !== matchingControl.value){
+          matchingControl.setErrors({validarPassword:true});
+        }
+        else{
+          matchingControl.setErrors(null);
+        }
+      }
   }
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((field) => {
