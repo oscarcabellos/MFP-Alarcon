@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,7 @@ export class AuthenticationService {
       .post<any>(`${environment.api.baseUrl}login`, signUsers)
       .pipe(
         map((userData) => {
+          console.log(userData)
           sessionStorage.setItem('usuario_id', userData.user.usuario_id);
           sessionStorage.setItem(
             'usuario_apellidos',
