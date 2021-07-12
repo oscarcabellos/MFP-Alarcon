@@ -22,12 +22,14 @@ export class AgregarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarUsuarios(this.cursoId);
-    this.usuarioProfesor = true;
     this.agregarForm = this.formBuilder.group({
       correoUsuario: ['', [Validators.required, Validators.email]],
     });
   }
 
+  /**
+   * Comprobar que el correo ingresado sea válido
+   */
   get correoNoValido() {
     return (
       this.agregarForm.get('correoUsuario').invalid &&
@@ -35,12 +37,19 @@ export class AgregarUsuarioComponent implements OnInit {
     );
   }
 
+  /**
+   * Método para buscar a los usuarios que pertenecen al curso actual
+   * @param id Identificador del curso
+   */
   listarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       this.usuarios = x['data'];
     });
   }
 
+  /**
+   * Método para agregar un usuario al curso
+   */
   agregarUsuario() {
     if (this.agregarForm.valid) {
       this.cursoService
@@ -65,6 +74,10 @@ export class AgregarUsuarioComponent implements OnInit {
     }
   }
 
+  /**
+   * Método para eliminar a un usuario de un curso
+   * @param id Identificador del usuario a eliminar
+   */
   eliminarUsuario(id: number) {
     Swal.fire({
       title: '¿Seguro de eliminar?',
@@ -76,7 +89,7 @@ export class AgregarUsuarioComponent implements OnInit {
       width: '20rem',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usuarios = this.usuarios.filter((u) => u.usuario_id != id);
+        this.usuarios = this.usuarios.filter((u) => u.usuario_id !== id);
         Swal.fire({
           title: 'Eliminado',
           icon: 'success',
@@ -87,6 +100,9 @@ export class AgregarUsuarioComponent implements OnInit {
     });
   }
 
+  /**
+   * Método para descargar la lista de alumnos inscritos en un archivo excel
+   */
   descargarUsuarios() {
     alert('Descargando archivo');
   }
