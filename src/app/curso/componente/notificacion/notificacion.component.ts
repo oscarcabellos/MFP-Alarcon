@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificacionService } from '../../servicios/notificaciones.service';
+
 
 @Component({
   selector: 'app-notificacion',
@@ -6,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notificacion.component.css'],
 })
 export class NotificacionComponent implements OnInit {
-  notificaciones = [1, 2, 3, 4, 5];
+  //  Variables del componente ts
+  notificaciones;
 
-  constructor() {
+  constructor(public NotificacionService: NotificacionService) {
     // Codigo de inicializacion del componente
   }
 
   ngOnInit(): void {
     // Codigo de inicializacion del componente
+    this.NotificacionService.listarCursosPublicos().subscribe((x) => {
+      this.notificaciones = x.cursos;
+    });
+    // console.log(typeof this.notificaciones2.list);
   }
 }
