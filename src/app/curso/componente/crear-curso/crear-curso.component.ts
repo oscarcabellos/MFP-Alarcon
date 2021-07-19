@@ -6,6 +6,8 @@ import { Data } from '../../../services/dataModel';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CategoriaService } from '../../servicios/categoria.service';
+import { Categoria } from '../../modelo/categoria';
 
 @Component({
   selector: 'app-crear-curso',
@@ -16,22 +18,25 @@ export class CrearCursoComponent implements OnInit {
   image: any[];
   usuario_id: number;
   cursoForm: FormGroup;
+  categorias: Categoria[];
   constructor(
     private cursoService: CursoService,
     private cloudBinaryService: CloudBinaryService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
     this.usuario_id = +sessionStorage.getItem('usuario_id');
     this.cursoForm = this.formBuilder.group({
-      curso_nombre: ['', Validators.required],
+      curso_nombre: ['', [Validators.required, Validators.maxLength(30)]],
       descripcion: ['', Validators.required],
       conoci_previo: [''],
       privacidad_id: ['', Validators.required],
       categoria: [''],
     });
+    this.listarCategorias();
   }
 
   get nombreNoValido() {
@@ -72,7 +77,6 @@ export class CrearCursoComponent implements OnInit {
             this.guardar(curso);
           });
       } else {
-        
         curso = this.cursoForm.value;
         curso.usuario_id = this.usuario_id;
         this.guardar(curso);
@@ -102,5 +106,11 @@ export class CrearCursoComponent implements OnInit {
         });
       });
     });
+  }
+
+  listarCategorias() {
+    this.categoriaService
+      .listarCategorias()
+      .subscribe((x) => (this.categorias = x['categories']));
   }
 }

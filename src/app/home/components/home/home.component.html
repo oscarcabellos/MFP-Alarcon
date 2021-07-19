@@ -9,7 +9,14 @@
         <a
           routerLink="/user/login"
           class="text-white font-weight-bold btn btn-success"
+          *ngIf="!estaRegistrado()"
           >Inicar sesion</a
+        >
+        <a
+          routerLink="/cursos/dashboard"
+          class="text-white font-weight-bold btn btn-success"
+          *ngIf="estaRegistrado()"
+          >Mis cursos</a
         >
       </p>
     </div>

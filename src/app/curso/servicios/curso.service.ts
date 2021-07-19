@@ -46,6 +46,10 @@ export class CursoService extends AppServiceBase {
     );
   }
 
+  listarCursosPublicosPorUsuario(id: number): Observable<any> {
+    return this.get(`coursespublic/${id}`).pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);

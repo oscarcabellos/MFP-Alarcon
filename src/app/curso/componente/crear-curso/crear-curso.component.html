@@ -4,7 +4,7 @@
       <h4 class="text-primary">Detalle del curso</h4>
     </div>
     <div class="card-body">
-      <form [formGroup]="cursoForm">
+      <form [formGroup]="cursoForm" autocomplete="off">
         <div class="form-group">
           <label for="nombreCurso">Nombre:</label>
           <input
@@ -16,7 +16,7 @@
             [class.is-invalid]="nombreNoValido"
           />
           <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
-            >Ingrese el nombre del curso</small
+            >Ingrese un nombre valido no mayor a 30 caracteres</small
           >
         </div>
         <div class="form-group">
@@ -65,6 +65,20 @@
                 Privado
               </label>
             </div>
+            <div class="form-check ml-5">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="Privacidad3"
+                formControlName="privacidad_id"
+                [class.is-invalid]="privacidadNoValido"
+                name="privacidad_id"
+                value="3"
+              />
+              <label class="form-check-label" for="Privacidad3">
+                Con Invitación
+              </label>
+            </div>
           </div>
           <small class="text-danger mt-3 mt-lg-0" *ngIf="privacidadNoValido"
             >Ingrese la privacidad del curso</small
@@ -78,8 +92,10 @@
             class="custom-select"
             id=""
           >
-            <option value="1">seleccione</option>
-            <option value="2">seleccione</option>
+            <option value="" hidden>seleccione</option>
+            <option value="c?.categoria_id" *ngFor="let c of categorias">
+              {{ c?.categoria_nombre }}
+            </option>
           </select>
         </div>
         <div class="form-group">

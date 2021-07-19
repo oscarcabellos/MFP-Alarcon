@@ -27,8 +27,10 @@
           (click)="actualizarCategoria(c)"
           *ngFor="let c of categorias"
         >
-          <span>Cras justo odio</span>
-          <span class="badge bg-primary text-white p-2">{{ c }}</span>
+          <span>{{ c?.categoria_nombre }}</span>
+          <span class="badge bg-primary text-white p-2">{{
+            c?.categoria_id
+          }}</span>
         </button>
       </div>
     </div>
@@ -38,10 +40,19 @@
           Nuevo
         </button>
       </div>
-      <div class="card my-3" *ngFor="let c of categorias; let i = index">
+      <div
+        class="card my-3"
+        *ngFor="
+          let s of sugerencias
+            | paginate: { itemsPerPage: 10, currentPage: pageActual }
+        "
+      >
         <div class="card-body">
-          <h4 class="card-title">Nombre sugerencia {{ i }}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
+          <h4 class="card-title">{{ s?.sugerencia_nombre_curso }}</h4>
+          <hr />
+          <h6 class="card-subtitle mb-2 text-muted">
+            {{ getNombreCategoria(s?.categoria_id) }}
+          </h6>
           <p class="card-text">
             contenido de la sugerencia. Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Asperiores a minus modi maiores? Dolorem esse
@@ -55,14 +66,14 @@
                 class="sobre uil uil-star"
                 (click)="cambiarEstado(i)"
               ></em>
-              <span class="mx-2 h5 mt-2">239</span></span
+              <span class="mx-2 h5 mt-2">{{ s?.numero_votos }}</span></span
             >
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mt-3 mb-5">
+  <div class="row mt-3 mb-5" *ngIf="sugerencias?.length > 10">
     <div class="col-12 d-flex flex-row-reverse">
       <ng-container>
         <pagination-controls

@@ -13,8 +13,8 @@ import { UsuarioService } from '../../servicios/usuario.service';
 export class VerCursoComponent implements OnInit {
   curso: Curso;
   usuario: Usuario;
-  listaCursos = [1, 2, 3];
   cursos: Curso[];
+  usuarioNoRegistrado: boolean;
   constructor(
     private route: ActivatedRoute,
     private cursoService: CursoService,
@@ -26,13 +26,18 @@ export class VerCursoComponent implements OnInit {
     let id = +this.route.snapshot.paramMap.get('id');
     this.cursos = [];
     this.listarCurso(id);
-    this.listarCursos();
+    if (+sessionStorage.getItem('usuario_id') != 0) {
+      this.usuarioNoRegistrado = false;
+    } else {
+      this.usuarioNoRegistrado = true;
+    }
   }
 
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
       this.curso = x['data'];
       this.obtenerUsuario(x['data']['usuario_id']);
+      this.listarCursos(x['data']['usuario_id']);
     });
   }
 
@@ -42,10 +47,15 @@ export class VerCursoComponent implements OnInit {
       .subscribe((x) => (this.usuario = x['user'][0]));
   }
 
-  listarCursos() {
-    this.cursoService.listarCursosPublicos().subscribe((x) => {
-      for (let i = 1; i <= 3; i++) {
-        this.cursos.push(x['cursos'][i]);
+  listarCursos(id: number) {
+    this.cursoService.listarCursosPublicosPorUsuario(id).subscribe((x) => {
+      if (x['cursos']?.length > 3) {
+        this.cursos = [];
+        this.cursos.push(x['cursos'][0]);
+        this.cursos.push(x['cursos'][1]);
+        this.cursos.push(x['cursos'][2]);
+      } else {
+        this.cursos = x['cursos'];
       }
     });
   }

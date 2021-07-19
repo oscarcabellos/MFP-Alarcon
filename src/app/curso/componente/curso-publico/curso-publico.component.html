@@ -19,6 +19,7 @@
           [(ngModel)]="cursoFilter"
           name="cursoFilter"
           autocomplete="off"
+          (keyup)="cambiarPagina()"
         />
         <button class="btn btn-outline-danger" (click)="borrarBusqueda()">
           X
@@ -30,7 +31,7 @@
 
 <div class="album py-5 bg-light">
   <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="cursos?.length > 0">
       <div
         class="col-12 col-sm-6 col-lg-4"
         *ngFor="
@@ -64,13 +65,15 @@
                   Ver más
                 </a>
               </div>
-              <small class="text-muted">{{ curso?.usuario_id }}</small>
+              <small class="text-muted">{{
+                getNombre(curso?.categoria_id)
+              }}</small>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="cursos?.length > 9">
       <div class="col d-flex justify-content-center">
         <ng-container>
           <pagination-controls

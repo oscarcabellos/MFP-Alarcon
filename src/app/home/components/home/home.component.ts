@@ -23,4 +23,11 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  estaRegistrado() {
+    if (+sessionStorage.getItem('usuario_id') !== 0) {
+      return true;
+    }
+    return false;
+  }
 }

@@ -3,22 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppServiceBase } from 'src/app/core/appServiceBase';
-import { Sugerencia } from '../modelos/sugerencia';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SugerenciaService extends AppServiceBase {
-  listarSugerencias(): Observable<any> {
-    return this.get('suggestions').pipe(catchError(this.handleError));
+export class CategoriaService extends AppServiceBase {
+  listarCategorias(): Observable<any> {
+    return this.get(`categories`).pipe(catchError(this.handleError));
   }
-
-  crearSugerencia(sugerencia: Sugerencia): Observable<any> {
-    return this.post('suggestions', sugerencia).pipe(
-      catchError(this.handleError)
-    );
-  }
-
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);
