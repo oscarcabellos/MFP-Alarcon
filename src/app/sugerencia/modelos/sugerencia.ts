@@ -3,5 +3,6 @@ export class Sugerencia {
   sugerencia_nombre_curso: string;
   sugerencia_puntuacion_curso: number;
   numero_votos: number;
-  sugerencia_estado: number;
+  sugerencia_estado: string;
+  descripcion: string;
 }

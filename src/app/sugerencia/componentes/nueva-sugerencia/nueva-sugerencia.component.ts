@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import { Sugerencia } from '../../modelos/sugerencia';
+import { SugerenciaService } from '../../servicios/sugerencia.service';
 
 @Component({
   selector: 'app-nueva-sugerencia',
@@ -8,7 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./nueva-sugerencia.component.css'],
 })
 export class NuevaSugerenciaComponent implements OnInit {
-  constructor(public activeModal: NgbActiveModal) {}
+  descripcion
+  constructor(public activeModal: NgbActiveModal, public sugerenciasService: SugerenciaService) {}
 
   ngOnInit(): void {
     // Codigo de inicializacion del componente
@@ -18,6 +21,18 @@ export class NuevaSugerenciaComponent implements OnInit {
   }
 
   guardarSugerencia() {
+      const sugerencia: Sugerencia = new Sugerencia();
+      sugerencia.categoria_id = 1;
+      sugerencia.sugerencia_nombre_curso = "prueba";
+      sugerencia.sugerencia_puntuacion_curso = 8;
+      sugerencia.numero_votos = 3;
+      sugerencia.sugerencia_estado = "Entregado";
+      sugerencia.descripcion= this.descripcion;
+
+      this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp)=>{
+        console.log(resp);
+      })
+      
     Swal.fire({
       title: 'La sugerencia será publica para todos los usuario',
       text: '¿Desea continuar?',

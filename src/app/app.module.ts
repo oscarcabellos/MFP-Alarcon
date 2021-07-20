@@ -10,6 +10,7 @@ import { HomeComponent } from './home/components/home/home.component';
 import { FooterComponent } from './layout/components/footer/footer.component';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent],
@@ -20,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
