@@ -63,9 +63,6 @@ export class RegisterComponent implements OnInit {
           Validators.maxLength(15),
         ],
       ],
-    },
-    {
-      Validators: this.validarPassword('password', 'passwordValidacion')
     });
   }
   get nombreNoValido() {
@@ -106,21 +103,20 @@ export class RegisterComponent implements OnInit {
   }
 
   validarFormulario() {
-    console.log(this.registroForm.valid);
+    console.log(this.registroForm.value["correo"]);
 
     if (
       this.registroForm.valid &&
       this.validarPassword(
-        this.registroForm.get('password').value,
-        this.registroForm.get('passworValidacion').value
+        this.registroForm.value["password"],
+        this.registroForm.value["passwordValidacion"],
       )
     ) {
       const usuario = new Usuario();
-      usuario.usuario_nombre = this.registroForm.get('usuario_nombre').value;
-      usuario.usuario_apellidos =
-        this.registroForm.get('usuario_apellidos').value;
-      usuario.correo = this.registroForm.get('correo').value;
-      usuario.password = this.registroForm.get('password').value;
+      usuario.usuario_nombre = this.registroForm.value["usuario_nombre"];
+      usuario.usuario_apellidos = this.registroForm.value["usuario_apellidos"];
+      usuario.correo = this.registroForm.value["correo"];
+      usuario.password = this.registroForm.value["password"]; 
       console.log(usuario);
 
       this.crearUsuario(usuario);
@@ -129,19 +125,15 @@ export class RegisterComponent implements OnInit {
     }
   }
   validarPassword(password: string, passwordValidadion: string) {
-      return (FormGroup:FormGroup) =>{
-        const control = FormGroup.controls[password];
-        const matchingControl = FormGroup.controls[passwordValidadion];
-        if (matchingControl.errors && !matchingControl.errors.validarPassword){
-          return
-        }
-        if (control.value !== matchingControl.value){
-          matchingControl.setErrors({validarPassword:true});
-        }
-        else{
-          matchingControl.setErrors(null);
-        }
-      }
+    if (password === passwordValidadion) {
+      return true;
+    }
+    else{
+      console.log("Contraseñas diferentes");
+      return false;
+      
+    }
+      
   }
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((field) => {
