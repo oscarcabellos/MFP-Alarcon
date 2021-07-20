@@ -129,7 +129,7 @@ export class RegisterComponent implements OnInit {
       return true;
     }
     else{
-      console.log("Contraseñas diferentes");
+      alert("contraseñas diferentes");
       return false;
       
     }
