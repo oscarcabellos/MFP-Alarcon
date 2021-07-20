@@ -4,9 +4,10 @@ import { ListaSugerenciaComponent } from './componentes/lista-sugerencia/lista-s
 import { SugerenciaRoutingModule } from './sugerencia-touting.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NuevaSugerenciaComponent } from './componentes/nueva-sugerencia/nueva-sugerencia.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ListaSugerenciaComponent, NuevaSugerenciaComponent],
-  imports: [CommonModule, SugerenciaRoutingModule, NgxPaginationModule],
+  imports: [CommonModule, SugerenciaRoutingModule, NgxPaginationModule, FormsModule,],
 })
 export class SugerenciaModule {}
