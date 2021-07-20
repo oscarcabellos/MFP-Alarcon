@@ -17,15 +17,20 @@
         id="{{ 'heading' + t }}"
       >
         <span>Tarea 1</span>
-        <button
-          class="btn btn-primary"
-          data-toggle="collapse"
-          [attr.data-target]="'#collapse' + t"
-          aria-expanded="false"
-          aria-controls="{{ 'collapse' + t }}"
-        >
-          <span>Ver</span>
-        </button>
+        <div>
+          <button class="btn btn-primary mr-2" (click)="openModalEntregas(t)">
+            <span>Ver entregas</span>
+          </button>
+          <button
+            class="btn btn-primary"
+            data-toggle="collapse"
+            [attr.data-target]="'#collapse' + t"
+            aria-expanded="false"
+            aria-controls="{{ 'collapse' + t }}"
+          >
+            <span>Mas infromación</span>
+          </button>
+        </div>
       </div>
       <div
         id="{{ 'collapse' + t }}"

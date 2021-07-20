@@ -19,7 +19,7 @@
             (click)="unirCurso(curso?.curso_id)"
             [disabled]="usuarioNoRegistrado"
           >
-            Unirse
+            {{ curso?.privacidad_id === 1 ? "Unirse" : "Solicitar acceso" }}
           </button>
         </div>
       </div>

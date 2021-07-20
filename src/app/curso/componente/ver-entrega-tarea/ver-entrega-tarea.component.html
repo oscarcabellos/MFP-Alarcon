@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h5 class="modal-title">Entregas de la tarea</h5>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="closeModal('dismiss')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <input type="hidden" name="" ngbAutofocus />
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive table-borderless">
+          <table class="table">
+            <caption></caption>
+            <thead>
+              <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Archivo</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let t of tareas">
+                <td class="align-middle">osivnoidvas</td>
+                <td>vasdovinoavisnvsd.pdf</td>
+                <td>
+                  <button class="btn btn-outline-info">
+                    <i class="uil uil-import"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary">Guardar</button>
+</div>

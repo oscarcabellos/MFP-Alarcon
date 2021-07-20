@@ -1,3 +1,9 @@
 .img {
   height: 250px;
 }
+#imagen {
+  z-index: 1;
+}
+#contenido {
+  z-index: 10;
+}

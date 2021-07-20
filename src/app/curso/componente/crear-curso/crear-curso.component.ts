@@ -19,6 +19,7 @@ export class CrearCursoComponent implements OnInit {
   usuario_id: number;
   cursoForm: FormGroup;
   categorias: Categoria[];
+
   constructor(
     private cursoService: CursoService,
     private cloudBinaryService: CloudBinaryService,

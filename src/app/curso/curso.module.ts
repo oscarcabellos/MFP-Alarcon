@@ -16,6 +16,7 @@ import { ListaCursoComponent } from './componente/lista-curso/lista-curso.compon
 import { NotificacionComponent } from './componente/notificacion/notificacion.component';
 import { MaterialCursoComponent } from './componente/material-curso/material-curso.component';
 import { NuevoMaterialComponent } from './componente/nuevo-material/nuevo-material.component';
+import { VerEntregaTareaComponent } from './componente/ver-entrega-tarea/ver-entrega-tarea.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NuevoMaterialComponent } from './componente/nuevo-material/nuevo-materi
     NotificacionComponent,
     MaterialCursoComponent,
     NuevoMaterialComponent,
+    VerEntregaTareaComponent,
   ],
   imports: [
     CommonModule,

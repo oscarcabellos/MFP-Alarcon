@@ -1,4 +1,4 @@
-<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark mt-5">
+<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark mt-5 mb-0">
   <div class="row">
     <div class="col-md-6 px-0">
       <h1 class="display-4 font-italic">
@@ -48,22 +48,17 @@
             mb-4
             shadow-sm
             h-md-250
-            position-relative
           "
         >
-          <div class="col-6 p-4 d-flex flex-column position-static bg-white">
+          <div class="col-6 p-4 d-flex flex-column bg-white" id="contenido">
             <h3 class="mb-0">{{ c?.curso_nombre }}</h3>
             <div class="mb-1 text-muted">{{ c?.categoria_id }}</div>
             <p class="card-text mb-auto">
               {{ c?.descripcion }}
             </p>
-            <a
-              routerLink="/cursos/curso/vista/{{ c?.curso_id }}"
-              class="stretched-link"
-              >Ver curso</a
-            >
+            <a routerLink="/cursos/curso/vista/{{ c?.curso_id }}">Ver curso</a>
           </div>
-          <div class="col-6">
+          <div class="col-6 d-flex justify-content-center" id="imagen">
             <img
               src="{{ c?.imagen }}"
               alt=""

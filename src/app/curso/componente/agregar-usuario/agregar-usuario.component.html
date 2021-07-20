@@ -33,7 +33,10 @@
   </div>
   <div class="row my-2">
     <div class="col-12">
-      <div class="table-responsive table-borderless">
+      <div
+        class="table-responsive table-borderless"
+        *ngIf="usuarios?.length > 0"
+      >
         <table class="table">
           <caption></caption>
           <thead>

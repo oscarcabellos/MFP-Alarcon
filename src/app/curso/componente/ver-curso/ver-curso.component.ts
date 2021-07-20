@@ -36,6 +36,8 @@ export class VerCursoComponent implements OnInit {
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
       this.curso = x['data'];
+      console.log(x);
+
       this.obtenerUsuario(x['data']['usuario_id']);
       this.listarCursos(x['data']['usuario_id']);
     });

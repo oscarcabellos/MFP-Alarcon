@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
 @NgModule({
   declarations: [],
