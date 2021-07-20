@@ -35,8 +35,6 @@ export class ListaCursoComponent implements OnInit {
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log('unido');
-
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -50,7 +48,6 @@ export class ListaCursoComponent implements OnInit {
 
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
-      console.log(x);
       this.cursos = x['list'];
     });
   }

@@ -25,7 +25,6 @@ export class CursoComponent implements OnInit {
   obtenerCurso(id) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
       this.pertenece = this.usuarioId === x['data']['usuario_id'];
-      console.log(this.pertenece);
     });
   }
 }

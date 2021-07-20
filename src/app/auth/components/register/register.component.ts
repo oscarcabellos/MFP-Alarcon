@@ -26,47 +26,49 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.registroForm = this.formBuilder.group({
-      usuario_nombre: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(30),
+    this.registroForm = this.formBuilder.group(
+      {
+        usuario_nombre: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(30),
+          ],
         ],
-      ],
-      usuario_apellidos: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(30),
+        usuario_apellidos: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(30),
+          ],
         ],
-      ],
-      correo: [
-        '',
-        [Validators.required, Validators.email, Validators.maxLength(30)],
-      ],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(15),
+        correo: [
+          '',
+          [Validators.required, Validators.email, Validators.maxLength(30)],
         ],
-      ],
-      passwordValidacion: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(15),
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(15),
+          ],
         ],
-      ],
-    },
-    {
-      Validators: this.validarPassword('password', 'passwordValidacion')
-    });
+        passwordValidacion: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(15),
+          ],
+        ],
+      },
+      {
+        Validators: this.validarPassword('password', 'passwordValidacion'),
+      }
+    );
   }
   get nombreNoValido() {
     return (
@@ -106,8 +108,6 @@ export class RegisterComponent implements OnInit {
   }
 
   validarFormulario() {
-    console.log(this.registroForm.valid);
-
     if (
       this.registroForm.valid &&
       this.validarPassword(
@@ -121,7 +121,6 @@ export class RegisterComponent implements OnInit {
         this.registroForm.get('usuario_apellidos').value;
       usuario.correo = this.registroForm.get('correo').value;
       usuario.password = this.registroForm.get('password').value;
-      console.log(usuario);
 
       this.crearUsuario(usuario);
     } else {
@@ -129,19 +128,18 @@ export class RegisterComponent implements OnInit {
     }
   }
   validarPassword(password: string, passwordValidadion: string) {
-      return (FormGroup:FormGroup) =>{
-        const control = FormGroup.controls[password];
-        const matchingControl = FormGroup.controls[passwordValidadion];
-        if (matchingControl.errors && !matchingControl.errors.validarPassword){
-          return
-        }
-        if (control.value !== matchingControl.value){
-          matchingControl.setErrors({validarPassword:true});
-        }
-        else{
-          matchingControl.setErrors(null);
-        }
+    return (FormGroup: FormGroup) => {
+      const control = FormGroup.controls[password];
+      const matchingControl = FormGroup.controls[passwordValidadion];
+      if (matchingControl.errors && !matchingControl.errors.validarPassword) {
+        return;
       }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ validarPassword: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
   }
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((field) => {

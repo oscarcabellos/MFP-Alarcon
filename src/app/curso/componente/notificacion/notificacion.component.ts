@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificacionService } from '../../servicios/notificaciones.service';
 
-
 @Component({
   selector: 'app-notificacion',
   templateUrl: './notificacion.component.html',
@@ -20,6 +19,5 @@ export class NotificacionComponent implements OnInit {
     this.NotificacionService.listarCursosPublicos().subscribe((x) => {
       this.notificaciones = x.cursos;
     });
-    // console.log(typeof this.notificaciones2.list);
   }
 }
