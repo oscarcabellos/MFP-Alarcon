@@ -1,4 +1,3 @@
-import { constructorParametersDownlevelTransform } from '@angular/compiler-cli';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Curso } from '../../modelo/curso';
@@ -14,7 +13,8 @@ import { ExcelService } from  '../../servicios/ExcelService'
 export class ListaCursoComponent implements OnInit {
   
   cursos: Curso[];
-  constructor(private cursoService: CursoService, private excelServices: ExcelService) {}
+  constructor(private cursoService: CursoService, private excelServices: ExcelService) {} 
+  //constructor(private cursoService: CursoService) {}
 
   
 
@@ -57,14 +57,18 @@ export class ListaCursoComponent implements OnInit {
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
       console.log(x);
+      
       this.cursos = x['list'];
     });
   }
 
+  
   descargarlista(id: number){
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       console.log(x);
-      this.excelServices.exportAsExcelFile(x,'sample')
+
+      this.excelServices.exportAsExcelFile(x.data,'Lista de Curso');
+      
     });
   }
 
