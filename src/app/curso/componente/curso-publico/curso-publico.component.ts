@@ -18,8 +18,8 @@ export class CursoPublicoComponent implements OnInit {
   //filtro de cursos
   cursoFilter: string = '';
 
-  cursos: Curso[];
-  categorias: Categoria[];
+  cursos: Curso[] = [];
+  categorias: Categoria[] = [];
   constructor(
     private cursoService: CursoService,
     private categoriaService: CategoriaService

@@ -31,8 +31,8 @@ export class CrearCursoComponent implements OnInit {
   ngOnInit(): void {
     this.usuario_id = +sessionStorage.getItem('usuario_id');
     this.cursoForm = this.formBuilder.group({
-      curso_nombre: ['', [Validators.required, Validators.maxLength(30)]],
-      descripcion: ['', Validators.required],
+      curso_nombre: ['', [Validators.required, Validators.maxLength(20)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(160)]],
       conoci_previo: [''],
       privacidad_id: ['', Validators.required],
       categoria: [''],

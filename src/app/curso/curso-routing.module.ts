@@ -24,7 +24,7 @@ const routes: Routes = [
     component: VerCursoComponent,
   },
   {
-    path: 'curso/:id',
+    path: 'curso/:iduser/:idcurso',
     component: CursoComponent,
   },
 ];

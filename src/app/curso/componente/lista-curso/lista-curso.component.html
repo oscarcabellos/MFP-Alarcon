@@ -1,37 +1,87 @@
 <div class="container">
   <div class="row mt-3 mt-md-0">
-    <div class="col-12 d-flex flex-row-reverse">
+    <div class="col-10">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar curso"
+        [(ngModel)]="nombreFiltro"
+        name="cursoFilter"
+        autocomplete="off"
+        (keyup)="cambiarPagina()"
+      />
+    </div>
+    <div class="col-2 d-flex flex-row-reverse">
       <button class="btn btn-outline-info" (click)="unirseCurso()">
         Unirse
       </button>
     </div>
   </div>
-  <div class="row mt-3">
-    <div class="col-6" *ngFor="let c of cursos">
-      <div class="card border-primary mb-3">
+  <div class="row mt-3" *ngIf="cursos?.length > 0">
+    <div
+      class="col-6"
+      *ngFor="
+        let c of cursos
+          | filter: { curso_nombre: nombreFiltro }
+          | paginate: { itemsPerPage: 8, currentPage: pageActual }
+      "
+    >
+      <div class="card border-primary mb-3" id="curso">
         <div class="card-header d-flex justify-content-between">
           <h4>{{ c?.curso_nombre }}</h4>
           <span>
-            <button class="btn btn-outline-info">
+            <button
+              class="btn btn-outline-info"
+              *ngIf="c?.usuario_id === usuarioId"
+            >
               <i class="uil uil-pen"></i>
             </button>
           </span>
         </div>
-        <div class="card-body">
-          <img src="{{ c?.imagen }}" alt="" id="imagen" class="w-100 mb-3" />
+        <div class="card-body d-flex flex-column justify-content-between">
+          <img
+            src="{{ c?.imagen }}"
+            alt=""
+            id="imagen"
+            class="w-100 mb-3"
+            *ngIf="c?.imagen != null; else noimagen"
+          />
+
+          <ng-template #noimagen>
+            <img
+              src="https://dev-res.thumbr.io/libraries/65/79/65/lib/1607077330930_1.jpg?size=854x493s&ext=jpg"
+              alt=""
+              class="w-100 mb-3"
+            />
+          </ng-template>
+
           <p class="card-text">
             {{ c?.descripcion }}
           </p>
           <a
-            routerLink="/cursos/curso/{{ c?.curso_id }}"
+            [routerLink]="['/cursos/curso', c?.usuario_id, c?.curso_id]"
             class="btn btn-warning"
             >Ver</a
           >
-          <button class="btn btn-warning ml-2">
+          <button class="btn btn-success" *ngIf="c?.usuario_id === usuarioId">
             Descargar lista de alumnos
           </button>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row mt-5 mb-3" *ngIf="cursos?.length > 8">
+    <div class="col d-flex flex-row-reverse">
+      <ng-container>
+        <pagination-controls
+          class="my-pagination"
+          maxSize="5"
+          [responsive]="responsive"
+          [previousLabel]="previousLabel"
+          [nextLabel]="nextLabel"
+          (pageChange)="pageActual = $event"
+        ></pagination-controls>
+      </ng-container>
     </div>
   </div>
 </div>

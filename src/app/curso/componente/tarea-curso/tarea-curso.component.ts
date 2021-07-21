@@ -16,6 +16,7 @@ export class TareaCursoComponent implements OnInit {
 
   ngOnInit(): void {
     // Codigo de inicializacion del componente
+    console.log(this.usuarioProfesor);
   }
   entregar(id: number) {
     alert('Entregado ' + id);

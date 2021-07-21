@@ -12,13 +12,15 @@ import { Categoria } from 'src/app/curso/modelo/categoria';
   styleUrls: ['./lista-sugerencia.component.css'],
 })
 export class ListaSugerenciaComponent implements OnInit {
-  categorias: Categoria[];
+  categorias: Categoria[] = [];
   sugerencias: Sugerencia[];
 
   pageActual: number;
   previousLabel = 'Anterior';
   nextLabel = 'Siguiente';
   responsive: boolean = true;
+
+  sugerenciaFiltro: string = '';
   constructor(
     private modalService: NgbModal,
     private sugerenciaService: SugerenciaService,
@@ -80,5 +82,9 @@ export class ListaSugerenciaComponent implements OnInit {
   buscarNombreCategoria(id: number) {
     const resultado = this.categorias.find((c) => c?.categoria_id === id);
     return resultado?.categoria_nombre;
+  }
+
+  cambiarPagina() {
+    this.pageActual = 1;
   }
 }

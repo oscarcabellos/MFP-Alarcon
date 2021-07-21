@@ -8,23 +8,26 @@ import { CursoService } from '../../servicios/curso.service';
   styleUrls: ['./curso.component.css'],
 })
 export class CursoComponent implements OnInit {
-  id: number;
+  idCurso: number;
   pertenece: boolean;
   usuarioId: number;
+  nombreCurso: string;
   constructor(
     private route: ActivatedRoute,
     private cursoService: CursoService
   ) {}
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
+    this.idCurso = +this.route.snapshot.paramMap.get('idcurso');
     this.usuarioId = +sessionStorage.getItem('usuario_id');
-    this.obtenerCurso(this.id);
+    this.obtenerCurso(this.idCurso);
+    this.pertenece =
+      this.usuarioId === +this.route.snapshot.paramMap.get('iduser');
   }
 
   obtenerCurso(id) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
-      this.pertenece = this.usuarioId === x['data']['usuario_id'];
+      this.nombreCurso = x['data']?.curso_nombre;
     });
   }
 }

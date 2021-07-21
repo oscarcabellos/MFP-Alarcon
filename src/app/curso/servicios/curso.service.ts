@@ -40,6 +40,10 @@ export class CursoService extends AppServiceBase {
     return this.get(`cursos/${id}`).pipe(catchError(this.handleError));
   }
 
+  listarCursosPorUsuario2(id: number): Observable<any> {
+    return this.get(`coursesofuser/${id}`).pipe(catchError(this.handleError));
+  }
+
   agrearUsuarioCurso(idCurso: number, correo: string): Observable<any> {
     return this.post('coursesUsers', { curso_id: idCurso, correo }).pipe(
       catchError(this.handleError)

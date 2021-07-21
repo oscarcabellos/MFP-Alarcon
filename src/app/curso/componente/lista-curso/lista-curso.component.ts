@@ -10,11 +10,21 @@ import { CursoService } from '../../servicios/curso.service';
 })
 export class ListaCursoComponent implements OnInit {
   cursos: Curso[];
+  usuarioId: number;
+  pageActual: number;
+  previousLabel = 'Anterior';
+  nextLabel = 'Siguiente';
+  responsive: boolean = true;
+  //filtro de cursos
+  nombreFiltro: string = '';
+
   constructor(private cursoService: CursoService) {}
 
   ngOnInit(): void {
-    let usuarioId = +sessionStorage.getItem('usuario_id');
-    this.listarCursos(usuarioId);
+    this.pageActual = 1;
+
+    this.usuarioId = +sessionStorage.getItem('usuario_id');
+    this.listarCursos(this.usuarioId);
   }
 
   unirseCurso() {
@@ -49,6 +59,19 @@ export class ListaCursoComponent implements OnInit {
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
       this.cursos = x['list'];
+      this.listarCursos2(id);
+      console.log(x);
     });
+  }
+
+  listarCursos2(id: number) {
+    this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
+      this.cursos = this.cursos.concat(x['data']);
+      console.log(x);
+    });
+  }
+
+  cambiarPagina() {
+    this.pageActual = 1;
   }
 }

@@ -1,48 +1,54 @@
 <div class="container p-5">
   <div class="card mt-5">
     <div class="card-body">
-      <ul
-        class="nav nav-tabs d-flex justify-content-center"
-        id="myTab"
-        role="tablist"
-      >
-        <li class="nav-item" role="presentation">
-          <a
-            class="nav-link active"
-            id="home-tab"
-            data-toggle="tab"
-            href="#home"
-            role="tab"
-            aria-controls="home"
-            aria-selected="true"
-            >Home</a
-          >
-        </li>
-        <li class="nav-item" role="presentation">
-          <a
-            class="nav-link"
-            id="profile-tab"
-            data-toggle="tab"
-            href="#profile"
-            role="tab"
-            aria-controls="profile"
-            aria-selected="false"
-            >Tareas</a
-          >
-        </li>
-        <li class="nav-item" role="presentation">
-          <a
-            class="nav-link"
-            id="contact-tab"
-            data-toggle="tab"
-            href="#contact"
-            role="tab"
-            aria-controls="contact"
-            aria-selected="false"
-            >Usuarios</a
-          >
-        </li>
-      </ul>
+      <div class="row d-flex justify-content-between">
+        <span class="col-12 col-lg-6 d-flex flex-column-reverse h3">{{
+          nombreCurso
+        }}</span>
+        <ul
+          class="nav nav-tabs d-flex justify-content-end"
+          id="myTab"
+          role="tablist"
+        >
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link active"
+              id="home-tab"
+              data-toggle="tab"
+              href="#home"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="profile-tab"
+              data-toggle="tab"
+              href="#profile"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+              >Tareas</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="contact-tab"
+              data-toggle="tab"
+              href="#contact"
+              role="tab"
+              aria-controls="contact"
+              aria-selected="false"
+              >Usuarios</a
+            >
+          </li>
+        </ul>
+      </div>
+      <hr />
       <div class="tab-content" id="myTabContent">
         <div
           class="tab-pane fade show active"
@@ -69,7 +75,7 @@
           aria-labelledby="contact-tab"
         >
           <app-agregar-usuario
-            [cursoId]="id"
+            [cursoId]="idCurso"
             [usuarioProfesor]="pertenece"
           ></app-agregar-usuario>
         </div>
