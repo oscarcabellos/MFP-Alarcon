@@ -19,6 +19,7 @@ export class CrearCursoComponent implements OnInit {
   usuario_id: number;
   cursoForm: FormGroup;
   categorias: Categoria[];
+  nombreImagen: String;
 
   constructor(
     private cursoService: CursoService,
@@ -63,8 +64,10 @@ export class CrearCursoComponent implements OnInit {
 
   onFileChange(event) {
     this.image = event.target.files;
+    console.log(this.image[0].name);
+    this.nombreImagen=this.image[0].name;
   }
-
+  
   crearCurso() {
     let curso = new Curso();
     if (this.cursoForm.valid) {
