@@ -63,7 +63,11 @@
             class="btn btn-warning"
             >Ver</a
           >
-          <button class="btn btn-success" *ngIf="c?.usuario_id === usuarioId">
+          <button
+            class="btn btn-success"
+            *ngIf="c?.usuario_id === usuarioId"
+            (click)="descargarlista(c?.curso_id)"
+          >
             Descargar lista de alumnos
           </button>
         </div>
