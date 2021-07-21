@@ -65,7 +65,7 @@ export class ListaCursoComponent implements OnInit {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       console.log(x);
 
-      this.excelServices.exportAsExcelFile(x.data,'Lista de Curso');
+      this.excelServices.exportAsExcelFile(x.data,'ListaCurso');
       
     });
   }
