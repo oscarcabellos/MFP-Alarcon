@@ -103,16 +103,12 @@
             <div class="col-12 px-0">
               <label for="formGroupExampleInput">Imagen:</label>
             </div>
-            <div class="custom-file">
-              <input
-                type="file"
-                lang="es"
-                class="custom-file-input"
-                id="file"
-                aria-describedby="inputGroupFileAddon04"
-                (change)="onFileChange($event)"
-              />
-              <label class="custom-file-label" for="file">Imagen</label>
+            <div class="form-inline">
+              <div id="div_file">
+                <p id="texto">Seleccionar imagen</p>
+                <input type="file" id="btn_enviar" (change)="onFileChange($event)">
+              </div>
+              <p> &nbsp; &nbsp; {{nombreImagen}}</p>
             </div>
           </div>
         </div>

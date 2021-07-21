@@ -14,7 +14,7 @@ export class AgregarUsuarioComponent implements OnInit {
   @Input() usuarioProfesor: boolean;
   usuarios: Usuario[] = [];
   agregarForm: FormGroup;
-
+  totalAlumnos: number;
   constructor(
     private cursoService: CursoService,
     private formBuilder: FormBuilder
@@ -45,6 +45,7 @@ export class AgregarUsuarioComponent implements OnInit {
   listarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       this.usuarios = x['data'];
+      this.totalAlumnos=x['data'].length;
     });
   }
 
