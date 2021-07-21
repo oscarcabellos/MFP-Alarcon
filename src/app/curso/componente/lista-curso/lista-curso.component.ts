@@ -63,18 +63,14 @@ export class ListaCursoComponent implements OnInit {
 
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
-      console.log(x);
-
       this.cursos = x['list'];
       this.listarCursos2(id);
-      console.log(x);
     });
   }
 
   listarCursos2(id: number) {
     this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
       this.cursos = this.cursos.concat(x['data']);
-      console.log(x);
     });
   }
 
@@ -84,8 +80,6 @@ export class ListaCursoComponent implements OnInit {
 
   descargarlista(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
-      console.log(x);
-
       this.excelServices.exportAsExcelFile(x.data, 'ListaCurso');
     });
   }

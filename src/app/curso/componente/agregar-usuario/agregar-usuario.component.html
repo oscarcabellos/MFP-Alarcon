@@ -44,6 +44,7 @@
               <th scope="col"></th>
               <th scope="col">Usuario</th>
               <th scope="col">Correo</th>
+              <th scope="col">Estado</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -68,8 +69,11 @@
                   />
                 </ng-template>
               </td>
-              <td class="align-middle">{{ usuario?.usuario_nombre }}</td>
+              <td class="align-middle">
+                {{ usuario?.usuario_nombre }} {{ usuario?.usuario_apellidos }}
+              </td>
               <td class="align-middle">{{ usuario?.correo }}</td>
+              <td class="align-middle">Activo</td>
               <td class="align-middle" *ngIf="usuarioProfesor">
                 <button
                   class="btn btn-danger"

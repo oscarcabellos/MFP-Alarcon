@@ -12,7 +12,6 @@ export class NuevoMaterialComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
-    console.log(this.fromParent);
     this.tarea = this.fromParent.tarea;
   }
   closeModal(sendData) {

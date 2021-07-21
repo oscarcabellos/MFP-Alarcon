@@ -21,8 +21,6 @@ export class AgregarUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.usuarioProfesor);
-
     this.listarUsuarios(this.cursoId);
 
     this.agregarForm = this.formBuilder.group({
