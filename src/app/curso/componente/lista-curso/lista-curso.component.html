@@ -23,7 +23,7 @@
       *ngFor="
         let c of cursos
           | filter: { curso_nombre: nombreFiltro }
-          | paginate: { itemsPerPage: 8, currentPage: pageActual }
+          | paginate: { itemsPerPage: 6, currentPage: pageActual }
       "
     >
       <div class="card border-primary mb-3" id="curso">
@@ -74,7 +74,7 @@
       </div>
     </div>
   </div>
-  <div class="row mt-5 mb-3" *ngIf="cursos?.length > 8">
+  <div class="row mt-5 mb-3" *ngIf="cursos?.length > 6">
     <div class="col d-flex flex-row-reverse">
       <ng-container>
         <pagination-controls
