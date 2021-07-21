@@ -64,7 +64,6 @@ export class CrearCursoComponent implements OnInit {
 
   onFileChange(event) {
     this.image = event.target.files;
-    console.log(this.image[0].name);
     this.nombreImagen=this.image[0].name;
   }
   
