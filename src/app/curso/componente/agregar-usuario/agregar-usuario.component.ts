@@ -45,7 +45,8 @@ export class AgregarUsuarioComponent implements OnInit {
   listarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       this.usuarios = x['data'];
-      this.totalAlumnos=x['data'].length;
+      this.totalAlumnos = x['data'].length;
+      console.log(x);
     });
   }
 
@@ -60,8 +61,17 @@ export class AgregarUsuarioComponent implements OnInit {
           this.agregarForm.get('correoUsuario').value
         )
         .subscribe((x) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Usuario agregado',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          console.log(x);
+
           this.listarUsuarios(this.cursoId);
-          this.agregarForm.get('correoUsuario').setValue('');
+          //this.agregarForm.get('correoUsuario').setValue('');
+          this.agregarForm.reset();
         });
     } else {
       Swal.fire({

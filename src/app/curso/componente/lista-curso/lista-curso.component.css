@@ -1,10 +1,14 @@
 /*
 *   Ingresar estilos 
 */
-#imagen{
-    height: 200px;
+#imagen {
+  height: 200px;
 }
 
-#curso{
-    height: 500px;
+.imagen-borde {
+  border: 1px solid black;
+}
+
+#curso {
+  height: 500px;
 }
