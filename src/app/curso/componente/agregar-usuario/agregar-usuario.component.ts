@@ -62,8 +62,9 @@ export class AgregarUsuarioComponent implements OnInit {
         )
         .subscribe((x) => {
           Swal.fire({
-            icon: 'success',
-            title: 'Usuario agregado',
+            icon: x['error'] === 0 ? 'success' : 'error',
+            title:
+              x['msg']?.length > 0 ? x['msg'] : 'Se ha enviado la solicitud',
             showConfirmButton: false,
             timer: 1500,
           });
@@ -107,6 +108,7 @@ export class AgregarUsuarioComponent implements OnInit {
           icon: 'success',
           showConfirmButton: false,
           width: '20rem',
+          timer: 1500,
         });
       }
     });

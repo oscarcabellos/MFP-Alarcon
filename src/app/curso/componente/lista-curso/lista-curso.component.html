@@ -27,16 +27,39 @@
       "
     >
       <div class="card border-primary mb-3" id="curso">
-        <div class="card-header d-flex justify-content-between">
-          <h4>{{ c?.curso_nombre }}</h4>
-          <span>
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+        >
+          <h4 class="align-items-center">{{ c?.curso_nombre }}</h4>
+          <!-- <span>
             <button
               class="btn btn-outline-info"
               *ngIf="c?.usuario_id === usuarioId"
             >
               <i class="uil uil-pen"></i>
             </button>
-          </span>
+            
+          </span> -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link align-items-center"
+                href="/profiel"
+                id="dropdown01"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="ml-2 h5 text-primary"
+                  ><i class="uil uil-ellipsis-v"></i
+                ></span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" routerLink="/">Editar</a>
+                <a class="dropdown-item" routerLink="/">Eliminar</a>
+              </div>
+            </li>
+          </ul>
         </div>
         <div class="card-body d-flex flex-column justify-content-between">
           <img
