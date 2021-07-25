@@ -15,7 +15,6 @@ export class CloudBinaryService {
   }
 
   sendPhoto(file: File) {
-    console.log(this.cloudBinaryUploadPreset);
     let formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', this.cloudBinaryUploadPreset);

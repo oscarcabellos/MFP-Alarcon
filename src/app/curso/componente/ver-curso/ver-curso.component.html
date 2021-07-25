@@ -31,7 +31,6 @@
               </div>
             </div>
             <div class="col-4 d-none d-md-block">
-              <!-- <img src="{{ curso?.imagen }}" alt="" class="w-100" /> -->
               <img
                 src="{{ curso?.imagen }}"
                 alt=""
@@ -52,7 +51,9 @@
     </div>
     <div class="col-md-5 col-lg-4">
       <div class="card mb-3 mt-5 border-primary">
-        <h4 class="card-header">{{ usuario?.usuario_nombre }}</h4>
+        <h4 class="card-header">
+          {{ usuario?.usuario_nombre + " " + usuario?.usuario_apellidos }}
+        </h4>
         <img
           src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
           alt="mdo"

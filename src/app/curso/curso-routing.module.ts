@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CrearCursoComponent } from './componente/crear-curso/crear-curso.component';
 import { CursoPublicoComponent } from './componente/curso-publico/curso-publico.component';
 import { CursoComponent } from './componente/curso/curso.component';
 import { DashboardComponent } from './componente/dashboard/dashboard.component';
 import { VerCursoComponent } from './componente/ver-curso/ver-curso.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: CursoPublicoComponent,
-  },
-  {
-    path: 'crear',
-    component: CrearCursoComponent,
   },
   {
     path: 'dashboard',

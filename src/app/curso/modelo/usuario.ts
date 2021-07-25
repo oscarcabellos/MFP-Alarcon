@@ -5,4 +5,5 @@ export class Usuario {
   password: string;
   correo: string;
   url: string;
+  situacion: number;
 }

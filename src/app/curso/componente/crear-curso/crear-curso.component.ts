@@ -32,7 +32,7 @@ export class CrearCursoComponent implements OnInit {
   ngOnInit(): void {
     this.usuario_id = +sessionStorage.getItem('usuario_id');
     this.cursoForm = this.formBuilder.group({
-      curso_nombre: ['', [Validators.required, Validators.maxLength(20)]],
+      curso_nombre: ['', [Validators.required, Validators.maxLength(30)]],
       descripcion: ['', [Validators.required, Validators.maxLength(160)]],
       conoci_previo: [''],
       privacidad_id: ['', Validators.required],
@@ -64,12 +64,16 @@ export class CrearCursoComponent implements OnInit {
 
   onFileChange(event) {
     this.image = event.target.files;
-    this.nombreImagen=this.image[0].name;
+    this.nombreImagen = this.image[0].name;
   }
-  
+
   crearCurso() {
-    let curso = new Curso();
+    /*  console.log(this.cursoForm.value, this.cursoForm.get('categoria_id').value); */
+
     if (this.cursoForm.valid) {
+      let curso = new Curso();
+      //curso.categoria_id = 1;
+
       if (this.image != null || this.image != undefined) {
         this.cloudBinaryService
           .sendPhoto(this.image[0])

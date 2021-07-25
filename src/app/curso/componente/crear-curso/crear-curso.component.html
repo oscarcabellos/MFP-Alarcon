@@ -16,7 +16,7 @@
             [class.is-invalid]="nombreNoValido"
           />
           <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
-            >Ingrese un nombre valido no mayor a 20 caracteres</small
+            >Ingrese un nombre valido no mayor a 30 caracteres</small
           >
         </div>
         <div class="form-group">
@@ -87,13 +87,13 @@
         <div class="form-group">
           <label for="categoriaCurso">Categoria:</label>
           <select
-            name="categoriaCurso"
+            name="categoria"
             formContorlName="categoria"
             class="custom-select"
-            id=""
+            id="categoriaCurso"
           >
             <option value="" hidden>seleccione</option>
-            <option value="c?.categoria_id" *ngFor="let c of categorias">
+            <option *ngFor="let c of categorias" [ngValue]="c?.categoria_id">
               {{ c?.categoria_nombre }}
             </option>
           </select>
@@ -106,9 +106,13 @@
             <div class="form-inline">
               <div id="div_file">
                 <p id="texto">Seleccionar imagen</p>
-                <input type="file" id="btn_enviar" (change)="onFileChange($event)">
+                <input
+                  type="file"
+                  id="btn_enviar"
+                  (change)="onFileChange($event)"
+                />
               </div>
-              <p> &nbsp; &nbsp; {{nombreImagen}}</p>
+              <p>&nbsp; &nbsp; {{ nombreImagen }}</p>
             </div>
           </div>
         </div>

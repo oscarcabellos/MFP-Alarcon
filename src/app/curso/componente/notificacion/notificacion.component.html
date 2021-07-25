@@ -3,15 +3,18 @@
     <div class="col-12" *ngFor="let c of notificaciones">
       <div class="card border-primary mb-3">
         <div class="card-header d-flex justify-content-between">
-          <h4>Nombre curso</h4>
+          <h5>Nombre curso</h5>
           <button class="btn btn-secondary">X</button>
         </div>
         <div class="card-body">
-          <h4 class="card-title">Nombre notificacion</h4>
           <p class="card-text">
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
+          <div class="d-flex flex-row-reverse">
+            <button class="btn btn-danger">Rechazar</button>
+            <button class="btn btn-primary mr-2">Unirme</button>
+          </div>
         </div>
       </div>
     </div>

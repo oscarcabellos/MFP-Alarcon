@@ -3,6 +3,12 @@ import { Usuario } from '../../modelo/usuario';
 import Swal from 'sweetalert2';
 import { CursoService } from '../../servicios/curso.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ExcelService } from '../../servicios/ExcelService';
+import {
+  USUARIO_ACTIVO,
+  USUARIO_PENDIENTE_PROFESOR,
+  USUARIO_PENDIENTE_USUARIO,
+} from 'src/app/core/constants';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -15,14 +21,18 @@ export class AgregarUsuarioComponent implements OnInit {
   usuarios: Usuario[] = [];
   agregarForm: FormGroup;
   totalAlumnos: number;
+  activo = USUARIO_ACTIVO;
+  pendiente_profesor = USUARIO_PENDIENTE_PROFESOR;
+  pendiente_usuario = USUARIO_PENDIENTE_USUARIO;
+  variable_para_probar = 3;
   constructor(
     private cursoService: CursoService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private excelService: ExcelService
   ) {}
 
   ngOnInit(): void {
     this.listarUsuarios(this.cursoId);
-
     this.agregarForm = this.formBuilder.group({
       correoUsuario: ['', [Validators.required, Validators.email]],
     });
@@ -46,34 +56,41 @@ export class AgregarUsuarioComponent implements OnInit {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       this.usuarios = x['data'];
       this.totalAlumnos = x['data'].length;
-      console.log(x);
     });
   }
 
   /**
    * Método para agregar un usuario al curso
    */
-  agregarUsuario() {
+  validarCorreoIngresado() {
     if (this.agregarForm.valid) {
-      this.cursoService
-        .agrearUsuarioCurso(
-          this.cursoId,
+      if (
+        this.validarCorreoIgualAProfesor(
+          sessionStorage.getItem('correo'),
           this.agregarForm.get('correoUsuario').value
         )
-        .subscribe((x) => {
-          Swal.fire({
-            icon: x['error'] === 0 ? 'success' : 'error',
-            title:
-              x['msg']?.length > 0 ? x['msg'] : 'Se ha enviado la solicitud',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          console.log(x);
-
-          this.listarUsuarios(this.cursoId);
-          //this.agregarForm.get('correoUsuario').setValue('');
-          this.agregarForm.reset();
+      ) {
+        Swal.fire({
+          icon: 'error',
+          title: 'No se puede agregar a su propio curso',
+          showConfirmButton: false,
+          timer: 1500,
         });
+      } else if (
+        this.validarUsuarioAgregado(this.agregarForm.get('correoUsuario').value)
+      ) {
+        Swal.fire({
+          icon: 'error',
+          title: 'El usuario ya ha sido agregado',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        this.agregarUsuario(
+          this.cursoId,
+          this.agregarForm.get('correoUsuario').value
+        );
+      }
     } else {
       Swal.fire({
         title: 'Correo no válido',
@@ -85,6 +102,47 @@ export class AgregarUsuarioComponent implements OnInit {
         control.markAsTouched();
       });
     }
+  }
+
+  /**
+   * Método para validar que el correo ingresado sea igual al del profesor
+   * @param correoIngresado correo del usuario que se desea agregar
+   * @param correoUsuario correo del profesor del curso
+   * @returns bool - si ambos correo son iguales
+   */
+  validarCorreoIgualAProfesor(correoIngresado: string, correoUsuario: string) {
+    return correoIngresado === correoUsuario;
+  }
+
+  /**
+   * Método para comprobar si el correo ya ha sido agregado
+   * @param correoIngresado correo del usuario que se desea agregar
+   * @returns bool - retorna si el correo ya existe en la lista
+   */
+  validarUsuarioAgregado(correoIngresado: string) {
+    return (
+      this.usuarios.find((u) => u?.correo === correoIngresado) !== undefined
+    );
+  }
+
+  /**
+   * Método para agregar un nuevo usuario a un curso
+   * @param id_curso iddentificador del curso donde se agrega al usuario
+   * @param correoIngresado correo del usuario que se desea agregar
+   */
+  agregarUsuario(id_curso: number, correoIngresado: string) {
+    this.cursoService
+      .agrearUsuarioCurso(id_curso, correoIngresado)
+      .subscribe((x) => {
+        Swal.fire({
+          icon: x['error'] === 0 ? 'success' : 'error',
+          title: x['msg']?.length > 0 ? x['msg'] : 'Se ha enviado la solicitud',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.listarUsuarios(this.cursoId);
+        this.agregarForm.reset();
+      });
   }
 
   /**
@@ -117,7 +175,25 @@ export class AgregarUsuarioComponent implements OnInit {
   /**
    * Método para descargar la lista de alumnos inscritos en un archivo excel
    */
-  descargarUsuarios() {
-    alert('Descargando archivo');
+  descargarUsuarios(id: number) {
+    this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
+      this.excelService.exportAsExcelFile(x.data, 'ListaCurso');
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Descargando...',
+      });
+    });
   }
 }

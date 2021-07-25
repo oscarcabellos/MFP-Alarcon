@@ -16,14 +16,12 @@ export class ListaCursoComponent implements OnInit {
   previousLabel = 'Anterior';
   nextLabel = 'Siguiente';
   responsive: boolean = true;
-  //filtro de cursos
   nombreFiltro: string = '';
 
   constructor(
     private cursoService: CursoService,
     private excelServices: ExcelService
   ) {}
-  //constructor(private cursoService: CursoService) {}
 
   ngOnInit(): void {
     this.pageActual = 1;

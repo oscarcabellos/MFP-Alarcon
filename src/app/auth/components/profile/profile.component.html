@@ -16,7 +16,7 @@
             class="form-control text-center"
             placeholder="Usuario"
             disabled
-            value="Usuario"
+            value="{{ usuario_nombre }}"
           />
         </div>
         <div class="card-body">
@@ -75,7 +75,9 @@
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <div class="col-6"><h4>Nombre Apellido</h4></div>
+                <div class="col-6">
+                  <h4>{{ usuario_nombre + " " + usuario_apellidos }}</h4>
+                </div>
                 <div class="col-6 d-flex flex-row-reverse">
                   <button class="btn btn-outline-dark">Editar</button>
                 </div>
