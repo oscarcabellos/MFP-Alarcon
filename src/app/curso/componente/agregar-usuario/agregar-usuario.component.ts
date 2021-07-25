@@ -134,9 +134,15 @@ export class AgregarUsuarioComponent implements OnInit {
     this.cursoService
       .agrearUsuarioCurso(id_curso, correoIngresado)
       .subscribe((x) => {
-        Swal.fire({
+        /* Swal.fire({
           icon: x['error'] === 0 ? 'success' : 'error',
           title: x['msg']?.length > 0 ? x['msg'] : 'Se ha enviado la solicitud',
+          showConfirmButton: false,
+          timer: 1500,
+        }); */
+        Swal.fire({
+          icon: 'success',
+          title: 'Se ha enviado la invitación',
           showConfirmButton: false,
           timer: 1500,
         });
