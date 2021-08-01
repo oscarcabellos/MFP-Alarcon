@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-md">
   <div class="row mt-3 mt-md-0">
     <div class="col-10">
       <input
@@ -73,18 +73,20 @@
           <p class="card-text">
             {{ c?.descripcion }}
           </p>
-          <a
-            [routerLink]="['/cursos/curso', c?.usuario_id, c?.curso_id]"
-            class="btn btn-warning"
-            >Ver</a
-          >
-          <button
-            class="btn btn-success"
-            *ngIf="c?.usuario_id === usuarioId"
-            (click)="descargarlista(c?.curso_id)"
-          >
-            Descargar lista de alumnos
-          </button>
+          <div class="d-flex flex-column">
+            <a
+              [routerLink]="['/cursos/curso', c?.usuario_id, c?.curso_id]"
+              class="btn btn-warning"
+              >Ver</a
+            >
+            <button
+              class="btn btn-success mt-2"
+              *ngIf="c?.usuario_id === usuarioId"
+              (click)="descargarlista(c?.curso_id)"
+            >
+              Descargar lista de alumnos
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@
         <li class="nav-item align-middle">
           <a class="nav-link" routerLink="/cursos">Cursos</a>
         </li>
-        <li class="nav-item align-middle mr-3">
+        <li class="nav-item align-middle mr-md-3">
           <a class="nav-link" routerLink="/sugerencias">Sugerencias</a>
         </li>
         <li class="nav-item align-middle" *ngIf="!usuarioRegistrado">
@@ -29,7 +29,7 @@
           </a>
         </li>
         <li
-          class="nav-item dropdown align-middle mr-5"
+          class="nav-item dropdown align-middle mr-md-5"
           *ngIf="usuarioRegistrado"
         >
           <a
@@ -41,12 +41,12 @@
             aria-expanded="false"
           >
             <img
-              src="{{ iamgen }}"
+              src="{{ imagen }}"
               alt="mdo"
               width="32"
               height="32"
               class="rounded-circle"
-              *ngIf="imagen != null; else noimagen"
+              *ngIf="imagen !== 'null'; else noimagen"
             />
             <ng-template #noimagen>
               <img

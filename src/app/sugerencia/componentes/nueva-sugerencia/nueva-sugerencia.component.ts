@@ -10,8 +10,11 @@ import { SugerenciaService } from '../../servicios/sugerencia.service';
   styleUrls: ['./nueva-sugerencia.component.css'],
 })
 export class NuevaSugerenciaComponent implements OnInit {
-  descripcion
-  constructor(public activeModal: NgbActiveModal, public sugerenciasService: SugerenciaService) {}
+  descripcion;
+  constructor(
+    public activeModal: NgbActiveModal,
+    public sugerenciasService: SugerenciaService
+  ) {}
 
   ngOnInit(): void {
     // Codigo de inicializacion del componente
@@ -21,18 +24,18 @@ export class NuevaSugerenciaComponent implements OnInit {
   }
 
   guardarSugerencia() {
-      const sugerencia: Sugerencia = new Sugerencia();
-      sugerencia.categoria_id = 1;
-      sugerencia.sugerencia_nombre_curso = "prueba";
-      sugerencia.sugerencia_puntuacion_curso = 8;
-      sugerencia.numero_votos = 3;
-      sugerencia.sugerencia_estado = "Entregado";
-      sugerencia.descripcion= this.descripcion;
+    const sugerencia: Sugerencia = new Sugerencia();
+    sugerencia.categoria_id = 1;
+    sugerencia.sugerencia_nombre_curso = 'prueba';
+    sugerencia.sugerencia_puntuacion_curso = 8;
+    sugerencia.numero_votos = 3;
+    sugerencia.sugerencia_estado = 'Entregado';
+    sugerencia.descripcion = this.descripcion;
 
-      this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp)=>{
-        console.log(resp);
-      })
-      
+    this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp) => {
+      console.log(resp);
+    });
+
     Swal.fire({
       title: 'La sugerencia será publica para todos los usuario',
       text: '¿Desea continuar?',
@@ -49,6 +52,9 @@ export class NuevaSugerenciaComponent implements OnInit {
           icon: 'success',
           showConfirmButton: false,
           width: '20rem',
+          timer: 1500,
+        }).then((res) => {
+          this.closeModal('cerrar');
         });
       }
     });

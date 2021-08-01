@@ -3,18 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppServiceBase } from 'src/app/core/appServiceBase';
+import { Tarea } from '../modelo/tarea';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CategoriaService extends AppServiceBase {
-  listarCategorias(): Observable<any> {
-    return this.get(`categories`).pipe(catchError(this.handleError));
+export class TareaService extends AppServiceBase {
+  crearTarea(tarea: Tarea): Observable<any> {
+    return this.post(``, tarea).pipe(catchError(this.handleError));
   }
 
-  getCategoria(id: number): Observable<any> {
-    return this.get(`categories/${id}`).pipe(catchError(this.handleError));
+  listarTareaCurso(id: number): Observable<any> {
+    return this.get(`list-task/${id}`).pipe(catchError(this.handleError));
   }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);

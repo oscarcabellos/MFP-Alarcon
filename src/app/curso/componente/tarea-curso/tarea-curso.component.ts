@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Tarea } from '../../modelo/tarea';
+import { TareaService } from '../../servicios/tarea.service';
 import { NuevoMaterialComponent } from '../nuevo-material/nuevo-material.component';
 import { VerEntregaTareaComponent } from '../ver-entrega-tarea/ver-entrega-tarea.component';
 
@@ -11,11 +13,14 @@ import { VerEntregaTareaComponent } from '../ver-entrega-tarea/ver-entrega-tarea
 export class TareaCursoComponent implements OnInit {
   @Input() usuarioProfesor: boolean;
 
-  tareas = [1, 2, 3, 4, 5];
-  constructor(private modalService: NgbModal) {}
+  tareas: Tarea[];
+  constructor(
+    private modalService: NgbModal,
+    private tareaService: TareaService
+  ) {}
 
   ngOnInit(): void {
-    // Codigo de inicializacion del componente
+    this.listarTareas(1);
   }
   entregar(id: number) {
     alert('Entregado ' + id);
@@ -59,5 +64,9 @@ export class TareaCursoComponent implements OnInit {
         //intencional
       }
     );
+  }
+
+  listarTareas(id: number) {
+    this.tareaService.listarTareaCurso(id).subscribe((x) => console.log(x));
   }
 }

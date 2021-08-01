@@ -4,10 +4,19 @@
     <div class="col-md-7 col-lg-8">
       <div class="card border-primary mb-3 mt-5">
         <div
-          class="card-header d-flex justify-content-between align-items-center"
+          class="
+            card-header
+            d-flex
+            justify-content-between
+            align-items-center align-middle
+          "
         >
-          <h4>{{ curso?.curso_nombre }}</h4>
-          <small class="card-title d-block">{{ curso?.categoria_id }}</small>
+          <h4>
+            {{ curso?.curso_nombre }}
+          </h4>
+          <small class="card-title d-block">{{
+            categoria?.categoria_nombre
+          }}</small>
         </div>
         <div class="card-body">
           <div class="row">
@@ -55,13 +64,25 @@
           {{ usuario?.usuario_nombre + " " + usuario?.usuario_apellidos }}
         </h4>
         <img
-          src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
+          src="{{ usuario?.url }}"
           alt="mdo"
           width="80"
           height="80"
           class="rounded-circle mx-auto my-3"
+          *ngIf="
+            usuario?.url !== null && usuario?.url !== 'null';
+            else noimagenuser
+          "
         />
-
+        <ng-template #noimagenuser>
+          <img
+            src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
+            alt="mdo"
+            width="80"
+            height="80"
+            class="rounded-circle mx-auto my-3"
+          />
+        </ng-template>
         <ul class="list-group">
           <li
             class="
@@ -71,8 +92,12 @@
               align-items-center
             "
           >
-            Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Reiciendis, explicabo.
+            Descripcion:
+            {{
+              usuario?.descripcion === null || usuario?.descripcion === "null"
+                ? "Sin descripción"
+                : usuario?.descripcion
+            }}
           </li>
           <li
             class="

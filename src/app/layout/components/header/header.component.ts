@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   usuarioRegistrado: boolean;
   usuario: string;
-  iamgen: string;
+  imagen: string;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     if (+sessionStorage.getItem('usuario_id') != 0) {
       this.usuarioRegistrado = true;
       this.usuario = sessionStorage.getItem('usuario_nombre');
-      this.iamgen = sessionStorage.getItem('imagen');
+      this.imagen = sessionStorage.getItem('url');
     } else {
       this.usuarioRegistrado = false;
     }

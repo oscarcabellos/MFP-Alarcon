@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CURSO_CON_INVITACION, CURSO_PUBLICO } from 'src/app/core/constants';
+import Swal from 'sweetalert2';
+import { Categoria } from '../../modelo/categoria';
 import { Curso } from '../../modelo/curso';
 import { Usuario } from '../../modelo/usuario';
+import { CategoriaService } from '../../servicios/categoria.service';
 import { CursoService } from '../../servicios/curso.service';
 import { UsuarioService } from '../../servicios/usuario.service';
 
@@ -16,12 +19,14 @@ export class VerCursoComponent implements OnInit {
   usuario: Usuario;
   cursos: Curso[];
   usuarioNoRegistrado: boolean;
+  categoria: Categoria;
 
   constructor(
     private route: ActivatedRoute,
     private cursoService: CursoService,
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +45,7 @@ export class VerCursoComponent implements OnInit {
       this.curso = x['data'];
       this.obtenerUsuario(x['data']['usuario_id']);
       this.listarCursos(x['data']['usuario_id']);
+      this.buscarCategoria(x['data']['categoria_id']);
     });
   }
 
@@ -74,7 +80,13 @@ export class VerCursoComponent implements OnInit {
         this.cursoService
           .agrearUsuarioCurso(id, sessionStorage.getItem('correo'))
           .subscribe((x) => {
-            console.log(x);
+            Swal.fire({
+              title: 'Se unió a un curso',
+              icon: 'success',
+              showConfirmButton: false,
+              width: '20rem',
+              timer: 1500,
+            });
           });
       } else if (idPrivacidad === CURSO_CON_INVITACION) {
         this.cursoService
@@ -82,5 +94,11 @@ export class VerCursoComponent implements OnInit {
           .subscribe((x) => console.log(x));
       }
     }
+  }
+
+  buscarCategoria(id: number) {
+    this.categoriaService.getCategoria(id).subscribe((x) => {
+      this.categoria = x['categories'][0];
+    });
   }
 }

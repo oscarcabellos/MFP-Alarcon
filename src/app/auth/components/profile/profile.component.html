@@ -4,13 +4,24 @@
       <div class="card">
         <div class="card-header">
           <img
-            src={{url}}
+            src="{{ url }}"
             width="300px"
             height="200px"
             class="w-100"
             style="display: block; margin: 0 auto; margin-bottom: 20px"
             alt="Foto de perfil"
+            *ngIf="url !== 'null'; else noimagenuser"
           />
+          <ng-template #noimagenuser>
+            <img
+              src="https://www.tuexperto.com/wp-content/uploads/2015/07/perfil_01.jpg"
+              width="300px"
+              height="200px"
+              class="w-100"
+              style="display: block; margin: 0 auto; margin-bottom: 20px"
+              alt="Foto de perfil"
+            />
+          </ng-template>
           <input
             type="text"
             class="form-control text-center"
@@ -46,8 +57,20 @@
                   <h4>{{ usuario_nombre + " " + usuario_apellidos }}</h4>
                 </div>
                 <div class="col-6 d-flex flex-row-reverse">
-                  <button *ngIf="!cambio" class="btn btn-outline-dark" (click)="modificarDatos()">Editar</button>
-                  <button *ngIf="cambio" class="btn btn-outline-dark" (click)="enviarDatos()">Aceptar</button>
+                  <button
+                    *ngIf="!cambio"
+                    class="btn btn-outline-dark"
+                    (click)="modificarDatos()"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    *ngIf="cambio"
+                    class="btn btn-outline-dark"
+                    (click)="enviarDatos()"
+                  >
+                    Aceptar
+                  </button>
                 </div>
               </div>
               <hr class="bg-primary" />
@@ -55,24 +78,46 @@
                 <div class="col-12 my-2"><h4>Datos personales</h4></div>
                 <div class="col-4 my-2">Nombre</div>
                 <div class="col-8 my-2">
-                  <input [(ngModel)]="objeto.usuario_nombre" *ngIf="cambio" type="text" class="form-control" name="" id="" /> 
+                  <input
+                    [(ngModel)]="objeto.usuario_nombre"
+                    *ngIf="cambio"
+                    type="text"
+                    class="form-control"
+                    name=""
+                    id=""
+                  />
                   <p *ngIf="!cambio">{{ usuario_nombre }}</p>
                 </div>
                 <div class="col-4 my-2">Apeliido</div>
                 <div class="col-8 my-2">
-                  <input [(ngModel)]="objeto.usuario_apellidos" *ngIf="cambio" type="text" class="form-control" name="" id="" /> 
+                  <input
+                    [(ngModel)]="objeto.usuario_apellidos"
+                    *ngIf="cambio"
+                    type="text"
+                    class="form-control"
+                    name=""
+                    id=""
+                  />
                   <p *ngIf="!cambio">{{ usuario_apellidos }}</p>
                 </div>
                 <div class="col-4 my-2">Correo</div>
                 <div class="col-8 my-2">
-                  <input [(ngModel)]="objeto.correo" *ngIf="cambio" type="email" class="form-control" name="" id="" />
+                  <input
+                    [(ngModel)]="objeto.correo"
+                    *ngIf="cambio"
+                    type="email"
+                    class="form-control"
+                    name=""
+                    id=""
+                  />
                   <p *ngIf="!cambio">{{ correo }}</p>
                 </div>
                 <div *ngIf="cambio" class="col-4 my-2">Imagen</div>
                 <div *ngIf="cambio" class="col-8 my-2">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input (change)="modificarImagen($event)"
+                      <input
+                        (change)="modificarImagen($event)"
                         type="file"
                         lang="es"
                         class="custom-file-input"
@@ -86,7 +131,9 @@
                 <div class="col-4 my-2">Descripcion</div>
                 <div class="col-8 my-2">
                   <p *ngIf="!cambio">{{ descripcion }}</p>
-                  <textarea *ngIf="cambio" [(ngModel)]="objeto.descripcion"
+                  <textarea
+                    *ngIf="cambio"
+                    [(ngModel)]="objeto.descripcion"
                     name=""
                     class="form-control"
                     id=""
@@ -97,38 +144,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-12 my-3 pb-3">
-          <div class="card">
-            <div class="card-header d-flex justify-content-between">
-              <h4 class="card-title">Certificados</h4>
-              <button class="btn btn-outline-primary">Nuevo</button>
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div
-                  class="col-12 col-sm-6 col-lg-4"
-                  *ngFor="let c of certificados"
-                >
-                  <div class="card border-warning mb-3">
-                    <div class="card-header text-center">Nombre</div>
-                    <div
-                      class="
-                        card-body
-                        d-flex
-                        flex-column
-                        justify-content-center
-                        align-items-center
-                      "
-                    >
-                      <em class="uil uil-award h1"></em>
-                      <a href="" class="link">Ver más</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>

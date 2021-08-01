@@ -6,4 +6,5 @@ export class Usuario {
   correo: string;
   url: string;
   situacion: number;
+  descripcion: string;
 }
