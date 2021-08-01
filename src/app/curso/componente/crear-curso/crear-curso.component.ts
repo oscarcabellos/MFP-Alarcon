@@ -36,7 +36,7 @@ export class CrearCursoComponent implements OnInit {
       descripcion: ['', [Validators.required, Validators.maxLength(160)]],
       conoci_previo: [''],
       privacidad_id: ['', Validators.required],
-      categoria_id: ['']
+      categoria_id: [''],
     });
     this.listarCategorias();
   }
@@ -67,7 +67,7 @@ export class CrearCursoComponent implements OnInit {
       this.cursoForm.get('privacidad_id').touched
     );
   }
-  
+
   /**
    * Comprobacion de la seleccion de un archivo
    * @param  {} event
@@ -81,8 +81,6 @@ export class CrearCursoComponent implements OnInit {
    * Funcion para guardar los valores ingresados en el curso
    */
   crearCurso() {
-     console.log(this.cursoForm.value);
-
     if (this.cursoForm.valid) {
       let curso = new Curso();
 

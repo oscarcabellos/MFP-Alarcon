@@ -9,6 +9,11 @@ import { Usuario } from '../modelos/usuario';
   providedIn: 'root',
 })
 export class UsuarioService extends AppServiceBase {
+  /**
+   * Servicio para crear un nuevo usuario
+   * @param usuario {Usuario} - Objeto con la información del usuario
+   * @returns Objeto creado
+   */
   crearUsuario(usuario: Usuario) {
     return this.post('register', usuario).pipe(catchError(this.handleError));
   }

@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * Método para cerrar sesión
+   */
   logout() {
     sessionStorage.removeItem('usuario_id');
     sessionStorage.removeItem('usuario_apellidos');

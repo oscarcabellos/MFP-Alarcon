@@ -9,10 +9,19 @@ import { Sugerencia } from '../modelos/sugerencia';
   providedIn: 'root',
 })
 export class SugerenciaService extends AppServiceBase {
+  /**
+   * Servicio para listar todas las sugerencias creadas
+   * @returns Listado de las sugerencias
+   */
   listarSugerencias(): Observable<any> {
     return this.get('suggestions').pipe(catchError(this.handleError));
   }
 
+  /**
+   * Servicio para crear un nueva sugerencia
+   * @param sugerencia {Sugerencia} - Objeto con la informacion de la sugerencia
+   * @returns Sugerencia creada
+   */
   crearSugerencia(sugerencia: Sugerencia): Observable<any> {
     return this.post('suggestions', sugerencia).pipe(
       catchError(this.handleError)

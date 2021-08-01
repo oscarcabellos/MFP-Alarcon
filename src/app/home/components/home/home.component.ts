@@ -16,6 +16,9 @@ export class HomeComponent implements OnInit {
     this.listarCursos();
   }
 
+  /**
+   * Método para listar los cursos com mas usuarios
+   */
   listarCursos() {
     this.cursoService.listarCursosPublicos().subscribe((x) => {
       for (let i = 1; i <= 4; i++) {
@@ -24,6 +27,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Método para validar si un usuario ha inciado sesión
+   * @returns {Boolean} Validacipon si esta logeado
+   */
   estaRegistrado() {
     if (+sessionStorage.getItem('usuario_id') !== 0) {
       return true;

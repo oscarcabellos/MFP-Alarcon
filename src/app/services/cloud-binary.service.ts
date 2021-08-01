@@ -14,6 +14,11 @@ export class CloudBinaryService {
       'https://api.cloudinary.com/v1_1/dfkrcsufm/image/upload';
   }
 
+  /**
+   * Método para guardar una imagen
+   * @param file {File} - Archivo para almacenar
+   * @returns Objeto con la información guardad
+   */
   sendPhoto(file: File) {
     let formData = new FormData();
     formData.append('file', file);

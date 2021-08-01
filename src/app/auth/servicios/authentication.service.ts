@@ -13,6 +13,11 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) {}
 
+  /**
+   * Servicio para validar el login de un usuario
+   * @param signUsers Datos del usuario
+   * @returns Objeto con la información del usuario
+   */
   authUser(signUsers: any): Observable<any> {
     return this.httpClient
       .post<any>(`${environment.api.baseUrl}login`, signUsers)
@@ -36,6 +41,9 @@ export class AuthenticationService {
       );
   }
 
+  /**
+   * Método para cerrar sesión
+   */
   logout() {
     this.isAuthenticated = false;
     sessionStorage.removeItem('username');
@@ -43,6 +51,10 @@ export class AuthenticationService {
     sessionStorage.removeItem('token');
   }
 
+  /**
+   * Servicio para comprobar si un usuario ha inciado sesión
+   * @returns {Boolean} estado del usuario
+   */
   getIsAuthenticated(): boolean {
     const user = sessionStorage.getItem('username');
     if (user != null) {

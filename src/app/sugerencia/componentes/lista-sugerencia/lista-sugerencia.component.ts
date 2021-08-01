@@ -14,13 +14,12 @@ import { Categoria } from 'src/app/curso/modelo/categoria';
 export class ListaSugerenciaComponent implements OnInit {
   categorias: Categoria[] = [];
   sugerencias: Sugerencia[];
-
   pageActual: number;
   previousLabel = 'Anterior';
   nextLabel = 'Siguiente';
   responsive: boolean = true;
-
   sugerenciaFiltro: string = '';
+
   constructor(
     private modalService: NgbModal,
     private sugerenciaService: SugerenciaService,
@@ -33,6 +32,9 @@ export class ListaSugerenciaComponent implements OnInit {
     this.listarCategorias();
   }
 
+  /**
+   * Método para abrir el modal de una nueva sugerencia
+   */
   openModal() {
     const modalRef = this.modalService.open(NuevaSugerenciaComponent, {
       scrollable: true,
@@ -51,26 +53,45 @@ export class ListaSugerenciaComponent implements OnInit {
     );
   }
 
+  /**
+   * Método para cambiar la votación
+   * @param id Identificador de la sugerencia
+   */
   cambiarEstado(id: number) {
     document.getElementById(`favorito${id}`).classList.toggle('presionado');
   }
 
-  actualizarCategoria(c) {
-    alert(c);
+  /**
+   * Método para filtrar la busqueda por la categoria seleccionada
+   * @param id {Number} - Identiicador de la categoria
+   */
+  actualizarCategoria(id) {
+    alert(id);
   }
 
+  /**
+   * Método para listar las sugerencias
+   */
   listarSugerencias() {
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
       this.sugerencias = x['list'];
     });
   }
 
+  /**
+   * Método para listar las categorias
+   */
   listarCategorias() {
     this.categoriaService
       .listarCategorias()
       .subscribe((x) => (this.categorias = x['categories']));
   }
 
+  /**
+   * Método para devolver el nombre de la categoria
+   * @param idCategoria {Number} - Identificado de la vategoria
+   * @returns Nombre de la categoria
+   */
   getNombreCategoria(idCategoria: number) {
     if (idCategoria === undefined) return 'Categoria no definida';
     const nombreCategoria = this.buscarNombreCategoria(idCategoria);
@@ -79,11 +100,19 @@ export class ListaSugerenciaComponent implements OnInit {
       : nombreCategoria;
   }
 
+  /**
+   * Método para buscar el nombre de la categoria
+   * @param id {Number} - Identificador de la categoria
+   * @returns Nombre de la categoria
+   */
   buscarNombreCategoria(id: number) {
     const resultado = this.categorias.find((c) => c?.categoria_id === id);
     return resultado?.categoria_nombre;
   }
 
+  /**
+   * Método para reiniciar el numero de página
+   */
   cambiarPagina() {
     this.pageActual = 1;
   }

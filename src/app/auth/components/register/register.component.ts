@@ -102,8 +102,6 @@ export class RegisterComponent implements OnInit {
   }
 
   validarFormulario() {
-    console.log(this.registroForm.value['correo']);
-
     if (
       this.registroForm.valid &&
       this.validarPassword(
@@ -116,7 +114,6 @@ export class RegisterComponent implements OnInit {
       usuario.usuario_apellidos = this.registroForm.value['usuario_apellidos'];
       usuario.correo = this.registroForm.value['correo'];
       usuario.password = this.registroForm.value['password'];
-      console.log(usuario);
 
       this.crearUsuario(usuario);
     } else {

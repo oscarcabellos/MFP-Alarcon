@@ -3,7 +3,7 @@ import { Usuario } from '../../modelo/usuario';
 import Swal from 'sweetalert2';
 import { CursoService } from '../../servicios/curso.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ExcelService } from '../../servicios/ExcelService';
+import { ExcelService } from '../../servicios/excel.service';
 import {
   USUARIO_ACTIVO,
   USUARIO_PENDIENTE_PROFESOR,

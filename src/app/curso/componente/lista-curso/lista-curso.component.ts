@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Curso } from '../../modelo/curso';
 import { CursoService } from '../../servicios/curso.service';
-import { ExcelService } from '../../servicios/ExcelService';
+import { ExcelService } from '../../servicios/excel.service';
 
 @Component({
   selector: 'app-lista-curso',
