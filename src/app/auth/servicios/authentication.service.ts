@@ -29,6 +29,7 @@ export class AuthenticationService {
           );
           sessionStorage.setItem('correo', userData.user.correo);
           sessionStorage.setItem('url', userData.user.url);
+          sessionStorage.setItem('descripcion', userData.user.descripcion);
 
           return userData;
         })
