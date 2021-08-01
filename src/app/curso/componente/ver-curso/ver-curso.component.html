@@ -28,15 +28,28 @@
               </p>
               <p>Alumnos matriculados: 300</p>
               <div>
-                <button
+                <a
                   class="btn btn-warning"
-                  (click)="unirCurso(curso?.curso_id, curso?.privacidad_id)"
-                  [disabled]="usuarioNoRegistrado"
+                  [routerLink]="[
+                    '/cursos/curso',
+                    curso?.usuario_id,
+                    curso?.curso_id
+                  ]"
+                  *ngIf="perteneceCurso; else nocurso"
                 >
-                  {{
-                    curso?.privacidad_id === 1 ? "Unirse" : "Solicitar acceso"
-                  }}
-                </button>
+                  Ver curso
+                </a>
+                <ng-template #nocurso>
+                  <button
+                    class="btn btn-warning"
+                    (click)="unirCurso(curso?.curso_id, curso?.privacidad_id)"
+                    [disabled]="usuarioNoRegistrado"
+                  >
+                    {{
+                      curso?.privacidad_id === 1 ? "Unirse" : "Solicitar acceso"
+                    }}
+                  </button>
+                </ng-template>
               </div>
             </div>
             <div class="col-4 d-none d-md-block">

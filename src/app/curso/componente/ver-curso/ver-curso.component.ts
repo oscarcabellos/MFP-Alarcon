@@ -20,6 +20,7 @@ export class VerCursoComponent implements OnInit {
   cursos: Curso[];
   usuarioNoRegistrado: boolean;
   categoria: Categoria;
+  perteneceCurso: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +33,7 @@ export class VerCursoComponent implements OnInit {
   ngOnInit(): void {
     let id = +this.route.snapshot.paramMap.get('id');
     this.cursos = [];
+    this.perteneceCurso = false;
     this.listarCurso(id);
     if (+sessionStorage.getItem('usuario_id') != 0) {
       this.usuarioNoRegistrado = false;
@@ -43,6 +45,8 @@ export class VerCursoComponent implements OnInit {
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
       this.curso = x['data'];
+      this.perteneceCurso =
+        x['data']['usuario_id'] === +sessionStorage.getItem('usuario_id');
       this.obtenerUsuario(x['data']['usuario_id']);
       this.listarCursos(x['data']['usuario_id']);
       this.buscarCategoria(x['data']['categoria_id']);

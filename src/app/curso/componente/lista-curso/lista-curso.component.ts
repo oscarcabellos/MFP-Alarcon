@@ -25,7 +25,6 @@ export class ListaCursoComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageActual = 1;
-
     this.usuarioId = +sessionStorage.getItem('usuario_id');
     this.listarCursos(this.usuarioId);
   }
