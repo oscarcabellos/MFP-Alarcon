@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           <img
-            src="https://www.tuexperto.com/wp-content/uploads/2015/07/perfil_01.jpg"
+            src={{url}}
             width="300px"
             height="200px"
             class="w-100"
@@ -30,40 +30,7 @@
               "
             >
               Numero de cursos matriculado
-              <span class="badge bg-primary text-white p-2">3</span>
-            </li>
-            <li
-              class="
-                list-group-item
-                d-flex
-                justify-content-between
-                align-items-center
-              "
-            >
-              Numero de cursos matriculado
-              <span class="badge bg-primary text-white p-2">3</span>
-            </li>
-            <li
-              class="
-                list-group-item
-                d-flex
-                justify-content-between
-                align-items-center
-              "
-            >
-              Numero de cursos matriculado
-              <span class="badge bg-primary text-white p-2">3</span>
-            </li>
-            <li
-              class="
-                list-group-item
-                d-flex
-                justify-content-between
-                align-items-center
-              "
-            >
-              Numero de cursos matriculado
-              <span class="badge bg-primary text-white p-2">3</span>
+              <span class="badge bg-primary text-white p-2">{{ cursosm }}</span>
             </li>
           </ul>
         </div>
@@ -79,7 +46,8 @@
                   <h4>{{ usuario_nombre + " " + usuario_apellidos }}</h4>
                 </div>
                 <div class="col-6 d-flex flex-row-reverse">
-                  <button class="btn btn-outline-dark">Editar</button>
+                  <button *ngIf="!cambio" class="btn btn-outline-dark" (click)="modificarDatos()">Editar</button>
+                  <button *ngIf="cambio" class="btn btn-outline-dark" (click)="enviarDatos()">Aceptar</button>
                 </div>
               </div>
               <hr class="bg-primary" />
@@ -87,24 +55,24 @@
                 <div class="col-12 my-2"><h4>Datos personales</h4></div>
                 <div class="col-4 my-2">Nombre</div>
                 <div class="col-8 my-2">
-                  <!-- <input type="text" class="form-control" name="" id="" /> -->
-                  <p>{{ usuario_nombre }}</p>
+                  <input [(ngModel)]="objeto.usuario_nombre" *ngIf="cambio" type="text" class="form-control" name="" id="" /> 
+                  <p *ngIf="!cambio">{{ usuario_nombre }}</p>
                 </div>
                 <div class="col-4 my-2">Apeliido</div>
                 <div class="col-8 my-2">
-                  <!-- <input type="text" class="form-control" name="" id="" /> -->
-                  <p>{{ usuario_apellidos }}</p>
+                  <input [(ngModel)]="objeto.usuario_apellidos" *ngIf="cambio" type="text" class="form-control" name="" id="" /> 
+                  <p *ngIf="!cambio">{{ usuario_apellidos }}</p>
                 </div>
                 <div class="col-4 my-2">Correo</div>
                 <div class="col-8 my-2">
-                  <!-- <input type="email" class="form-control" name="" id="" /> -->
-                  <p>{{ correo }}</p>
+                  <input [(ngModel)]="objeto.correo" *ngIf="cambio" type="email" class="form-control" name="" id="" />
+                  <p *ngIf="!cambio">{{ correo }}</p>
                 </div>
-                <div class="col-4 my-2">Imagen</div>
-                <div class="col-8 my-2">
+                <div *ngIf="cambio" class="col-4 my-2">Imagen</div>
+                <div *ngIf="cambio" class="col-8 my-2">
                   <div class="input-group">
                     <div class="custom-file">
-                      <input
+                      <input (change)="modificarImagen($event)"
                         type="file"
                         lang="es"
                         class="custom-file-input"
@@ -117,7 +85,8 @@
                 </div>
                 <div class="col-4 my-2">Descripcion</div>
                 <div class="col-8 my-2">
-                  <textarea
+                  <p *ngIf="!cambio">{{ descripcion }}</p>
+                  <textarea *ngIf="cambio" [(ngModel)]="objeto.descripcion"
                     name=""
                     class="form-control"
                     id=""
