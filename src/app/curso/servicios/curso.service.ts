@@ -5,8 +5,6 @@ import { catchError, map } from 'rxjs/operators';
 import { AppServiceBase } from 'src/app/core/appServiceBase';
 import { Curso } from '../modelo/curso';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -56,6 +54,12 @@ export class CursoService extends AppServiceBase {
     return this.get(`coursespublic/${id}`).pipe(catchError(this.handleError));
   }
 
+  solicitarAcceso(curso_id, usuario_id): Observable<any> {
+    return this.post('/solicitarCursoPrivado', { curso_id, usuario_id }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);
@@ -67,5 +71,4 @@ export class CursoService extends AppServiceBase {
     //catch and rethrow
     return throwError('Cannot perform the request, please try again later');
   }
-
 }

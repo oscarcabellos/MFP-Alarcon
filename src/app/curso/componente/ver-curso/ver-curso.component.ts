@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CURSO_CON_INVITACION, CURSO_PUBLICO } from 'src/app/core/constants';
 import { Curso } from '../../modelo/curso';
 import { Usuario } from '../../modelo/usuario';
 import { CursoService } from '../../servicios/curso.service';
@@ -15,6 +16,7 @@ export class VerCursoComponent implements OnInit {
   usuario: Usuario;
   cursos: Curso[];
   usuarioNoRegistrado: boolean;
+
   constructor(
     private route: ActivatedRoute,
     private cursoService: CursoService,
@@ -66,13 +68,19 @@ export class VerCursoComponent implements OnInit {
     });
   }
 
-  unirCurso(id: number) {
+  unirCurso(id: number, idPrivacidad: number) {
     if (sessionStorage.getItem('correo') != null) {
-      this.cursoService
-        .agrearUsuarioCurso(id, sessionStorage.getItem('correo'))
-        .subscribe((x) => {
-          console.log(x);
-        });
+      if (idPrivacidad === CURSO_PUBLICO) {
+        this.cursoService
+          .agrearUsuarioCurso(id, sessionStorage.getItem('correo'))
+          .subscribe((x) => {
+            console.log(x);
+          });
+      } else if (idPrivacidad === CURSO_CON_INVITACION) {
+        this.cursoService
+          .solicitarAcceso(id, +sessionStorage.getItem('usuario_id'))
+          .subscribe((x) => console.log(x));
+      }
     }
   }
 }

@@ -21,7 +21,7 @@
               <div>
                 <button
                   class="btn btn-warning"
-                  (click)="unirCurso(curso?.curso_id)"
+                  (click)="unirCurso(curso?.curso_id, curso?.privacidad_id)"
                   [disabled]="usuarioNoRegistrado"
                 >
                   {{
