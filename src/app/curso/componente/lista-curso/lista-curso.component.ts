@@ -29,6 +29,9 @@ export class ListaCursoComponent implements OnInit {
     this.listarCursos(this.usuarioId);
   }
 
+  /**
+   * Método para unirse a un curso a partir del codigo
+   */
   unirseCurso() {
     Swal.fire({
       title: 'Ingrese el código del curso',
@@ -58,6 +61,10 @@ export class ListaCursoComponent implements OnInit {
     });
   }
 
+  /**
+   * Método para listar los cursos por usuario
+   * @param id {Number} - Identificador del usuario
+   */
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
       this.cursos = x['list'];
@@ -65,16 +72,27 @@ export class ListaCursoComponent implements OnInit {
     });
   }
 
+  /**
+   * Método para la busqueda de los cursos de un usuario
+   * @param id {Number} - Identificador del usuario
+   */
   listarCursos2(id: number) {
     this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
       this.cursos = this.cursos.concat(x['data']);
     });
   }
 
+  /**
+   * Método para reiniciar el numero de página
+   */
   cambiarPagina() {
     this.pageActual = 1;
   }
 
+  /**
+   * Método para descargar el listado de alumnos
+   * @param id {Number} - Identificador del curso
+   */
   descargarlista(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       this.excelServices.exportAsExcelFile(x.data, 'ListaCurso');

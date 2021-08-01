@@ -12,7 +12,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // Codigo de inicializacion del componente
   }
-
+  /**
+   * Método para cerrar sesión
+   */
   logout() {
     sessionStorage.removeItem('usuario_id');
     sessionStorage.removeItem('usuario_apellidos');

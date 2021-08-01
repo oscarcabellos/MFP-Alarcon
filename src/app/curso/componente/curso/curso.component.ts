@@ -24,8 +24,11 @@ export class CursoComponent implements OnInit {
     this.pertenece =
       this.usuarioId === +this.route.snapshot.paramMap.get('iduser');
   }
-
-  obtenerCurso(id) {
+  /**
+   * Método para obtener la información del curso
+   * @param id {Number} - Identificador del curso
+   */
+  obtenerCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
       this.nombreCurso = x['data']?.curso_nombre;
     });
