@@ -36,43 +36,55 @@ export class CrearCursoComponent implements OnInit {
       descripcion: ['', [Validators.required, Validators.maxLength(160)]],
       conoci_previo: [''],
       privacidad_id: ['', Validators.required],
-      categoria: [''],
+      categoria_id: ['']
     });
     this.listarCategorias();
   }
-
+  /**
+   * Validar nombre del curso
+   */
   get nombreNoValido() {
     return (
       this.cursoForm.get('curso_nombre').invalid &&
       this.cursoForm.get('curso_nombre').touched
     );
   }
-
+  /**
+   * Validar descripcion del curso
+   */
   get descripcioneNoValido() {
     return (
       this.cursoForm.get('descripcion').invalid &&
       this.cursoForm.get('descripcion').touched
     );
   }
-
+  /**
+   * Validar privacidad del curso
+   */
   get privacidadNoValido() {
     return (
       this.cursoForm.get('privacidad_id').invalid &&
       this.cursoForm.get('privacidad_id').touched
     );
   }
-
+  
+  /**
+   * Comprobacion de la seleccion de un archivo
+   * @param  {} event
+   */
   onFileChange(event) {
     this.image = event.target.files;
     this.nombreImagen = this.image[0].name;
   }
 
+  /**
+   * Funcion para guardar los valores ingresados en el curso
+   */
   crearCurso() {
-    /*  console.log(this.cursoForm.value, this.cursoForm.get('categoria_id').value); */
+     console.log(this.cursoForm.value);
 
     if (this.cursoForm.valid) {
       let curso = new Curso();
-      //curso.categoria_id = 1;
 
       if (this.image != null || this.image != undefined) {
         this.cloudBinaryService
@@ -100,6 +112,10 @@ export class CrearCursoComponent implements OnInit {
     }
   }
 
+  /**
+   * Funcion para el registro de un curso
+   * @param  {Curso} curso
+   */
   guardar(curso: Curso) {
     this.cursoService.crearCurso(curso).subscribe((x) => {
       Swal.fire({
@@ -115,6 +131,9 @@ export class CrearCursoComponent implements OnInit {
     });
   }
 
+  /**
+   * Listado de todas la categorias
+   */
   listarCategorias() {
     this.categoriaService
       .listarCategorias()

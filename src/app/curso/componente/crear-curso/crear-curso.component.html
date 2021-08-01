@@ -87,10 +87,10 @@
         <div class="form-group">
           <label for="categoriaCurso">Categoria:</label>
           <select
-            name="categoria"
-            formContorlName="categoria"
+            name="categoria_id"
+            formControlName="categoria_id"
             class="custom-select"
-            id="categoriaCurso"
+            id="categoria_id"
           >
             <option value="" hidden>seleccione</option>
             <option *ngFor="let c of categorias" [ngValue]="c?.categoria_id">
