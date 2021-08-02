@@ -48,7 +48,7 @@ export class VerCursoComponent implements OnInit {
       this.perteneceCurso =
         x['data']['usuario_id'] === +sessionStorage.getItem('usuario_id');
       this.obtenerUsuario(x['data']['usuario_id']);
-      this.listarCursos(x['data']['usuario_id']);
+      this.listarCursos(x['data']['usuario_id'], id);
       this.buscarCategoria(x['data']['categoria_id']);
     });
   }
@@ -59,15 +59,14 @@ export class VerCursoComponent implements OnInit {
       .subscribe((x) => (this.usuario = x['user'][0]));
   }
 
-  listarCursos(id: number) {
+  listarCursos(id: number, cursoId: number) {
     this.cursoService.listarCursosPublicosPorUsuario(id).subscribe((x) => {
-      if (x['cursos']?.length > 3) {
-        this.cursos = [];
-        this.cursos.push(x['cursos'][0]);
-        this.cursos.push(x['cursos'][1]);
-        this.cursos.push(x['cursos'][2]);
-      } else {
-        this.cursos = x['cursos'];
+      this.cursos = x['cursos'];
+      this.cursos = this.cursos.filter((c) => c.curso_id !== cursoId);
+      if (this.cursos?.length > 3) {
+        this.cursos.push(this.cursos[0]);
+        this.cursos.push(this.cursos[1]);
+        this.cursos.push(this.cursos[2]);
       }
     });
   }
