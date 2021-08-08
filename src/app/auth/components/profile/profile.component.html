@@ -1,8 +1,16 @@
+<!--El presente archivo es el contenido HTML del componente perfil-->
+
+<!--Se aplica un container gracias a la importación del framework de estilos Bootstrap-->
 <div class="container mt-5">
+  <!--Se define la hilera dentro del contenedor para desarrollar las columnas respectivas-->
   <div class="row mt-5 pt-5">
+    <!--Se define el tamaño de la columna, ocupando un tercio de la hilera-->
     <div class="col-12 col-md-4">
+      <!--Se define un diseño de carta otorgado por Bootstrap-->
       <div class="card">
+        <!--Se define el encabezado de la carta-->
         <div class="card-header">
+          <!--En el encabezado se ubicara la imagen del usuario definida por el mismo con sus respectivos estilos-->
           <img
             src="{{ url }}"
             width="300px"
@@ -12,6 +20,7 @@
             alt="Foto de perfil"
             *ngIf="url !== 'null'; else noimagenuser"
           />
+          <!--En caso de no tener una imagen propia, se define una generica-->
           <ng-template #noimagenuser>
             <img
               src="https://www.tuexperto.com/wp-content/uploads/2015/07/perfil_01.jpg"
@@ -22,6 +31,7 @@
               alt="Foto de perfil"
             />
           </ng-template>
+          <!--En el mismo encabezado de la carta, se coloca el nombre del usuario con un estilo particular-->
           <input
             type="text"
             class="form-control text-center"
@@ -30,8 +40,11 @@
             value="{{ usuario_nombre }}"
           />
         </div>
+        <!--Se define el cuerpo de la carta-->
         <div class="card-body">
+          <!--Se define una lista para mostrar informacion importante en el perfil-->
           <ul class="list-group">
+            <!--En el primer elemento se muestran los cursos matriculados-->
             <li
               class="
                 list-group-item
@@ -47,16 +60,26 @@
         </div>
       </div>
     </div>
+    <!--Se define el tamaño de la segunda columna, ocupando un dos tercios de la hilera-->
     <div class="col-12 col-md-8 mt-3 mt-md-0">
+      <!--Se define una segunda hilera en esta misma columna-->
       <div class="row">
+        <!--Se define otra columna que ocupa todo el tamaño de la hilera-->
         <div class="col-12">
+          <!--Se crea una carta dentro de este espacio-->
           <div class="card">
+            <!--Se define el cuerpo de la carta-->
             <div class="card-body">
+              <!--Se crea otra hilera para el cuerpo de la carta-->
               <div class="row">
+                <!--Se crea una columna que ocupa la mitad de la hilera anterior-->
                 <div class="col-6">
+                  <!--Se coloca el nombre completo del usuario en esta ubicacion-->
                   <h4>{{ usuario_nombre + " " + usuario_apellidos }}</h4>
                 </div>
+                <!--Se crea otra columna dentro de la misma hilera-->
                 <div class="col-6 d-flex flex-row-reverse">
+                  <!--Se coloca un boton que corresponde a la funcion de editar los datos del perfil-->
                   <button
                     *ngIf="!cambio"
                     class="btn btn-outline-dark"
@@ -64,6 +87,7 @@
                   >
                     Editar
                   </button>
+                  <!--Se modifica el boton para aceptar los cambios de datos del perfil-->
                   <button
                     *ngIf="cambio"
                     class="btn btn-outline-dark"
@@ -73,11 +97,21 @@
                   </button>
                 </div>
               </div>
+              <!--Se coloca un separador en forma de linea horizontal para separar hileras-->
               <hr class="bg-primary" />
+              <!--Se crea una hilera dentro de la carta-->
               <div class="row">
-                <div class="col-12 my-2"><h4>Datos personales</h4></div>
-                <div class="col-4 my-2">Nombre</div>
+                <!--Se crea una columna dentro de la hilera del mismo tamaño que la carta-->
+                <div class="col-12 my-2">
+                  <h4>Datos personales</h4>
+                </div>
+                <!--Se coloca otra columna debajo de un tercio del tamaño de la carta-->
+                <div class="col-4 my-2">
+                  Nombre
+                </div>
+                <!--Se coloca otra columna debajo de dos tercios del tamaño de la carta-->
                 <div class="col-8 my-2">
+                  <!--Se coloca el nombre del usuario dentro de un label, en caso de editar el perfil-->
                   <input
                     [(ngModel)]="objeto.usuario_nombre"
                     *ngIf="cambio"
@@ -86,10 +120,15 @@
                     name=""
                     id=""
                   />
+                  <!--Se coloca el nombre del usuario-->
                   <p *ngIf="!cambio">{{ usuario_nombre }}</p>
                 </div>
-                <div class="col-4 my-2">Apeliido</div>
+                <!--Se aplican los mismos parametros anteriores con respecto a las columnas-->
+                <div class="col-4 my-2">
+                  Apeliido
+                </div>
                 <div class="col-8 my-2">
+                  <!--Se coloca el apellido del usuario en un label en caso de editar el perfil-->
                   <input
                     [(ngModel)]="objeto.usuario_apellidos"
                     *ngIf="cambio"
@@ -98,10 +137,15 @@
                     name=""
                     id=""
                   />
+                  <!--Se muestra el apellido del usuario-->
                   <p *ngIf="!cambio">{{ usuario_apellidos }}</p>
                 </div>
-                <div class="col-4 my-2">Correo</div>
+                <!--Se aplican los mismos parametros anteriores de columnas-->
+                <div class="col-4 my-2">
+                  Correo
+                </div>
                 <div class="col-8 my-2">
+                  <!--Se coloca el correo del usuario en un label en caso de editar el perfil-->
                   <input
                     [(ngModel)]="objeto.correo"
                     *ngIf="cambio"
@@ -110,10 +154,15 @@
                     name=""
                     id=""
                   />
+                  <!--Se muestra el correo del usuario-->
                   <p *ngIf="!cambio">{{ correo }}</p>
                 </div>
-                <div *ngIf="cambio" class="col-4 my-2">Imagen</div>
+                <!--Se aplican los mismos parametros de columna anteriores-->
+                <div *ngIf="cambio" class="col-4 my-2">
+                  Imagen
+                </div>
                 <div *ngIf="cambio" class="col-8 my-2">
+                  <!--Se determina un label especial para poder modificar la imagen en caso se edite el perfil-->
                   <div class="input-group">
                     <div class="custom-file">
                       <input
@@ -128,9 +177,12 @@
                     </div>
                   </div>
                 </div>
+                <!--Se aplican los mismos parametros de columna anteriores-->
                 <div class="col-4 my-2">Descripcion</div>
                 <div class="col-8 my-2">
+                  <!--Se muestra una pequeña descripcion del usuario-->
                   <p *ngIf="!cambio">{{ descripcion }}</p>
+                  <!--Se muestra un label para modificar la descripcion en caso de editar el perfil-->
                   <textarea
                     *ngIf="cambio"
                     [(ngModel)]="objeto.descripcion"
@@ -148,3 +200,5 @@
     </div>
   </div>
 </div>
+
+<!--Fin del archivo HTML del componente perfil-->

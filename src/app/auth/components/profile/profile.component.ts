@@ -1,17 +1,25 @@
+/*Datos principales del componenete perfil*/
+
+/*Importaciones principales del componente*/
 import { Component, OnInit } from '@angular/core';
 import { CloudBinaryService }  from '../../../services/cloud-binary.service';
 import { NewUsuarioService } from '../../servicios/editarperfil.service'
 import { CursoService } from '../../../curso/servicios/curso.service'
 
+/* Elementos del coponente para definir sus rutas especificas de valores */
 @Component({
-  /* Elementos del coponente para definir sus rutas especificas de valores */
+  /* Nombre del selector para el componente */
   selector: 'app-profile',
+  /* Direccion del modelo HTML del componente */
   templateUrl: './profile.component.html',
+  /* Direccion de los estilos CSS del componente */
   styleUrls: ['./profile.component.css'],
 })
+
+/* Exportaciones del componente */
 export class ProfileComponent implements OnInit {
 
-  /* Atributos que se muestran en el perfil */
+  /* Atributos principales que se muestran en el perfil */
   correo: any;
   url: any;
   usuario_apellidos: any;
@@ -20,7 +28,8 @@ export class ProfileComponent implements OnInit {
   descripcion: any;
   cursosm: any;
 
-  /* Objeto para editar los valores del perfil */
+  /* Objeto para editar los valores del perfil, se iguala a los valores del usuario para evitar problemas 
+  a la hora de editarlos */
   objeto = {
     usuario_nombre: sessionStorage.getItem("usuario_nombre"),
     usuario_apellidos: sessionStorage.getItem("usuario_apellidos"),
@@ -33,6 +42,8 @@ export class ProfileComponent implements OnInit {
   cambio: boolean;
   certificados = [1, 2, 3];
 
+  /* Las constantes del constructor son los datos del usuario en cuestion, obtenidos al importar las funciones
+  necesarias en fin de obtener los datos */
   constructor(public CloudBinaryService: CloudBinaryService, public NewUsuarioService: NewUsuarioService, public CursoService: CursoService) {
     this.cambio = false;
     this.correo = sessionStorage.getItem("correo");
@@ -43,6 +54,7 @@ export class ProfileComponent implements OnInit {
     this.descripcion = sessionStorage.getItem("descripcion");
   }
 
+  /* En esta parte se obtienen los cursos matriculados de cada usuario */
   ngOnInit(): void {
     this.CursoService.listarCursosPorUsuario2(this.usuario_id).subscribe(rep=>{
       this.cursosm = rep["data"].length;
@@ -54,7 +66,7 @@ export class ProfileComponent implements OnInit {
     this.cambio = true;
   }
 
-  /* Metodo para cambiar la imagen */
+  /* Metodo para cambiar la imagen, donde se hace uso del CloudBinary */
   modificarImagen(event) {
     this.CloudBinaryService.sendPhoto(event.target.files[0]).subscribe(rep => {
       this.objeto.url = rep["url"];
@@ -63,6 +75,8 @@ export class ProfileComponent implements OnInit {
   
   /* Metodo para enviar los datos y cambiar los datos de perfil */
   enviarDatos(){
+    /* Para esto, se obtienen los datos del objeto anteriormente visto en los atributos y se envian mediante
+    los metodos importados para cambiar los datos del usuario en la base de datos */
     this.NewUsuarioService.editarUsuario(this.objeto).subscribe(rep => {
       this.correo = rep["user1"][0]["correo"];
       this.url = rep["user1"][0]["url"];
@@ -83,6 +97,7 @@ export class ProfileComponent implements OnInit {
       sessionStorage.setItem('url', rep["user1"][0]["url"]);
       sessionStorage.setItem('descripcion', rep["user1"][0]["descripcion"]);
     })
+    /* Cambia los elementos para volver a la vista del perfil normal */
     this.cambio = false;
   }
 }
