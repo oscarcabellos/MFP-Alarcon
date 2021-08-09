@@ -1,6 +1,12 @@
+<!--El presente archivo es el contenido HTML del componente login-->
+
+<!--Etiqueta que determina la columna dentro de la pagina, siendo un tercio del horizontal total-->
 <div class="m-3">Login</div>
+<!--Etiqueta que llama una carta a la pantalla-->
 <form class="form-signin mt-5 pb-5 border" [formGroup]="signForm">
+  <!--Etiqueta que centra los elementos en la carta-->
   <div class="text-center my-2">
+    <!--Imagen generica para adornar el login-->
     <img
       class="my-3"
       src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
@@ -8,11 +14,15 @@
       width="72"
       height="72"
     />
+    <!--Encabezado para indicar el login-->
     <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
   </div>
 
+  <!--Epacio definido para el cuerpo de la carta-->
   <div class="form-label-group my-4">
+    <!--Informacion para denotar que se coloca el correo electronico-->
     <label for="inputEmail">Correo electrónico</label>
+    <!--Form donde se pondra el correo electronico, con sus respectivas validaciones-->
     <input
       type="email"
       id="inputEmail"
@@ -22,13 +32,17 @@
       formControlName="correo"
       [class.is-invalid]="correoNoValido"
     />
+    <!--Mensaje de alerta en caso de fallar al ingresar un correo-->
     <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido"
       >Ingrese un correo válido</small
     >
   </div>
 
+  <!--Espacio definido para el cuerpo de la carta-->
   <div class="form-label-group my-4">
+    <!--Informacion para denotar que se coloca la contraseña-->
     <label for="inputPassword">Contraseña</label>
+    <!--Form para colocar la contraseña, con sus respectivas validaciones-->
     <input
       type="password"
       id="inputPassword"
@@ -37,16 +51,19 @@
       formControlName="password"
       [class.is-invalid]="passwordNoValido"
     />
+    <!--Mensaje en caso de fallar al ingresar incorrectamente la contraseña-->
     <small class="text-danger mt-3 mt-lg-0" *ngIf="passwordNoValido"
       >Ingrese mínimo 5 caracteres y como máximo 15 caracteres</small
     >
   </div>
+  <!--Boton para proceder al inicio de sesion-->
   <button
     class="btn btn-lg btn-primary btn-block my-4"
     (click)="validarValores()"
   >
     Iniciar Sesión
   </button>
+  <!--Mensaje con ruta hacia el registro en caso el usuario no posea una cuenta-->
   <p class="my-3">
     ¿Aún no tienes una cuenta?
     <a class="link" routerLink="/user/register">Registrate ahora</a>
