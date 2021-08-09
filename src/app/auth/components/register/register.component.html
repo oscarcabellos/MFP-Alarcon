@@ -1,23 +1,38 @@
+<!--El presente archivo es el contenido HTML del componente registro-->
+
+<!--Se crea una seccion para determinar el espacio usado en la pantalla-->
 <section class="testimonial" id="testimonial">
+  <!--Etiqueta para deifnir el contenedor de los datos-->
   <div class="container">
+    <!--Etiqueta que define una hilera en el contenedor-->
     <div class="row py-5"></div>
     <div class="row py-4">
+      <!--Etiqueta para definir una columna-->
       <div class="col-md-4 bg-primary text-white text-center">
+        <!--Etiqueta para definir una carta donde colocar los datos-->
         <div class="card-body mt-5">
+          <!--Imagen generica para adornar la carta-->
           <img
             src="http://www.ansonika.com/mavia/img/registration_bg.svg"
             style="width: 30%"
             alt="Imagen de registro"
           />
+          <!--Encabezado para denotar la seccion de registro-->
           <h2 class="py-3">Registro</h2>
         </div>
       </div>
+      <!--Etiqueta para definir una columna-->
       <div class="col-md-8 py-3 border">
+        <!--Etiqueta para denotar la informacion de los datos-->
         <h4 class="py-4 px-5">Por favor complete con sus datos</h4>
+        <!--Etiqueta para definir el grupo de formulario del registro-->
         <form [formGroup]="registroForm" autocomplete="off">
+          <!--Etiqueta que define una hilera especifica para formularios-->
           <div class="form-group row">
+            <!--Columna definida para colocar el nombre del nuevo usuario-->
             <label class="col-sm-3 col-form-label ml-5">Nombres : </label>
             <div class="col-sm-7">
+              <!--Form para ingresar el nombre del nuevo usuario con sus respectivas validaciones-->
               <input
                 type="email"
                 pattern="[A-Za-z ]{1,49}"
@@ -26,14 +41,18 @@
                 placeholder="Nombres"
                 [class.is-invalid]="nombreNoValido"
               />
+              <!--Mensaje en caso de ingresar el nombre del nuevo usuario de manera erronea-->
               <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
                 >Ingrese su nombre</small
               >
             </div>
           </div>
+          <!--Etiqueta que define una hilera especifica para formularios-->
           <div class="form-group row">
+            <!--Columna definida para colocar el apellido del nuevo usuario-->
             <label class="col-sm-3 col-form-label ml-5">Apellidos : </label>
             <div class="col-sm-7">
+              <!--Formulario para ingresar el apellido del nuevo usuario-->
               <input
                 type="email"
                 pattern="[A-Za-z ]{1,49}"
@@ -42,14 +61,18 @@
                 placeholder="Apellidos"
                 [class.is-invalid]="apellidoNoValido"
               />
+              <!--Mensaje en caso de ingresar el apellido del nuevo usuario de manera erronea-->
               <small class="text-danger mt-3 mt-lg-0" *ngIf="apellidoNoValido"
                 >Ingrese sus apellidos</small
               >
             </div>
           </div>
+          <!--Etiqueta que define una hilera especifica para formularios-->
           <div class="form-group row">
+            <!--Columna definida para colocar el correo del nuevo usuario-->
             <label class="col-sm-3 col-form-label ml-5">Correo : </label>
             <div class="col-sm-7">
+              <!--Formulario para ingresar el correo del nuevo usuario-->
               <input
                 type="email"
                 class="form-control"
@@ -57,14 +80,18 @@
                 placeholder="Correo"
                 [class.is-invalid]="correoNoValido"
               />
+              <!--Mensaje en caso de ingresar el correo del nuevo usuario de manera erronea-->
               <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido"
                 >Ingrese su correo</small
               >
             </div>
           </div>
+          <!--Etiqueta que define una hilera especifica para formularios-->
           <div class="form-group row">
+            <!--Columna definida para colocar la contraseña del nuevo usuario-->
             <label class="col-sm-3 col-form-label ml-5">Contraseña:</label>
             <div class="col-sm-7">
+              <!--Form para colocar la contraseña con sus respectivas validaciones-->
               <input
                 type="password"
                 class="form-control"
@@ -72,16 +99,19 @@
                 placeholder="Contraseña"
                 [class.is-invalid]="passwordNoValido"
               />
+              <!--Mensaje de alerta en caso colocar una contraseña incorrecta-->
               <small class="text-danger mt-3 mt-lg-0" *ngIf="passwordNoValido"
                 >Ingrese su contraseña</small
               >
             </div>
           </div>
           <div class="form-group row">
+            <!--Columna definida para confirmar la contraseña del nuevo usuario-->
             <label class="col-sm-3 col-form-label ml-5"
               >Confirmar contraseña :
             </label>
             <div class="col-sm-7">
+              <!--Form para confirmar la contraseña con sus respectivas validaciones-->
               <input
                 type="password"
                 class="form-control"
@@ -91,8 +121,10 @@
             </div>
           </div>
           <div class="form-group row py-3">
+            <!--Hilera para definir el pie de la carta-->
             <div class="col-3 col-form-label ml-5"></div>
             <div class="col-7 d-flex flex-row-reverse">
+              <!--Boton para confirmar el registro con los datos ingresados-->
               <button
                 type="button"
                 (click)="validarFormulario()"
@@ -100,6 +132,7 @@
               >
                 Registrarse
               </button>
+              <!--Boton para volver al campo anterior en caso no registrarse-->
               <button
                 type="button"
                 class="btn btn-danger mr-2"
