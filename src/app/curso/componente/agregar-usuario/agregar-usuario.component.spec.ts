@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AgregarUsuarioComponent } from './agregar-usuario.component';
 
@@ -12,6 +13,7 @@ describe('AgregarUsuarioComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AgregarUsuarioComponent],
       imports: [HttpClientModule, ReactiveFormsModule],
+      providers: [ { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
     }).compileComponents();
   });
 
@@ -27,22 +29,7 @@ describe('AgregarUsuarioComponent', () => {
 
   it('Eliminar usuario del curso', () => {
     component.usuarios = [
-      {
-        usuario_id: 1,
-        usuario_nombre: null,
-        usuario_apellidos: null,
-        password: null,
-        correo: null,
-        url: null,
-      },
-      {
-        usuario_id: 2,
-        usuario_nombre: null,
-        usuario_apellidos: null,
-        password: null,
-        correo: null,
-        url: null,
-      },
+      
     ];
     component.eliminarUsuario(1);
     expect(component.usuarios.length).toEqual(1);

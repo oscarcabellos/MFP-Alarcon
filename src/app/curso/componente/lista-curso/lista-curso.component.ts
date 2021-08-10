@@ -1,3 +1,4 @@
+// Importacion de librerias y componentes
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Curso } from '../../modelo/curso';
@@ -9,7 +10,9 @@ import { ExcelService } from '../../servicios/excel.service';
   templateUrl: './lista-curso.component.html',
   styleUrls: ['./lista-curso.component.css'],
 })
+// Declaracion de la clase ListarCursoComponent
 export class ListaCursoComponent implements OnInit {
+  // Declaracion de variables
   cursos: Curso[];
   usuarioId: number;
   pageActual: number;
@@ -17,12 +20,12 @@ export class ListaCursoComponent implements OnInit {
   nextLabel = 'Siguiente';
   responsive: boolean = true;
   nombreFiltro: string = '';
-
+// Declaracion del constructor
   constructor(
     private cursoService: CursoService,
     private excelServices: ExcelService
   ) {}
-
+// Metodo que se ejecuta cuando inicializa la clase
   ngOnInit(): void {
     this.pageActual = 1;
     this.usuarioId = +sessionStorage.getItem('usuario_id');

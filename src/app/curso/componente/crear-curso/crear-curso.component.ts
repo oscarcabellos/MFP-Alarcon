@@ -18,8 +18,8 @@ export class CrearCursoComponent implements OnInit {
   image: any[];
   usuario_id: number;
   cursoForm: FormGroup;
-  categorias: Categoria[];
-  nombreImagen: String;
+  categorias: Categoria[]=[];
+  nombreImagen: string;
 
   constructor(
     private cursoService: CursoService,
@@ -39,33 +39,6 @@ export class CrearCursoComponent implements OnInit {
       categoria_id: [''],
     });
     this.listarCategorias();
-  }
-  /**
-   * Validar nombre del curso
-   */
-  get nombreNoValido() {
-    return (
-      this.cursoForm.get('curso_nombre').invalid &&
-      this.cursoForm.get('curso_nombre').touched
-    );
-  }
-  /**
-   * Validar descripcion del curso
-   */
-  get descripcioneNoValido() {
-    return (
-      this.cursoForm.get('descripcion').invalid &&
-      this.cursoForm.get('descripcion').touched
-    );
-  }
-  /**
-   * Validar privacidad del curso
-   */
-  get privacidadNoValido() {
-    return (
-      this.cursoForm.get('privacidad_id').invalid &&
-      this.cursoForm.get('privacidad_id').touched
-    );
   }
 
   /**
@@ -133,8 +106,34 @@ export class CrearCursoComponent implements OnInit {
    * Listado de todas la categorias
    */
   listarCategorias() {
-    this.categoriaService
-      .listarCategorias()
-      .subscribe((x) => (this.categorias = x['categories']));
+    this.categoriaService.listarCategorias().subscribe( (x) => (this.categorias = x['categories']));
+  }
+
+  /**
+  * Validar nombre del curso
+  */
+  get nombreNoValido() {
+    return (
+     this.cursoForm.get('curso_nombre').invalid &&
+     this.cursoForm.get('curso_nombre').touched
+    );
+  }
+  /**
+   * Validar descripcion del curso
+   */
+  get descripcioneNoValido() {
+    return (
+      this.cursoForm.get('descripcion').invalid &&
+      this.cursoForm.get('descripcion').touched
+    );
+  }
+  /**
+   * Validar privacidad del curso
+   */
+  get privacidadNoValido() {
+    return (
+      this.cursoForm.get('privacidad_id').invalid &&
+      this.cursoForm.get('privacidad_id').touched
+    );
   }
 }
