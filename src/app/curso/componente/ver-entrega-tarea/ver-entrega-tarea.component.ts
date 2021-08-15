@@ -11,7 +11,9 @@ export class VerEntregaTareaComponent implements OnInit {
   tareas = [1, 1, 1, 1, 1, 1];
   constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    /* Codigo de ejecucion al inicio del componenente */
+  }
 
   closeModal(sendData) {
     this.activeModal.close(sendData);

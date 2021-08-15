@@ -14,6 +14,7 @@ describe('CrearCursoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ CrearCursoComponent ],
+      /* Se importa el HttpClientModule para la verificacion del servicio 'CursoService'  */
       imports: [HttpClientModule, ReactiveFormsModule],
       providers: [ { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
     })
@@ -32,10 +33,13 @@ describe('CrearCursoComponent', () => {
 
   it('Listar categorias', () => {
     
-    /* spyOn(component.categoriaService, 'listarCategorias').and.returnValue(of{categorias}); */
     component.listarCategorias();
     expect(component.categorias.length).toEqual(0);
   });
 
+  it('Listar categorias total', inject( [CategoriaService] , (categoriaService) => {
+    categoriaService.listarCategorias().subscribe(result => 
+      expect(result.length).toBeGreaterThan(0));
+  }));
 
 });

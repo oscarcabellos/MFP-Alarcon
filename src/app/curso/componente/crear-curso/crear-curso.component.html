@@ -4,8 +4,10 @@
       <h4 class="text-primary">Detalle del curso</h4>
     </div>
     <div class="card-body">
+      <!-- Formulario de crear curso -->
       <form [formGroup]="cursoForm" autocomplete="off">
         <div class="form-group">
+          <!-- Campo del nombre del curso -->
           <label for="nombreCurso">Nombre:</label>
           <input
             id="nombreCurso"
@@ -15,11 +17,13 @@
             placeholder="Nombre"
             [class.is-invalid]="nombreNoValido"
           />
+          <!-- Validacion del campo nombre -->
           <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
             >Ingrese un nombre valido no mayor a 30 caracteres</small
           >
         </div>
         <div class="form-group">
+          <!-- Campo de la descripcion del curso -->
           <label for="descripcionCurso">Descripcion:</label>
           <textarea
             id="descripcionCurso"
@@ -30,12 +34,14 @@
             placeholder="Descripcion"
             [class.is-invalid]="descripcioneNoValido"
           ></textarea>
+          <!-- Validacion del campo descripcion -->
           <small class="text-danger mt-3 mt-lg-0" *ngIf="descripcioneNoValido"
             >Ingrese la descripcion del curso</small
           >
         </div>
         <div class="form-group">
           <div class="row m-0">
+          <!-- Check de la privacidad del curso -->
             <p>Privacidad:</p>
             <div class="form-check ml-5">
               <input
@@ -80,11 +86,13 @@
               </label>
             </div>
           </div>
+          <!-- Validacion de la privacidad -->
           <small class="text-danger mt-3 mt-lg-0" *ngIf="privacidadNoValido"
             >Ingrese la privacidad del curso</small
           >
         </div>
         <div class="form-group">
+          <!-- Lista de categoria del curso -->
           <label for="categoriaCurso">Categoria:</label>
           <select
             name="categoria_id"
@@ -104,7 +112,8 @@
               <label for="formGroupExampleInput">Imagen:</label>
             </div>
             <div class="form-inline">
-              <div id="div_file">
+              <div id="div_file">+
+                <!-- Input de la seleccion de la imagen -->
                 <p id="texto">Seleccionar imagen</p>
                 <input
                   type="file"
@@ -117,6 +126,7 @@
           </div>
         </div>
         <div class="form-group">
+          <!-- Campo de conocimiento previo -->
           <label for="conocimientoCurso">Conocimiento previo:</label>
           <textarea
             type="text"

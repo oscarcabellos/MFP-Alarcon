@@ -10,13 +10,13 @@ export class NotificacionComponent implements OnInit {
   //  Variables del componente ts
   notificaciones;
 
-  constructor(public NotificacionService: NotificacionService) {
+  constructor(public notificacionService: NotificacionService) {
     // Codigo de inicializacion del componente
   }
 
   ngOnInit(): void {
     // Codigo de inicializacion del componente
-    this.NotificacionService.listarCursosPublicos().subscribe((x) => {
+    this.notificacionService.listarCursosPublicos().subscribe((x) => {
       this.notificaciones = x.cursos;
     });
   }

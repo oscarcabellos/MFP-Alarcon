@@ -10,7 +10,9 @@ const EXCEL_EXTENSION = '.xlsx';
   providedIn: 'root',
 })
 export class ExcelService {
-  constructor() {}
+  constructor() {
+    /* Codigo */
+  }
 
   /**
    * Servicio para generar el excel de los usuarios
