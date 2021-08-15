@@ -41,7 +41,7 @@ export class AuthenticationService {
   }
 
   /**
-   * Método para cerrar sesión
+   * Servicio para cerrar sesión
    */
   logout() {
     this.isAuthenticated = false;

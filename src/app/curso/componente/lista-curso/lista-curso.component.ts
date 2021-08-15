@@ -18,22 +18,24 @@ export class ListaCursoComponent implements OnInit {
   pageActual: number;
   previousLabel = 'Anterior';
   nextLabel = 'Siguiente';
-  responsive: boolean = true;
-  nombreFiltro: string = '';
-// Declaracion del constructor
+  responsive: boolean;
+  nombreFiltro: string;
+  // Declaracion del constructor
   constructor(
-    private cursoService: CursoService,
-    private excelServices: ExcelService
+    private readonly cursoService: CursoService,
+    private readonly excelServices: ExcelService
   ) {}
-// Metodo que se ejecuta cuando inicializa la clase
+  // Función que se ejecuta cuando inicializa la clase
   ngOnInit(): void {
     this.pageActual = 1;
+    this.responsive = true;
+    this.nombreFiltro = '';
     this.usuarioId = +sessionStorage.getItem('usuario_id');
     this.listarCursos(this.usuarioId);
   }
 
   /**
-   * Método para unirse a un curso a partir del codigo
+   * Función para unirse a un curso a partir del codigo
    */
   unirseCurso() {
     Swal.fire({
@@ -65,7 +67,7 @@ export class ListaCursoComponent implements OnInit {
   }
 
   /**
-   * Método para listar los cursos por usuario
+   * Función para listar los cursos por usuario
    * @param id {Number} - Identificador del usuario
    */
   listarCursos(id: number) {
@@ -76,7 +78,7 @@ export class ListaCursoComponent implements OnInit {
   }
 
   /**
-   * Método para la busqueda de los cursos de un usuario
+   * Función para la busqueda de los cursos de un usuario
    * @param id {Number} - Identificador del usuario
    */
   listarCursos2(id: number) {
@@ -86,14 +88,14 @@ export class ListaCursoComponent implements OnInit {
   }
 
   /**
-   * Método para reiniciar el numero de página
+   * Función para reiniciar el numero de página
    */
   cambiarPagina() {
     this.pageActual = 1;
   }
 
   /**
-   * Método para descargar el listado de alumnos
+   * Función para descargar el listado de alumnos
    * @param id {Number} - Identificador del curso
    */
   descargarlista(id: number) {

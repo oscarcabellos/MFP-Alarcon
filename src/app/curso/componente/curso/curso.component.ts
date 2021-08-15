@@ -13,8 +13,8 @@ export class CursoComponent implements OnInit {
   usuarioId: number;
   nombreCurso: string;
   constructor(
-    private route: ActivatedRoute,
-    private cursoService: CursoService
+    private readonly route: ActivatedRoute,
+    private readonly cursoService: CursoService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class CursoComponent implements OnInit {
       this.usuarioId === +this.route.snapshot.paramMap.get('iduser');
   }
   /**
-   * Método para obtener la información del curso
+   * Función para obtener la información del curso
    * @param id {Number} - Identificador del curso
    */
   obtenerCurso(id: number) {
