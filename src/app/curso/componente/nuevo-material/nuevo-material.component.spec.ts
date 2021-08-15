@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { NuevoMaterialComponent } from './nuevo-material.component';
 
@@ -8,7 +10,8 @@ describe('NuevoMaterialComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NuevoMaterialComponent ]
+      declarations: [ NuevoMaterialComponent ],
+      providers: [NgbActiveModal, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); }}]
     })
     .compileComponents();
   });

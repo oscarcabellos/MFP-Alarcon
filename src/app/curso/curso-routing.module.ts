@@ -1,10 +1,10 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CursoPublicoComponent } from './componente/curso-publico/curso-publico.component';
 import { CursoComponent } from './componente/curso/curso.component';
 import { DashboardComponent } from './componente/dashboard/dashboard.component';
 import { VerCursoComponent } from './componente/ver-curso/ver-curso.component';
-import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),HttpClientModule],
   exports: [RouterModule],
 })
 export class CursoRoutingModule {}

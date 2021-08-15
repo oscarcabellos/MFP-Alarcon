@@ -17,6 +17,7 @@ import { NotificacionComponent } from './componente/notificacion/notificacion.co
 import { MaterialCursoComponent } from './componente/material-curso/material-curso.component';
 import { NuevoMaterialComponent } from './componente/nuevo-material/nuevo-material.component';
 import { VerEntregaTareaComponent } from './componente/ver-entrega-tarea/ver-entrega-tarea.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { VerEntregaTareaComponent } from './componente/ver-entrega-tarea/ver-ent
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     CursoRoutingModule,
     NgxPaginationModule,
   ],

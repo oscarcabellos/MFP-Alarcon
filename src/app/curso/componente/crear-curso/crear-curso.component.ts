@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from '../../servicios/categoria.service';
 import { Categoria } from '../../modelo/categoria';
+import { AppServiceBase } from 'src/app/core/appServiceBase';
 
 @Component({
   selector: 'app-crear-curso',
@@ -43,6 +44,7 @@ export class CrearCursoComponent implements OnInit {
 
   /**
    * Comprobacion de la seleccion de un archivo
+   * y guarda el nombre de la imagen para poder mostrarse
    * @param  {} event
    */
   onFileChange(event) {

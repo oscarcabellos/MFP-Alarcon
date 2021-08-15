@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { VerEntregaTareaComponent } from './ver-entrega-tarea.component';
 
@@ -8,7 +10,8 @@ describe('VerEntregaTareaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VerEntregaTareaComponent ]
+      declarations: [ VerEntregaTareaComponent ],
+      providers: [NgbActiveModal, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); }}]
     })
     .compileComponents();
   });
