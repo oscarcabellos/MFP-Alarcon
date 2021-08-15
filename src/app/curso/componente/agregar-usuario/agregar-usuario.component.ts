@@ -4,11 +4,6 @@ import Swal from 'sweetalert2';
 import { CursoService } from '../../servicios/curso.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExcelService } from '../../servicios/excel.service';
-import {
-  USUARIO_ACTIVO,
-  USUARIO_PENDIENTE_PROFESOR,
-  USUARIO_PENDIENTE_USUARIO,
-} from 'src/app/core/constants';
 
 @Component({
   selector: 'app-agregar-usuario',
@@ -21,14 +16,14 @@ export class AgregarUsuarioComponent implements OnInit {
   usuarios: Usuario[] = [];
   agregarForm: FormGroup;
   totalAlumnos: number;
-  activo = USUARIO_ACTIVO;
-  pendiente_profesor = USUARIO_PENDIENTE_PROFESOR;
-  pendiente_usuario = USUARIO_PENDIENTE_USUARIO;
-  variable_para_probar = 3;
+  activo = 1;
+  pendienteProfesor = 2;
+  pendienteUsuario = 3;
+  variableProbar = 3;
   constructor(
-    private cursoService: CursoService,
-    private formBuilder: FormBuilder,
-    private excelService: ExcelService
+    private readonly cursoService: CursoService,
+    private readonly formBuilder: FormBuilder,
+    private readonly excelService: ExcelService
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +44,7 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   /**
-   * Método para buscar a los usuarios que pertenecen al curso actual
+   * Función para buscar a los usuarios que pertenecen al curso actual
    * @param id Identificador del curso
    */
   listarUsuarios(id: number) {
@@ -60,7 +55,7 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   /**
-   * Método para agregar un usuario al curso
+   * Función para agregar un usuario al curso
    */
   validarCorreoIngresado() {
     if (this.agregarForm.valid) {
@@ -105,7 +100,7 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   /**
-   * Método para validar que el correo ingresado sea igual al del profesor
+   * Función para validar que el correo ingresado sea igual al del profesor
    * @param correoIngresado correo del usuario que se desea agregar
    * @param correoUsuario correo del profesor del curso
    * @returns bool - si ambos correo son iguales
@@ -115,7 +110,7 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   /**
-   * Método para comprobar si el correo ya ha sido agregado
+   * Función para comprobar si el correo ya ha sido agregado
    * @param correoIngresado correo del usuario que se desea agregar
    * @returns bool - retorna si el correo ya existe en la lista
    */
@@ -126,7 +121,7 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   /**
-   * Método para agregar un nuevo usuario a un curso
+   * Función para agregar un nuevo usuario a un curso
    * @param id_curso iddentificador del curso donde se agrega al usuario
    * @param correoIngresado correo del usuario que se desea agregar
    */
@@ -134,12 +129,6 @@ export class AgregarUsuarioComponent implements OnInit {
     this.cursoService
       .agrearUsuarioCurso(id_curso, correoIngresado)
       .subscribe((x) => {
-        /* Swal.fire({
-          icon: x['error'] === 0 ? 'success' : 'error',
-          title: x['msg']?.length > 0 ? x['msg'] : 'Se ha enviado la solicitud',
-          showConfirmButton: false,
-          timer: 1500,
-        }); */
         Swal.fire({
           icon: 'success',
           title: 'Se ha enviado la invitación',
@@ -152,7 +141,7 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   /**
-   * Método para eliminar a un usuario de un curso
+   * Función para eliminar a un usuario de un curso
    * @param id Identificador del usuario a eliminar
    */
   eliminarUsuario(id: number) {
@@ -179,7 +168,7 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   /**
-   * Método para descargar la lista de alumnos inscritos en un archivo excel
+   * Función para descargar la lista de alumnos inscritos en un archivo excel
    */
   descargarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {

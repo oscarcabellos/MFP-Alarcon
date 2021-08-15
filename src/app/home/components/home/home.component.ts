@@ -10,14 +10,14 @@ import { CursoService } from '../../services/curso.service';
 export class HomeComponent implements OnInit {
   cursos: Curso[] = [];
   sugerencias = [1, 2, 3];
-  constructor(private cursoService: CursoService) {}
+  constructor(private readonly cursoService: CursoService) {}
 
   ngOnInit(): void {
     this.listarCursos();
   }
 
   /**
-   * Método para listar los cursos com mas usuarios
+   * Función para listar los cursos com mas usuarios
    */
   listarCursos() {
     this.cursoService.listarCursosPublicos().subscribe((x) => {
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * Método para validar si un usuario ha inciado sesión
+   * Función para validar si un usuario ha inciado sesión
    * @returns {Boolean} Validacipon si esta logeado
    */
   estaRegistrado() {

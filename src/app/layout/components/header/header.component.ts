@@ -10,10 +10,10 @@ export class HeaderComponent implements OnInit {
   usuarioRegistrado: boolean;
   usuario: string;
   imagen: string;
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   ngOnInit(): void {
-    if (+sessionStorage.getItem('usuario_id') != 0) {
+    if (+sessionStorage.getItem('usuario_id') !== 0) {
       this.usuarioRegistrado = true;
       this.usuario = sessionStorage.getItem('usuario_nombre');
       this.imagen = sessionStorage.getItem('url');
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   * Método para cerrar sesión
+   * Función para cerrar sesión
    */
   logout() {
     sessionStorage.removeItem('usuario_id');

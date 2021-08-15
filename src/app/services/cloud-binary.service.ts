@@ -15,7 +15,7 @@ export class CloudBinaryService {
   }
 
   /**
-   * Método para guardar una imagen
+   * Servicio para guardar una imagen
    * @param file {File} - Archivo para almacenar
    * @returns Objeto con la información guardad
    */

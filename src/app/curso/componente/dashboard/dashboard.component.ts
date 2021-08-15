@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   ngOnInit(): void {
     // Codigo de inicializacion del componente
   }
   /**
-   * Método para cerrar sesión
+   * Función para cerrar sesión
    */
   logout() {
     sessionStorage.removeItem('usuario_id');

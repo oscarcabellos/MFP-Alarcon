@@ -17,23 +17,25 @@ export class ListaSugerenciaComponent implements OnInit {
   pageActual: number;
   previousLabel = 'Anterior';
   nextLabel = 'Siguiente';
-  responsive: boolean = true;
-  sugerenciaFiltro: string = '';
+  responsive: boolean;
+  sugerenciaFiltro: string;
 
   constructor(
-    private modalService: NgbModal,
-    private sugerenciaService: SugerenciaService,
-    private categoriaService: CategoriaService
+    private readonly modalService: NgbModal,
+    private readonly sugerenciaService: SugerenciaService,
+    private readonly categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
     this.pageActual = 1;
+    this.responsive = true;
+    this.sugerenciaFiltro = '';
     this.listarSugerencias();
     this.listarCategorias();
   }
 
   /**
-   * Método para abrir el modal de una nueva sugerencia
+   * Función para abrir el modal de una nueva sugerencia
    */
   openModal() {
     const modalRef = this.modalService.open(NuevaSugerenciaComponent, {
@@ -54,7 +56,7 @@ export class ListaSugerenciaComponent implements OnInit {
   }
 
   /**
-   * Método para cambiar la votación
+   * Función para cambiar la votación
    * @param id Identificador de la sugerencia
    */
   cambiarEstado(id: number) {
@@ -62,7 +64,7 @@ export class ListaSugerenciaComponent implements OnInit {
   }
 
   /**
-   * Método para filtrar la busqueda por la categoria seleccionada
+   * Función para filtrar la busqueda por la categoria seleccionada
    * @param id {Number} - Identiicador de la categoria
    */
   actualizarCategoria(id) {
@@ -70,7 +72,7 @@ export class ListaSugerenciaComponent implements OnInit {
   }
 
   /**
-   * Método para listar las sugerencias
+   * Función para listar las sugerencias
    */
   listarSugerencias() {
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
@@ -79,7 +81,7 @@ export class ListaSugerenciaComponent implements OnInit {
   }
 
   /**
-   * Método para listar las categorias
+   * Función para listar las categorias
    */
   listarCategorias() {
     this.categoriaService
@@ -88,12 +90,14 @@ export class ListaSugerenciaComponent implements OnInit {
   }
 
   /**
-   * Método para devolver el nombre de la categoria
+   * Función para devolver el nombre de la categoria
    * @param idCategoria {Number} - Identificado de la vategoria
    * @returns Nombre de la categoria
    */
   getNombreCategoria(idCategoria: number) {
-    if (idCategoria === undefined) return 'Categoria no definida';
+    if (idCategoria === undefined) {
+      return 'Categoria no definida';
+    }
     const nombreCategoria = this.buscarNombreCategoria(idCategoria);
     return nombreCategoria === undefined
       ? 'Nombre no encontrado'
@@ -101,7 +105,7 @@ export class ListaSugerenciaComponent implements OnInit {
   }
 
   /**
-   * Método para buscar el nombre de la categoria
+   * Función para buscar el nombre de la categoria
    * @param id {Number} - Identificador de la categoria
    * @returns Nombre de la categoria
    */
@@ -111,7 +115,7 @@ export class ListaSugerenciaComponent implements OnInit {
   }
 
   /**
-   * Método para reiniciar el numero de página
+   * Función para reiniciar el numero de página
    */
   cambiarPagina() {
     this.pageActual = 1;
