@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Categoria } from 'src/app/curso/modelo/categoria';
+import { CategoriaService } from 'src/app/curso/servicios/categoria.service';
 import Swal from 'sweetalert2';
 import { Sugerencia } from '../../modelos/sugerencia';
 import { SugerenciaService } from '../../servicios/sugerencia.service';
@@ -10,14 +12,20 @@ import { SugerenciaService } from '../../servicios/sugerencia.service';
   styleUrls: ['./nueva-sugerencia.component.css'],
 })
 export class NuevaSugerenciaComponent implements OnInit {
-  descripcion;
+  descripcion: string;
+  categorias: Categoria[];
+  categoria: number;
+
   constructor(
     public activeModal: NgbActiveModal,
-    public sugerenciasService: SugerenciaService
+    public sugerenciasService: SugerenciaService,
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
     // Codigo de inicializacion del componente
+    this.listarCategorias();
+    this.categoria = 0;
   }
   closeModal(sendData) {
     this.activeModal.close(sendData);
@@ -25,18 +33,27 @@ export class NuevaSugerenciaComponent implements OnInit {
 
   guardarSugerencia() {
     const sugerencia: Sugerencia = new Sugerencia();
-    sugerencia.categoria_id = 1;
-    sugerencia.sugerencia_nombre_curso = 'prueba';
-    sugerencia.sugerencia_puntuacion_curso = 8;
-    sugerencia.numero_votos = 3;
-    sugerencia.sugerencia_estado = 'Entregado';
+    sugerencia.categoria_id = this.categoria;
+    /* sugerencia.sugerencia_nombre_curso = 'prueba'; */
+    /* sugerencia.sugerencia_puntuacion_curso = 8; */
+    /* sugerencia.numero_votos = 3; */
+    /* sugerencia.sugerencia_estado = 'Entregado'; */
     sugerencia.descripcion = this.descripcion;
 
     this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp) => {
       console.log(resp);
+      Swal.fire({
+        title: 'Publicado',
+        icon: 'success',
+        showConfirmButton: false,
+        width: '20rem',
+        timer: 1500,
+      }).then((res) => {
+        this.closeModal('cerrar');
+      });
     });
 
-    Swal.fire({
+    /* Swal.fire({
       title: 'La sugerencia será publica para todos los usuario',
       text: '¿Desea continuar?',
       showCancelButton: true,
@@ -57,6 +74,15 @@ export class NuevaSugerenciaComponent implements OnInit {
           this.closeModal('cerrar');
         });
       }
-    });
+    }); */
+  }
+
+  /**
+   * Listado de todas la categorias
+   */
+  listarCategorias() {
+    this.categoriaService
+      .listarCategorias()
+      .subscribe((x) => (this.categorias = x['categories']));
   }
 }

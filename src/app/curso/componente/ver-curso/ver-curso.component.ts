@@ -64,10 +64,9 @@ export class VerCursoComponent implements OnInit {
       this.cursos = x['cursos'];
       this.cursos = this.cursos.filter((c) => c.curso_id !== cursoId);
       if (this.cursos?.length > 3) {
-        this.cursos.push(this.cursos[0]);
-        this.cursos.push(this.cursos[1]);
-        this.cursos.push(this.cursos[2]);
+        this.cursos = [this.cursos[0], this.cursos[1], this.cursos[2]];
       }
+      console.log(this.cursos);
     });
   }
 

@@ -51,6 +51,7 @@ export class AgregarUsuarioComponent implements OnInit {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       this.usuarios = x['data'];
       this.totalAlumnos = x['data'].length;
+      console.log(x);
     });
   }
 
@@ -65,21 +66,21 @@ export class AgregarUsuarioComponent implements OnInit {
           this.agregarForm.get('correoUsuario').value
         )
       ) {
-        /* Swal.fire({
+        Swal.fire({
           icon: 'error',
           title: 'No se puede agregar a su propio curso',
           showConfirmButton: false,
           timer: 1500,
-        }); */
+        });
       } else if (
         this.validarUsuarioAgregado(this.agregarForm.get('correoUsuario').value)
       ) {
-        /* Swal.fire({
+        Swal.fire({
           icon: 'error',
           title: 'El usuario ya ha sido agregado',
           showConfirmButton: false,
           timer: 1500,
-        }); */
+        });
       } else {
         this.agregarUsuario(
           this.cursoId,
@@ -87,12 +88,12 @@ export class AgregarUsuarioComponent implements OnInit {
         );
       }
     } else {
-      /* Swal.fire({
+      Swal.fire({
         title: 'Correo no válido',
         confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
         width: '20rem',
-      }); */
+      });
       Object.values(this.agregarForm.controls).forEach((control) => {
         control.markAsTouched();
       });
@@ -129,12 +130,12 @@ export class AgregarUsuarioComponent implements OnInit {
     this.cursoService
       .agrearUsuarioCurso(id_curso, correoIngresado)
       .subscribe((x) => {
-        /* Swal.fire({
+        Swal.fire({
           icon: 'success',
           title: 'Se ha enviado la invitación',
           showConfirmButton: false,
           timer: 1500,
-        }); */
+        });
         this.listarUsuarios(this.cursoId);
         this.agregarForm.reset();
       });
@@ -145,7 +146,7 @@ export class AgregarUsuarioComponent implements OnInit {
    * @param id Identificador del usuario a eliminar
    */
   eliminarUsuario(id: number) {
-    /* Swal.fire({
+    Swal.fire({
       title: '¿Seguro de eliminar?',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -164,7 +165,7 @@ export class AgregarUsuarioComponent implements OnInit {
           timer: 1500,
         });
       }
-    }); */
+    });
     this.usuarios = this.usuarios.filter((u) => u.usuario_id !== id);
   }
 
