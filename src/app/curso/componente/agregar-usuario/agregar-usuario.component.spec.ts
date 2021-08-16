@@ -13,7 +13,14 @@ describe('AgregarUsuarioComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AgregarUsuarioComponent],
       imports: [HttpClientModule, ReactiveFormsModule],
-      providers: [ { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
+      providers: [
+        {
+          provide: Router,
+          useClass: class {
+            navigate = jasmine.createSpy('navigate');
+          },
+        },
+      ],
     }).compileComponents();
   });
 
@@ -28,15 +35,13 @@ describe('AgregarUsuarioComponent', () => {
   });
 
   it('Eliminar usuario del curso', () => {
-    component.usuarios = [
-      
-    ];
+    component.usuarios = [];
     component.eliminarUsuario(1);
     expect(component.usuarios.length).toEqual(1);
   });
 
-  it('Listar usuario de un curso', () => {
-    component.listarUsuarios(435);
+  it('Listar usuario de un curso', async () => {
+    await component.listarUsuarios(435);
     expect(component.usuarios.length).toEqual(0);
   });
 
@@ -47,7 +52,19 @@ describe('AgregarUsuarioComponent', () => {
     document.getElementById('btnAgregar').click();
 
     expect((<HTMLInputElement>document.getElementById('correo')).value).toEqual(
-      ''
+      'correo@gmail.com'
     );
+  });
+
+  it('Validar que el correo ingresado no sea el mismo que el usuario registrado', () => {
+    let numeroUsuarios = component.usuarios.length;
+    (<HTMLInputElement>document.getElementById('correo')).value =
+      'correo@gmail.com';
+
+    document.getElementById('btnAgregar').click();
+    sessionStorage.setItem('correo', 'correo@gmail.com');
+
+    component.validarCorreoIngresado();
+    expect(component.usuarios.length).toEqual(numeroUsuarios);
   });
 });
