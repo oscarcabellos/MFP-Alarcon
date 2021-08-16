@@ -1,21 +1,25 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { AppServiceBase } from 'src/app/core/appServiceBase';
+import { environment } from 'src/environments/environment';
 import { Curso } from '../modelo/curso';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CursoService extends AppServiceBase {
+export class CursoService {
+
+  urlApi:string = `${environment.api.baseUrl}`;
+
+  constructor(private http: HttpClient) {}
   /**
    * Servicio para crear un nuevo curso
    * @param curso {Curso} - Objeto con el contenido del curso para crear
    * @returns Objeto creado
    */
   crearCurso(curso: Curso): Observable<any> {
-    return this.post(`courses`, curso).pipe(
+    return this.http.post(`${this.urlApi}courses`, curso).pipe(
       map((response: any) => response.curso as Curso),
       catchError((e) => {
         if (e.status == 400) {
@@ -34,7 +38,7 @@ export class CursoService extends AppServiceBase {
    * @returns Lista de cursos publicos
    */
   listarCursosPublicos(): Observable<any> {
-    return this.get('coursespublic').pipe(catchError(this.handleError));
+    return this.http.get(`${this.urlApi}coursespublic`).pipe(catchError(this.handleError));
   }
 
   /**
@@ -43,7 +47,7 @@ export class CursoService extends AppServiceBase {
    * @returns Datos del curso
    */
   obtenerCurso(id: number): Observable<any> {
-    return this.get(`courses/${id}`).pipe(catchError(this.handleError));
+    return this.http.get(`${this.urlApi}courses/${id}`).pipe(catchError(this.handleError));
   }
 
   /**
@@ -52,7 +56,7 @@ export class CursoService extends AppServiceBase {
    * @returns Listado de usarios que pertenecen al curso
    */
   listarUsuariosPorCurso(id: number): Observable<any> {
-    return this.get(`course-user/${id}`).pipe(catchError(this.handleError));
+    return this.http.get(`${this.urlApi}course-user/${id}`).pipe(catchError(this.handleError));
   }
 
   /**
@@ -61,7 +65,7 @@ export class CursoService extends AppServiceBase {
    * @returns Listado de cursos por usuario
    */
   listarCursosPorUsuario(id: number): Observable<any> {
-    return this.get(`cursos/${id}`).pipe(catchError(this.handleError));
+    return this.http.get(`${this.urlApi}cursos/${id}`).pipe(catchError(this.handleError));
   }
 
   /**
@@ -70,7 +74,7 @@ export class CursoService extends AppServiceBase {
    * @returns Listado de cursos por usuario
    */
   listarCursosPorUsuario2(id: number): Observable<any> {
-    return this.get(`coursesofuser/${id}`).pipe(catchError(this.handleError));
+    return this.http.get(`${this.urlApi}coursesofuser/${id}`).pipe(catchError(this.handleError));
   }
 
   /**
@@ -80,7 +84,7 @@ export class CursoService extends AppServiceBase {
    * @returns Mensaje de confirmación
    */
   agrearUsuarioCurso(idCurso: number, correo: string): Observable<any> {
-    return this.post('coursesUsers', { curso_id: idCurso, correo }).pipe(
+    return this.http.post(`${this.urlApi}coursesUsers`, { curso_id: idCurso, correo }).pipe(
       catchError(this.handleError)
     );
   }
@@ -91,7 +95,7 @@ export class CursoService extends AppServiceBase {
    * @returns Listado de cursos publicos de un usuario
    */
   listarCursosPublicosPorUsuario(id: number): Observable<any> {
-    return this.get(`coursespublic/${id}`).pipe(catchError(this.handleError));
+    return this.http.get(`${this.urlApi}coursespublic/${id}`).pipe(catchError(this.handleError));
   }
 
   /**
@@ -101,7 +105,7 @@ export class CursoService extends AppServiceBase {
    * @returns Mensaje de confirmación
    */
   solicitarAcceso(curso_id, usuario_id): Observable<any> {
-    return this.post('/solicitarCursoPrivado', { curso_id, usuario_id }).pipe(
+    return this.http.post(`${this.urlApi}/solicitarCursoPrivado`, { curso_id, usuario_id }).pipe(
       catchError(this.handleError)
     );
   }

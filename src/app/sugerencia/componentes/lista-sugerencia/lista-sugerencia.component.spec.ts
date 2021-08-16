@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ListaSugerenciaComponent } from './lista-sugerencia.component';
 
@@ -8,7 +10,9 @@ describe('ListaSugerenciaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListaSugerenciaComponent ]
+      declarations: [ ListaSugerenciaComponent ],
+      imports:[HttpClientModule,
+        NgxPaginationModule]
     })
     .compileComponents();
   });

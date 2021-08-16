@@ -15,10 +15,15 @@ import { Categoria } from '../../modelo/categoria';
   styleUrls: ['./crear-curso.component.css'],
 })
 export class CrearCursoComponent implements OnInit {
+  /* Imagen de seleccion en el html */
   image: any[];
+  /* usuario_id que se guarda y se usa del la sessionstorage */
   usuario_id: number;
+  /* nombre del curso que utiliza ReactiveFormModule */
   cursoForm: FormGroup;
+  /* Lista de categorias */
   categorias: Categoria[]=[];
+  /* Se guarda el nombre de la imagen seleccionada */
   nombreImagen: string;
 
   constructor(
@@ -43,6 +48,7 @@ export class CrearCursoComponent implements OnInit {
 
   /**
    * Comprobacion de la seleccion de un archivo
+   * y guarda el nombre de la imagen para poder mostrarse
    * @param  {} event
    */
   onFileChange(event) {

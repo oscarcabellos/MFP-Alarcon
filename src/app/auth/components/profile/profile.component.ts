@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
 
   /* Las constantes del constructor son los datos del usuario en cuestion, obtenidos al importar las funciones
   necesarias en fin de obtener los datos */
-  constructor(public CloudBinaryService: CloudBinaryService, public NewUsuarioService: NewUsuarioService, public CursoService: CursoService) {
+  constructor(public cloudBinaryService: CloudBinaryService, public newUsuarioService: NewUsuarioService, public cursoService: CursoService) {
     this.cambio = false;
     this.correo = sessionStorage.getItem("correo");
     this.url = sessionStorage.getItem("url");
@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
 
   /* En esta parte se obtienen los cursos matriculados de cada usuario */
   ngOnInit(): void {
-    this.CursoService.listarCursosPorUsuario2(this.usuario_id).subscribe(rep=>{
+    this.cursoService.listarCursosPorUsuario2(this.usuario_id).subscribe(rep=>{
       this.cursosm = rep["data"].length;
     })
   }
@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
 
   /* Metodo para cambiar la imagen, donde se hace uso del CloudBinary */
   modificarImagen(event) {
-    this.CloudBinaryService.sendPhoto(event.target.files[0]).subscribe(rep => {
+    this.cloudBinaryService.sendPhoto(event.target.files[0]).subscribe(rep => {
       this.objeto.url = rep["url"];
     });
   }
@@ -77,7 +77,7 @@ export class ProfileComponent implements OnInit {
   enviarDatos(){
     /* Para esto, se obtienen los datos del objeto anteriormente visto en los atributos y se envian mediante
     los metodos importados para cambiar los datos del usuario en la base de datos */
-    this.NewUsuarioService.editarUsuario(this.objeto).subscribe(rep => {
+    this.newUsuarioService.editarUsuario(this.objeto).subscribe(rep => {
       this.correo = rep["user1"][0]["correo"];
       this.url = rep["user1"][0]["url"];
       this.usuario_apellidos = rep["user1"][0]["usuario_apellidos"];

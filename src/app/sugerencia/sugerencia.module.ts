@@ -5,6 +5,7 @@ import { SugerenciaRoutingModule } from './sugerencia-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NuevaSugerenciaComponent } from './componentes/nueva-sugerencia/nueva-sugerencia.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [ListaSugerenciaComponent, NuevaSugerenciaComponent],
@@ -12,6 +13,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SugerenciaRoutingModule,
     NgxPaginationModule,
+    HttpClientModule,
     FormsModule,
   ],
 })

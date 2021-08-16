@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { NuevaSugerenciaComponent } from './nueva-sugerencia.component';
 
@@ -8,7 +9,8 @@ describe('NuevaSugerenciaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NuevaSugerenciaComponent ]
+      declarations: [ NuevaSugerenciaComponent ],
+      providers: [NgbActiveModal]
     })
     .compileComponents();
   });

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { VerCursoComponent } from './ver-curso.component';
 
@@ -8,7 +9,8 @@ describe('VerCursoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VerCursoComponent ]
+      declarations: [ VerCursoComponent ],
+      providers: [ActivatedRoute, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
     })
     .compileComponents();
   });
