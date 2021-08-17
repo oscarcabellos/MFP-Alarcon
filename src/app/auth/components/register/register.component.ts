@@ -113,8 +113,7 @@ export class RegisterComponent implements OnInit {
         title: 'Registro exitoso',
         text: `La cuenta se ha creado con exito`,
         icon: 'success',
-        confirmButtonColor: '#2F6DF2',
-        timer: 1500,
+        confirmButtonColor: '#2F6DF2'
       });
       this.router.navigate(['user/login']);
     });
