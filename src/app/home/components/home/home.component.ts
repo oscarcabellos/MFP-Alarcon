@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from 'src/app/curso/modelo/curso';
 import { CursoService } from '../../services/curso.service';
+import { SugerenciaService } from '../../services/sugerencia.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,14 @@ import { CursoService } from '../../services/curso.service';
 export class HomeComponent implements OnInit {
   cursos: Curso[] = [];
   sugerencias = [1, 2, 3];
-  constructor(private readonly cursoService: CursoService) {}
+  constructor(
+    private readonly cursoService: CursoService,
+    private readonly sugerenciaService: SugerenciaService
+  ) {}
 
   ngOnInit(): void {
     this.listarCursos();
+    this.listarSugerencias();
   }
 
   /**
@@ -32,9 +37,12 @@ export class HomeComponent implements OnInit {
    * @returns {Boolean} Validacipon si esta logeado
    */
   estaRegistrado() {
-    if (+sessionStorage.getItem('usuario_id') !== 0) {
-      return true;
-    }
-    return false;
+    return +sessionStorage.getItem('usuario_id') !== 0;
+  }
+
+  listarSugerencias() {
+    this.sugerenciaService.listarSugerencias().subscribe((x) => {
+      console.log(x);
+    });
   }
 }

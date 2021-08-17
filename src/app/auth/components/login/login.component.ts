@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
       this.signForm.get('correo').invalid && this.signForm.get('correo').touched
     );
   }
-  
+
   /* Obtencion al colocar una contraseña invalida */
   get passwordNoValido() {
     return (
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
       this.signForm.get('password').touched
     );
   }
-  
+
   /* Metodo para apoyar y definir el validar los formularios */
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((field) => {

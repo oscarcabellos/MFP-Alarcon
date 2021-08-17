@@ -42,7 +42,13 @@
                 <ng-template #nocurso>
                   <button
                     class="btn btn-warning"
-                    (click)="unirCurso(curso?.curso_id, curso?.privacidad_id)"
+                    (click)="
+                      unirCurso(
+                        curso?.curso_id,
+                        curso?.privacidad_id,
+                        curso?.usuario_id
+                      )
+                    "
                     [disabled]="usuarioNoRegistrado"
                   >
                     {{

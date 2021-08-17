@@ -79,19 +79,21 @@ export class VerCursoComponent implements OnInit {
     });
   }
 
-  unirCurso(id: number, idPrivacidad: number) {
+  unirCurso(id: number, idPrivacidad: number, usuarioId: number) {
     if (sessionStorage.getItem('correo') != null) {
       if (idPrivacidad === CURSO_PUBLICO) {
         this.cursoService
           .agrearUsuarioCurso(id, sessionStorage.getItem('correo'))
           .subscribe((x) => {
-            console.log('dsvaadv', x);
             Swal.fire({
               title: 'Se unió al curso',
               icon: 'success',
               showConfirmButton: false,
               width: '20rem',
-              timer: 1500,
+              timer: 1000,
+            }).then((x) => {
+              console.log('dvasvd');
+              this.router.navigate(['/cursos/curso', usuarioId, id]);
             });
           });
       } else if (idPrivacidad === CURSO_CON_INVITACION) {
@@ -111,7 +113,7 @@ export class VerCursoComponent implements OnInit {
   listarCursoUsuario(id: number, idCurso: number) {
     this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
       this.esAlumnoCurso =
-        x['data'].find((c) => c?.curso_id === idCurso) !== 'undefined';
+        x['data'].find((c) => c?.curso_id === idCurso) !== undefined;
     });
   }
 }
