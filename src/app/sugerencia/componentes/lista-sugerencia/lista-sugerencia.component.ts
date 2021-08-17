@@ -12,7 +12,14 @@ import { Categoria } from 'src/app/curso/modelo/categoria';
   styleUrls: ['./lista-sugerencia.component.css'],
 })
 export class ListaSugerenciaComponent implements OnInit {
-  categorias: Categoria[] = [];
+  categorias: Categoria[] = [
+    {
+      categoria_id: 0,
+      categoria_nombre: 'Todas las categorias',
+      categoria_estado: null,
+      categoria_fecha_creacion: null,
+    },
+  ];
   sugerenciasIniciales: Sugerencia[];
   sugerencias: Sugerencia[];
   pageActual: number;
@@ -20,6 +27,7 @@ export class ListaSugerenciaComponent implements OnInit {
   nextLabel = 'Siguiente';
   responsive: boolean;
   sugerenciaFiltro: string;
+  usuarioRegistrado: boolean;
 
   constructor(
     private readonly modalService: NgbModal,
@@ -31,6 +39,9 @@ export class ListaSugerenciaComponent implements OnInit {
     this.pageActual = 1;
     this.responsive = true;
     this.sugerenciaFiltro = '';
+    this.usuarioRegistrado = +sessionStorage.getItem('usuario_id') !== 0;
+    console.log(this.usuarioRegistrado);
+
     this.listarSugerencias();
     this.listarCategorias();
   }
@@ -69,9 +80,13 @@ export class ListaSugerenciaComponent implements OnInit {
    * @param id {Number} - Identiicador de la categoria
    */
   actualizarCategoria(categoria) {
-    this.sugerencias = this.sugerenciasIniciales.filter(
-      (c) => c?.categoria_id === categoria?.categoria_id
-    );
+    if (categoria?.categoria_id === 0) {
+      this.sugerencias = this.sugerenciasIniciales;
+    } else {
+      this.sugerencias = this.sugerenciasIniciales.filter(
+        (c) => c?.categoria_id === categoria?.categoria_id
+      );
+    }
   }
 
   /**
@@ -90,7 +105,9 @@ export class ListaSugerenciaComponent implements OnInit {
   listarCategorias() {
     this.categoriaService
       .listarCategorias()
-      .subscribe((x) => (this.categorias = x['categories']));
+      .subscribe(
+        (x) => (this.categorias = this.categorias.concat(x['categories']))
+      );
   }
 
   /**
