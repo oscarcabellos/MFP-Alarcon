@@ -84,7 +84,7 @@ export class VerCursoComponent implements OnInit {
           .agrearUsuarioCurso(id, sessionStorage.getItem('correo'))
           .subscribe((x) => {
             Swal.fire({
-              title: 'Se unió a un curso',
+              title: 'Se unió al curso',
               icon: 'success',
               showConfirmButton: false,
               width: '20rem',
