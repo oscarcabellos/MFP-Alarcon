@@ -78,11 +78,12 @@
                 {{ usuario?.usuario_nombre }} {{ usuario?.usuario_apellidos }}
               </td>
               <td class="align-middle">{{ usuario?.correo }}</td>
-              <td class="align-middle">Activo</td>
+              <td class="align-middle">{{ obtenerEstado(usuario) }}</td>
               <td class="align-middle" *ngIf="usuarioProfesor">
                 <button
                   class="btn btn-danger"
                   (click)="eliminarUsuario(usuario?.usuario_id)"
+                  [disabled]="usuario?.situacion_id !== 1"
                 >
                   x
                 </button>

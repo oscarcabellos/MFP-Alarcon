@@ -66,7 +66,6 @@ export class VerCursoComponent implements OnInit {
       if (this.cursos?.length > 3) {
         this.cursos = [this.cursos[0], this.cursos[1], this.cursos[2]];
       }
-      console.log(this.cursos);
     });
   }
 

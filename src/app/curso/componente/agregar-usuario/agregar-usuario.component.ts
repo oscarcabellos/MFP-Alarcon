@@ -16,10 +16,7 @@ export class AgregarUsuarioComponent implements OnInit {
   usuarios: Usuario[] = [];
   agregarForm: FormGroup;
   totalAlumnos: number;
-  activo = 1;
-  pendienteProfesor = 2;
-  pendienteUsuario = 3;
-  variableProbar = 3;
+
   constructor(
     private readonly cursoService: CursoService,
     private readonly formBuilder: FormBuilder,
@@ -192,5 +189,17 @@ export class AgregarUsuarioComponent implements OnInit {
         title: 'Descargando...',
       });
     });
+  }
+
+  obtenerEstado(usuario) {
+    if (usuario?.situacion_id === 1) {
+      return 'Activo';
+    }
+    if (usuario?.situacion_id === 2) {
+      return 'Denegado';
+    }
+    if (usuario?.situacion_id === 3) {
+      return 'Pendiente';
+    }
   }
 }

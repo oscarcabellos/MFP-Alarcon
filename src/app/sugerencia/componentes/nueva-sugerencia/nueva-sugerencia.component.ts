@@ -15,6 +15,7 @@ export class NuevaSugerenciaComponent implements OnInit {
   descripcion: string;
   categorias: Categoria[];
   categoria: number;
+  nombre: string;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -34,11 +35,9 @@ export class NuevaSugerenciaComponent implements OnInit {
   guardarSugerencia() {
     const sugerencia: Sugerencia = new Sugerencia();
     sugerencia.categoria_id = this.categoria;
-    /* sugerencia.sugerencia_nombre_curso = 'prueba'; */
-    /* sugerencia.sugerencia_puntuacion_curso = 8; */
-    /* sugerencia.numero_votos = 3; */
-    /* sugerencia.sugerencia_estado = 'Entregado'; */
+    sugerencia.sugerencia_nombre_curso = this.nombre;
     sugerencia.descripcion = this.descripcion;
+    console.log(sugerencia);
 
     this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp) => {
       console.log(resp);

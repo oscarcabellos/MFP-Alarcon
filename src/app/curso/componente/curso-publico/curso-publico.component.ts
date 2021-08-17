@@ -33,8 +33,6 @@ export class CursoPublicoComponent implements OnInit {
 
   listarCursos() {
     this.cursoService.listarCursosPublicos().subscribe((x) => {
-      console.log(x);
-      
       this.cursos = x['cursos'];
     });
   }

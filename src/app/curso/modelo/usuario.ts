@@ -5,6 +5,6 @@ export class Usuario {
   password: string;
   correo: string;
   url: string;
-  situacion: number;
+  situacion_id: number;
   descripcion: string;
 }

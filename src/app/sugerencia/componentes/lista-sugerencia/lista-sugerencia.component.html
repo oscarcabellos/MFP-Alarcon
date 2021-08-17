@@ -1,6 +1,6 @@
 <div class="container-lg mt-5">
   <div class="row">
-    <div class="col-12 col-md-4 mt-5 d-none d-md-block">
+    <div class="col-12 col-md-3 mt-5 d-none d-md-block">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1"
@@ -28,13 +28,10 @@
           *ngFor="let c of categorias"
         >
           <span>{{ c?.categoria_nombre }}</span>
-          <span class="badge bg-primary text-white p-2">{{
-            c?.categoria_id
-          }}</span>
         </button>
       </div>
     </div>
-    <div class="col-12 col-md-8 mt-5">
+    <div class="col-12 col-md-9 mt-5">
       <div class="d-flex justify-content-between">
         <input
           type="text"
@@ -59,19 +56,22 @@
         "
       >
         <div class="card-body">
-          <h4 class="card-title">{{ s?.sugerencia_nombre_curso }}</h4>
+          <div
+            class="card-title d-flex justify-content-between align-items-center"
+          >
+            <h4 class="">{{ s?.sugerencia_nombre_curso }}</h4>
+            <h6 class="card-subtitle text-muted">
+              {{ getNombreCategoria(s?.categoria_id) }}
+            </h6>
+          </div>
+
           <hr />
-          <h6 class="card-subtitle mb-2 text-muted">
-            {{ getNombreCategoria(s?.categoria_id) }}
-          </h6>
+
           <p class="card-text">
-            contenido de la sugerencia. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Asperiores a minus modi maiores? Dolorem esse
-            sequi harum incidunt saepe, corporis fuga. Corporis explicabo
-            nesciunt deserunt iusto natus porro obcaecati repudiandae.
+            {{ s?.descripcion }}
           </p>
           <div class="d-flex justify-content-between align-items-center">
-            <span>21/07/2021</span>
+            <span>{{ s?.sugerencia_fecha_creacion }}</span>
             <span class="h4 align-items-center"
               ><em
                 id="favorito{{ i }}"

@@ -5,4 +5,5 @@ export class Sugerencia {
   numero_votos: number;
   sugerencia_estado: string;
   descripcion: string;
+  sugerencia_fecha_creacion: Date;
 }

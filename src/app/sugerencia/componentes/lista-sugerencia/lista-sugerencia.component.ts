@@ -13,6 +13,7 @@ import { Categoria } from 'src/app/curso/modelo/categoria';
 })
 export class ListaSugerenciaComponent implements OnInit {
   categorias: Categoria[] = [];
+  sugerenciasIniciales: Sugerencia[];
   sugerencias: Sugerencia[];
   pageActual: number;
   previousLabel = 'Anterior';
@@ -67,8 +68,10 @@ export class ListaSugerenciaComponent implements OnInit {
    * Función para filtrar la busqueda por la categoria seleccionada
    * @param id {Number} - Identiicador de la categoria
    */
-  actualizarCategoria(id) {
-    alert(id);
+  actualizarCategoria(categoria) {
+    this.sugerencias = this.sugerenciasIniciales.filter(
+      (c) => c?.categoria_id === categoria?.categoria_id
+    );
   }
 
   /**
@@ -77,6 +80,7 @@ export class ListaSugerenciaComponent implements OnInit {
   listarSugerencias() {
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
       this.sugerencias = x['list'];
+      this.sugerenciasIniciales = x['list'];
     });
   }
 
