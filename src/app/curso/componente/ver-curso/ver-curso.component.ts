@@ -20,7 +20,8 @@ export class VerCursoComponent implements OnInit {
   cursos: Curso[];
   usuarioNoRegistrado: boolean;
   categoria: Categoria;
-  perteneceCurso: boolean;
+  esProfesorCurso: boolean;
+  esAlumnoCurso: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +34,7 @@ export class VerCursoComponent implements OnInit {
   ngOnInit(): void {
     let id = +this.route.snapshot.paramMap.get('id');
     this.cursos = [];
-    this.perteneceCurso = false;
+    this.esProfesorCurso = false;
     this.listarCurso(id);
     if (+sessionStorage.getItem('usuario_id') != 0) {
       this.usuarioNoRegistrado = false;
@@ -45,11 +46,14 @@ export class VerCursoComponent implements OnInit {
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
       this.curso = x['data'];
-      this.perteneceCurso =
+      this.esProfesorCurso =
         x['data']['usuario_id'] === +sessionStorage.getItem('usuario_id');
       this.obtenerUsuario(x['data']['usuario_id']);
       this.listarCursos(x['data']['usuario_id'], id);
       this.buscarCategoria(x['data']['categoria_id']);
+      if (!this.usuarioNoRegistrado) {
+        this.listarCursoUsuario(+sessionStorage.getItem('usuario_id'), id);
+      }
     });
   }
 
@@ -81,6 +85,7 @@ export class VerCursoComponent implements OnInit {
         this.cursoService
           .agrearUsuarioCurso(id, sessionStorage.getItem('correo'))
           .subscribe((x) => {
+            console.log('dsvaadv', x);
             Swal.fire({
               title: 'Se unió al curso',
               icon: 'success',
@@ -100,6 +105,13 @@ export class VerCursoComponent implements OnInit {
   buscarCategoria(id: number) {
     this.categoriaService.getCategoria(id).subscribe((x) => {
       this.categoria = x['categories'][0];
+    });
+  }
+
+  listarCursoUsuario(id: number, idCurso: number) {
+    this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
+      this.esAlumnoCurso =
+        x['data'].find((c) => c?.curso_id === idCurso) !== 'undefined';
     });
   }
 }

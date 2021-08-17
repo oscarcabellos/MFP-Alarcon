@@ -77,13 +77,13 @@
               <button
                 class="btn"
                 [ngClass]="{
-                  'btn-outline-warning': i === 2,
-                  'btn-warning': i !== 2
+                  'btn-outline-danger': !fakeVotacionesEstado[i],
+                  'btn-danger': fakeVotacionesEstado[i]
                 }"
                 (click)="cambiarEstado(i)"
                 *ngIf="usuarioRegistrado"
               >
-                <em id="favorito{{ i }}" class="h5 sobre uil uil-star"></em>
+                <em id="favorito{{ i }}" class="h5 uil uil-heart"></em>
               </button>
               <em
                 id="favorito{{ i }}"

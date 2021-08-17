@@ -29,6 +29,23 @@ export class ListaSugerenciaComponent implements OnInit {
   sugerenciaFiltro: string;
   usuarioRegistrado: boolean;
 
+  fakeVotacionesEstado = [
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+  ];
   constructor(
     private readonly modalService: NgbModal,
     private readonly sugerenciaService: SugerenciaService,
@@ -72,7 +89,7 @@ export class ListaSugerenciaComponent implements OnInit {
    * @param id Identificador de la sugerencia
    */
   cambiarEstado(id: number) {
-    document.getElementById(`favorito${id}`).classList.toggle('presionado');
+    this.fakeVotacionesEstado[id] = !this.fakeVotacionesEstado[id];
   }
 
   /**
