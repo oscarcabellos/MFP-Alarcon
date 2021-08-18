@@ -190,6 +190,11 @@ export class AgregarUsuarioComponent implements OnInit {
     });
   }
 
+  /**
+   * Función para obtener el estado de un usuario respecto a un curso
+   * @param usuario Objeto con la informacion de un usuario
+   * @returns Cadena con el nombre del estado
+   */
   obtenerEstado(usuario) {
     if (usuario?.situacion_id === 1) {
       return 'Activo';

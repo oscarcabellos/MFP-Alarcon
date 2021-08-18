@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // Codigo de inicializacion del componente
   }
+
   /**
    * Función para cerrar sesión
    */

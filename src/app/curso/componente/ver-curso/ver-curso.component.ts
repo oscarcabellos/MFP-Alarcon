@@ -36,13 +36,13 @@ export class VerCursoComponent implements OnInit {
     this.cursos = [];
     this.esProfesorCurso = false;
     this.listarCurso(id);
-    if (+sessionStorage.getItem('usuario_id') != 0) {
-      this.usuarioNoRegistrado = false;
-    } else {
-      this.usuarioNoRegistrado = true;
-    }
+    this.usuarioNoRegistrado = +sessionStorage.getItem('usuario_id') === 0;
   }
 
+  /**
+   * Función para obtener la información de un curso en particular
+   * @param id Identificador del curso actual
+   */
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
       this.curso = x['data'];
@@ -57,12 +57,21 @@ export class VerCursoComponent implements OnInit {
     });
   }
 
+  /**
+   * Función para obtener la información de un usuario
+   * @param id Identificador del usuario
+   */
   obtenerUsuario(id: number) {
     this.usuarioService
       .obtenerUsuario(id)
       .subscribe((x) => (this.usuario = x['user'][0]));
   }
 
+  /**
+   * Función para listar todos los cursos que creo de un usuario
+   * @param id Identificador del usuario
+   * @param cursoId Identificador del curso actual
+   */
   listarCursos(id: number, cursoId: number) {
     this.cursoService.listarCursosPublicosPorUsuario(id).subscribe((x) => {
       this.cursos = x['cursos'];
@@ -73,12 +82,22 @@ export class VerCursoComponent implements OnInit {
     });
   }
 
+  /**
+   * Función para ver la información de un curso
+   * @param id Identificador del curso
+   */
   verCurso(id: number) {
     this.router.navigate([`cursos/curso/vista/${id}`]).then(() => {
       window.location.reload();
     });
   }
 
+  /**
+   * Función para agregar un usuario a un curso
+   * @param id Identificador del curso
+   * @param idPrivacidad Identificador de privacidad del curso
+   * @param usuarioId Identficador del profesor del curso
+   */
   unirCurso(id: number, idPrivacidad: number, usuarioId: number) {
     if (sessionStorage.getItem('correo') != null) {
       if (idPrivacidad === CURSO_PUBLICO) {
@@ -103,12 +122,21 @@ export class VerCursoComponent implements OnInit {
     }
   }
 
+  /**
+   * función para obtener la información de una categoria
+   * @param id Identificador de la categoria
+   */
   buscarCategoria(id: number) {
     this.categoriaService.getCategoria(id).subscribe((x) => {
       this.categoria = x['categories'][0];
     });
   }
 
+  /**
+   * Función para listar todos los cursos donde es alumno
+   * @param id Identificador del usuario
+   * @param idCurso Identificador del curso actual
+   */
   listarCursoUsuario(id: number, idCurso: number) {
     this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
       this.esAlumnoCurso =
