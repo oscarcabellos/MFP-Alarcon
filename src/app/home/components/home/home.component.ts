@@ -41,8 +41,6 @@ export class HomeComponent implements OnInit {
   }
 
   listarSugerencias() {
-    this.sugerenciaService.listarSugerencias().subscribe((x) => {
-      console.log(x);
-    });
+    this.sugerenciaService.listarSugerencias().subscribe((x) => {});
   }
 }

@@ -100,15 +100,14 @@ export class ListaCursoComponent implements OnInit {
    */
   descargarlista(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
-      if(x['data'].length == 0){
-        console.log("sin alumnos");
+      if (x['data'].length == 0) {
         Swal.fire({
           title: 'Lista de alumnos vacia',
           text: `No se puede descargar un excel sin alumnos en el curso`,
           icon: 'error',
-          confirmButtonColor: '#2F6DF2'
+          confirmButtonColor: '#2F6DF2',
         });
-      }else{
+      } else {
         this.excelServices.exportAsExcelFile(x.data, 'ListaCurso');
       }
     });

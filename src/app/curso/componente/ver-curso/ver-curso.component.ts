@@ -92,7 +92,6 @@ export class VerCursoComponent implements OnInit {
               width: '20rem',
               timer: 1000,
             }).then((x) => {
-              console.log('dvasvd');
               this.router.navigate(['/cursos/curso', usuarioId, id]);
             });
           });

@@ -57,7 +57,6 @@ export class ListaSugerenciaComponent implements OnInit {
     this.responsive = true;
     this.sugerenciaFiltro = '';
     this.usuarioRegistrado = +sessionStorage.getItem('usuario_id') !== 0;
-    console.log(this.usuarioRegistrado);
 
     this.listarSugerencias();
     this.listarCategorias();
