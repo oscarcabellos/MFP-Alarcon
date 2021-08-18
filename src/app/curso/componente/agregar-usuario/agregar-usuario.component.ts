@@ -46,8 +46,9 @@ export class AgregarUsuarioComponent implements OnInit {
    */
   listarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
-      this.usuarios = x['data'];
-      this.totalAlumnos = x['data'].length;
+      this.usuarios = x['data'][0];
+      this.totalAlumnos = x['data'][0].length;
+      console.log(x['data'][0]);
     });
   }
 
