@@ -5,6 +5,12 @@ import { Component, OnInit } from '@angular/core';
 import { CloudBinaryService }  from '../../../services/cloud-binary.service';
 import { NewUsuarioService } from '../../servicios/editarperfil.service'
 import { CursoService } from '../../../curso/servicios/curso.service'
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 /* Elementos del coponente para definir sus rutas especificas de valores */
 @Component({
@@ -18,6 +24,8 @@ import { CursoService } from '../../../curso/servicios/curso.service'
 
 /* Exportaciones del componente */
 export class ProfileComponent implements OnInit {
+
+  // perfilForm: FormGroup;
 
   /* Atributos principales que se muestran en el perfil */
   correo: any;
@@ -40,18 +48,22 @@ export class ProfileComponent implements OnInit {
 
   /* Variable para el cambio al presionar el boton */
   cambio: boolean;
-  certificados = [1, 2, 3];
 
   /* Las constantes del constructor son los datos del usuario en cuestion, obtenidos al importar las funciones
   necesarias en fin de obtener los datos */
-  constructor(public cloudBinaryService: CloudBinaryService, public newUsuarioService: NewUsuarioService, public cursoService: CursoService) {
-    this.cambio = false;
-    this.correo = sessionStorage.getItem("correo");
-    this.url = sessionStorage.getItem("url");
-    this.usuario_apellidos = sessionStorage.getItem("usuario_apellidos");
-    this.usuario_id = sessionStorage.getItem("usuario_id");
-    this.usuario_nombre = sessionStorage.getItem("usuario_nombre");
-    this.descripcion = sessionStorage.getItem("descripcion");
+  constructor(
+    public cloudBinaryService: CloudBinaryService, 
+    public newUsuarioService: NewUsuarioService, 
+    public cursoService: CursoService,
+    // private formBuilder: FormBuilder
+    ) {
+      this.cambio = false;
+      this.correo = sessionStorage.getItem("correo");
+      this.url = sessionStorage.getItem("url");
+      this.usuario_apellidos = sessionStorage.getItem("usuario_apellidos");
+      this.usuario_id = sessionStorage.getItem("usuario_id");
+      this.usuario_nombre = sessionStorage.getItem("usuario_nombre");
+      this.descripcion = sessionStorage.getItem("descripcion");
   }
 
   /* En esta parte se obtienen los cursos matriculados de cada usuario */
@@ -59,7 +71,25 @@ export class ProfileComponent implements OnInit {
     this.cursoService.listarCursosPorUsuario2(this.usuario_id).subscribe(rep=>{
       this.cursosm = rep["data"].length;
     })
+
+    /* this.perfilForm = this.formBuilder.group({
+      usuario_nombre: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(30)
+        ],
+      ],
+    });*/
   }
+
+  /* get nombreNoValido() {
+    return (
+      this.perfilForm.get('usuario_nombre').invalid &&
+      this.perfilForm.get('usuario_nombre').touched
+    );
+  } */
 
   /* Funcion para el cambio al presionar el boton */
   modificarDatos() {

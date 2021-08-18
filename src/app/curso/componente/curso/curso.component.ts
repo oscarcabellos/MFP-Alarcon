@@ -19,6 +19,7 @@ export class CursoComponent implements OnInit {
 
   ngOnInit(): void {
     this.idCurso = +this.route.snapshot.paramMap.get('idcurso');
+    localStorage.setItem('idcurso', String(this.idCurso));
     this.usuarioId = +sessionStorage.getItem('usuario_id');
     this.obtenerCurso(this.idCurso);
     this.pertenece =
