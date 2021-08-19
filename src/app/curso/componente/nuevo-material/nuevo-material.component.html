@@ -1,3 +1,7 @@
+<!--El presente archivo es el contenido HTML del componente de una nueva tarea-->
+
+<!--La presente etiqueta es el encabezado del formato para realizar una nueva tarea en determinado curso
+y enviarla-->
 <div class="modal-header">
   <h5 class="modal-title">{{ tarea ? "Nueva Tarea" : "Nuevo Material" }}</h5>
   <button
@@ -11,20 +15,22 @@
   </button>
 </div>
 
+<!--La etiqueta siguiente corresponde al cuerpo del formato para realizar las tareas, con los respectivos
+datos de una tarea-->
 <div class="modal-body">
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-6 my-2">
         <label for="">Nombre de la tarea</label>
-        <input type="text" class="form-control" name="" id="" ngbAutofocus />
+        <input [(ngModel)]="objeto.nombre" type="text" class="form-control" name="" id="" ngbAutofocus />
       </div>
       <div class="col-12 my-2">
         <label for="">Descripcion</label>
-        <textarea name="" class="form-control" id="" rows="4"></textarea>
+        <textarea [(ngModel)]="objeto.descripcion" class="form-control" id="" rows="4"></textarea>
       </div>
       <div class="col-12 col-lg-6 my-2" *ngIf="tarea">
         <label for="">Fecha de entrega</label>
-        <input type="date" name="" class="form-control" id="" />
+        <input [(ngModel)]="objeto.tarea_fecha_entrega" type="date" name="" class="form-control" id="" />
       </div>
       <div class="col-12 my-2">
         <div class="input-group">
@@ -33,6 +39,7 @@
           </div>
           <div class="custom-file">
             <input
+              (change)="modificarImagen($event)"
               type="file"
               lang="es"
               class="custom-file-input"
@@ -68,12 +75,12 @@
       </div>
       <div class="col-12 my-2">
         <label for="">Enlace (URL)</label>
-        <input type="text" class="form-control" name="" id="" />
+        <input [(ngModel)]="objeto.enlace" type="text" class="form-control" name="" id="" />
       </div>
     </div>
   </div>
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary">Guardar</button>
+  <button (click)="guardarTarea()" type="button" class="btn btn-secondary">Guardar</button>
 </div>
