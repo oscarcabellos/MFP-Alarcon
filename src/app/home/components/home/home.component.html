@@ -84,16 +84,15 @@
       <h3 class="text-center">Mejores sugerencias</h3>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="sugerencias?.length > 0">
     <div class="col-12 col-md-4 col-md-4" *ngFor="let s of sugerencias">
       <div class="card border-info mb-3 bg-light">
         <div class="card-body my-3">
-          <h4 class="card-title text-center">Primary card title</h4>
+          <h4 class="card-title text-center">
+            {{ s?.sugerencia_nombre_curso }}
+          </h4>
           <p class="card-text text-center">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet neque
-            quia eveniet enim provident adipisci eligendi autem magni commodi in
-            rerum deserunt nihil ullam dolorem magnam fugit, vitae temporibus.
-            Dignissimos.
+            {{ s?.descripcion }}
           </p>
           <div class="row justify-content-center">
             <em class="uil uil-star h2"></em>
