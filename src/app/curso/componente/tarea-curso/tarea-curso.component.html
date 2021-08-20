@@ -29,37 +29,35 @@
         "
         id="{{ 'heading' + t }}"
       >
-        <span>Tarea 1</span>
+        <span>{{t.nombre}}</span>
         <div>
-          <button class="btn btn-primary mr-2" (click)="openModalEntregas(t)">
+          <button *ngIf="usuarioProfesor" class="btn btn-primary mr-2" (click)="openModalEntregas(t)">
             <span>Ver entregas</span>
+          </button>
+          <button *ngIf="usuarioProfesor" class="btn btn-primary mr-2" data-toggle="modal" data-target="#exampleModal">
+            <span>Notificar</span>
           </button>
           <button
             class="btn btn-primary"
             data-toggle="collapse"
-            [attr.data-target]="'#collapse' + t"
+            [attr.data-target]="'#collapse' + t.tarea_id"
             aria-expanded="false"
-            aria-controls="{{ 'collapse' + t }}"
+            aria-controls="{{ 'collapse' + t.tarea_id }}"
           >
             <span>Mas infromación</span>
           </button>
         </div>
       </div>
       <div
-        id="{{ 'collapse' + t }}"
+        id="{{ 'collapse' + t.tarea_id }}"
         class="collapse"
-        aria-labelledby="{{ 'heading' + t }}"
+        aria-labelledby="{{ 'heading' + t.tarea_id }}"
         data-parent="#accordion"
       >
         <div class="container m-3">
           <div class="row">
             <div class="col-12">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
-              consectetur voluptatem ducimus rem fuga commodi molestias enim vel
-              sed sit placeat libero possimus at dolorum distinctio aliquam
-              deserunt fugiat suscipit quia impedit, repellendus exercitationem
-              quis? Nulla molestias quae optio nisi necessitatibus voluptate
-              veritatis eum temporibus. Quae quo optio molestiae corrupti.
+              {{t.descripcion}}
             </div>
             <div class="col-12 col-md-6 ml-auto m-4">
               <div class="input-group">
@@ -80,7 +78,7 @@
                     class="btn btn-outline-dark"
                     type="button"
                     id="inputGroupFileAddon04"
-                    (click)="entregar(t)"
+                    
                   >
                     Entregar
                   </button>
@@ -89,6 +87,31 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Notificar Alumnos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>Mensaje para los alumnos: </span>
+        <div></div>
+        <br>
+        <textarea name="" id="" class="form-control" rows="5"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Enviar</button>
       </div>
     </div>
   </div>

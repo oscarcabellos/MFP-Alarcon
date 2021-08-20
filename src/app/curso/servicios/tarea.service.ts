@@ -24,7 +24,7 @@ export class TareaService extends AppServiceBase {
    * @returns Listado con las tareas del curso
    */
   listarTareaCurso(id: number): Observable<any> {
-    return this.get(`list-task/${id}`).pipe(catchError(this.handleError));
+    return this.get(`listarTareasCurso/${id}`).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -12,7 +12,7 @@ import { VerEntregaTareaComponent } from '../ver-entrega-tarea/ver-entrega-tarea
 })
 export class TareaCursoComponent implements OnInit {
   @Input() usuarioProfesor: boolean;
-
+  @Input() cursoId: number;
   tareas: Tarea[];
   constructor(
     private modalService: NgbModal,
@@ -20,8 +20,14 @@ export class TareaCursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listarTareas(1);
+    this.listarTareas(this.cursoId);
   }
+
+  initForm() {
+    
+  }
+
+
   entregar(id: number) {
     alert('Entregado ' + id);
   }
@@ -67,6 +73,10 @@ export class TareaCursoComponent implements OnInit {
   }
 
   listarTareas(id: number) {
-    this.tareaService.listarTareaCurso(id).subscribe((x) => console.log(x));
+    this.tareaService.listarTareaCurso(id).subscribe((x) => {
+      
+      console.log(x['tareas']);
+      this.tareas=x['tareas'];
+    });
   }
 }

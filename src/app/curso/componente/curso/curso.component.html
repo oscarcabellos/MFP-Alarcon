@@ -66,7 +66,9 @@
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <app-tarea-curso [usuarioProfesor]="pertenece"></app-tarea-curso>
+          <app-tarea-curso 
+            [cursoId]="idCurso"
+            [usuarioProfesor]="pertenece"></app-tarea-curso>
         </div>
         <div
           class="tab-pane fade"
