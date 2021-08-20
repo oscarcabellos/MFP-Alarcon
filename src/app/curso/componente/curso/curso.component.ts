@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CursoService } from '../../servicios/curso.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class CursoComponent implements OnInit {
   nombreCurso: string;
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly cursoService: CursoService
+    private readonly cursoService: CursoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +26,7 @@ export class CursoComponent implements OnInit {
     this.pertenece =
       this.usuarioId === +this.route.snapshot.paramMap.get('iduser');
   }
+
   /**
    * Función para obtener la información del curso
    * @param id {Number} - Identificador del curso

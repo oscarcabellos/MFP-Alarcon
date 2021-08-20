@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from 'src/app/curso/modelo/curso';
+import { Sugerencia } from 'src/app/sugerencia/modelos/sugerencia';
 import { CursoService } from '../../services/curso.service';
 import { SugerenciaService } from '../../services/sugerencia.service';
 
@@ -10,7 +11,7 @@ import { SugerenciaService } from '../../services/sugerencia.service';
 })
 export class HomeComponent implements OnInit {
   cursos: Curso[] = [];
-  sugerencias = [1, 2, 3];
+  sugerencias: Sugerencia[];
   constructor(
     private readonly cursoService: CursoService,
     private readonly sugerenciaService: SugerenciaService
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit {
 
   listarSugerencias() {
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
+      this.sugerencias = x;
       console.log(x);
     });
   }

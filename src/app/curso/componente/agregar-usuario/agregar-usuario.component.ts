@@ -46,9 +46,9 @@ export class AgregarUsuarioComponent implements OnInit {
    */
   listarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
-      this.usuarios = x['data'];
-      this.totalAlumnos = x['data'].length;
-      console.log(x);
+      this.usuarios = x['data'][0];
+      this.totalAlumnos = x['data'][0].length;
+      console.log(x['data'][0]);
     });
   }
 
@@ -191,6 +191,11 @@ export class AgregarUsuarioComponent implements OnInit {
     });
   }
 
+  /**
+   * Función para obtener el estado de un usuario respecto a un curso
+   * @param usuario Objeto con la informacion de un usuario
+   * @returns Cadena con el nombre del estado
+   */
   obtenerEstado(usuario) {
     if (usuario?.situacion_id === 1) {
       return 'Activo';

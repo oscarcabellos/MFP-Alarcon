@@ -37,17 +37,15 @@ export class NuevaSugerenciaComponent implements OnInit {
     sugerencia.categoria_id = this.categoria;
     sugerencia.sugerencia_nombre_curso = this.nombre;
     sugerencia.descripcion = this.descripcion;
-    console.log(sugerencia);
 
     this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp) => {
-      console.log(resp);
       Swal.fire({
         title: 'Publicado',
         icon: 'success',
         showConfirmButton: false,
         width: '20rem',
         timer: 1500,
-      }).then((res) => {
+      }).then(() => {
         this.closeModal('cerrar');
       });
     });
