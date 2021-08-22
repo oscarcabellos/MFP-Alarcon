@@ -75,7 +75,6 @@ export class TareaCursoComponent implements OnInit {
 
   listarTareas(id: number) {
     this.tareaService.listarTareaCurso(id).subscribe((x) => {
-      console.log(x['tareas']);
       this.tareas = x['tareas'];
     });
   }

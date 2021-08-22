@@ -67,8 +67,6 @@ export class NuevoMaterialComponent implements OnInit {
   }
 
   actualizarTarea() {
-    console.log(this.objeto);
-
     this.tareaService
       .actualizarTarea(this.objeto.tarea_id, this.objeto)
       .subscribe((x) => {

@@ -27,9 +27,7 @@ export class HomeComponent implements OnInit {
    */
   listarCursos() {
     this.cursoService.listarCursosPublicos().subscribe((x) => {
-      for (let i = 1; i <= 4; i++) {
-        this.cursos.push(x['cursos'][i]);
-      }
+      this.cursos = x['cursos'];
     });
   }
 
@@ -44,7 +42,6 @@ export class HomeComponent implements OnInit {
   listarSugerencias() {
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
       this.sugerencias = x;
-      console.log(x);
     });
   }
 }
