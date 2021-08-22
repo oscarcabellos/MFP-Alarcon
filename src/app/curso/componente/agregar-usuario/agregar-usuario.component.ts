@@ -163,7 +163,6 @@ export class AgregarUsuarioComponent implements OnInit {
         });
       }
     });
-    this.usuarios = this.usuarios.filter((u) => u.usuario_id !== id);
   }
 
   /**

@@ -10,7 +10,7 @@ import { NuevoMaterialComponent } from '../nuevo-material/nuevo-material.compone
 export class MaterialCursoComponent implements OnInit {
   @Input() usuarioProfesor: boolean;
 
-  material = [1, 2, 3, 4, 5, 5];
+  material = [];
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {

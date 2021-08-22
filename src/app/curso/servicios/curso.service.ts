@@ -9,8 +9,7 @@ import { Curso } from '../modelo/curso';
   providedIn: 'root',
 })
 export class CursoService {
-
-  urlApi:string = `${environment.api.baseUrl}`;
+  urlApi: string = `${environment.api.baseUrl}`;
 
   constructor(private http: HttpClient) {}
   /**
@@ -38,7 +37,9 @@ export class CursoService {
    * @returns Lista de cursos publicos
    */
   listarCursosPublicos(): Observable<any> {
-    return this.http.get(`${this.urlApi}coursespublic`).pipe(catchError(this.handleError));
+    return this.http
+      .get(`${this.urlApi}coursespublic`)
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -47,7 +48,9 @@ export class CursoService {
    * @returns Datos del curso
    */
   obtenerCurso(id: number): Observable<any> {
-    return this.http.get(`${this.urlApi}courses/${id}`).pipe(catchError(this.handleError));
+    return this.http
+      .get(`${this.urlApi}courses/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -56,7 +59,9 @@ export class CursoService {
    * @returns Listado de usarios que pertenecen al curso
    */
   listarUsuariosPorCurso(id: number): Observable<any> {
-    return this.http.get(`${this.urlApi}course-user/${id}`).pipe(catchError(this.handleError));
+    return this.http
+      .get(`${this.urlApi}course-user/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -65,7 +70,9 @@ export class CursoService {
    * @returns Listado de cursos por usuario
    */
   listarCursosPorUsuario(id: number): Observable<any> {
-    return this.http.get(`${this.urlApi}cursos/${id}`).pipe(catchError(this.handleError));
+    return this.http
+      .get(`${this.urlApi}cursos/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -74,7 +81,9 @@ export class CursoService {
    * @returns Listado de cursos por usuario
    */
   listarCursosPorUsuario2(id: number): Observable<any> {
-    return this.http.get(`${this.urlApi}coursesofuser/${id}`).pipe(catchError(this.handleError));
+    return this.http
+      .get(`${this.urlApi}coursesofuser/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -84,9 +93,9 @@ export class CursoService {
    * @returns Mensaje de confirmación
    */
   agrearUsuarioCurso(idCurso: number, correo: string): Observable<any> {
-    return this.http.post(`${this.urlApi}coursesUsers`, { curso_id: idCurso, correo }).pipe(
-      catchError(this.handleError)
-    );
+    return this.http
+      .post(`${this.urlApi}coursesUsers`, { curso_id: idCurso, correo })
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -95,7 +104,9 @@ export class CursoService {
    * @returns Listado de cursos publicos de un usuario
    */
   listarCursosPublicosPorUsuario(id: number): Observable<any> {
-    return this.http.get(`${this.urlApi}coursespublic/${id}`).pipe(catchError(this.handleError));
+    return this.http
+      .get(`${this.urlApi}coursespublic/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -105,9 +116,15 @@ export class CursoService {
    * @returns Mensaje de confirmación
    */
   solicitarAcceso(curso_id, usuario_id): Observable<any> {
-    return this.http.post(`${this.urlApi}/solicitarCursoPrivado`, { curso_id, usuario_id }).pipe(
-      catchError(this.handleError)
-    );
+    return this.http
+      .post(`${this.urlApi}/solicitarCursoPrivado`, { curso_id, usuario_id })
+      .pipe(catchError(this.handleError));
+  }
+
+  editarCurso(idCurso: number, curso: Curso) {
+    return this.http
+      .put(`${this.urlApi}/coursesEdit/${idCurso}`, curso)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -6,6 +6,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NuevaSugerenciaComponent } from './componentes/nueva-sugerencia/nueva-sugerencia.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [ListaSugerenciaComponent, NuevaSugerenciaComponent],
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgxPaginationModule,
     HttpClientModule,
     FormsModule,
+    SharedModule,
   ],
 })
 export class SugerenciaModule {}
