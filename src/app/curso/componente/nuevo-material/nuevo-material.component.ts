@@ -1,9 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CloudBinaryService }  from '../../../services/cloud-binary.service';
 import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-material',
@@ -14,44 +11,45 @@ export class NuevoMaterialComponent implements OnInit {
   @Input() fromParent;
   tarea: boolean;
   nombre: any;
+  archivos: any[] = [];
 
   objeto = {
     curso_id: localStorage.getItem('idcurso'),
-    nombre: "",
-    descripcion: "",
-    tarea_fecha_entrega: "",
-    imagen: "",
-    // archivo: "",
-    enlace: ""
-  }
+    nombre: '',
+    descripcion: '',
+    tarea_fecha_entrega: '',
+  };
 
   constructor(
     public activeModal: NgbActiveModal,
-    public cloudBinaryService: CloudBinaryService,
-    public NuevoMaterialService: NuevoMaterialService,
-    private Router: Router,
-    private readonly activatedRoute: ActivatedRoute
+    public NuevoMaterialService: NuevoMaterialService
   ) {}
 
   ngOnInit(): void {
     this.tarea = this.fromParent.tarea;
-    
   }
 
   closeModal(sendData) {
     this.activeModal.close(sendData);
-    console.log(sendData);
   }
 
   guardarTarea() {
-    this.NuevoMaterialService.crearTarea(this.objeto).subscribe(rep => {
-      console.log(rep);
+    this.NuevoMaterialService.crearTarea(this.objeto).subscribe((rep) => {
+      this.closeModal(rep['msg']);
     });
   }
 
   modificarImagen(event) {
-    this.cloudBinaryService.sendPhoto(event.target.files[0]).subscribe(rep => {
-      this.objeto.imagen = rep["url"];
-    });
+    this.archivos.push(event.target.files[0]);
+  }
+
+  eliminarArchivo(id: number) {
+    let archivosAux = [];
+    for (let i = 0; i < this.archivos?.length; i++) {
+      if (i !== id) {
+        archivosAux.push(this.archivos[i]);
+      }
+    }
+    this.archivos = archivosAux;
   }
 }

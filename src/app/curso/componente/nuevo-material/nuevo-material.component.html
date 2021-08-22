@@ -22,15 +22,33 @@ datos de una tarea-->
     <div class="row">
       <div class="col-12 col-lg-6 my-2">
         <label for="">Nombre de la tarea</label>
-        <input [(ngModel)]="objeto.nombre" type="text" class="form-control" name="" id="" ngbAutofocus />
+        <input
+          [(ngModel)]="objeto.nombre"
+          type="text"
+          class="form-control"
+          name=""
+          id=""
+          ngbAutofocus
+        />
       </div>
       <div class="col-12 my-2">
         <label for="">Descripcion</label>
-        <textarea [(ngModel)]="objeto.descripcion" class="form-control" id="" rows="4"></textarea>
+        <textarea
+          [(ngModel)]="objeto.descripcion"
+          class="form-control"
+          id=""
+          rows="4"
+        ></textarea>
       </div>
       <div class="col-12 col-lg-6 my-2" *ngIf="tarea">
         <label for="">Fecha de entrega</label>
-        <input [(ngModel)]="objeto.tarea_fecha_entrega" type="date" name="" class="form-control" id="" />
+        <input
+          [(ngModel)]="objeto.tarea_fecha_entrega"
+          type="date"
+          name=""
+          class="form-control"
+          id=""
+        />
       </div>
       <div class="col-12 my-2">
         <div class="input-group">
@@ -46,11 +64,11 @@ datos de una tarea-->
               id="file"
               aria-describedby="inputGroupFileAddon04"
             />
-            <label class="custom-file-label" for="file">Imagen</label>
+            <label class="custom-file-label" for="file">Archivos</label>
           </div>
         </div>
       </div>
-      <div class="col-12 my-2">
+      <div class="col-12 my-2" *ngIf="archivos?.length > 0">
         <div class="card">
           <div class="card-body">
             <div class="table-responsive">
@@ -63,9 +81,16 @@ datos de una tarea-->
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>nombre archivo</td>
-                    <td><button class="btn btn-danger">X</button></td>
+                  <tr *ngFor="let archivo of archivos; let i = index">
+                    <td>{{ archivo?.name }}</td>
+                    <td>
+                      <button
+                        class="btn btn-danger"
+                        (click)="eliminarArchivo(i)"
+                      >
+                        X
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -73,14 +98,12 @@ datos de una tarea-->
           </div>
         </div>
       </div>
-      <div class="col-12 my-2">
-        <label for="">Enlace (URL)</label>
-        <input [(ngModel)]="objeto.enlace" type="text" class="form-control" name="" id="" />
-      </div>
     </div>
   </div>
 </div>
 
 <div class="modal-footer">
-  <button (click)="guardarTarea()" type="button" class="btn btn-secondary">Guardar</button>
+  <button (click)="guardarTarea()" type="button" class="btn btn-secondary">
+    Guardar
+  </button>
 </div>
