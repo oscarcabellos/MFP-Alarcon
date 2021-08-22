@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CloudBinaryService }  from '../../../services/cloud-binary.service';
+import { Tarea } from '../../modelo/tarea';
 import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { TareaService } from '../../servicios/tarea.service';
 
 @Component({
   selector: 'app-nuevo-material',
@@ -14,44 +13,66 @@ export class NuevoMaterialComponent implements OnInit {
   @Input() fromParent;
   tarea: boolean;
   nombre: any;
+  archivos: any[] = [];
+  editarTarea: boolean;
 
-  objeto = {
-    curso_id: localStorage.getItem('idcurso'),
-    nombre: "",
-    descripcion: "",
-    tarea_fecha_entrega: "",
-    imagen: "",
-    // archivo: "",
-    enlace: ""
-  }
+  objeto: Tarea;
 
   constructor(
     public activeModal: NgbActiveModal,
-    public cloudBinaryService: CloudBinaryService,
     public NuevoMaterialService: NuevoMaterialService,
-    private Router: Router,
-    private readonly activatedRoute: ActivatedRoute
+    private tareaService: TareaService
   ) {}
 
   ngOnInit(): void {
     this.tarea = this.fromParent.tarea;
-    
+    this.objeto = new Tarea();
+    this.objeto.curso_id = +localStorage.getItem('idcurso');
+    this.editarTarea = this.fromParent.editarTarea;
+    if (this.fromParent.editarTarea) {
+      this.cargarDatosTarea(this.fromParent.contenido);
+    }
   }
 
   closeModal(sendData) {
     this.activeModal.close(sendData);
-    console.log(sendData);
   }
 
   guardarTarea() {
-    this.NuevoMaterialService.crearTarea(this.objeto).subscribe(rep => {
-      console.log(rep);
+    this.NuevoMaterialService.crearTarea(this.objeto).subscribe((rep) => {
+      this.closeModal(rep['msg']);
     });
   }
 
   modificarImagen(event) {
-    this.cloudBinaryService.sendPhoto(event.target.files[0]).subscribe(rep => {
-      this.objeto.imagen = rep["url"];
-    });
+    this.archivos.push(event.target.files[0]);
+  }
+
+  eliminarArchivo(id: number) {
+    let archivosAux = [];
+    for (let i = 0; i < this.archivos?.length; i++) {
+      if (i !== id) {
+        archivosAux.push(this.archivos[i]);
+      }
+    }
+    this.archivos = archivosAux;
+  }
+
+  cargarDatosTarea(tarea: Tarea) {
+    this.objeto.tarea_id = tarea?.tarea_id;
+    this.objeto.curso_id = tarea?.curso_id;
+    this.objeto.nombre = tarea?.nombre;
+    this.objeto.descripcion = tarea?.descripcion;
+    this.objeto.tarea_fecha_entrega = tarea?.tarea_fecha_entrega;
+  }
+
+  actualizarTarea() {
+    console.log(this.objeto);
+
+    this.tareaService
+      .actualizarTarea(this.objeto.tarea_id, this.objeto)
+      .subscribe((x) => {
+        this.closeModal('Actualizado');
+      });
   }
 }

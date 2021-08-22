@@ -23,10 +23,7 @@ export class TareaCursoComponent implements OnInit {
     this.listarTareas(this.cursoId);
   }
 
-  initForm() {
-    
-  }
-
+  initForm() {}
 
   entregar(id: number) {
     alert('Entregado ' + id);
@@ -45,6 +42,7 @@ export class TareaCursoComponent implements OnInit {
     modalRef.result.then(
       (result) => {
         //intencional
+        this.listarTareas(this.cursoId);
       },
       (reason) => {
         //intencional
@@ -60,6 +58,7 @@ export class TareaCursoComponent implements OnInit {
     });
     let data = {
       tarea: id,
+      editarTarea: false,
     };
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
@@ -74,9 +73,30 @@ export class TareaCursoComponent implements OnInit {
 
   listarTareas(id: number) {
     this.tareaService.listarTareaCurso(id).subscribe((x) => {
-      
       console.log(x['tareas']);
-      this.tareas=x['tareas'];
+      this.tareas = x['tareas'];
     });
+  }
+
+  editarTarea(tarea: Tarea) {
+    const modalRef = this.modalService.open(NuevoMaterialComponent, {
+      scrollable: true,
+      windowClass: 'myCustomModalClass',
+      size: 'lg',
+    });
+    let data = {
+      tarea: true,
+      editarTarea: true,
+      contenido: tarea,
+    };
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(
+      (result) => {
+        this.listarTareas(this.cursoId);
+      },
+      (reason) => {
+        //intencional
+      }
+    );
   }
 }

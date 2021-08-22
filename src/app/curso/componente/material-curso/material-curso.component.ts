@@ -25,6 +25,7 @@ export class MaterialCursoComponent implements OnInit {
     });
     let data = {
       tarea: false,
+      editarTarea: false,
     };
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(

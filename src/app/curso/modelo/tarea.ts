@@ -4,4 +4,5 @@ export class Tarea {
   descripcion: string;
   fecha_creacion: Date;
   curso_id: number;
+  tarea_fecha_entrega: Date;
 }
