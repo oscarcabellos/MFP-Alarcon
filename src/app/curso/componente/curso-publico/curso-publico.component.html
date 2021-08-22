@@ -33,6 +33,23 @@
 
 <div class="album py-5">
   <div class="container">
+    <div class="row mb-5 d-flex flex-row-reverse">
+      <div class="col-12 col-sm-6 col-md-3">
+        <select
+          name=""
+          id=""
+          class="custom-select"
+          [(ngModel)]="categoria"
+          (change)="filtrarCategorias()"
+        >
+          <option [ngValue]="0">Todas las categorias</option>
+          <option *ngFor="let c of categorias" [ngValue]="c?.categoria_id">
+            {{ c?.categoria_nombre }}
+          </option>
+        </select>
+      </div>
+    </div>
+
     <div class="row" *ngIf="cursos?.length > 0">
       <div
         class="col-12 col-sm-6 col-lg-4"

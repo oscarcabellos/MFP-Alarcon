@@ -49,29 +49,6 @@ export class NuevaSugerenciaComponent implements OnInit {
         this.closeModal('cerrar');
       });
     });
-
-    /* Swal.fire({
-      title: 'La sugerencia será publica para todos los usuario',
-      text: '¿Desea continuar?',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si',
-      cancelButtonText: 'Cancelar',
-      width: '30rem',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Guardado',
-          icon: 'success',
-          showConfirmButton: false,
-          width: '20rem',
-          timer: 1500,
-        }).then((res) => {
-          this.closeModal('cerrar');
-        });
-      }
-    }); */
   }
 
   /**

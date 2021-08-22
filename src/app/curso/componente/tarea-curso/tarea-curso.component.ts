@@ -13,7 +13,9 @@ import { VerEntregaTareaComponent } from '../ver-entrega-tarea/ver-entrega-tarea
 export class TareaCursoComponent implements OnInit {
   @Input() usuarioProfesor: boolean;
   @Input() cursoId: number;
+
   tareas: Tarea[];
+  tareaFiltro: string;
   constructor(
     private modalService: NgbModal,
     private tareaService: TareaService

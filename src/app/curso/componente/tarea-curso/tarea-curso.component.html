@@ -6,6 +6,7 @@
         name=""
         id=""
         class="form-control mr-3"
+        [(ngModel)]="tareaFiltro"
         placeholder="Buscar tarea"
       />
       <button
@@ -17,7 +18,11 @@
       </button>
     </div>
   </div>
-  <div id="accordion" class="card-expansion mt-3" *ngFor="let t of tareas">
+  <div
+    id="accordion"
+    class="card-expansion mt-3"
+    *ngFor="let t of tareas | filter: { nombre: tareaFiltro }"
+  >
     <div class="card card-expansion-item">
       <div
         class="
