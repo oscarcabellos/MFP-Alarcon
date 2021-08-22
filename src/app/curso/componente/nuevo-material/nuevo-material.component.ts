@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Tarea } from '../../modelo/tarea';
 import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
+import { TareaService } from '../../servicios/tarea.service';
 
 @Component({
   selector: 'app-nuevo-material',
@@ -12,21 +14,24 @@ export class NuevoMaterialComponent implements OnInit {
   tarea: boolean;
   nombre: any;
   archivos: any[] = [];
+  editarTarea: boolean;
 
-  objeto = {
-    curso_id: localStorage.getItem('idcurso'),
-    nombre: '',
-    descripcion: '',
-    tarea_fecha_entrega: '',
-  };
+  objeto: Tarea;
 
   constructor(
     public activeModal: NgbActiveModal,
-    public NuevoMaterialService: NuevoMaterialService
+    public NuevoMaterialService: NuevoMaterialService,
+    private tareaService: TareaService
   ) {}
 
   ngOnInit(): void {
     this.tarea = this.fromParent.tarea;
+    this.objeto = new Tarea();
+    this.objeto.curso_id = +localStorage.getItem('idcurso');
+    this.editarTarea = this.fromParent.editarTarea;
+    if (this.fromParent.editarTarea) {
+      this.cargarDatosTarea(this.fromParent.contenido);
+    }
   }
 
   closeModal(sendData) {
@@ -51,5 +56,23 @@ export class NuevoMaterialComponent implements OnInit {
       }
     }
     this.archivos = archivosAux;
+  }
+
+  cargarDatosTarea(tarea: Tarea) {
+    this.objeto.tarea_id = tarea?.tarea_id;
+    this.objeto.curso_id = tarea?.curso_id;
+    this.objeto.nombre = tarea?.nombre;
+    this.objeto.descripcion = tarea?.descripcion;
+    this.objeto.tarea_fecha_entrega = tarea?.tarea_fecha_entrega;
+  }
+
+  actualizarTarea() {
+    console.log(this.objeto);
+
+    this.tareaService
+      .actualizarTarea(this.objeto.tarea_id, this.objeto)
+      .subscribe((x) => {
+        this.closeModal('Actualizado');
+      });
   }
 }

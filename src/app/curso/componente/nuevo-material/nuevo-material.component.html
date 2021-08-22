@@ -103,7 +103,20 @@ datos de una tarea-->
 </div>
 
 <div class="modal-footer">
-  <button (click)="guardarTarea()" type="button" class="btn btn-secondary">
+  <button
+    (click)="guardarTarea()"
+    type="button"
+    class="btn btn-primary mr-2"
+    *ngIf="!editarTarea"
+  >
     Guardar
+  </button>
+  <button
+    (click)="actualizarTarea()"
+    type="button"
+    class="btn btn-primary"
+    *ngIf="editarTarea"
+  >
+    Actualizar
   </button>
 </div>

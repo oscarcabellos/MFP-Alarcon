@@ -93,11 +93,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 ml-auto m-4" *ngIf="usuarioProfesor">
+            <div
+              class="col-12 d-flex flex-row-reverse my-4"
+              *ngIf="usuarioProfesor"
+            >
               <button
-                class="btn btn-outline-dark"
+                class="btn btn-outline-dark mr-4"
                 type="button"
-                id="inputGroupFileAddon04"
+                (click)="editarTarea(t)"
               >
                 Editar
               </button>
