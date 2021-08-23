@@ -36,26 +36,7 @@ describe('AgregarUsuarioComponent', () => {
 
   it('Eliminar usuario del curso', () => {
     component.usuarios = [
-      {
-        usuario_id: 1,
-        usuario_nombre: 'nombre',
-        usuario_apellidos: 'apellido',
-        password: 'password',
-        correo: 'correo',
-        url: 'url',
-        situacion: 1,
-        descripcion: 'descripcion',
-      },
-      {
-        usuario_id: 2,
-        usuario_nombre: 'nombre',
-        usuario_apellidos: 'apellido',
-        password: 'password',
-        correo: 'correo',
-        url: 'url',
-        situacion: 1,
-        descripcion: 'descripcion',
-      },
+     
     ];
     component.eliminarUsuario(1);
     expect(component.usuarios.length).toEqual(1);
@@ -79,26 +60,7 @@ describe('AgregarUsuarioComponent', () => {
 
   it('Validar que el correo ingresado no sea el mismo que el usuario registrado', () => {
     component.usuarios = [
-      {
-        usuario_id: 1,
-        usuario_nombre: 'nombre',
-        usuario_apellidos: 'apellido',
-        password: 'password',
-        correo: 'correo',
-        url: 'url',
-        situacion: 1,
-        descripcion: 'descripcion',
-      },
-      {
-        usuario_id: 2,
-        usuario_nombre: 'nombre',
-        usuario_apellidos: 'apellido',
-        password: 'password',
-        correo: 'correo',
-        url: 'url',
-        situacion: 1,
-        descripcion: 'descripcion',
-      },
+     
     ];
     let numeroUsuarios = component.usuarios.length;
     (<HTMLInputElement>document.getElementById('correo')).value =
