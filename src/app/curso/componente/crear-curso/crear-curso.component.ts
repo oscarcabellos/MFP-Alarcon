@@ -1,10 +1,11 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
-  Host,
   Input,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { Curso } from '../../modelo/curso';
 import { CursoService } from '../../servicios/curso.service';
@@ -15,7 +16,6 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from '../../servicios/categoria.service';
 import { Categoria } from '../../modelo/categoria';
-import { EditarCursoComponent } from '../editar-curso/editar-curso.component';
 
 @Component({
   selector: 'app-crear-curso',
@@ -37,6 +37,7 @@ export class CrearCursoComponent implements OnInit {
   @Input() editar: boolean;
   @Input() curso: Curso;
   @Output() cerrarModal = new EventEmitter<string>();
+  @ViewChild('Privacidad3') Privacidad3: ElementRef;
 
   constructor(
     private cursoService: CursoService,
@@ -58,6 +59,7 @@ export class CrearCursoComponent implements OnInit {
     this.listarCategorias();
     if (this.editar) {
       this.cargarDatosCurso(this.curso);
+      console.log('vaoinvasio');
     }
   }
 
@@ -81,7 +83,7 @@ export class CrearCursoComponent implements OnInit {
       if (this.editar) {
         this.curso.curso_nombre = this.cursoForm.get('curso_nombre').value;
         this.curso.descripcion = this.cursoForm.get('descripcion').value;
-        this.curso.privacidad_id = this.cursoForm.get('privacidad_id').value;
+
         this.curso.categoria_id = this.cursoForm.get('categoria_id').value;
         this.curso.conoci_previo = this.cursoForm.get('conoci_previo').value;
         this.actualizarCurso(this.curso);
@@ -169,6 +171,10 @@ export class CrearCursoComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para cargar los datos al formulario
+   * @param curso Onjeto con la información de un curso
+   */
   cargarDatosCurso(curso: Curso) {
     this.cursoForm.get('curso_nombre').setValue(curso?.curso_nombre);
     this.cursoForm.get('descripcion').setValue(curso?.descripcion);
@@ -177,9 +183,21 @@ export class CrearCursoComponent implements OnInit {
     this.cursoForm.get('conoci_previo').setValue(curso?.conoci_previo);
   }
 
+  /**
+   * Función para actualizar los datos de un curso
+   * @param curso Objeto con la información actualizada
+   */
   actualizarCurso(curso: Curso) {
     this.cursoService.editarCurso(curso.curso_id, curso).subscribe((x) => {
-      this.cerrarModal.emit('close');
+      Swal.fire({
+        title: 'Curso actualizado',
+        icon: 'success',
+        showConfirmButton: false,
+        width: '25rem',
+        timer: 1500,
+      }).then(() => {
+        this.cerrarModal.emit('close');
+      });
     });
   }
 }

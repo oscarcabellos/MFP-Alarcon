@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 import { Tarea } from '../../modelo/tarea';
 import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
 import { TareaService } from '../../servicios/tarea.service';
@@ -92,7 +93,15 @@ export class NuevoMaterialComponent implements OnInit {
     this.tareaService
       .actualizarTarea(this.objeto.tarea_id, this.objeto)
       .subscribe((x) => {
-        this.closeModal('Actualizado');
+        Swal.fire({
+          title: 'Tarea actualizada',
+          icon: 'success',
+          showConfirmButton: false,
+          width: '25rem',
+          timer: 1500,
+        }).then(() => {
+          this.closeModal('Actualizado');
+        });
       });
   }
 }

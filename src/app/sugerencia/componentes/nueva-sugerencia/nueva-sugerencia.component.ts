@@ -57,7 +57,7 @@ export class NuevaSugerenciaComponent implements OnInit {
           title: 'Publicado',
           icon: 'success',
           showConfirmButton: false,
-          width: '20rem',
+          width: '25rem',
           timer: 1500,
         }).then(() => {
           this.closeModal('cerrar');
