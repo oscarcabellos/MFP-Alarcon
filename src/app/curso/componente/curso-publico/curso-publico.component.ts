@@ -19,7 +19,9 @@ export class CursoPublicoComponent implements OnInit {
   cursoFilter: string = '';
 
   cursos: Curso[] = [];
+  cursosCompletos: Curso[];
   categorias: Categoria[] = [];
+  categoria: number;
   constructor(
     private cursoService: CursoService,
     private categoriaService: CategoriaService
@@ -27,6 +29,7 @@ export class CursoPublicoComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageActual = 1;
+    this.categoria = 0;
     this.listarCursos();
     this.listarCategorias();
   }
@@ -34,6 +37,7 @@ export class CursoPublicoComponent implements OnInit {
   listarCursos() {
     this.cursoService.listarCursosPublicos().subscribe((x) => {
       this.cursos = x['cursos'];
+      this.cursosCompletos = x['cursos'];
     });
   }
   borrarBusqueda() {
@@ -59,5 +63,15 @@ export class CursoPublicoComponent implements OnInit {
 
   cambiarPagina() {
     this.pageActual = 1;
+  }
+
+  filtrarCategorias() {
+    if (this.categoria === 0) {
+      this.cursos = this.cursosCompletos;
+    } else {
+      this.cursos = this.cursosCompletos.filter(
+        (c) => c?.categoria_id === this.categoria
+      );
+    }
   }
 }

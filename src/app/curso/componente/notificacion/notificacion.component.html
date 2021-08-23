@@ -3,16 +3,24 @@
     <div class="col-12" *ngFor="let c of solicutdAcceso">
       <div class="card border-primary mb-3">
         <div class="card-header d-flex justify-content-between">
-          <h5>{{c.curso_nombre}}</h5>
+          <h5>{{ c.curso_nombre }}</h5>
           <button class="btn btn-secondary">X</button>
         </div>
         <div class="card-body">
-          <p class="card-text">
-            {{c.usuario_nombre}} {{c.curso_id}} 
-          </p>
+          <p class="card-text">{{ c.usuario_nombre }} {{ c.curso_id }}</p>
           <div class="d-flex flex-row-reverse">
-            <button class="btn btn-danger" (click)="darBloquearAcceso(2,c.curso_id, c.usuario_id)">Rechazar</button>
-            <button class="btn btn-primary mr-2" (click)="darBloquearAcceso(1,c.curso_id,c.usuario_id)">Unirme</button>
+            <button
+              class="btn btn-danger"
+              (click)="darBloquearAcceso(2, c.curso_id, c.usuario_id)"
+            >
+              Rechazar
+            </button>
+            <button
+              class="btn btn-primary mr-2"
+              (click)="darBloquearAcceso(1, c.curso_id, c.usuario_id)"
+            >
+              Unirme
+            </button>
           </div>
         </div>
       </div>
@@ -35,6 +43,5 @@
         </div>
       </div>
     </div>
-    
   </div>
 </div>

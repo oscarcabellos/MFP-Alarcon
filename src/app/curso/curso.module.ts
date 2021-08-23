@@ -10,7 +10,6 @@ import { VerCursoComponent } from './componente/ver-curso/ver-curso.component';
 import { CursoComponent } from './componente/curso/curso.component';
 import { TareaCursoComponent } from './componente/tarea-curso/tarea-curso.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FilterPipe } from './pipe/filter.pipe';
 import { DashboardComponent } from './componente/dashboard/dashboard.component';
 import { ListaCursoComponent } from './componente/lista-curso/lista-curso.component';
 import { NotificacionComponent } from './componente/notificacion/notificacion.component';
@@ -18,6 +17,9 @@ import { MaterialCursoComponent } from './componente/material-curso/material-cur
 import { NuevoMaterialComponent } from './componente/nuevo-material/nuevo-material.component';
 import { VerEntregaTareaComponent } from './componente/ver-entrega-tarea/ver-entrega-tarea.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
+import { EditarCursoComponent } from './componente/editar-curso/editar-curso.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,13 @@ import { HttpClientModule } from '@angular/common/http';
     CursoPublicoComponent,
     TareaCursoComponent,
     VerCursoComponent,
-    FilterPipe,
     DashboardComponent,
     ListaCursoComponent,
     NotificacionComponent,
     MaterialCursoComponent,
     NuevoMaterialComponent,
     VerEntregaTareaComponent,
+    EditarCursoComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     CursoRoutingModule,
     NgxPaginationModule,
+    SharedModule,
+    NgbModule,
   ],
 })
 export class CursoModule {}

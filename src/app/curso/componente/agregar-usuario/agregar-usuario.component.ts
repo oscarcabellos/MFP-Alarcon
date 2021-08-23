@@ -48,7 +48,7 @@ export class AgregarUsuarioComponent implements OnInit {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
       this.usuarios = x['data'][0];
       this.totalAlumnos = x['data'][0].length;
-      console.log(x['data'][0]);
+      console.log(x);
     });
   }
 
@@ -163,7 +163,6 @@ export class AgregarUsuarioComponent implements OnInit {
         });
       }
     });
-    this.usuarios = this.usuarios.filter((u) => u.usuario_id !== id);
   }
 
   /**
@@ -171,23 +170,25 @@ export class AgregarUsuarioComponent implements OnInit {
    */
   descargarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
-      this.excelService.exportAsExcelFile(x.data, 'ListaCurso');
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer);
-          toast.addEventListener('mouseleave', Swal.resumeTimer);
-        },
-      });
+      if (x['data'][0]?.length > 0) {
+        this.excelService.exportAsExcelFile(x.data[0], 'ListaCurso');
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+          },
+        });
 
-      Toast.fire({
-        icon: 'success',
-        title: 'Descargando...',
-      });
+        Toast.fire({
+          icon: 'success',
+          title: 'Descargando...',
+        });
+      }
     });
   }
 
@@ -204,6 +205,9 @@ export class AgregarUsuarioComponent implements OnInit {
       return 'Denegado';
     }
     if (usuario?.situacion_id === 3) {
+      return 'Pendiente';
+    }
+    if (usuario?.situacion_id === 5) {
       return 'Pendiente';
     }
   }

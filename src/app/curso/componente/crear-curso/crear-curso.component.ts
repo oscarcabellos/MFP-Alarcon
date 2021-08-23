@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Host,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Curso } from '../../modelo/curso';
 import { CursoService } from '../../servicios/curso.service';
 import { CloudBinaryService } from '../../../services/cloud-binary.service';
@@ -8,6 +15,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriaService } from '../../servicios/categoria.service';
 import { Categoria } from '../../modelo/categoria';
+import { EditarCursoComponent } from '../editar-curso/editar-curso.component';
 
 @Component({
   selector: 'app-crear-curso',
@@ -22,9 +30,13 @@ export class CrearCursoComponent implements OnInit {
   /* nombre del curso que utiliza ReactiveFormModule */
   cursoForm: FormGroup;
   /* Lista de categorias */
-  categorias: Categoria[]=[];
+  categorias: Categoria[] = [];
   /* Se guarda el nombre de la imagen seleccionada */
   nombreImagen: string;
+
+  @Input() editar: boolean;
+  @Input() curso: Curso;
+  @Output() cerrarModal = new EventEmitter<string>();
 
   constructor(
     private cursoService: CursoService,
@@ -44,6 +56,9 @@ export class CrearCursoComponent implements OnInit {
       categoria_id: [''],
     });
     this.listarCategorias();
+    if (this.editar) {
+      this.cargarDatosCurso(this.curso);
+    }
   }
 
   /**
@@ -61,21 +76,30 @@ export class CrearCursoComponent implements OnInit {
    */
   crearCurso() {
     if (this.cursoForm.valid) {
-      let curso = new Curso();
+      let cursoNuevo = new Curso();
 
-      if (this.image != null || this.image != undefined) {
-        this.cloudBinaryService
-          .sendPhoto(this.image[0])
-          .subscribe((response: Data) => {
-            curso = this.cursoForm.value;
-            curso.imagen = response['secure_url'];
-            curso.usuario_id = this.usuario_id;
-            this.guardar(curso);
-          });
+      if (this.editar) {
+        this.curso.curso_nombre = this.cursoForm.get('curso_nombre').value;
+        this.curso.descripcion = this.cursoForm.get('descripcion').value;
+        this.curso.privacidad_id = this.cursoForm.get('privacidad_id').value;
+        this.curso.categoria_id = this.cursoForm.get('categoria_id').value;
+        this.curso.conoci_previo = this.cursoForm.get('conoci_previo').value;
+        this.actualizarCurso(this.curso);
       } else {
-        curso = this.cursoForm.value;
-        curso.usuario_id = this.usuario_id;
-        this.guardar(curso);
+        if (this.image != null || this.image != undefined) {
+          this.cloudBinaryService
+            .sendPhoto(this.image[0])
+            .subscribe((response: Data) => {
+              cursoNuevo = this.cursoForm.value;
+              cursoNuevo.imagen = response['secure_url'];
+              cursoNuevo.usuario_id = this.usuario_id;
+              this.guardar(cursoNuevo);
+            });
+        } else {
+          cursoNuevo = this.cursoForm.value;
+          cursoNuevo.usuario_id = this.usuario_id;
+          this.guardar(cursoNuevo);
+        }
       }
     } else {
       Swal.fire({
@@ -112,16 +136,18 @@ export class CrearCursoComponent implements OnInit {
    * Listado de todas la categorias
    */
   listarCategorias() {
-    this.categoriaService.listarCategorias().subscribe( (x) => (this.categorias = x['categories']));
+    this.categoriaService
+      .listarCategorias()
+      .subscribe((x) => (this.categorias = x['categories']));
   }
 
   /**
-  * Validar nombre del curso
-  */
+   * Validar nombre del curso
+   */
   get nombreNoValido() {
     return (
-     this.cursoForm.get('curso_nombre').invalid &&
-     this.cursoForm.get('curso_nombre').touched
+      this.cursoForm.get('curso_nombre').invalid &&
+      this.cursoForm.get('curso_nombre').touched
     );
   }
   /**
@@ -141,5 +167,19 @@ export class CrearCursoComponent implements OnInit {
       this.cursoForm.get('privacidad_id').invalid &&
       this.cursoForm.get('privacidad_id').touched
     );
+  }
+
+  cargarDatosCurso(curso: Curso) {
+    this.cursoForm.get('curso_nombre').setValue(curso?.curso_nombre);
+    this.cursoForm.get('descripcion').setValue(curso?.descripcion);
+    this.cursoForm.get('privacidad_id').setValue(curso?.privacidad_id);
+    this.cursoForm.get('categoria_id').setValue(curso?.categoria_id);
+    this.cursoForm.get('conoci_previo').setValue(curso?.conoci_previo);
+  }
+
+  actualizarCurso(curso: Curso) {
+    this.cursoService.editarCurso(curso.curso_id, curso).subscribe((x) => {
+      this.cerrarModal.emit('close');
+    });
   }
 }

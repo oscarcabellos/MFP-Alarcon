@@ -22,11 +22,9 @@ export class FilterPipe implements PipeTransform {
             const fil = filter[keyName].split(' ');
             let check = false;
             for (const f of fil) {
-              (new RegExp(f, 'gi').test(item[keyName]) || f === '') ? (
-                check = true
-              ):(
-                check = false
-              )
+              new RegExp(f, 'gi').test(item[keyName]) || f === ''
+                ? (check = true)
+                : (check = false);
             }
             return check;
           } else {

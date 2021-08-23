@@ -6,6 +6,7 @@
         name=""
         id=""
         class="form-control mr-3"
+        [(ngModel)]="tareaFiltro"
         placeholder="Buscar tarea"
       />
       <button
@@ -16,94 +17,103 @@
         Nuevo
       </button>
     </div>
-  </div>
-  <div id="accordion" class="card-expansion mt-3" *ngFor="let t of tareas">
-    <div class="card card-expansion-item">
+    <div class="col-12" *ngIf="tareas?.length > 0">
       <div
-        class="
-          card-header
-          border-0
-          d-flex
-          justify-content-between
-          align-items-center
-        "
-        id="{{ 'heading' + t }}"
+        id="accordion"
+        class="card-expansion mt-3"
+        *ngFor="let t of tareas | filter: { nombre: tareaFiltro }"
       >
-        <span>{{ t.nombre }}</span>
-        <div>
-          <button
-            *ngIf="usuarioProfesor"
-            class="btn btn-primary mr-2"
-            (click)="openModalEntregas(t)"
+        <div class="card card-expansion-item">
+          <div
+            class="
+              card-header
+              border-0
+              d-flex
+              justify-content-between
+              align-items-center
+            "
+            id="{{ 'heading' + t }}"
           >
-            <span>Ver entregas</span>
-          </button>
-          <button
-            *ngIf="usuarioProfesor"
-            class="btn btn-primary mr-2"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
-            <span>Notificar</span>
-          </button>
-          <button
-            class="btn btn-primary"
-            data-toggle="collapse"
-            [attr.data-target]="'#collapse' + t.tarea_id"
-            aria-expanded="false"
-            aria-controls="{{ 'collapse' + t.tarea_id }}"
-          >
-            <span>Mas infromación</span>
-          </button>
-        </div>
-      </div>
-      <div
-        id="{{ 'collapse' + t.tarea_id }}"
-        class="collapse"
-        aria-labelledby="{{ 'heading' + t.tarea_id }}"
-        data-parent="#accordion"
-      >
-        <div class="container m-3">
-          <div class="row">
-            <div class="col-12">
-              {{ t.descripcion }}
+            <span>{{ t.nombre }}</span>
+            <div>
+              <button
+                *ngIf="usuarioProfesor"
+                class="btn btn-primary mr-2"
+                (click)="openModalEntregas(t)"
+              >
+                <span>Ver entregas</span>
+              </button>
+              <button
+                *ngIf="usuarioProfesor"
+                class="btn btn-primary mr-2"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                <span>Notificar</span>
+              </button>
+              <button
+                class="btn btn-primary"
+                data-toggle="collapse"
+                [attr.data-target]="'#collapse' + t.tarea_id"
+                aria-expanded="false"
+                aria-controls="{{ 'collapse' + t.tarea_id }}"
+              >
+                <span>Mas infromación</span>
+              </button>
             </div>
-            <div class="col-12 col-md-6 ml-auto m-4" *ngIf="!usuarioProfesor">
-              <div class="input-group">
-                <div class="custom-file">
-                  <input
-                    type="file"
-                    lang="es"
-                    class="custom-file-input"
-                    id="inputGroupFile04"
-                    aria-describedby="inputGroupFileAddon04"
-                  />
-                  <label class="custom-file-label" for="inputGroupFile04"
-                    >Elige el archivo</label
-                  >
+          </div>
+          <div
+            id="{{ 'collapse' + t.tarea_id }}"
+            class="collapse"
+            aria-labelledby="{{ 'heading' + t.tarea_id }}"
+            data-parent="#accordion"
+          >
+            <div class="container m-3">
+              <div class="row">
+                <div class="col-12">
+                  {{ t.descripcion }}
                 </div>
-                <div class="input-group-append">
+                <div
+                  class="col-12 col-md-6 ml-auto m-4"
+                  *ngIf="!usuarioProfesor"
+                >
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        lang="es"
+                        class="custom-file-input"
+                        id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04"
+                      />
+                      <label class="custom-file-label" for="inputGroupFile04"
+                        >Elige el archivo</label
+                      >
+                    </div>
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-outline-dark"
+                        type="button"
+                        id="inputGroupFileAddon04"
+                      >
+                        Entregar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-12 d-flex flex-row-reverse my-4"
+                  *ngIf="usuarioProfesor"
+                >
                   <button
-                    class="btn btn-outline-dark"
+                    class="btn btn-outline-dark mr-4"
                     type="button"
-                    id="inputGroupFileAddon04"
+                    (click)="editarTarea(t)"
                   >
-                    Entregar
+                    Editar
                   </button>
                 </div>
               </div>
-            </div>
-            <div
-              class="col-12 d-flex flex-row-reverse my-4"
-              *ngIf="usuarioProfesor"
-            >
-              <button
-                class="btn btn-outline-dark mr-4"
-                type="button"
-                (click)="editarTarea(t)"
-              >
-                Editar
-              </button>
             </div>
           </div>
         </div>

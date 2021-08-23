@@ -26,7 +26,11 @@
       >
         Agregar
       </button>
-      <button class="btn btn-success" (click)="descargarUsuarios(cursoId)">
+      <button
+        class="btn btn-success"
+        (click)="descargarUsuarios(cursoId)"
+        [disabled]="usuarios?.length === 0"
+      >
         Descargar
       </button>
     </div>

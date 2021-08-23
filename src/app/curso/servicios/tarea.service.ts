@@ -29,6 +29,12 @@ export class TareaService extends AppServiceBase {
     );
   }
 
+  /**
+   * Servicio para actualizar la informacion de una tarea
+   * @param id Identificador de la tarea
+   * @param tarea Objeto con la información de la tarea
+   * @returns Mensaje de confirmación
+   */
   actualizarTarea(id: number, tarea: Tarea) {
     return this.put(`editarTarea/${id}`, tarea).pipe(
       catchError(this.handleError)

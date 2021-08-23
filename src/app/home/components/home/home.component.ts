@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Categoria } from 'src/app/curso/modelo/categoria';
 import { Curso } from 'src/app/curso/modelo/curso';
+import { CategoriaService } from 'src/app/curso/servicios/categoria.service';
 import { Sugerencia } from 'src/app/sugerencia/modelos/sugerencia';
 import { CursoService } from '../../services/curso.service';
 import { SugerenciaService } from '../../services/sugerencia.service';
@@ -12,13 +14,15 @@ import { SugerenciaService } from '../../services/sugerencia.service';
 export class HomeComponent implements OnInit {
   cursos: Curso[] = [];
   sugerencias: Sugerencia[];
+  categorias: Categoria[];
   constructor(
     private readonly cursoService: CursoService,
-    private readonly sugerenciaService: SugerenciaService
+    private readonly sugerenciaService: SugerenciaService,
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
-    this.listarCursos();
+    this.listarCategorias();
     this.listarSugerencias();
   }
 
@@ -27,9 +31,7 @@ export class HomeComponent implements OnInit {
    */
   listarCursos() {
     this.cursoService.listarCursosPublicos().subscribe((x) => {
-      for (let i = 1; i <= 4; i++) {
-        this.cursos.push(x['cursos'][i]);
-      }
+      this.cursos = x['cursos'];
     });
   }
 
@@ -41,10 +43,29 @@ export class HomeComponent implements OnInit {
     return +sessionStorage.getItem('usuario_id') !== 0;
   }
 
+  /**
+   * Función para listar las sugerencias con mayor cantidad de votos
+   */
   listarSugerencias() {
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
       this.sugerencias = x;
-      console.log(x);
     });
+  }
+
+  listarCategorias() {
+    this.categoriaService.listarCategorias().subscribe((x) => {
+      this.categorias = x['categories'];
+      this.listarCursos();
+    });
+  }
+  /**
+   * Función para obtener la informacion de una categoria por su id
+   * @param id Identificador de la categoria
+   */
+  obtenerCategoria(id) {
+    if (id !== undefined) {
+      const nombre = this.categorias.find((c) => c?.categoria_id === id);
+      return nombre?.categoria_nombre ? nombre?.categoria_nombre : '';
+    }
   }
 }

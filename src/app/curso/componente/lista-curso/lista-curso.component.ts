@@ -1,9 +1,11 @@
 // Importacion de librerias y componentes
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { Curso } from '../../modelo/curso';
 import { CursoService } from '../../servicios/curso.service';
 import { ExcelService } from '../../servicios/excel.service';
+import { EditarCursoComponent } from '../editar-curso/editar-curso.component';
 
 @Component({
   selector: 'app-lista-curso',
@@ -23,7 +25,8 @@ export class ListaCursoComponent implements OnInit {
   // Declaracion del constructor
   constructor(
     private readonly cursoService: CursoService,
-    private readonly excelServices: ExcelService
+    private readonly excelServices: ExcelService,
+    private readonly modalService: NgbModal
   ) {}
   // Función que se ejecuta cuando inicializa la clase
   ngOnInit(): void {
@@ -84,6 +87,7 @@ export class ListaCursoComponent implements OnInit {
   listarCursos2(id: number) {
     this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
       this.cursos = this.cursos.concat(x['data']);
+      console.log(x);
     });
   }
 
@@ -100,16 +104,48 @@ export class ListaCursoComponent implements OnInit {
    */
   descargarlista(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
-      if (x['data'].length == 0) {
+      if (x['data'][0]?.length > 0) {
+        this.excelServices.exportAsExcelFile(x.data[0], 'ListaCurso');
+      } else {
         Swal.fire({
           title: 'Lista de alumnos vacia',
           text: `No se puede descargar un excel sin alumnos en el curso`,
           icon: 'error',
           confirmButtonColor: '#2F6DF2',
         });
-      } else {
-        this.excelServices.exportAsExcelFile(x.data, 'ListaCurso');
       }
     });
+  }
+
+  /**
+   * Función para abrir un modal para editar un curso
+   * @param curso Objeto con la información de un curso
+   */
+  editarCurso(curso: Curso) {
+    const modalRef = this.modalService.open(EditarCursoComponent, {
+      scrollable: true,
+      windowClass: 'myCustomModalClass',
+      size: 'lg',
+    });
+    let data = {
+      curso: curso,
+    };
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(
+      (result) => {
+        // Intencional
+      },
+      (reason) => {
+        // Intencional
+      }
+    );
+  }
+
+  /**
+   * Función para mostrar el codigo de un curso
+   * @param curso Objeto con la informacion de un curso
+   */
+  mostrarCodigo(curso: Curso) {
+    Swal.fire(`El código del curso es: ${curso?.codigo}`);
   }
 }
