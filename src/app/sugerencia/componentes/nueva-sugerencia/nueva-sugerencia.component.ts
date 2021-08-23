@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Categoria } from 'src/app/curso/modelo/categoria';
 import { CategoriaService } from 'src/app/curso/servicios/categoria.service';
@@ -12,44 +13,63 @@ import { SugerenciaService } from '../../servicios/sugerencia.service';
   styleUrls: ['./nueva-sugerencia.component.css'],
 })
 export class NuevaSugerenciaComponent implements OnInit {
-  descripcion: string;
   categorias: Categoria[];
-  categoria: number;
-  nombre: string;
+  sugerenciaForm: FormGroup;
 
   constructor(
     public activeModal: NgbActiveModal,
     public sugerenciasService: SugerenciaService,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     // Codigo de inicializacion del componente
     this.listarCategorias();
-    this.categoria = 0;
+    this.sugerenciaForm = this.formBuilder.group({
+      nombre: ['', [Validators.required, Validators.maxLength(30)]],
+      categoria: [0, [Validators.required, Validators.min(1)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(100)]],
+    });
   }
 
+  /**
+   * Función para cerrar el modal actual
+   * @param sendData Mensaje para enviar al componente padre
+   */
   closeModal(sendData) {
     this.activeModal.close(sendData);
   }
 
+  /**
+   * Función para guardar una sugerencia
+   */
   guardarSugerencia() {
-    const sugerencia: Sugerencia = new Sugerencia();
-    sugerencia.categoria_id = this.categoria;
-    sugerencia.sugerencia_nombre_curso = this.nombre;
-    sugerencia.descripcion = this.descripcion;
+    if (this.sugerenciaForm.valid) {
+      const sugerencia: Sugerencia = new Sugerencia();
+      sugerencia.categoria_id = this.sugerenciaForm.get('categoria').value;
+      sugerencia.sugerencia_nombre_curso =
+        this.sugerenciaForm.get('nombre').value;
+      sugerencia.descripcion = this.sugerenciaForm.get('descripcion').value;
 
-    this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp) => {
-      Swal.fire({
-        title: 'Publicado',
-        icon: 'success',
-        showConfirmButton: false,
-        width: '20rem',
-        timer: 1500,
-      }).then(() => {
-        this.closeModal('cerrar');
+      console.log(sugerencia);
+
+      this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp) => {
+        Swal.fire({
+          title: 'Publicado',
+          icon: 'success',
+          showConfirmButton: false,
+          width: '20rem',
+          timer: 1500,
+        }).then(() => {
+          this.closeModal('cerrar');
+        });
       });
-    });
+    } else {
+      Object.values(this.sugerenciaForm.controls).forEach((control) => {
+        control.markAsTouched();
+      });
+    }
   }
 
   /**
@@ -59,5 +79,26 @@ export class NuevaSugerenciaComponent implements OnInit {
     this.categoriaService
       .listarCategorias()
       .subscribe((x) => (this.categorias = x['categories']));
+  }
+
+  get nombreNoValido() {
+    return (
+      this.sugerenciaForm.get('nombre').invalid &&
+      this.sugerenciaForm.get('nombre').touched
+    );
+  }
+
+  get categoriaNoValida() {
+    return (
+      this.sugerenciaForm.get('categoria').invalid &&
+      this.sugerenciaForm.get('categoria').touched
+    );
+  }
+
+  get descripcionNoValido() {
+    return (
+      this.sugerenciaForm.get('descripcion').invalid &&
+      this.sugerenciaForm.get('descripcion').touched
+    );
   }
 }

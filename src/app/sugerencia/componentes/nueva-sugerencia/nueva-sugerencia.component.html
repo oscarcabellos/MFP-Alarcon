@@ -13,15 +13,19 @@
 
 <div class="modal-body">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" [formGroup]="sugerenciaForm">
       <div class="col-12 mt-3">
         <label for="">Titulo de la sugerencia</label>
         <input
           type="text"
           class="form-control"
           placeholder="Ingrese un titulo para la sugerencia"
-          [(ngModel)]="nombre"
+          formControlName="nombre"
+          [class.is-invalid]="nombreNoValido"
         />
+        <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
+          >Ingrese un nombre valido no mayor a 30 caracteres</small
+        >
       </div>
       <div class="col-12 mt-3">
         <label for="">Categoria</label>
@@ -29,13 +33,17 @@
           name="categoria_id"
           class="custom-select"
           id="categoria_id"
-          [(ngModel)]="categoria"
+          formControlName="categoria"
+          [class.is-invalid]="categoriaNoValida"
         >
           <option value="0" hidden>seleccione</option>
           <option *ngFor="let c of categorias" [ngValue]="c?.categoria_id">
             {{ c?.categoria_nombre }}
           </option>
         </select>
+        <small class="text-danger mt-3 mt-lg-0" *ngIf="categoriaNoValida"
+          >Ingrese una categoria</small
+        >
       </div>
       <div class="col-12 mt-3">
         <label for="">Descripción</label>
@@ -44,9 +52,13 @@
           id=""
           class="form-control"
           rows="4"
-          [(ngModel)]="descripcion"
+          formControlName="descripcion"
           placeholder="Ingrese la descripcion de la sugerencia"
+          [class.is-invalid]="descripcionNoValido"
         ></textarea>
+        <small class="text-danger mt-3 mt-lg-0" *ngIf="descripcionNoValido"
+          >Ingrese un descripción valida no mayor a 100 caracteres</small
+        >
       </div>
     </div>
   </div>
