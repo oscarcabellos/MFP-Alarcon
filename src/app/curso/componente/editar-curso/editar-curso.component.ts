@@ -17,9 +17,18 @@ export class EditarCursoComponent implements OnInit {
     this.curso = this.fromParent.curso;
   }
 
+  /**
+   * Función para cerrar el modal
+   * @param sendData Mensaje que se envia al componente padre
+   */
   closeModal(sendData) {
     this.activeModal.close(sendData);
   }
+
+  /**
+   * Función que se recibe del comoponente hijo
+   * @param data mensaje que se recibe del componente hijo
+   */
   closeModalChild(data: any) {
     this.closeModal('cerrar');
   }

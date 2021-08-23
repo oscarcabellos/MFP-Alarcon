@@ -41,15 +41,22 @@ export class HomeComponent implements OnInit {
     return +sessionStorage.getItem('usuario_id') !== 0;
   }
 
+  /**
+   * Función para listar las sugerencias con mayor cantidad de votos
+   */
   listarSugerencias() {
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
       this.sugerencias = x;
     });
   }
 
+  /**
+   * Función para obtener la informacion de una categoria por su id
+   * @param id Identificador de la categoria
+   */
   obtenerCategoria(id) {
-    this.categoriaService.getCategoria(id).subscribe((x) => {
+    /* this.categoriaService.getCategoria(id).subscribe((x) => {
       console.log(x);
-    });
+    }); */
   }
 }

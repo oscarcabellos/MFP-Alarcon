@@ -8,13 +8,17 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class VerEntregaTareaComponent implements OnInit {
   @Input() fromParent;
-  tareas = [1, 1, 1, 1, 1, 1];
+  tareas = [];
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
     /* Codigo de ejecucion al inicio del componenente */
   }
 
+  /**
+   * Función para cerrar el modal actual
+   * @param sendData Mensaje que se envia la componente padre
+   */
   closeModal(sendData) {
     this.activeModal.close(sendData);
   }

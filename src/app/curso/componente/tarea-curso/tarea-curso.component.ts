@@ -31,6 +31,9 @@ export class TareaCursoComponent implements OnInit {
     alert('Entregado ' + id);
   }
 
+  /**
+   * Función para abrir un modal para la creacion de una nueva tarea
+   */
   openModal() {
     const modalRef = this.modalService.open(NuevoMaterialComponent, {
       scrollable: true,
@@ -52,6 +55,10 @@ export class TareaCursoComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para abrir un modal con las entregas realizadas de una tarea
+   * @param id Identificador de la tarea
+   */
   openModalEntregas(id: number) {
     const modalRef = this.modalService.open(VerEntregaTareaComponent, {
       scrollable: true,
@@ -73,12 +80,20 @@ export class TareaCursoComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para listar las tareas de un curso
+   * @param id Identificadoe del curso
+   */
   listarTareas(id: number) {
     this.tareaService.listarTareaCurso(id).subscribe((x) => {
       this.tareas = x['tareas'];
     });
   }
 
+  /**
+   * Función para abrir un modal para editar la tarea
+   * @param tarea Objeto con la información de una tarea
+   */
   editarTarea(tarea: Tarea) {
     const modalRef = this.modalService.open(NuevoMaterialComponent, {
       scrollable: true,

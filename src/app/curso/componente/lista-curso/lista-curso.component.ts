@@ -116,6 +116,10 @@ export class ListaCursoComponent implements OnInit {
     });
   }
 
+  /**
+   * Función para abrir un modal para editar un curso
+   * @param curso Objeto con la información de un curso
+   */
   editarCurso(curso: Curso) {
     const modalRef = this.modalService.open(EditarCursoComponent, {
       scrollable: true,
@@ -136,6 +140,10 @@ export class ListaCursoComponent implements OnInit {
     );
   }
 
+  /**
+   * Función para mostrar el codigo de un curso
+   * @param curso Objeto con la informacion de un curso
+   */
   mostrarCodigo(curso: Curso) {
     Swal.fire(`El código del curso es: ${curso?.codigo}`);
   }

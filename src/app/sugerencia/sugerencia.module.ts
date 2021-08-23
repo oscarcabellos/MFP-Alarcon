@@ -4,9 +4,10 @@ import { ListaSugerenciaComponent } from './componentes/lista-sugerencia/lista-s
 import { SugerenciaRoutingModule } from './sugerencia-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NuevaSugerenciaComponent } from './componentes/nueva-sugerencia/nueva-sugerencia.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [ListaSugerenciaComponent, NuevaSugerenciaComponent],
@@ -17,6 +18,8 @@ import { SharedModule } from '../shared/shared.module';
     HttpClientModule,
     FormsModule,
     SharedModule,
+    ReactiveFormsModule,
+    NgbModule,
   ],
 })
 export class SugerenciaModule {}

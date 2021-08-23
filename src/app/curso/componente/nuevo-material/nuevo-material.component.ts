@@ -34,20 +34,35 @@ export class NuevoMaterialComponent implements OnInit {
     }
   }
 
+  /**
+   * Función para cerrar el modal actual
+   * @param sendData Mensaje qeu se envia al componente padre
+   */
   closeModal(sendData) {
     this.activeModal.close(sendData);
   }
 
+  /**
+   * Función para guardar una nueva tarea
+   */
   guardarTarea() {
     this.NuevoMaterialService.crearTarea(this.objeto).subscribe((rep) => {
       this.closeModal(rep['msg']);
     });
   }
 
-  modificarImagen(event) {
+  /**
+   * Función para subir archivos
+   * @param event Evento que se emite al subir un archivo
+   */
+  subirArvhivos(event) {
     this.archivos.push(event.target.files[0]);
   }
 
+  /**
+   * Función para eliminar un archivo subido
+   * @param id Identificcador del archivo subido
+   */
   eliminarArchivo(id: number) {
     let archivosAux = [];
     for (let i = 0; i < this.archivos?.length; i++) {
@@ -58,6 +73,10 @@ export class NuevoMaterialComponent implements OnInit {
     this.archivos = archivosAux;
   }
 
+  /**
+   * Función para cargar los datos al formulario de una tarea
+   * @param tarea Objeto con la información de una tarea
+   */
   cargarDatosTarea(tarea: Tarea) {
     this.objeto.tarea_id = tarea?.tarea_id;
     this.objeto.curso_id = tarea?.curso_id;
@@ -66,6 +85,9 @@ export class NuevoMaterialComponent implements OnInit {
     this.objeto.tarea_fecha_entrega = tarea?.tarea_fecha_entrega;
   }
 
+  /**
+   * Función para actualizar los datos de una tarea
+   */
   actualizarTarea() {
     this.tareaService
       .actualizarTarea(this.objeto.tarea_id, this.objeto)

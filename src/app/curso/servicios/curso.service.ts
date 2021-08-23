@@ -121,6 +121,12 @@ export class CursoService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Servicio para actualizar la información de un curso
+   * @param idCurso Identificador del curso a editar
+   * @param curso Ojeto con la información del curso para editar
+   * @returns Mensajde de confirmación
+   */
   editarCurso(idCurso: number, curso: Curso) {
     return this.http
       .post(`${this.urlApi}coursesEdit/${idCurso}`, curso)
