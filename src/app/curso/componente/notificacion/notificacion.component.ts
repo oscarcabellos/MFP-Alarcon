@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Notificacion } from '../../modelo/notificacion';
 import { SolicitudAcceso } from '../../modelo/solicitudAcceso';
@@ -12,15 +11,12 @@ import { NotificacionService } from '../../servicios/notificaciones.service';
 })
 export class NotificacionComponent implements OnInit {
   //  Variables del componente ts
-  notificaciones;
+  notificaciones: Notificacion[] = [];
   notificacion: Notificacion = new Notificacion();
-  solicutdAcceso: SolicitudAcceso;
+  solicutdAcceso: SolicitudAcceso[] = [];
 
   idUsuario: number;
-  constructor(
-    public notificacionService: NotificacionService,
-    private router: Router
-  ) {
+  constructor(public notificacionService: NotificacionService) {
     // Codigo de inicializacion del componente
   }
 
@@ -29,21 +25,17 @@ export class NotificacionComponent implements OnInit {
     this.idUsuario = +sessionStorage.getItem('usuario_id');
     // Codigo de inicializacion del componente
     this.listarNotificacionesAcceso();
-    this.listarNotificaciones();
   }
 
+  /**
+   * Función para listar las solicitud de acceso
+   */
   listarNotificacionesAcceso() {
     this.notificacionService
       .listarCursosSolicitudAcceso(this.idUsuario)
       .subscribe((x) => {
         this.solicutdAcceso = x[0];
       });
-  }
-
-  listarNotificaciones() {
-    this.notificacionService.listarCursosPublicos().subscribe((x) => {
-      this.notificaciones = x.cursos;
-    });
   }
 
   darBloquearAcceso(
@@ -66,7 +58,6 @@ export class NotificacionComponent implements OnInit {
           timer: 1500,
         }).then((res) => {
           this.listarNotificacionesAcceso();
-          this.listarNotificaciones();
         });
       });
   }

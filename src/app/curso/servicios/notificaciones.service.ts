@@ -9,16 +9,14 @@ import { Notificacion } from '../modelo/notificacion';
   providedIn: 'root',
 })
 export class NotificacionService extends AppServiceBase {
-  listarCursosPublicos(): Observable<any> {
-    return this.get('coursespublic').pipe();
-  }
-
-  listarCursosSolicitudAcceso(idUsuario:number):Observable<any>{
+  listarCursosSolicitudAcceso(idUsuario: number): Observable<any> {
     return this.get(`listarCursosConSolicicitudAcceso/${idUsuario}`).pipe();
   }
 
-  darBloquearAccesoCurso(notificacion: Notificacion):Observable<any>{
-    return this.post('aceptarSolicitudAcceso',notificacion).pipe(catchError(this.handleError));
+  darBloquearAccesoCurso(notificacion: Notificacion): Observable<any> {
+    return this.post('aceptarSolicitudAcceso', notificacion).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
