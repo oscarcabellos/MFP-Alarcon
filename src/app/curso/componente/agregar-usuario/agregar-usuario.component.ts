@@ -207,5 +207,8 @@ export class AgregarUsuarioComponent implements OnInit {
     if (usuario?.situacion_id === 3) {
       return 'Pendiente';
     }
+    if (usuario?.situacion_id === 5) {
+      return 'Pendiente';
+    }
   }
 }

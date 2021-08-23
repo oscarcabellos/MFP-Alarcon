@@ -52,8 +52,6 @@ export class NuevaSugerenciaComponent implements OnInit {
         this.sugerenciaForm.get('nombre').value;
       sugerencia.descripcion = this.sugerenciaForm.get('descripcion').value;
 
-      console.log(sugerencia);
-
       this.sugerenciasService.crearSugerencia(sugerencia).subscribe((resp) => {
         Swal.fire({
           title: 'Publicado',

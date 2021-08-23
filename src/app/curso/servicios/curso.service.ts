@@ -117,7 +117,7 @@ export class CursoService {
    */
   solicitarAcceso(curso_id, usuario_id): Observable<any> {
     return this.http
-      .post(`${this.urlApi}/solicitarCursoPrivado`, { curso_id, usuario_id })
+      .post(`${this.urlApi}solicitarCursoPrivado`, { curso_id, usuario_id })
       .pipe(catchError(this.handleError));
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Categoria } from 'src/app/curso/modelo/categoria';
 import { Curso } from 'src/app/curso/modelo/curso';
 import { CategoriaService } from 'src/app/curso/servicios/categoria.service';
 import { Sugerencia } from 'src/app/sugerencia/modelos/sugerencia';
@@ -13,6 +14,7 @@ import { SugerenciaService } from '../../services/sugerencia.service';
 export class HomeComponent implements OnInit {
   cursos: Curso[] = [];
   sugerencias: Sugerencia[];
+  categorias: Categoria[];
   constructor(
     private readonly cursoService: CursoService,
     private readonly sugerenciaService: SugerenciaService,
@@ -20,7 +22,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listarCursos();
+    this.listarCategorias();
     this.listarSugerencias();
   }
 
@@ -50,13 +52,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  listarCategorias() {
+    this.categoriaService.listarCategorias().subscribe((x) => {
+      this.categorias = x['categories'];
+      this.listarCursos();
+    });
+  }
   /**
    * Función para obtener la informacion de una categoria por su id
    * @param id Identificador de la categoria
    */
   obtenerCategoria(id) {
-    /* this.categoriaService.getCategoria(id).subscribe((x) => {
-      console.log(x);
-    }); */
+    if (id !== undefined) {
+      const nombre = this.categorias.find((c) => c?.categoria_id === id);
+      return nombre?.categoria_nombre ? nombre?.categoria_nombre : '';
+    }
   }
 }
