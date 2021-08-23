@@ -28,6 +28,7 @@ export class NuevaSugerenciaComponent implements OnInit {
     this.listarCategorias();
     this.categoria = 0;
   }
+
   closeModal(sendData) {
     this.activeModal.close(sendData);
   }

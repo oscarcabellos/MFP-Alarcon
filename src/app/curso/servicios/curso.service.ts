@@ -123,7 +123,7 @@ export class CursoService {
 
   editarCurso(idCurso: number, curso: Curso) {
     return this.http
-      .put(`${this.urlApi}/coursesEdit/${idCurso}`, curso)
+      .post(`${this.urlApi}coursesEdit/${idCurso}`, curso)
       .pipe(catchError(this.handleError));
   }
 

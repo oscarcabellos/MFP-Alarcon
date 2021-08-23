@@ -13,48 +13,54 @@ import { NotificacionService } from '../../servicios/notificaciones.service';
 export class NotificacionComponent implements OnInit {
   //  Variables del componente ts
   notificaciones;
-  notificacion: Notificacion = new Notificacion() ;
+  notificacion: Notificacion = new Notificacion();
   solicutdAcceso: SolicitudAcceso;
 
   idUsuario: number;
-  constructor(public notificacionService: NotificacionService,
-        private router: Router
-    ) {
+  constructor(
+    public notificacionService: NotificacionService,
+    private router: Router
+  ) {
     // Codigo de inicializacion del componente
   }
 
   ngOnInit(): void {
     /* this.notificacion.id_usuario */
-    this.idUsuario= +sessionStorage.getItem('usuario_id');
+    this.idUsuario = +sessionStorage.getItem('usuario_id');
     // Codigo de inicializacion del componente
     this.notificacionService.listarCursosPublicos().subscribe((x) => {
       this.notificaciones = x.cursos;
     });
 
-    this.notificacionService.listarCursosSolicitudAcceso(this.idUsuario).subscribe( x => {
-      
-      this.solicutdAcceso= x[0];
-      console.log(this.solicutdAcceso);
-    });
+    this.notificacionService
+      .listarCursosSolicitudAcceso(this.idUsuario)
+      .subscribe((x) => {
+        this.solicutdAcceso = x[0];
+      });
   }
 
-  darBloquearAcceso(situacion_id:number,curso_id: number, usuario_id:number){
-    this.notificacion.curso_id=curso_id;
-    this.notificacion.usuario_id=usuario_id;
-    this.notificacion.situacion_id=situacion_id;
-    
-    this.notificacionService.darBloquearAccesoCurso(this.notificacion).subscribe((x) => {
-      Swal.fire({
-        title: 'Solicitud respondidas',
-        text: `Se respondio correctamente la solicitud`,
-        icon: 'success',
-        confirmButtonColor: '#2F6DF2'
-      }).then((res) => {
-        this.router.navigate(['cursos/dashboard']).then(() => {
-          window.location.reload();
+  darBloquearAcceso(
+    situacion_id: number,
+    curso_id: number,
+    usuario_id: number
+  ) {
+    this.notificacion.curso_id = curso_id;
+    this.notificacion.usuario_id = usuario_id;
+    this.notificacion.situacion_id = situacion_id;
+
+    this.notificacionService
+      .darBloquearAccesoCurso(this.notificacion)
+      .subscribe((x) => {
+        Swal.fire({
+          title: 'Solicitud respondidas',
+          text: `Se respondio correctamente la solicitud`,
+          icon: 'success',
+          confirmButtonColor: '#2F6DF2',
+        }).then((res) => {
+          this.router.navigate(['cursos/dashboard']).then(() => {
+            window.location.reload();
+          });
         });
       });
-    });
   }
-  
 }

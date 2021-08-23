@@ -18,6 +18,8 @@ import { NuevoMaterialComponent } from './componente/nuevo-material/nuevo-materi
 import { VerEntregaTareaComponent } from './componente/ver-entrega-tarea/ver-entrega-tarea.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { EditarCursoComponent } from './componente/editar-curso/editar-curso.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { SharedModule } from '../shared/shared.module';
     MaterialCursoComponent,
     NuevoMaterialComponent,
     VerEntregaTareaComponent,
+    EditarCursoComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +45,7 @@ import { SharedModule } from '../shared/shared.module';
     CursoRoutingModule,
     NgxPaginationModule,
     SharedModule,
+    NgbModule,
   ],
 })
 export class CursoModule {}

@@ -1,9 +1,11 @@
 // Importacion de librerias y componentes
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { Curso } from '../../modelo/curso';
 import { CursoService } from '../../servicios/curso.service';
 import { ExcelService } from '../../servicios/excel.service';
+import { EditarCursoComponent } from '../editar-curso/editar-curso.component';
 
 @Component({
   selector: 'app-lista-curso',
@@ -23,7 +25,8 @@ export class ListaCursoComponent implements OnInit {
   // Declaracion del constructor
   constructor(
     private readonly cursoService: CursoService,
-    private readonly excelServices: ExcelService
+    private readonly excelServices: ExcelService,
+    private readonly modalService: NgbModal
   ) {}
   // Función que se ejecuta cuando inicializa la clase
   ngOnInit(): void {
@@ -111,5 +114,25 @@ export class ListaCursoComponent implements OnInit {
         });
       }
     });
+  }
+
+  editarCurso(curso: Curso) {
+    const modalRef = this.modalService.open(EditarCursoComponent, {
+      scrollable: true,
+      windowClass: 'myCustomModalClass',
+      size: 'lg',
+    });
+    let data = {
+      curso: curso,
+    };
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(
+      (result) => {
+        // Intencional
+      },
+      (reason) => {
+        // Intencional
+      }
+    );
   }
 }

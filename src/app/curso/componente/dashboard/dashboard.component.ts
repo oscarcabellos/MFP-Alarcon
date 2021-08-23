@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  editar = false;
   constructor(private readonly router: Router) {}
 
   ngOnInit(): void {
