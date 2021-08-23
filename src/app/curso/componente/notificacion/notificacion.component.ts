@@ -28,15 +28,22 @@ export class NotificacionComponent implements OnInit {
     /* this.notificacion.id_usuario */
     this.idUsuario = +sessionStorage.getItem('usuario_id');
     // Codigo de inicializacion del componente
-    this.notificacionService.listarCursosPublicos().subscribe((x) => {
-      this.notificaciones = x.cursos;
-    });
+    this.listarNotificacionesAcceso();
+    this.listarNotificaciones();
+  }
 
+  listarNotificacionesAcceso() {
     this.notificacionService
       .listarCursosSolicitudAcceso(this.idUsuario)
       .subscribe((x) => {
         this.solicutdAcceso = x[0];
       });
+  }
+
+  listarNotificaciones() {
+    this.notificacionService.listarCursosPublicos().subscribe((x) => {
+      this.notificaciones = x.cursos;
+    });
   }
 
   darBloquearAcceso(
@@ -56,10 +63,10 @@ export class NotificacionComponent implements OnInit {
           text: `Se respondio correctamente la solicitud`,
           icon: 'success',
           confirmButtonColor: '#2F6DF2',
+          timer: 1500,
         }).then((res) => {
-          this.router.navigate(['cursos/dashboard']).then(() => {
-            window.location.reload();
-          });
+          this.listarNotificacionesAcceso();
+          this.listarNotificaciones();
         });
       });
   }
