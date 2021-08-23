@@ -84,7 +84,6 @@ export class CrearCursoComponent implements OnInit {
         this.curso.privacidad_id = this.cursoForm.get('privacidad_id').value;
         this.curso.categoria_id = this.cursoForm.get('categoria_id').value;
         this.curso.conoci_previo = this.cursoForm.get('conoci_previo').value;
-        console.log('editar', this.curso);
         this.actualizarCurso(this.curso);
       } else {
         if (this.image != null || this.image != undefined) {
@@ -171,7 +170,6 @@ export class CrearCursoComponent implements OnInit {
   }
 
   cargarDatosCurso(curso: Curso) {
-    console.log(curso);
     this.cursoForm.get('curso_nombre').setValue(curso?.curso_nombre);
     this.cursoForm.get('descripcion').setValue(curso?.descripcion);
     this.cursoForm.get('privacidad_id').setValue(curso?.privacidad_id);
@@ -180,10 +178,7 @@ export class CrearCursoComponent implements OnInit {
   }
 
   actualizarCurso(curso: Curso) {
-    console.log(curso);
-
     this.cursoService.editarCurso(curso.curso_id, curso).subscribe((x) => {
-      console.log(x);
       this.cerrarModal.emit('close');
     });
   }

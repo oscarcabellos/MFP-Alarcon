@@ -47,8 +47,6 @@ export class VerCursoComponent implements OnInit {
    */
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
-      console.log(x);
-
       this.curso = x['data'];
       this.esProfesorCurso =
         x['data']['usuario_id'] === +sessionStorage.getItem('usuario_id');

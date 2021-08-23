@@ -135,4 +135,8 @@ export class ListaCursoComponent implements OnInit {
       }
     );
   }
+
+  mostrarCodigo(curso: Curso) {
+    Swal.fire(`El código del curso es: ${curso?.codigo}`);
+  }
 }
