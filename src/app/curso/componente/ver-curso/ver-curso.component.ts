@@ -24,6 +24,7 @@ export class VerCursoComponent implements OnInit {
   esAlumnoCurso: boolean;
   cantidadCursosPublicos: number;
   cantidadEstudiantes: number;
+  alumnosMatriculados: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,6 +48,7 @@ export class VerCursoComponent implements OnInit {
    */
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
+      this.alumnosMatriculados = x['alumnos'];
       this.curso = x['data'];
       this.esProfesorCurso =
         x['data']['usuario_id'] === +sessionStorage.getItem('usuario_id');
