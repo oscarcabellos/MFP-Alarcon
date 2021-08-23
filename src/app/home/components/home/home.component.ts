@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from 'src/app/curso/modelo/curso';
+import { CategoriaService } from 'src/app/curso/servicios/categoria.service';
 import { Sugerencia } from 'src/app/sugerencia/modelos/sugerencia';
 import { CursoService } from '../../services/curso.service';
 import { SugerenciaService } from '../../services/sugerencia.service';
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   sugerencias: Sugerencia[];
   constructor(
     private readonly cursoService: CursoService,
-    private readonly sugerenciaService: SugerenciaService
+    private readonly sugerenciaService: SugerenciaService,
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +44,12 @@ export class HomeComponent implements OnInit {
   listarSugerencias() {
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
       this.sugerencias = x;
+    });
+  }
+
+  obtenerCategoria(id) {
+    this.categoriaService.getCategoria(id).subscribe((x) => {
+      console.log(x);
     });
   }
 }
