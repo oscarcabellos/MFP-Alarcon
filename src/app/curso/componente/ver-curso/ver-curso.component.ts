@@ -48,8 +48,6 @@ export class VerCursoComponent implements OnInit {
    */
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
-      console.log(x);
-
       this.alumnosMatriculados = x['alumnos'];
       this.curso = x['data'];
       this.esProfesorCurso =
@@ -72,7 +70,6 @@ export class VerCursoComponent implements OnInit {
       this.usuario = x['user'][0];
       this.cantidadCursosPublicos = x['cantidadCursosPublicos'];
       this.cantidadEstudiantes = x['cantidadEstudiantes'];
-      console.log(x);
     });
   }
 

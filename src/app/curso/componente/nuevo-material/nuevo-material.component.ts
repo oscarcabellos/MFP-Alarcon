@@ -117,7 +117,13 @@ export class NuevoMaterialComponent implements OnInit {
     this.materialService
       .crearMaterialCurso(this.objeto.curso_id, this.objeto)
       .subscribe((x) => {
-        console.log(x);
+        Swal.fire({
+          icon: 'success',
+          title: 'Material creado',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.closeModal('guardado');
       });
   }
 }
