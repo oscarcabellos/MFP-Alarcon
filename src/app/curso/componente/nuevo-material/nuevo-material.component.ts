@@ -21,7 +21,7 @@ export class NuevoMaterialComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    public NuevoMaterialService: NuevoMaterialService,
+    public materialService: NuevoMaterialService,
     private tareaService: TareaService
   ) {}
 
@@ -43,11 +43,19 @@ export class NuevoMaterialComponent implements OnInit {
     this.activeModal.close(sendData);
   }
 
+  comprobarTipoMaterial() {
+    if (this.tarea) {
+      this.guardarTarea();
+    } else {
+      this.guardarMaterialCurso();
+    }
+  }
+
   /**
    * Función para guardar una nueva tarea
    */
   guardarTarea() {
-    this.NuevoMaterialService.crearTarea(this.objeto).subscribe((rep) => {
+    this.materialService.crearTarea(this.objeto).subscribe((rep) => {
       this.closeModal(rep['msg']);
     });
   }
@@ -102,6 +110,15 @@ export class NuevoMaterialComponent implements OnInit {
         }).then(() => {
           this.closeModal('Actualizado');
         });
+      });
+  }
+
+  guardarMaterialCurso() {
+    console.log(this.objeto);
+    this.materialService
+      .crearMaterialCurso(this.objeto.curso_id, this.objeto)
+      .subscribe((x) => {
+        console.log(x);
       });
   }
 }

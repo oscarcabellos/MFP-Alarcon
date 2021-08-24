@@ -133,6 +133,12 @@ export class CursoService {
       .pipe(catchError(this.handleError));
   }
 
+  unirCursoPublico(idCurso: number, idUser: number) {
+    return this.http
+      .post(`${this.urlApi}join-public-course/${idCurso}`, { idUser })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);

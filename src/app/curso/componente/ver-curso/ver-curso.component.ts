@@ -48,6 +48,8 @@ export class VerCursoComponent implements OnInit {
    */
   listarCurso(id: number) {
     this.cursoService.obtenerCurso(id).subscribe((x) => {
+      console.log(x);
+
       this.alumnosMatriculados = x['alumnos'];
       this.curso = x['data'];
       this.esProfesorCurso =
@@ -109,7 +111,7 @@ export class VerCursoComponent implements OnInit {
     if (sessionStorage.getItem('correo') != null) {
       if (idPrivacidad === CURSO_PUBLICO) {
         this.cursoService
-          .agrearUsuarioCurso(id, sessionStorage.getItem('correo'))
+          .unirCursoPublico(id, +sessionStorage.getItem('usuario_id'))
           .subscribe((x) => {
             Swal.fire({
               title: 'Se unió al curso',
