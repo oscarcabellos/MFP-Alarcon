@@ -126,7 +126,15 @@ export class VerCursoComponent implements OnInit {
       } else if (idPrivacidad === CURSO_CON_INVITACION) {
         this.cursoService
           .solicitarAcceso(id, +sessionStorage.getItem('usuario_id'))
-          .subscribe((x) => console.log(x));
+          .subscribe((x) => {
+            Swal.fire({
+              title: 'Se envió la solicitud',
+              icon: 'success',
+              showConfirmButton: false,
+              width: '20rem',
+              timer: 1000,
+            });
+          });
       }
     }
   }

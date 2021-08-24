@@ -153,14 +153,19 @@ export class AgregarUsuarioComponent implements OnInit {
       width: '20rem',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usuarios = this.usuarios.filter((u) => u.usuario_id !== id);
-        Swal.fire({
-          title: 'Eliminado',
-          icon: 'success',
-          showConfirmButton: false,
-          width: '20rem',
-          timer: 1500,
-        });
+        /* this.usuarios = this.usuarios.filter((u) => u.usuario_id !== id); */
+        this.cursoService
+          .eliminarUsuarioCurso(this.cursoId, id)
+          .subscribe((x) => {
+            Swal.fire({
+              title: 'Eliminado',
+              icon: 'success',
+              showConfirmButton: false,
+              width: '20rem',
+              timer: 1500,
+            });
+            this.listarUsuarios(this.cursoId);
+          });
       }
     });
   }

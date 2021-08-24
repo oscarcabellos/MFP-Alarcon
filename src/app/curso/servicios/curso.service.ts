@@ -139,6 +139,12 @@ export class CursoService {
       .pipe(catchError(this.handleError));
   }
 
+  eliminarUsuarioCurso(curso_id: number, usuario_id: number) {
+    return this.http
+      .post(`${this.urlApi}deletecoursesUsers`, { curso_id, usuario_id })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);
