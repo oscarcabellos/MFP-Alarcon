@@ -3,7 +3,11 @@
     class="row"
     *ngIf="notificaciones?.length == 0 && solicutdAcceso?.length == 0"
   >
-    <h3>No tiene ninguna notificación</h3>
+    <div class="col-12">
+      <div class="card">
+        <h4 class="py-3 px-4">No tiene ninguna notificación</h4>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-12" *ngFor="let c of solicutdAcceso">

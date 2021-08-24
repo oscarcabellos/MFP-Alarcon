@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
 
 @Component({
   selector: 'app-ver-entrega-tarea',
@@ -9,10 +10,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class VerEntregaTareaComponent implements OnInit {
   @Input() fromParent;
   tareas = [];
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    private materialService: NuevoMaterialService
+  ) {}
 
   ngOnInit(): void {
     /* Codigo de ejecucion al inicio del componenente */
+    this.listarTareas(this.fromParent.tarea);
   }
 
   /**
@@ -21,5 +26,11 @@ export class VerEntregaTareaComponent implements OnInit {
    */
   closeModal(sendData) {
     this.activeModal.close(sendData);
+  }
+
+  listarTareas(id) {
+    this.materialService.listarEntregaTareas(id).subscribe((x) => {
+      console.log(x);
+    });
   }
 }

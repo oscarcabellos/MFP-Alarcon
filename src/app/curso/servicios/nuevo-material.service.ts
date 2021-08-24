@@ -19,6 +19,12 @@ export class NuevoMaterialService extends AppServiceBase {
     );
   }
 
+  listarEntregaTareas(idTarea: number) {
+    return this.get(`list-task-submissions/${idTarea}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);
