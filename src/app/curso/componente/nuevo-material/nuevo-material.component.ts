@@ -114,7 +114,6 @@ export class NuevoMaterialComponent implements OnInit {
   }
 
   guardarMaterialCurso() {
-    console.log(this.objeto);
     this.materialService
       .crearMaterialCurso(this.objeto.curso_id, this.objeto)
       .subscribe((x) => {

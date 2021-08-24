@@ -29,9 +29,11 @@
             </thead>
             <tbody>
               <tr *ngFor="let t of tareas">
-                <td class="align-middle">osivnoidvas</td>
-                <td>vasdovinoavisnvsd.pdf</td>
-                <td>12/07/2021</td>
+                <td class="align-middle">
+                  {{ t?.usuario_nombre }} {{ t?.usuario_apellidos }}
+                </td>
+                <td>{{ t?.url }}</td>
+                <td>{{ t?.fecha_entrega }}</td>
                 <td>
                   <button class="btn btn-outline-info">
                     <em class="uil uil-import"></em>

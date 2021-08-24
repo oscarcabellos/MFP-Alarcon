@@ -87,7 +87,6 @@ export class ListaCursoComponent implements OnInit {
   listarCursos2(id: number) {
     this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
       this.cursos = this.cursos.concat(x['data']);
-      console.log(x);
     });
   }
 

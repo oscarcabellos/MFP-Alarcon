@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EntregaTarea } from '../../modelo/entrega-tarea';
 import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
 })
 export class VerEntregaTareaComponent implements OnInit {
   @Input() fromParent;
-  tareas = [];
+  tareas: EntregaTarea[] = [];
   constructor(
     public activeModal: NgbActiveModal,
     private materialService: NuevoMaterialService
@@ -17,7 +18,8 @@ export class VerEntregaTareaComponent implements OnInit {
 
   ngOnInit(): void {
     /* Codigo de ejecucion al inicio del componenente */
-    this.listarTareas(this.fromParent.tarea);
+
+    this.listarTareas(this.fromParent.tarea.tarea_id);
   }
 
   /**
@@ -29,8 +31,10 @@ export class VerEntregaTareaComponent implements OnInit {
   }
 
   listarTareas(id) {
-    this.materialService.listarEntregaTareas(id).subscribe((x) => {
-      console.log(x);
-    });
+    this.materialService
+      .listarEntregaTareas(id)
+      .subscribe((x: EntregaTarea[]) => {
+        this.tareas = x;
+      });
   }
 }

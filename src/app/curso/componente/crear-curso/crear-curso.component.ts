@@ -59,7 +59,6 @@ export class CrearCursoComponent implements OnInit {
     this.listarCategorias();
     if (this.editar) {
       this.cargarDatosCurso(this.curso);
-      console.log('vaoinvasio');
     }
   }
 
