@@ -7,3 +7,5 @@ export class Sugerencia {
   descripcion: string;
   sugerencia_fecha_creacion: Date;
 }
+
+

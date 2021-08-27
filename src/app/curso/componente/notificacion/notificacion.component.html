@@ -17,7 +17,7 @@
           <button class="btn btn-secondary">X</button>
         </div>
         <div class="card-body">
-          <p class="card-text">{{ c.usuario_nombre }} {{ c.curso_id }}</p>
+          <p class="card-text">{{ c?.usuario_nombre }} </p>
           <div class="d-flex flex-row-reverse">
             <button
               class="btn btn-danger"
@@ -38,23 +38,23 @@
     <div class="col-12" *ngFor="let c of solicutdAcceso2">
       <div class="card border-primary mb-3">
         <div class="card-header d-flex justify-content-between">
-          <h5>{{ c.curso_nombre }}</h5>
+          <h5>{{ c?.curso_nombre }}</h5>
           <button class="btn btn-secondary">X</button>
         </div>
         <div class="card-body">
-          <p class="card-text">{{ c.usuario_nombre }} {{ c.curso_id }}</p>
+          <p class="card-text">{{ c?.usuario_nombre }} </p>
           <div class="d-flex flex-row-reverse">
             <button
               class="btn btn-danger"
-              (click)="darBloquearAcceso(2, c.curso_id, c.usuario_id)"
+              (click)="aceptarInvitacion(2, c.curso_id, c.usuario_id)"
             >
               Rechazar
             </button>
             <button
               class="btn btn-primary mr-2"
-              (click)="darBloquearAcceso(1, c.curso_id, c.usuario_id)"
+              (click)="aceptarInvitacion(1, c.curso_id, c.usuario_id)"
             >
-              Unirme
+              Aceptar
             </button>
           </div>
         </div>

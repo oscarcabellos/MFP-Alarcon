@@ -5,6 +5,7 @@ import { SugerenciaService } from '../../servicios/sugerencia.service';
 import { Sugerencia } from '../../modelos/sugerencia';
 import { CategoriaService } from 'src/app/curso/servicios/categoria.service';
 import { Categoria } from 'src/app/curso/modelo/categoria';
+import { Voto } from '../../modelos/voto';
 
 @Component({
   selector: 'app-lista-sugerencia',
@@ -20,6 +21,7 @@ export class ListaSugerenciaComponent implements OnInit {
       categoria_fecha_creacion: null,
     },
   ];
+  sugerencia=new Voto();
   sugerenciasIniciales: Sugerencia[];
   sugerencias: Sugerencia[];
   pageActual: number;
@@ -57,9 +59,11 @@ export class ListaSugerenciaComponent implements OnInit {
     this.responsive = true;
     this.sugerenciaFiltro = '';
     this.usuarioRegistrado = +sessionStorage.getItem('usuario_id') !== 0;
-
+    this.sugerencia.usuario_id=+sessionStorage.getItem('usuario_id');
+    console.log(this.sugerencia.usuario_id);
     this.listarSugerencias();
     this.listarCategorias();
+    
   }
 
   /**
@@ -88,7 +92,10 @@ export class ListaSugerenciaComponent implements OnInit {
    * @param id Identificador de la sugerencia
    */
   cambiarEstado(id: number) {
+    this.sugerencia.sugerencia_id=id;
     this.fakeVotacionesEstado[id] = !this.fakeVotacionesEstado[id];
+    this.sugerenciaService.votarSugerencia(this.sugerencia).subscribe(x=>{ console.log(x);
+    });
   }
 
   /**

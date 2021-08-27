@@ -73,7 +73,7 @@
                     'btn-ligth': !fakeVotacionesEstado[i],
                     'btn-danger': fakeVotacionesEstado[i]
                   }"
-                  (click)="cambiarEstado(i)"
+                  (click)="cambiarEstado(s?.sugerencia_id)"
                   *ngIf="usuarioRegistrado"
                 >
                   <em id="favorito{{ i }}" class="h5 uil uil-heart"></em>
