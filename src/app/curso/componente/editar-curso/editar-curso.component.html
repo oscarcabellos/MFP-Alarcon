@@ -1,5 +1,10 @@
+<!-- Se crea la cabecera del modal -->
 <div class="modal-header">
+  <!-- Se agrega un titulo al modal -->
   <h5 class="modal-title">Editar el curso</h5>
+  <!-- Se cierra la etiqueta del titulo del modal -->
+
+  <!-- Se crea un botón para cerra el modal -->
   <button
     type="button"
     class="close"
@@ -7,21 +12,38 @@
     aria-label="Close"
     (click)="closeModal('dismiss')"
   >
+    <!-- Se añade una equis como icono del botón de cierre del modal -->
     <span aria-hidden="true">&times;</span>
+    <!-- Se cierra la etiqueta del icono -->
   </button>
+  <!-- Se cierra la etiqueta del botón del modal -->
 </div>
+<!-- Se cierra la etiqueta de la cabecera del modal -->
 
+<!-- Se incia el cuerpo del modal -->
 <div class="modal-body">
+  <!-- Se utiliza un contenedor que ocupa todo el espacio disponible -->
   <div class="container-fluid">
+    <!-- Etiqueta para obtener el foco al iniciar el componente -->
     <input type="hidden" ngbAutofocus />
+    <!-- Se cierra la etiqueta del input -->
+
+    <!-- Se crea una fila para que se muestre el contenido -->
     <div class="row">
+      <!-- Se distribuye el contenido en doce columnas -->
       <div class="col-12">
+        <!-- Se llama al componente de crear curso con los parametros de editar con el valor de true, el curso que es el objeto del curso actual y un evento que será enviado desde el componente hijo hacia el padre para poder cerra el modal una vez que se concluye la realización de la edición -->
         <app-crear-curso
           [editar]="editar"
           [curso]="curso"
           (cerrarModal)="closeModalChild($event)"
         ></app-crear-curso>
+        <!-- Finaliza el componente de crear curso -->
       </div>
+      <!-- Se cierra la etiqueta que contiene a la columna -->
     </div>
+    <!-- Se cierra la etiqueta de la fila -->
   </div>
+  <!-- Se cierra la etiqueta del contenedor padre -->
 </div>
+<!-- Se cierra la etiqueta del cuerpo del modal -->
