@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Codigo } from '../modelo/codigo';
 import { Curso } from '../modelo/curso';
 
 @Injectable({
@@ -138,6 +139,14 @@ export class CursoService {
       .post(`${this.urlApi}join-public-course/${idCurso}`, { idUser })
       .pipe(catchError(this.handleError));
   }
+
+  unirPorCodigo(codigo:Codigo) {
+    return this.http
+      .post(`${this.urlApi}unirPorCodigo`, codigo )
+      .pipe(catchError(this.handleError));
+  }
+
+
 
   eliminarUsuarioCurso(curso_id: number, usuario_id: number) {
     return this.http
