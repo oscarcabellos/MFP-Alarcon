@@ -1,30 +1,95 @@
+/**
+ * Se importa losmodulos de angular core
+ */
 import { Component, Input, OnInit } from '@angular/core';
+
+/**
+ * Se importa la clase de Usuario
+ */
 import { Usuario } from '../../modelo/usuario';
+
+/**
+ * Se importa el modulo de las alertas
+ */
 import Swal from 'sweetalert2';
+
+/**
+ * Se importa le servicio de cursos
+ */
 import { CursoService } from '../../servicios/curso.service';
+
+/**
+ * Se importa las funcionalidades de los formularios reactivos
+ */
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+/**
+ * Se importa el servicio de generación de excel
+ */
 import { ExcelService } from '../../servicios/excel.service';
 
+/**
+ * Se colocan las referencias de los archivos del modulo
+ */
 @Component({
   selector: 'app-agregar-usuario',
   templateUrl: './agregar-usuario.component.html',
   styleUrls: ['./agregar-usuario.component.css'],
 })
+
+/**
+ * Clase para la creación de un componente de agregar usuario
+ */
 export class AgregarUsuarioComponent implements OnInit {
+  /**
+   * Parametro recibido del componente padre con el identificador del curso
+   */
   @Input() cursoId: number;
+
+  /**
+   * Parametro desde el componente padre para saber si el usuario es el profesor del curso
+   */
   @Input() usuarioProfesor: boolean;
+
+  /**
+   * Variable para listar los usuarios que pertenecen al curso
+   */
   usuarios: Usuario[] = [];
+
+  /**
+   * Formulario para agregar un usuario
+   */
   agregarForm: FormGroup;
+
+  /**
+   * Variable para mostrar el total de alumnos de un curso
+   */
   totalAlumnos: number;
 
+  /**
+   * Constructor con la incialización de los modulos correspondientes
+   * @param cursoService Modulo con las funcionalidades para interactuar con un curso
+   * @param formBuilder Modulo para la creacion de formularios
+   * @param excelService Modulo para acceder a la creacion de un excel
+   */
   constructor(
     private readonly cursoService: CursoService,
     private readonly formBuilder: FormBuilder,
     private readonly excelService: ExcelService
   ) {}
 
+  /**
+   * Fiunción para inicializar las variables que se van a utilizar en el sistema
+   */
   ngOnInit(): void {
+    /**
+     * Se llama a la función para listar los usuarios
+     */
     this.listarUsuarios(this.cursoId);
+
+    /**
+     * Se incializa el formulario para agregar un usuarios
+     */
     this.agregarForm = this.formBuilder.group({
       correoUsuario: ['', [Validators.required, Validators.email]],
     });
@@ -45,8 +110,18 @@ export class AgregarUsuarioComponent implements OnInit {
    * @param id Identificador del curso
    */
   listarUsuarios(id: number) {
+    /**
+     * Se llama al servicio la obtener los usuarios
+     */
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
+      /**
+       * Se almacena la respuesta en los usuarios
+       */
       this.usuarios = x['data'][0];
+
+      /**
+       * Se almacena la información del total de alumnos del curso
+       */
       this.totalAlumnos = x['data'][0].length;
     });
   }
@@ -55,22 +130,37 @@ export class AgregarUsuarioComponent implements OnInit {
    * Función para agregar un usuario al curso
    */
   validarCorreoIngresado() {
+    /**
+     * Se valida que el formulario se haya llenado correctamente
+     */
     if (this.agregarForm.valid) {
+      /**
+       * Se valida que el correo ingresado no sea el mismo que el profesor
+       */
       if (
         this.validarCorreoIgualAProfesor(
           sessionStorage.getItem('correo'),
           this.agregarForm.get('correoUsuario').value
         )
       ) {
+        /**
+         * Se muestra mensaje de advertencia
+         */
         Swal.fire({
           icon: 'error',
           title: 'No se puede agregar a su propio curso',
           showConfirmButton: false,
           timer: 1500,
         });
+        /**
+         * Se valida que usuario no haya sido agregado previamente
+         */
       } else if (
         this.validarUsuarioAgregado(this.agregarForm.get('correoUsuario').value)
       ) {
+        /**
+         * Se muestra mensaje de advertencia sobre el usuario
+         */
         Swal.fire({
           icon: 'error',
           title: 'El usuario ya ha sido agregado',
@@ -78,18 +168,27 @@ export class AgregarUsuarioComponent implements OnInit {
           timer: 1500,
         });
       } else {
+        /**
+         * Se agrega el usuario al curso
+         */
         this.agregarUsuario(
           this.cursoId,
           this.agregarForm.get('correoUsuario').value
         );
       }
     } else {
+      /**
+       * Se muestra mensaje de advertencia indicando que el correo no es válido
+       */
       Swal.fire({
         title: 'Correo no válido',
         confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
-        width: '20rem',
+        width: '25rem',
       });
+      /**
+       * Se muestra donde ocurrio el error
+       */
       Object.values(this.agregarForm.controls).forEach((control) => {
         control.markAsTouched();
       });
@@ -126,13 +225,23 @@ export class AgregarUsuarioComponent implements OnInit {
     this.cursoService
       .agrearUsuarioCurso(id_curso, correoIngresado)
       .subscribe((x) => {
+        /**
+         * Se muestra mensaje de exito al agregar un usuario
+         */
         Swal.fire({
           icon: 'success',
           title: 'Se ha enviado la invitación',
           showConfirmButton: false,
           timer: 1500,
         });
+        /**
+         * Se llama a la función para listar a los usuarios del curso
+         */
         this.listarUsuarios(this.cursoId);
+
+        /**
+         * Se reinicia el formulario
+         */
         this.agregarForm.reset();
       });
   }
@@ -142,6 +251,9 @@ export class AgregarUsuarioComponent implements OnInit {
    * @param id Identificador del usuario a eliminar
    */
   eliminarUsuario(id: number) {
+    /**
+     * Se muestra mensaje de confirmación para poder elimianr
+     */
     Swal.fire({
       title: '¿Seguro de eliminar?',
       showCancelButton: true,
@@ -151,18 +263,30 @@ export class AgregarUsuarioComponent implements OnInit {
       cancelButtonText: 'Cancelar',
       width: '20rem',
     }).then((result) => {
+      /**
+       * Se valida que se confirma la eliminación
+       */
       if (result.isConfirmed) {
-        /* this.usuarios = this.usuarios.filter((u) => u.usuario_id !== id); */
+        /**
+         * Se llama al servicio para agregar un usuario
+         */
         this.cursoService
           .eliminarUsuarioCurso(this.cursoId, id)
           .subscribe((x) => {
+            /**
+             * Se muestra mensaje de exito al eliminar
+             */
             Swal.fire({
               title: 'Eliminado',
               icon: 'success',
               showConfirmButton: false,
-              width: '20rem',
+              width: '25rem',
               timer: 1500,
             });
+
+            /**
+             * Se llama a la funcion de listar para volver a mostrar los usuario en el curso
+             */
             this.listarUsuarios(this.cursoId);
           });
       }
@@ -174,8 +298,18 @@ export class AgregarUsuarioComponent implements OnInit {
    */
   descargarUsuarios(id: number) {
     this.cursoService.listarUsuariosPorCurso(id).subscribe((x) => {
+      /**
+       * Se valida que la lista de usuarios no este vacia
+       */
       if (x['data'][0]?.length > 0) {
+        /**
+         * Se llama al servicio para generar el excel
+         */
         this.excelService.exportAsExcelFile(x.data[0], 'ListaCurso');
+
+        /**
+         * Se crea el objeto para mostrar la alerta
+         */
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -188,6 +322,9 @@ export class AgregarUsuarioComponent implements OnInit {
           },
         });
 
+        /**
+         * Se muestra mensaje de éxito al descargar
+         */
         Toast.fire({
           icon: 'success',
           title: 'Descargando...',
@@ -202,15 +339,29 @@ export class AgregarUsuarioComponent implements OnInit {
    * @returns Cadena con el nombre del estado
    */
   obtenerEstado(usuario) {
+    /**
+     * Se valida que el usuario pertenece al curso
+     */
     if (usuario?.situacion_id === 1) {
       return 'Activo';
     }
+
+    /**
+     * Se valida que el usuario no ha rechazado unirse al curso
+     */
     if (usuario?.situacion_id === 2) {
       return 'Denegado';
     }
+
+    /**
+     * Se valida que el usuario no acepta la invitación
+     */
     if (usuario?.situacion_id === 3) {
       return 'Pendiente';
     }
+    /**
+     * Se valida que el profesor no acepta la invitación
+     */
     if (usuario?.situacion_id === 5) {
       return 'Pendiente';
     }

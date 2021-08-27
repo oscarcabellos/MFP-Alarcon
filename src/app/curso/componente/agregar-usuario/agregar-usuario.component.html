@@ -1,11 +1,15 @@
+<!-- Contendor general del componente -->
 <div class="container m-4">
+  <!-- Se inicia el formulario para agregar un nuevo usuario -->
   <div
     class="row my-2 px-2"
     *ngIf="usuarioProfesor"
     [formGroup]="agregarForm"
     autocomplete="off"
   >
+    <!-- Se crea el contenedor del input del correo -->
     <div class="col-12 col-md-7 col-lg-9">
+      <!-- Input para añadir un nuevo usuario mediante su correo -->
       <input
         id="correo"
         class="form-control"
@@ -14,11 +18,19 @@
         formControlName="correoUsuario"
         [class.is-invalid]="correoNoValido"
       />
-      <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido"
-        >Ingrese correo valido</small
-      >
+      <!-- Se cierra la etiqueta del input -->
+
+      <!-- Mensaje de ayuda al usuairo  -->
+      <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido">
+        Ingrese correo valido
+      </small>
+      <!-- Se cierra la etiqueta del mensaje -->
     </div>
+    <!-- Se cierra la etiqueta del contenedor -->
+
+    <!-- Se crea el contenedor de los botones para la funcionalidad de la vista -->
     <div class="col-7 col-sm-6 col-md-5 col-lg-3 mt-2 mt-md-0 ml-auto">
+      <!-- Botón para agregar a un nuevo usuario -->
       <button
         id="btnAgregar"
         class="btn btn-info mr-2"
@@ -26,6 +38,9 @@
       >
         Agregar
       </button>
+      <!-- Se cierra la etiqueta para el botón de crear un nuevo usuario -->
+
+      <!-- Botón para descargar la lista de usuarios -->
       <button
         class="btn btn-success"
         (click)="descargarUsuarios(cursoId)"
@@ -33,33 +48,57 @@
       >
         Descargar
       </button>
+      <!-- Se cierra la etiqueta para cerrar el botón de descargar -->
     </div>
+    <!-- Se cierra la etiqueta del contenedor de los botones -->
   </div>
+  <!-- Se cierra el contenedor de las funciones del profesor -->
+
+  <!-- Se inicia el contenedor de la lista de usurios -->
   <div class="row my-2">
+    <!-- Se inicia la distribución con 12 columnas -->
     <div class="col-12">
+      <!-- Se inicia como una tabla responsive -->
       <div
         class="table-responsive table-borderless"
         *ngIf="usuarios?.length > 0"
       >
+        <!-- Se crea la tabla que contiene a los alumnos del curso -->
         <table class="table">
+          <!-- Etiqueta para mostrar el total de alumnos -->
           <caption class="text-primary">
             Total de alumnos:&nbsp;&nbsp;
             {{
               totalAlumnos
             }}
           </caption>
+          <!-- Se cierra la etiqueta con la información de los usuarios -->
+
+          <!-- Se inicia cabecera de la tabla -->
           <thead>
+            <!-- Se muestra el contenedor de los nombres de las columnas de la tabla -->
             <tr>
+              <!-- Se utiliza para mostrar la imagen del usuario -->
               <th scope="col"></th>
+              <!-- Se utiliza para colocal el nombre del usuario -->
               <th scope="col">Usuario</th>
+              <!-- Se utiliza para colocar el correo del usuario -->
               <th scope="col">Correo</th>
+              <!-- Se utiliza para colocar el estado del usuario -->
               <th scope="col">Estado</th>
+              <!-- Se utiliza para colocar el botón de eliminar  -->
               <th scope="col"></th>
             </tr>
           </thead>
+          <!-- Finaliza el contenedor de las columnas -->
+
+          <!-- Se inicia el cuerpo del formulario -->
           <tbody>
+            <!-- Se inicia una fila de la tabla -->
             <tr *ngFor="let usuario of usuarios">
+              <!-- contendor de la imagen del usuario -->
               <td class="align-middle">
+                <!-- etiqueta de la imagen del usuario si la tuviese -->
                 <img
                   src="{{ usuario?.url }}"
                   alt="mdo"
@@ -68,7 +107,11 @@
                   class="rounded-circle"
                   *ngIf="usuario?.url != null; else noimagen"
                 />
+                <!-- Cierre de la etiqueta de la imagen -->
+
+                <!-- Contendor sin contenido -->
                 <ng-template #noimagen>
+                  <!-- imagen opcinal si el usuario no tuviese una -->
                   <img
                     src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
                     alt="mdo"
@@ -76,14 +119,29 @@
                     height="32"
                     class="rounded-circle"
                   />
+                  <!-- Cierre de la etiqueta de la imagen -->
                 </ng-template>
+                <!-- Cierre de la etiqueta template -->
               </td>
+              <!-- Cierre de la etiqueta de la primera columna -->
+
+              <!-- Segunda columna para el nombre del usuairo -->
               <td class="align-middle">
                 {{ usuario?.usuario_nombre }} {{ usuario?.usuario_apellidos }}
               </td>
+              <!-- Se cierra la etiqueta del nombre del usuario -->
+
+              <!-- Tercera etiqueta para el correo del usuario -->
               <td class="align-middle">{{ usuario?.correo }}</td>
+              <!-- Se cierra la etiqueta del correo del usuario -->
+
+              <!-- Cuarta etiqueta para mostrar el estado de un usuario -->
               <td class="align-middle">{{ obtenerEstado(usuario) }}</td>
+              <!-- Se cierra la etiqueta del estado del usuario -->
+
+              <!-- Se muestra el contendor del boton para eliminar un usuario -->
               <td class="align-middle" *ngIf="usuarioProfesor">
+                <!-- Botón para eliminar un usuario del curso -->
                 <button
                   class="btn btn-danger"
                   (click)="eliminarUsuario(usuario?.usuario_id)"
@@ -91,11 +149,20 @@
                 >
                   x
                 </button>
+                <!-- Se cierra la etiqueta del botón -->
               </td>
+              <!-- Se cierra la etiqueta de la ultima columna -->
             </tr>
+            <!-- Se cierra el contedor de la fila  -->
           </tbody>
+          <!-- Se cierra la etiqueta del contenido de la tabla -->
         </table>
+        <!-- Se cierra la etiqueta de la tabla de los usuarios -->
       </div>
+      <!-- Se cierra la etiqueta de la tabla responsive -->
     </div>
+    <!-- Se ciera la etiqueta de las columnas -->
   </div>
+  <!-- Se ciera la etiqueta de la fila -->
 </div>
+<!-- Se cierra la etiqueta del contenedor general -->

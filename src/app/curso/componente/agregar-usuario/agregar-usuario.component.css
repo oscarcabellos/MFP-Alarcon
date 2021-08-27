@@ -1,4 +1,5 @@
+/* Estilos para la lista de alumnos */
 #listaAlumnos {
-    overflow-y: scroll;
-    height: 340px;
+  overflow-y: scroll;
+  height: 340px;
 }
