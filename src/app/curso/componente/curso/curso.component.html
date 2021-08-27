@@ -1,16 +1,26 @@
+<!-- Contenedor padre del curso -->
 <div class="container p-5">
+  <!-- Contenedor con la clase card para mostrar una sección -->
   <div class="card mt-5">
+    <!-- Contenedor del contenido que se va a mostrar al usuario -->
     <div class="card-body">
+      <!-- Disposicion del contenido en filas -->
       <div class="row d-flex justify-content-between">
-        <span class="col-12 col-lg-6 d-flex flex-column-reverse h4">{{
-          nombreCurso
-        }}</span>
+        <!-- Se muestra el nombre del curso en la parte superior -->
+        <span class="col-12 col-lg-6 d-flex flex-column-reverse h4">
+          {{ nombreCurso }}
+        </span>
+        <!-- Se cierra la etiqueta que muestra el nombre del curso -->
+
+        <!-- Lista para mostrar las tres secciones del modulo -->
         <ul
           class="nav nav-tabs d-flex justify-content-end"
           id="myTab"
           role="tablist"
         >
+          <!-- Primer elemento de la lista que muestra los materiales del curso -->
           <li class="nav-item" role="presentation">
+            <!-- Link hacia la seccoin de los materiales del curso -->
             <a
               class="nav-link active"
               id="home-tab"
@@ -19,10 +29,16 @@
               role="tab"
               aria-controls="home"
               aria-selected="true"
-              >Home</a
             >
+              Materiales
+            </a>
+            <!-- Se cierra la etiqueta que redirecciona a la seccion de materiales -->
           </li>
+          <!-- Fin de la etiqueta del primer elemento de la lista -->
+
+          <!-- Segundo elemento de la lista que muestra las tareas del curso -->
           <li class="nav-item" role="presentation">
+            <!-- Link hacia la sección de tareas donde se podra visualizar y crear las mismas -->
             <a
               class="nav-link"
               id="profile-tab"
@@ -31,10 +47,16 @@
               role="tab"
               aria-controls="profile"
               aria-selected="false"
-              >Tareas</a
             >
+              Tareas
+            </a>
+            <!-- Fin de la etiqueta que redirecciona a la sección de tareas -->
           </li>
+          <!-- Se finaliza la etiqueta del segundo elemento de la lista que hace referencia a las tareas del curso -->
+
+          <!-- Tercer elemento de la lista que muestra a los usuarios que se encuentran inscritos dentro del curso -->
           <li class="nav-item" role="presentation">
+            <!-- Link hacia la sección de usuarios donde se podra agregar nuevo o eliminarlo -->s
             <a
               class="nav-link"
               id="contact-tab"
@@ -43,45 +65,71 @@
               role="tab"
               aria-controls="contact"
               aria-selected="false"
-              >Usuarios</a
             >
+              Usuarios
+            </a>
+            <!-- Fin de la etiqueta que redirecciona hacia la tercera tarjeta que pertenece a los usuarios -->
           </li>
+          <!-- Se cierra la tercera etiqueta del tecer elemento de la lista que se refiere a la sección de usuarios -->
         </ul>
+        <!-- Se cierra la etiqueta que contenia a la lista con sus tres elementos -->
       </div>
+      <!-- Se finaliza con el cierre de la etiqueta de la primera fila -->
+
+      <!-- Se coloca una linea de separacion entre ambos contenidos -->
       <hr />
+
+      <!-- Contenedor para mostrar las secciones respectivas a cada elemento ubicado en la parte superior -->
       <div class="tab-content" id="myTabContent">
+        <!-- Contenedor del contenido de la primera seccion de materiales -->
         <div
           class="tab-pane fade show active"
           id="home"
           role="tabpanel"
           aria-labelledby="home-tab"
         >
-          <app-material-curso
-            [usuarioProfesor]="pertenece"
-          ></app-material-curso>
+          <!-- Se llama al componente para mostrar la funcionalidad de los materiales y se le pasa como parametro si el usuario es el profesor del curso-->
+          <app-material-curso [usuarioProfesor]="pertenece">
+          </app-material-curso>
+          <!-- Se cierrar la etiqueta para llamar al componente -->
         </div>
+        <!-- Se cierra el primer contenedor de los materiales -->
+
+        <!-- Contenedor del segundo elemento de la lista que es para las tareas -->
         <div
           class="tab-pane fade"
           id="profile"
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <app-tarea-curso 
-            [cursoId]="idCurso"
-            [usuarioProfesor]="pertenece"></app-tarea-curso>
+          <!-- Se llama al componente de las tareas para mostrar sus funcionalidades y se le pasa como parametros el identificador del curso y si el usuario es el profesor del curso-->
+          <app-tarea-curso [cursoId]="idCurso" [usuarioProfesor]="pertenece">
+          </app-tarea-curso>
+          <!-- Se cierrar la etiqueta del componente de tareas -->
         </div>
+        <!-- Se cierra la etiqueta del segundo elemento de la lista que muestra las tareas -->
+
+        <!-- Se muestra el contenedor del tercer elemento para mostrar los usuarios que se hayan agregado al curso -->
         <div
           class="tab-pane fade"
           id="contact"
           role="tabpanel"
           aria-labelledby="contact-tab"
         >
+          <!-- Se llama al componente de usuarios y se le pasa como parametros el identificador del curso y si el usuario es el profesor del curso -->
           <app-agregar-usuario
             [cursoId]="idCurso"
             [usuarioProfesor]="pertenece"
-          ></app-agregar-usuario>
+          >
+          </app-agregar-usuario>
+          <!-- Se cierra la etiqueta del componente de usuarios -->
         </div>
+        <!-- Se cierra la etiqueta del contenedor de los usuarios -->
       </div>
+      <!-- Se cierra el contedor de las secciones con cada uno de sus componentes -->
     </div>
+    <!-- Se cierra el contenedor que muestras tanto las secciones como la referencia a cada una -->
   </div>
+  <!-- Se cierra la etiqueta de la tarjeta  -->
 </div>
+<!-- Se cierra la etiqueta general de todo el componente -->
