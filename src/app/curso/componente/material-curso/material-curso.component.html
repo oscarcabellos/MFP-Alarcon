@@ -1,6 +1,10 @@
+<!-- Se crea contenedor con todo el ancho de la pantalla -->
 <div class="container-fluid">
+  <!-- Se crea un fila para el contenido -->
   <div class="row my-3">
+    <!-- Se crea un columna con doce espacios -->
     <div class="col-12 d-flex justify-content-between">
+      <!-- Input para buscar material del curso -->
       <input
         type="text"
         name=""
@@ -8,6 +12,9 @@
         class="form-control mr-3"
         placeholder="Buscar material"
       />
+      <!-- Se cierra la etiqueta del input -->
+
+      <!-- Botón para crear un nuevo material -->
       <button
         class="btn btn-info"
         (click)="openModal()"
@@ -15,16 +22,30 @@
       >
         Nuevo
       </button>
+      <!-- Se cierra la etiqueta del botón de crear material -->
     </div>
+    <!-- Se finaliza la columna -->
   </div>
+  <!-- Se cierra la fila -->
+
+  <!-- Se crear tarjeta para mostrar cada material -->
   <div class="card bg-light my-4" *ngFor="let c of material">
+    <!-- Se crea la cabera del material con el titulo -->
     <div class="card-header">Header</div>
+    <!-- Se cierra la etiqueta -->
+
+    <!-- Se crea el cuerpo de la tarjeta -->
     <div class="card-body">
       <h4 class="card-title">Light card title</h4>
+      <!-- Se añade la descripcion del material -->
       <p class="card-text">
         Some quick example text to build on the card title and make up the bulk
         of the card's content.
       </p>
+      <!-- Se cierra la etiqueta del material -->
     </div>
+    <!-- Se cierra el cuerpo de la tarjeta -->
   </div>
+  <!-- Se cierra la tarjeta del material -->
 </div>
+<!-- Se cierra el contenedor general -->
