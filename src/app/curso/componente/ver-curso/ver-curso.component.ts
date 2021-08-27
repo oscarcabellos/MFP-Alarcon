@@ -116,7 +116,7 @@ export class VerCursoComponent implements OnInit {
               showConfirmButton: false,
               width: '20rem',
               timer: 1000,
-            }).then((x) => {
+            }).then((result) => {
               this.router.navigate(['/cursos/curso', usuarioId, id]);
             });
           });

@@ -5,12 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { CloudBinaryService }  from '../../../services/cloud-binary.service';
 import { NewUsuarioService } from '../../servicios/editarperfil.service'
 import { CursoService } from '../../../curso/servicios/curso.service'
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
 
 /* Elementos del coponente para definir sus rutas especificas de valores */
 @Component({
@@ -72,16 +66,6 @@ export class ProfileComponent implements OnInit {
       this.cursosm = rep["data"].length;
     })
 
-    /* this.perfilForm = this.formBuilder.group({
-      usuario_nombre: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(30)
-        ],
-      ],
-    });*/
   }
 
   /* get nombreNoValido() {
