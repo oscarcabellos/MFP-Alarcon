@@ -1,5 +1,10 @@
+<!--El presente archivo es el contenido HTML del componente perfil-->
+
+<!--Se aplica un encabezado gracias a la importación del framework de estilos Bootstrap-->
 <div class="modal-header">
+  <!--Se define el encabezado dentro del contenedor-->
   <h5 class="modal-title">Nueva Sugerencia</h5>
+  <!--Se coloca un boton que corresponde al despliegue de las categorias de las sugerencias-->
   <button
     type="button"
     class="close"
@@ -12,10 +17,15 @@
 </div>
 
 <div class="modal-body">
+  <!--Se aplica un container de estilos Bootstrap-->
   <div class="container-fluid">
+    <!--Etiqueta que llama una carta a la pantalla-->
     <div class="row" [formGroup]="sugerenciaForm">
+      <!--Se define el tamaño de la columna, ocupando un tercio de la hilera-->
       <div class="col-12 mt-3">
+        <!--Informacion para denotar que se coloca el Titulo de la sugerencia-->
         <label for="">Titulo de la sugerencia</label>
+        <!--Form donde se pondra el Titulo de la sugerencia, con sus respectivas validaciones-->
         <input
           type="text"
           class="form-control"
@@ -23,12 +33,16 @@
           formControlName="nombre"
           [class.is-invalid]="nombreNoValido"
         />
+        <!--Mensaje de alerta en caso de fallar al ingresar el Titulo de la sugerencia-->
         <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido"
           >Ingrese un nombre valido no mayor a 30 caracteres</small
         >
       </div>
+      <!--Se define el tamaño de la siguiente columna-->
       <div class="col-12 mt-3">
+        <!--Informacion para denotar que se coloca la categoria-->
         <label for="">Categoria</label>
+        <!--Menu de opciones donde se podra escoger entre las diferentes categorias -->
         <select
           name="categoria_id"
           class="custom-select"
@@ -41,12 +55,16 @@
             {{ c?.categoria_nombre }}
           </option>
         </select>
+        <!--Mensaje de alerta en caso de fallar al no seleccionar una categoria-->
         <small class="text-danger mt-3 mt-lg-0" *ngIf="categoriaNoValida"
           >Ingrese una categoria</small
         >
       </div>
+      <!--Se define el tamaño de la siguiente columna-->
       <div class="col-12 mt-3">
+        <!--Informacion para denotar que se coloca una Descripcion-->
         <label for="">Descripción</label>
+        <!--Cuadro de texto donde se coloca una descripcion de la nueva sugerencia-->
         <textarea
           name="descrip"
           id=""
@@ -56,6 +74,7 @@
           placeholder="Ingrese la descripcion de la sugerencia"
           [class.is-invalid]="descripcionNoValido"
         ></textarea>
+        <!--Mensaje de alerta en caso de fallar al poner una descripcion de la nueva sugerencia-->
         <small class="text-danger mt-3 mt-lg-0" *ngIf="descripcionNoValido"
           >Ingrese un descripción valida no mayor a 100 caracteres</small
         >
@@ -64,7 +83,9 @@
   </div>
 </div>
 
+<!--Se aplica un encabezado gracias a la importortacion del framework de estilos Bootstrap-->
 <div class="modal-footer">
+  <!--Se coloca un boton que corresponde a la funcion de guardar las nuevas sugerencias.-->
   <button type="button" class="btn btn-primary" (click)="guardarSugerencia()">
     Guardar
   </button>
