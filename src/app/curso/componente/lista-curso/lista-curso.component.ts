@@ -1,7 +1,6 @@
 // Importacion de librerias y componentes
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subscriber } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Codigo } from '../../modelo/codigo';
 import { Curso } from '../../modelo/curso';
