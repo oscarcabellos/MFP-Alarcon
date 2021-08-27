@@ -2,6 +2,7 @@
  * Se importa el modulo de http
  */
 import { HttpClientModule } from '@angular/common/http';
+import { DebugElement } from '@angular/core';
 
 /**
  * Se importa los modulos para la realización de las pruebas
@@ -12,12 +13,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
  * Se importa modulo del formulario reactivo
  */
 import { ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 /**
  * Se importa el modulo para el manejo de rutas del curso
  */
 import { Router } from '@angular/router';
 import { Usuario } from '../../modelo/usuario';
+import { CursoService } from '../../servicios/curso.service';
 
 /**
  * Se importa el componente para la realización de las pruebas
@@ -29,7 +32,6 @@ import { AgregarUsuarioComponent } from './agregar-usuario.component';
  */
 describe('AgregarUsuarioComponent', () => {
   let component: AgregarUsuarioComponent;
-
   let fixture: ComponentFixture<AgregarUsuarioComponent>;
 
   beforeEach(async () => {

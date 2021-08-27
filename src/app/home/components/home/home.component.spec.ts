@@ -42,4 +42,8 @@ describe('HomeComponent', () => {
     component.categorias = [categoria];
     expect(component.obtenerCategoria(1)).toEqual('uno');
   });
+
+  it('listar cursos', () => {
+    component.listarCursos();
+  });
 });

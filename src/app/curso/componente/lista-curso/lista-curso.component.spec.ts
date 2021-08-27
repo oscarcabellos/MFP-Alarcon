@@ -49,4 +49,8 @@ describe('ListaCursoComponent', () => {
   it('unirse curso', () => {
     component.unirseCurso();
   });
+
+  it('listar cursos', () => {
+    component.listarCursos2(40);
+  });
 });
