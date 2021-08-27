@@ -1,5 +1,8 @@
+<!-- Se inicia la cabecera del modal -->
 <div class="modal-header">
+  <!-- Se coloca el titulo del modal -->
   <h5 class="modal-title">Entregas de la tarea</h5>
+  <!-- Se crea un botón para cerrar el modal -->
   <button
     type="button"
     class="close"
@@ -7,43 +10,86 @@
     aria-label="Close"
     (click)="closeModal('dismiss')"
   >
+    <!-- Se añade un icono al botón -->
     <span aria-hidden="true">&times;</span>
+    <!-- Se cierra la etiqueta de span -->
   </button>
+  <!-- Se cierra la etiqueta del botón -->
 </div>
+<!-- Se cierra la etiqueta del modal -->
 
+<!-- Se inicia el cuerpo del modal -->
 <div class="modal-body">
+  <!-- etiqueta que se le da el foco al abrir el modal -->
   <input type="hidden" name="" ngbAutofocus />
+  <!-- Se cierra la etiqueta del input -->
+
+  <!-- Se inicia la etiqueta del contenedor -->
   <div class="container">
+    <!-- Se inciar la etiqueta de la fila del contenedor -->
     <div class="row">
+      <!-- Se añade una columna de doce espacios -->
       <div class="col-12">
+        <!-- se crea la tabla responsive para mostrar las tareas -->
         <div class="table-responsive table-borderless">
+          <!-- Se crea una tabla para listar las entregas de los usuarios -->
           <table class="table">
+            <!-- Etiqueta caption para mostrar información adicional -->
             <caption></caption>
+            <!-- Se cierra la etiqueta de caption -->
+
+            <!-- Se crea la cabecera de la tabla -->
             <thead>
+              <!-- Se añade el contenedor del nombre de las columnas -->
               <tr>
+                <!-- Se añade el nombre de la columna usuario -->
                 <th scope="col">Usuario</th>
+                <!-- Se añade el nombre de la columna archivo -->
                 <th scope="col">Archivo</th>
+                <!-- Se añade el nombre de la columna fecha -->
                 <th scope="col">Fecha</th>
+                <!-- Se añade una colunma para descargar el archivo -->
                 <th scope="col"></th>
               </tr>
+              <!-- Se cierra el contenedor de la cabecera de la tabla -->
             </thead>
+            <!-- Se cierra la etiqueta de la cabecera -->
+
+            <!-- Se inicia el contenedor del cuerpo de la tabla -->
             <tbody>
+              <!-- Se inicia una fila del contenido de la tabla para mostrar las entregas de los alumnos -->
               <tr *ngFor="let t of tareas">
+                <!-- Etiqueta para mostrar los nombres de los usuarios -->
                 <td class="align-middle">
                   {{ t?.usuario_nombre }} {{ t?.usuario_apellidos }}
                 </td>
+                <!-- Etiqueta para mostrar la url de descarga -->
                 <td>{{ t?.url }}</td>
+                <!-- Etiqueta para mostrar la fecha de entrega -->
                 <td>{{ t?.fecha_entrega }}</td>
+                <!-- Etiqueta pata mostrar el boton de descarga -->
                 <td>
+                  <!-- Boton para descargar un archivo -->
                   <button class="btn btn-outline-info">
+                    <!-- Icono de descarga para mejorar la interacción con el sistema -->
                     <em class="uil uil-import"></em>
+                    <!-- Se cierra la etiqueta del icono -->
                   </button>
+                  <!-- Se cierra la etiqueta del boton de descarga -->
                 </td>
               </tr>
+              <!-- Se cierra la etiqueta de la fila de la tabla -->
             </tbody>
+            <!-- Se cierra el cuerpo de la tabla -->
           </table>
+          <!-- Se cierra la etiqueta de la tabla -->
         </div>
+        <!-- Se cierra la etiqueta de la tabla responsive -->
       </div>
+      <!-- Se cierra la etiqueta de la columna -->
     </div>
+    <!-- Se cierra la etiqueta de la fila -->
   </div>
+  <!-- Se cierra la etiqueta del contenedor de la tabla -->
 </div>
+<!-- Se cierra la etiqueta del componente general -->
