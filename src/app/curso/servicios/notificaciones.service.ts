@@ -13,6 +13,10 @@ export class NotificacionService extends AppServiceBase {
     return this.get(`listarCursosConSolicicitudAcceso/${idUsuario}`).pipe();
   }
 
+  listarCursosSolicitudAccesoAlumnos(idUsuario: number): Observable<any> {
+    return this.get(`listarCursosConSolicicitudAccesoParaAlumnos/${idUsuario}`).pipe();
+  }
+
   darBloquearAccesoCurso(notificacion: Notificacion): Observable<any> {
     return this.post('aceptarSolicitudAcceso', notificacion).pipe(
       catchError(this.handleError)

@@ -14,6 +14,7 @@ export class NotificacionComponent implements OnInit {
   notificaciones: Notificacion[] = [];
   notificacion: Notificacion = new Notificacion();
   solicutdAcceso: SolicitudAcceso[] = [];
+  solicutdAcceso2: SolicitudAcceso[] = [];
 
   idUsuario: number;
   constructor(public notificacionService: NotificacionService) {
@@ -25,6 +26,7 @@ export class NotificacionComponent implements OnInit {
     this.idUsuario = +sessionStorage.getItem('usuario_id');
     // Codigo de inicializacion del componente
     this.listarNotificacionesAcceso();
+    this.listarNotificacionesAccesoAlumnos();
   }
 
   /**
@@ -35,6 +37,15 @@ export class NotificacionComponent implements OnInit {
       .listarCursosSolicitudAcceso(this.idUsuario)
       .subscribe((x) => {
         this.solicutdAcceso = x[0];
+      });
+  }
+
+  listarNotificacionesAccesoAlumnos() {
+    this.notificacionService.listarCursosSolicitudAccesoAlumnos(this.idUsuario)
+      .subscribe((x) => {
+        this.solicutdAcceso2 = x[0];
+        console.log(this.solicutdAcceso2);
+        
       });
   }
 
