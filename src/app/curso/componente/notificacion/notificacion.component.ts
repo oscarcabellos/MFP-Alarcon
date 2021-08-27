@@ -48,7 +48,29 @@ export class NotificacionComponent implements OnInit {
         
       });
   }
+  aceptarInvitacion(
+    situacion_id: number,
+    curso_id: number,
+    usuario_id: number
+  ) {
+    this.notificacion.curso_id = curso_id;
+    this.notificacion.usuario_id = usuario_id;
+    this.notificacion.situacion_id = situacion_id;
 
+    this.notificacionService
+      .aceptarInvitacion(this.notificacion)
+      .subscribe((x) => {
+        Swal.fire({
+          title: 'Solicitud respondidas',
+          text: `Se respondio correctamente la solicitud`,
+          icon: 'success',
+          confirmButtonColor: '#2F6DF2',
+          timer: 1500,
+        }).then((res) => {
+          this.listarNotificacionesAccesoAlumnos();
+        });
+      });
+  }
   darBloquearAcceso(
     situacion_id: number,
     curso_id: number,

@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AppServiceBase } from 'src/app/core/appServiceBase';
 import { Sugerencia } from '../modelos/sugerencia';
+import { Voto } from '../modelos/voto';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,11 @@ export class SugerenciaService extends AppServiceBase {
    */
   crearSugerencia(sugerencia: Sugerencia): Observable<any> {
     return this.post('suggestions', sugerencia).pipe(
+      catchError(this.handleError)
+    );
+  }
+  votarSugerencia(sugerencia: Voto): Observable<any> {
+    return this.post('votarSugerencias', sugerencia).pipe(
       catchError(this.handleError)
     );
   }
