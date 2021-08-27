@@ -21,7 +21,7 @@ export class ListaSugerenciaComponent implements OnInit {
       categoria_fecha_creacion: null,
     },
   ];
-  sugerencia=new Voto();
+  sugerencia = new Voto();
   sugerenciasIniciales: Sugerencia[];
   sugerencias: Sugerencia[];
   pageActual: number;
@@ -59,11 +59,10 @@ export class ListaSugerenciaComponent implements OnInit {
     this.responsive = true;
     this.sugerenciaFiltro = '';
     this.usuarioRegistrado = +sessionStorage.getItem('usuario_id') !== 0;
-    this.sugerencia.usuario_id=+sessionStorage.getItem('usuario_id');
+    this.sugerencia.usuario_id = +sessionStorage.getItem('usuario_id');
     console.log(this.sugerencia.usuario_id);
     this.listarSugerencias();
     this.listarCategorias();
-    
   }
 
   /**
@@ -77,14 +76,6 @@ export class ListaSugerenciaComponent implements OnInit {
     });
     let data = {};
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(
-      (result) => {
-        // Intencional
-      },
-      (reason) => {
-        // Intencional
-      }
-    );
   }
 
   /**
@@ -92,9 +83,10 @@ export class ListaSugerenciaComponent implements OnInit {
    * @param id Identificador de la sugerencia
    */
   cambiarEstado(id: number) {
-    this.sugerencia.sugerencia_id=id;
+    this.sugerencia.sugerencia_id = id;
     this.fakeVotacionesEstado[id] = !this.fakeVotacionesEstado[id];
-    this.sugerenciaService.votarSugerencia(this.sugerencia).subscribe(x=>{ console.log(x);
+    this.sugerenciaService.votarSugerencia(this.sugerencia).subscribe((x) => {
+      console.log(x);
     });
   }
 

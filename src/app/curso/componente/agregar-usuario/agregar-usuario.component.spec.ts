@@ -103,32 +103,18 @@ describe('AgregarUsuarioComponent', () => {
   /**
    * Se agrega un usuario a un curso
    */
-  /* it('Agregar usuario a un curso', () => {
-    (<HTMLInputElement>document.getElementById('correo')).value =
-      'correo@gmail.com';
-
-    document.getElementById('btnAgregar').click();
-
-    expect((<HTMLInputElement>document.getElementById('correo')).value).toEqual(
-      'correo@gmail.com'
-    );
-  }); */
+  it('Agregar usuario a un curso', () => {
+    component.agregarUsuario(5, 'prueba@prueba');
+  });
 
   /**
    * Se valida que el correo ingresado es incorrecto
    */
-  /* it('Validar que el correo ingresado no sea el mismo que el usuario registrado', () => {
-    component.usuarios = [];
-    let numeroUsuarios = component.usuarios.length;
-    (<HTMLInputElement>document.getElementById('correo')).value =
-      'correo@gmail.com';
-
-    document.getElementById('btnAgregar').click();
-    sessionStorage.setItem('correo', 'correo@gmail.com');
-
+  it('Validar que el correo ingresado no sea el mismo que el usuario registrado', () => {
+    sessionStorage.setItem('correo', 'correo@gmail');
+    component.agregarForm.get('correoUsuario').setValue('correo@gmail');
     component.validarCorreoIngresado();
-    expect(component.usuarios.length).toEqual(numeroUsuarios);
-  }); */
+  });
 
   /**
    * Comprobar el estado de un usuario activo
@@ -164,5 +150,43 @@ describe('AgregarUsuarioComponent', () => {
     let userTest = new Usuario();
     userTest.situacion_id = 5;
     expect(component.obtenerEstado(userTest)).toEqual('Pendiente');
+  });
+
+  it('Validar correo profesor', async () => {
+    expect(
+      component.validarCorreoIgualAProfesor('correo', 'correo')
+    ).toBeTruthy();
+  });
+
+  it('Descargar lista de alumnos', async () => {
+    component.descargarUsuarios(5);
+  });
+
+  it('Validar usuario agregado', async () => {
+    let newUser = new Usuario();
+    newUser.correo = 'correo@gmail';
+    component.usuarios = [newUser];
+    expect(component.validarUsuarioAgregado('correo@gmail')).toBeTruthy();
+  });
+
+  it('Validar que el correo ingresado no sea el mismo que el usuario registrado', () => {
+    sessionStorage.setItem('correo', 'correo@gmail');
+    component.agregarForm.get('correoUsuario').setValue('correo2@gmail');
+    component.validarCorreoIngresado();
+  });
+
+  it('Validar que el correo ingresado no sea el mismo que el usuario registrado', () => {
+    let newUser = new Usuario();
+    newUser.correo = 'correo2@gmail';
+    component.usuarios = [newUser];
+    sessionStorage.setItem('correo', 'correo@gmail');
+    component.agregarForm.get('correoUsuario').setValue('correo2@gmail');
+    component.validarCorreoIngresado();
+  });
+
+  it('Correo no valido', () => {
+    sessionStorage.setItem('correo', 'correo@gmail');
+    component.agregarForm.get('correoUsuario').setValue('correo2');
+    component.validarCorreoIngresado();
   });
 });

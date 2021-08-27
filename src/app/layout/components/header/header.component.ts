@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     sessionStorage.removeItem('usuario_nombre');
     sessionStorage.removeItem('correo');
     sessionStorage.removeItem('url');
-    this.router.navigate(['user/login']).then(() => {
+    this.router?.navigate(['user/login']).then(() => {
       window.location.reload();
     });
   }

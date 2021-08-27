@@ -57,4 +57,8 @@ describe('MaterialCursoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('open modal', () => {
+    component.openModal();
+  });
 });

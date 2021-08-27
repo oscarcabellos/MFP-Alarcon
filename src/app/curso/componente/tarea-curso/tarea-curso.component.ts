@@ -25,10 +25,8 @@ export class TareaCursoComponent implements OnInit {
     this.listarTareas(this.cursoId);
   }
 
-  initForm() {}
-
   entregar(id: number) {
-    alert('Entregado ' + id);
+    return id;
   }
 
   /**

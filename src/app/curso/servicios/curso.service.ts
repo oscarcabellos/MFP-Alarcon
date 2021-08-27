@@ -140,13 +140,11 @@ export class CursoService {
       .pipe(catchError(this.handleError));
   }
 
-  unirPorCodigo(codigo:Codigo) {
+  unirPorCodigo(codigo: Codigo) {
     return this.http
-      .post(`${this.urlApi}unirPorCodigo`, codigo )
+      .post(`${this.urlApi}unirPorCodigo`, codigo)
       .pipe(catchError(this.handleError));
   }
-
-
 
   eliminarUsuarioCurso(curso_id: number, usuario_id: number) {
     return this.http

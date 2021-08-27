@@ -37,4 +37,30 @@ describe('NuevoMaterialComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Añadir material', () => {
+    let event = {
+      target: {
+        files: ['nuevo', 'archivo'],
+      },
+    };
+    component.subirArvhivos(event);
+    expect(component.archivos.length).toEqual(1);
+  });
+
+  it('Eliminar material', () => {
+    let event = {
+      target: {
+        files: ['nuevo', 'archivo'],
+      },
+    };
+    component.subirArvhivos(event);
+    component.subirArvhivos(event);
+    component.eliminarArchivo(1);
+    expect(component.archivos.length).toEqual(1);
+  });
+
+  it('cerrar modal', () => {
+    component.closeModal('close');
+  });
 });

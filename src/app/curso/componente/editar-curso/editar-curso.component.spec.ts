@@ -65,4 +65,8 @@ describe('EditarCursoComponent', () => {
      */
     expect(component).toBeTruthy();
   });
+
+  it('cerrar modal', () => {
+    component.closeModal('cerrar');
+  });
 });

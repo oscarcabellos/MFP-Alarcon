@@ -24,13 +24,12 @@ export class ListaCursoComponent implements OnInit {
   nextLabel = 'Siguiente';
   responsive: boolean;
   nombreFiltro: string;
-  codigo= new Codigo();
+  codigo = new Codigo();
   // Declaracion del constructor
   constructor(
     private readonly cursoService: CursoService,
     private readonly excelServices: ExcelService,
     private readonly modalService: NgbModal
-
   ) {}
   // Función que se ejecuta cuando inicializa la clase
   ngOnInit(): void {
@@ -39,14 +38,13 @@ export class ListaCursoComponent implements OnInit {
     this.nombreFiltro = '';
     this.usuarioId = +sessionStorage.getItem('usuario_id');
     this.listarCursos(this.usuarioId);
-    this.codigo.usuario_id=this.usuarioId;
+    this.codigo.usuario_id = this.usuarioId;
   }
 
   /**
    * Función para unirse a un curso a partir del codigo
    */
   unirseCurso() {
-    
     Swal.fire({
       title: 'Ingrese el código del curso',
       input: 'text',
@@ -60,11 +58,10 @@ export class ListaCursoComponent implements OnInit {
       confirmButtonColor: '#18bc9c',
       preConfirm: (login) => {
         console.log(login);
-        this.codigo.codigo=login;
+        this.codigo.codigo = login;
         console.log(this.codigo.codigo);
-        this.cursoService.unirPorCodigo(this.codigo).subscribe(x=>{
+        this.cursoService.unirPorCodigo(this.codigo).subscribe((x) => {
           console.log('M');
-          
         });
       },
       allowOutsideClick: () => !Swal.isLoading(),
@@ -142,14 +139,6 @@ export class ListaCursoComponent implements OnInit {
       curso: curso,
     };
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(
-      (result) => {
-        // Intencional
-      },
-      (reason) => {
-        // Intencional
-      }
-    );
   }
 
   /**
