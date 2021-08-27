@@ -1,7 +1,9 @@
 // Importacion de librerias y componentes
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscriber } from 'rxjs';
 import Swal from 'sweetalert2';
+import { Codigo } from '../../modelo/codigo';
 import { Curso } from '../../modelo/curso';
 import { CursoService } from '../../servicios/curso.service';
 import { ExcelService } from '../../servicios/excel.service';
@@ -22,11 +24,13 @@ export class ListaCursoComponent implements OnInit {
   nextLabel = 'Siguiente';
   responsive: boolean;
   nombreFiltro: string;
+  codigo= new Codigo();
   // Declaracion del constructor
   constructor(
     private readonly cursoService: CursoService,
     private readonly excelServices: ExcelService,
     private readonly modalService: NgbModal
+
   ) {}
   // Función que se ejecuta cuando inicializa la clase
   ngOnInit(): void {
@@ -35,12 +39,14 @@ export class ListaCursoComponent implements OnInit {
     this.nombreFiltro = '';
     this.usuarioId = +sessionStorage.getItem('usuario_id');
     this.listarCursos(this.usuarioId);
+    this.codigo.usuario_id=this.usuarioId;
   }
 
   /**
    * Función para unirse a un curso a partir del codigo
    */
   unirseCurso() {
+    
     Swal.fire({
       title: 'Ingrese el código del curso',
       input: 'text',
@@ -54,6 +60,12 @@ export class ListaCursoComponent implements OnInit {
       confirmButtonColor: '#18bc9c',
       preConfirm: (login) => {
         console.log(login);
+        this.codigo.codigo=login;
+        console.log(this.codigo.codigo);
+        this.cursoService.unirPorCodigo(this.codigo).subscribe(x=>{
+          console.log('M');
+          
+        });
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
