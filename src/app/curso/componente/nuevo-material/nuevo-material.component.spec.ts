@@ -1,6 +1,10 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Tarea } from '../../modelo/tarea';
+import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
+import { TareaService } from '../../servicios/tarea.service';
 
 import { NuevoMaterialComponent } from './nuevo-material.component';
 
@@ -10,10 +14,18 @@ describe('NuevoMaterialComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NuevoMaterialComponent ],
-      providers: [NgbActiveModal, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); }}]
-    })
-    .compileComponents();
+      imports: [HttpClientModule],
+      declarations: [NuevoMaterialComponent],
+      providers: [
+        NgbActiveModal,
+        {
+          provide: Router,
+          useClass: class {
+            navigate = jasmine.createSpy('navigate');
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

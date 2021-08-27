@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { NuevaSugerenciaComponent } from './nueva-sugerencia.component';
@@ -9,10 +11,10 @@ describe('NuevaSugerenciaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NuevaSugerenciaComponent ],
-      providers: [NgbActiveModal]
-    })
-    .compileComponents();
+      imports: [HttpClientModule],
+      declarations: [NuevaSugerenciaComponent],
+      providers: [NgbActiveModal, FormBuilder],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -54,7 +54,7 @@ export class EditarCursoComponent implements OnInit {
     /**
      * Se obtiene el curso desde el componente padre
      */
-    this.curso = this.fromParent.curso;
+    this.curso = this.fromParent?.curso;
   }
 
   /**

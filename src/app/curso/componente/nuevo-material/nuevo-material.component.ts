@@ -26,12 +26,12 @@ export class NuevoMaterialComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tarea = this.fromParent.tarea;
+    this.tarea = this.fromParent?.tarea;
     this.objeto = new Tarea();
-    this.objeto.curso_id = +localStorage.getItem('idcurso');
-    this.editarTarea = this.fromParent.editarTarea;
-    if (this.fromParent.editarTarea) {
-      this.cargarDatosTarea(this.fromParent.contenido);
+    this.objeto.curso_id = +localStorage?.getItem('idcurso');
+    this.editarTarea = this.fromParent?.editarTarea;
+    if (this.fromParent?.editarTarea) {
+      this.cargarDatosTarea(this.fromParent?.contenido);
     }
   }
 

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,12 +8,23 @@ describe('VerCursoComponent', () => {
   let component: VerCursoComponent;
   let fixture: ComponentFixture<VerCursoComponent>;
 
+  const fakeActivatedRoute = {
+    snapshot: { data: {} },
+  } as ActivatedRoute;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VerCursoComponent ],
-      providers: [ActivatedRoute, { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
-    })
-    .compileComponents();
+      imports: [HttpClientModule],
+      declarations: [VerCursoComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        {
+          provide: Router,
+          useClass: class {
+            navigate = jasmine.createSpy('navigate');
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

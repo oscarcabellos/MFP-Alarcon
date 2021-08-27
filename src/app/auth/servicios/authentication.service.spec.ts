@@ -10,9 +10,17 @@ describe('AuthenticationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthenticationService ],
-      imports: [HttpClientModule,ReactiveFormsModule],
-      providers: [ { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
+      declarations: [],
+      imports: [HttpClientModule],
+      providers: [
+        ReactiveFormsModule,
+        {
+          provide: Router,
+          useClass: class {
+            navigate = jasmine.createSpy('navigate');
+          },
+        },
+      ],
     });
     service = TestBed.inject(AuthenticationService);
   });

@@ -2,6 +2,7 @@
  * Se importa las fucnioes desde el core de angular
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * Se importa el compoenente de editar curso para realizar las pruebas
@@ -31,6 +32,7 @@ describe('EditarCursoComponent', () => {
      */
     await TestBed.configureTestingModule({
       declarations: [EditarCursoComponent],
+      providers: [NgbActiveModal],
     }).compileComponents();
   });
 

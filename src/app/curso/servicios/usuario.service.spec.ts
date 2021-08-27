@@ -9,8 +9,15 @@ describe('UsuarioService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[HttpClientModule],
-      providers: [ { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } }]
+      imports: [HttpClientModule],
+      providers: [
+        {
+          provide: Router,
+          useClass: class {
+            navigate = jasmine.createSpy('navigate');
+          },
+        },
+      ],
     });
     service = TestBed.inject(UsuarioService);
   });

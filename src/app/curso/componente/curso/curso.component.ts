@@ -63,7 +63,7 @@ export class CursoComponent implements OnInit {
     /**
      * Se obtiene el id del curso desde la ruta
      */
-    this.idCurso = +this.route.snapshot.paramMap.get('idcurso');
+    this.idCurso = +this.route?.snapshot?.paramMap?.get('idcurso');
 
     /**
      * Se almacena el valor del curso en localstorage
@@ -73,7 +73,7 @@ export class CursoComponent implements OnInit {
     /**
      * Se obtiene el identificador del usuario desde las variables de sesion
      */
-    this.usuarioId = +sessionStorage.getItem('usuario_id');
+    this.usuarioId = +sessionStorage?.getItem('usuario_id');
 
     /**
      * Se llama a la función para obtener la información de un curso a partir del id que se obtuvo desde la ruta
@@ -84,7 +84,7 @@ export class CursoComponent implements OnInit {
      * Se determina si el curso actual pertenece al usuario que se ha logeado
      */
     this.pertenece =
-      this.usuarioId === +this.route.snapshot.paramMap.get('iduser');
+      this.usuarioId === +this.route?.snapshot?.paramMap?.get('iduser');
   }
 
   /**

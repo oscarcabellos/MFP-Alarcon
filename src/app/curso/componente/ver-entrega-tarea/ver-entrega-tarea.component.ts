@@ -59,7 +59,7 @@ export class VerEntregaTareaComponent implements OnInit {
     /**
      * Se llama a la función para listar las tareas entregadas
      */
-    this.listarTareas(this.fromParent.tarea.tarea_id);
+    this.listarTareas(this.fromParent?.tarea?.tarea_id);
   }
 
   /**

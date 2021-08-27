@@ -35,11 +35,11 @@ export class VerCursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let id = +this.route.snapshot.paramMap.get('id');
+    let id = +this.route?.snapshot?.paramMap?.get('id');
     this.cursos = [];
     this.esProfesorCurso = false;
     this.listarCurso(id);
-    this.usuarioNoRegistrado = +sessionStorage.getItem('usuario_id') === 0;
+    this.usuarioNoRegistrado = +sessionStorage?.getItem('usuario_id') === 0;
   }
 
   /**

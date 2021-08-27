@@ -1,6 +1,7 @@
 /**
  * Se importa las librerias para realizar las pruebas
  */
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 /**
@@ -37,6 +38,7 @@ describe('VerEntregaTareaComponent', () => {
    */
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [VerEntregaTareaComponent],
       providers: [
         NgbActiveModal,

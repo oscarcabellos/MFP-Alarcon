@@ -32,6 +32,10 @@ describe('CursoComponent', () => {
    */
   let fixture: ComponentFixture<CursoComponent>;
 
+  const fakeActivatedRoute = {
+    snapshot: { data: {} },
+  } as ActivatedRoute;
+
   /**
    * Se realiza la llamada a las funciones que se inicializaran antes de cada prueba
    */
@@ -43,7 +47,7 @@ describe('CursoComponent', () => {
       declarations: [CursoComponent],
       imports: [HttpClientModule],
       providers: [
-        ActivatedRoute,
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
         {
           provide: Router,
           useClass: class {
