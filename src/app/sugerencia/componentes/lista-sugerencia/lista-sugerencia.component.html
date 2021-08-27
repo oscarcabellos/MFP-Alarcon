@@ -1,7 +1,12 @@
+<!-- Se crea el contenedor del componente de sugerencias -->
 <div class="container-lg mt-5">
+  <!-- Se inicia la fila de donde se mostrara el contenido -->
   <div class="row">
+    <!-- Se crea la primera columna donde se ubicaran las categorias de las sugerencias -->
     <div class="col-12 col-md-3 mt-5 d-none d-md-block">
+      <!-- Se inicia la lista de categorias -->
       <div class="list-group">
+        <!-- Se crea un contenedor para cada elemento de la lista -->
         <button
           type="button"
           class="
@@ -13,12 +18,23 @@
           (click)="actualizarCategoria(c)"
           *ngFor="let c of categorias"
         >
+          <!-- Se cierra el componente del boton -->
+
+          <!-- Se muestra el nombre de la categoria -->
           <span>{{ c?.categoria_nombre }}</span>
+          <!-- Se cierra la etiqueta del nombre -->
         </button>
+        <!-- Se cierra la etiqueta del boton -->
       </div>
+      <!-- Se cierra la etiqueta de la lista -->
     </div>
+    <!-- Se cierra la etiqueta de la primera columna -->
+
+    <!-- Se inicia la segunda columa de nueve espacios -->
     <div class="col-12 col-md-9 mt-5">
+      <!-- Se inicia la barra de busqueda para los materiales -->
       <div class="d-flex justify-content-between">
+        <!-- se inicia el input para escribir el nombre de la sugerencia -->
         <input
           type="text"
           id=""
@@ -29,12 +45,19 @@
           autocomplete="off"
           (keyup)="cambiarPagina()"
         />
+        <!-- Se cierra la etiqueta del nombre a buscar -->
+
+        <!-- Se crea un boton para crear una sugerencia -->
         <button class="btn btn-outline-primary" (click)="openModal()">
           Nuevo
         </button>
+        <!-- Se cierra la etiqueta del boton -->
       </div>
+      <!-- Se cierra el contenedor de la barra de busqueda -->
 
+      <!-- Se da inicia al contenedor de las sugerencias -->
       <div *ngIf="sugerencias?.length > 0">
+        <!-- Se crea la tarjeta de las sugerencias -->
         <div
           class="card my-3"
           *ngFor="
@@ -44,7 +67,9 @@
             let i = index
           "
         >
+          <!-- Se crea el cuerpo de la sugerencia -->
           <div class="card-body">
+            <!-- Se coloca un contenedor para el nombre de la sugerencia -->
             <div
               class="
                 card-title
@@ -53,20 +78,33 @@
                 align-items-center
               "
             >
+              <!-- Se crea el contenedor del nombre de la sugerencia -->
               <h4 class="">{{ s?.sugerencia_nombre_curso }}</h4>
+              <!-- Se cierra la etiqueta del nombre de la sugerencia -->
+              <!-- Se crea la etiqueta para mostrar la categoria del curso -->
               <h6 class="card-subtitle text-muted">
                 {{ getNombreCategoria(s?.categoria_id) }}
               </h6>
+              <!-- Se cierra la etiqueta de la categoria -->
             </div>
+            <!-- Se cierra la etiqueta del contenedor de la cabecera -->
 
+            <!-- Se crea una linea de separación -->
             <hr />
 
+            <!-- Se crea una etiqueta 'p' para mostrar la descripción -->
             <p class="card-text">
               {{ s?.descripcion }}
             </p>
+            <!-- Se cierra la etiqueta de la descripción -->
+            <!-- Se crea el contenedor para el cuerpo de la sugerencia -->
             <div class="d-flex justify-content-between align-items-center">
+              <!-- Se coloca la fecha de creación -->
               <span>{{ s?.sugerencia_fecha_creacion }}</span>
+              <!-- Se cierra la etiqueta de la fecha de creación -->
+              <!-- Se coloca el contenedor para realizar la votación del curso -->
               <span class="h4 align-items-center">
+                <!-- Se crea el elemento que mostrara que se ejecuto la votación de la sugerencia -->
                 <button
                   class="btn"
                   [ngClass]="{
@@ -76,24 +114,42 @@
                   (click)="cambiarEstado(s?.sugerencia_id)"
                   *ngIf="usuarioRegistrado"
                 >
+                  <!-- Se coloca un icono para mostrar que se necesita realizar una seleccion -->
                   <em id="favorito{{ i }}" class="h5 uil uil-heart"></em>
+                  <!-- Se cierra la etiqueta del icono -->
                 </button>
+                <!-- Se cierra la etiqueta del boton -->
+                <!-- Se muestra un icono por defecto para usuarios no registrados -->
                 <em
                   id="favorito{{ i }}"
                   class="h5 uil uil-star"
                   *ngIf="!usuarioRegistrado"
                 ></em>
+                <!-- Se cierra la etiqueta del icono -->
+                <!-- Se crea un contenedor para el numero de votos -->
                 <span class="mx-2 h5 mt-2">{{ s?.numero_votos }}</span>
+                <!-- Se cierra la etiqueta del numero de votos -->
               </span>
+              <!-- Se cierra la etiqueta del contenido de la sugerencia -->
             </div>
+            <!-- se cierra la etiqueta dle cuerpo de la sugerencia -->
           </div>
+          <!-- Se cierra la etiqueta del cuerpo de la sugerencia -->
         </div>
+        <!-- Se cierra el contenedor de la tarjeta -->
       </div>
+      <!-- Se cierra la etiqueta de la sugerencia -->
     </div>
+    <!-- se cierra la etiqueta para la segunda columna -->
   </div>
+  <!-- Se cierra la etiqueta de la fila -->
+  <!-- Se crea una segunda fila para la paginación -->
   <div class="row mt-3 mb-5" *ngIf="sugerencias?.length > 5">
+    <!-- Se distribuye en doce columnas  -->
     <div class="col-12 d-flex flex-row-reverse">
+      <!-- Se inicia el contenedor de la paginación -->
       <ng-container>
+        <!-- Se crea los controles para la paginación -->
         <pagination-controls
           class="my-pagination"
           maxSize="5"
@@ -102,7 +158,12 @@
           [nextLabel]="nextLabel"
           (pageChange)="pageActual = $event"
         ></pagination-controls>
+        <!-- Se ciera la etiqueta de la paginación -->
       </ng-container>
+      <!-- Se cierra la etiqueta del contenedor de la paginación -->
     </div>
+    <!-- Se cierra la etiqueta de las columnas -->
   </div>
+  <!-- Se cierra la etiqueta de la fila -->
 </div>
+<!-- Se cierra la etiqueta del contenedor del componente -->
