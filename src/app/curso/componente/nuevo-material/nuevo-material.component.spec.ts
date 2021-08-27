@@ -63,4 +63,23 @@ describe('NuevoMaterialComponent', () => {
   it('cerrar modal', () => {
     component.closeModal('close');
   });
+
+  it('comprobar tipo material', () => {
+    component.tarea = true;
+    component.comprobarTipoMaterial();
+  });
+
+  it('comprobar tipo material', () => {
+    component.tarea = false;
+    component.comprobarTipoMaterial();
+  });
+
+  it('cargar datos tarea', () => {
+    let tareaTest = new Tarea();
+    component.cargarDatosTarea(tareaTest);
+  });
+
+  it('Actualizar tarea', () => {
+    component.actualizarTarea();
+  });
 });

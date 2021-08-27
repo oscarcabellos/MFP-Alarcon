@@ -55,4 +55,15 @@ describe('VerCursoComponent', () => {
   it('listar curso usuario', () => {
     component.listarCursoUsuario(10, 10);
   });
+
+  it('listar curso usuario', () => {
+    sessionStorage.setItem('correo', 'correo@gmail');
+    component.unirCurso(1, 1, 50);
+  });
+
+  it('listar curso usuario con invitacion', () => {
+    sessionStorage.setItem('correo', 'correo@gmail');
+
+    component.unirCurso(1, 5, 50);
+  });
 });

@@ -1,6 +1,7 @@
 /**
  * Se importa los componente para la realización de las pruebas
  */
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 /**
@@ -27,6 +28,7 @@ describe('MaterialCursoComponent', () => {
    */
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [MaterialCursoComponent],
     }).compileComponents();
   });

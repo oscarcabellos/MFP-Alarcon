@@ -28,19 +28,10 @@ import { AgregarUsuarioComponent } from './agregar-usuario.component';
  * Se crea la descripción del contexto de pruebas
  */
 describe('AgregarUsuarioComponent', () => {
-  /**
-   * Se crea el objeto del componente
-   */
   let component: AgregarUsuarioComponent;
 
-  /**
-   * Se creo un objeto de la clase fixture
-   */
   let fixture: ComponentFixture<AgregarUsuarioComponent>;
 
-  /**
-   * Se crea función que se ejecutara antes de cada prueba
-   */
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AgregarUsuarioComponent],
@@ -60,19 +51,8 @@ describe('AgregarUsuarioComponent', () => {
    * Se crea la implementacion antes de cada llamada
    */
   beforeEach(() => {
-    /**
-     * Se crea la instancia de fixture
-     */
     fixture = TestBed.createComponent(AgregarUsuarioComponent);
-
-    /**
-     * Se crea un componente a probar
-     */
     component = fixture.componentInstance;
-
-    /**
-     * Se detecta los cambios de fixture
-     */
     fixture.detectChanges();
   });
 

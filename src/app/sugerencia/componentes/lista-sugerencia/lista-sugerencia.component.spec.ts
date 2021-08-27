@@ -65,6 +65,7 @@ describe('ListaSugerenciaComponent', () => {
   it('actualizar categoria', () => {
     let categoriaTest = new Categoria();
     categoriaTest.categoria_id = 1;
+    component.sugerenciasIniciales = [];
     component.actualizarCategoria(categoriaTest);
   });
 });
