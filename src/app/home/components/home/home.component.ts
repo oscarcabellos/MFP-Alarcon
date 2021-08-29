@@ -51,6 +51,10 @@ export class HomeComponent implements OnInit {
    * se crea array para las categorias
    */
   categorias: Categoria[];
+  /**
+   * se crea array para almacenar los votos
+   */
+  votosSugerencias: any[];
 
   /**
    * Contructor para inciar los servicios
@@ -106,9 +110,8 @@ export class HomeComponent implements OnInit {
       /**
        * Se alamcena las sugerencias
        */
-      console.log(x);
-
       this.sugerencias = x['list'];
+      this.listarVotos();
     });
   }
 
@@ -139,5 +142,28 @@ export class HomeComponent implements OnInit {
       const nombre = this.categorias.find((c) => c?.categoria_id === id);
       return nombre?.categoria_nombre ? nombre?.categoria_nombre : '';
     }
+  }
+
+  /**
+   * Función para listar los votos de las sugerencias
+   */
+  listarVotos() {
+    this.sugerenciaService.listarSugerenciasVotos().subscribe((x) => {
+      /**
+       * Se almacena los votos de las sugerencias
+       */
+      this.votosSugerencias = x['list'];
+      /**
+       * Se filtra las sugerencias ocn mayor cantidad de votos
+       */
+      this.sugerencias = this.sugerencias.filter((s) => {
+        for (let v of this.votosSugerencias) {
+          if (v.sugerencia_id === s.sugerencia_id) {
+            return true;
+          }
+        }
+        return false;
+      });
+    });
   }
 }

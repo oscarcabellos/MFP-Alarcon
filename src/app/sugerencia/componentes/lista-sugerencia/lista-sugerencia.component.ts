@@ -156,7 +156,7 @@ export class ListaSugerenciaComponent implements OnInit {
     this.listarCategorias();
 
     if (this.usuarioRegistrado) {
-      this.listarVotosUsuarios();
+      this.listarVotosUsuarios(5);
     }
   }
 
@@ -238,8 +238,8 @@ export class ListaSugerenciaComponent implements OnInit {
     });
   }
 
-  listarVotosUsuarios() {
-    this.sugerenciaService.listarVotosPorusuario().subscribe((x) => {
+  listarVotosUsuarios(id: number) {
+    this.sugerenciaService.listarVotosPorusuario(id).subscribe((x) => {
       console.log(x);
     });
   }

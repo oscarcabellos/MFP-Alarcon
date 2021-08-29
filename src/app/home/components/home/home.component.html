@@ -156,20 +156,18 @@
   <!-- Se crea una segunda fila para mostrar las sugerencias -->
   <div class="row" *ngIf="sugerencias?.length > 0">
     <!-- Se crea una colunma de doce para mostrar la información -->
-    <div class="col-12 col-md-4 col-md-4" *ngFor="let s of sugerencias">
+    <div class="col-12 col-md-4" *ngFor="let s of sugerencias">
       <!-- Se crea una tarjeta -->
       <div class="card border-info mb-3 bg-light">
         <!-- Se crea el cuerpo de la tarjeta -->
-        <div class="card-body my-3">
+        <div class="card-body my-3 d-flex flex-column justify-content-between">
           <!-- Se crea el titulo de la sugerencia -->
           <h4 class="card-title text-center">
             {{ s?.sugerencia_nombre_curso }}
           </h4>
           <!-- Se cierra la etiqueta de la sugerencia -->
           <!-- Se crea el contenedor de la descripcion -->
-          <p class="card-text text-center">
-            {{ s?.descripcion }}
-          </p>
+          <p class="card-text text-center">"{{ s?.descripcion }}"</p>
           <!-- Se cierra el contenedor de la descripcion -->
           <!-- Se crea fila para mostrar la valoración -->
           <div class="row justify-content-center">

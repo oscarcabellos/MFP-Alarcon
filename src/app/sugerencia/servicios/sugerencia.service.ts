@@ -24,8 +24,10 @@ export class SugerenciaService extends AppServiceBase {
     );
   }
 
-  listarVotosPorusuario() {
-    return this.get('listarVotosUsuario').pipe(catchError(this.handleError));
+  listarVotosPorusuario(id: number) {
+    return this.get(`listarVotosUsuario/${id}`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   /**
