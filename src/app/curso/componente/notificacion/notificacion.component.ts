@@ -47,6 +47,10 @@ export class NotificacionComponent implements OnInit {
         this.solicutdAcceso2 = x[0];
       });
   }
+  
+    /**
+   * Función para aceptar invitacion a un curso
+   */
   aceptarInvitacion(
     situacion_id: number,
     curso_id: number,
