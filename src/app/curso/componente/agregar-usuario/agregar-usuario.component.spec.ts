@@ -171,4 +171,11 @@ describe('AgregarUsuarioComponent', () => {
     component.agregarForm.get('correoUsuario').setValue('correo2');
     component.validarCorreoIngresado();
   });
+
+  it('Boton agregar', async () => {
+    component.usuarioProfesor = true;
+    component = fixture.componentInstance;
+    const btn = fixture.debugElement.query(By.css('#btnAgregar'));
+    btn.nativeElement.click();
+  });
 });
