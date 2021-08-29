@@ -38,7 +38,7 @@ describe('ListaCursoComponent', () => {
   });
 
   it('descargar lista de alumnos', () => {
-    component.descargarlista(10);
+    component.descargarlista(15);
   });
 
   it('abrir modal de editar curso', () => {
@@ -51,6 +51,6 @@ describe('ListaCursoComponent', () => {
   });
 
   it('listar cursos', () => {
-    component.listarCursos2(40);
+    component.listarCursos2(5);
   });
 });

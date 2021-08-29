@@ -69,4 +69,8 @@ describe('EditarCursoComponent', () => {
   it('cerrar modal', () => {
     component.closeModal('cerrar');
   });
+
+  it('cerrar modal hijo', () => {
+    component.closeModalChild('cerrar');
+  });
 });

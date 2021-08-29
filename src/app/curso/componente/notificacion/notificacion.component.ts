@@ -41,11 +41,10 @@ export class NotificacionComponent implements OnInit {
   }
 
   listarNotificacionesAccesoAlumnos() {
-    this.notificacionService.listarCursosSolicitudAccesoAlumnos(this.idUsuario)
+    this.notificacionService
+      .listarCursosSolicitudAccesoAlumnos(this.idUsuario)
       .subscribe((x) => {
         this.solicutdAcceso2 = x[0];
-        console.log(this.solicutdAcceso2);
-        
       });
   }
   aceptarInvitacion(

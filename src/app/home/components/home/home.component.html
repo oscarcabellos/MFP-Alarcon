@@ -1,42 +1,79 @@
+<!-- Contenedor de la imagen principal y mensaje de la pagina -->
 <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark mt-5 mb-0">
+  <!-- Se crea la primera fila del contenedor -->
   <div class="row">
+    <!-- se crea una columna de seis espacios -->
     <div class="col-md-6 px-0">
+      <!-- Se crea etiqueta del titulo de la pagina -->
       <h1 class="display-4 font-italic">
         Aprenda en cualquier momento del dia
       </h1>
+      <!-- Se cierra la etiqueta h1 -->
+      <!-- Se crea etiqueta para colocar información de la pagina -->
       <p class="lead my-3">Web educativo gratuito</p>
+      <!-- Se cierra la etiqueta de la información -->
+      <!-- Se crea etiqueta que contendra los links a login -->
       <p class="lead mb-0 mt-5">
+        <!-- Referencia a la ruta de login -->
         <a
           routerLink="/user/login"
           class="text-white font-weight-bold btn btn-success"
           *ngIf="!estaRegistrado()"
-          >Inicar sesion</a
         >
+          Inicar sesion
+        </a>
+        <!-- Se cierra etiqueta del link login -->
+        <!-- Se crea etiqueta para redirigir a los cursos inscritos -->
         <a
           routerLink="/cursos/dashboard"
           class="text-white font-weight-bold btn btn-success"
           *ngIf="estaRegistrado()"
-          >Mis cursos</a
         >
+          Mis cursos
+        </a>
+        <!-- Se cierra la etiqueta de los cursos -->
       </p>
+      <!-- Se cierra la etiqueta del contenido de la imagen principal -->
     </div>
+    <!-- Se cierra la etiqueta de la columna -->
+    <!-- Se crea una segunda columna de seis espacios -->
     <div class="col-md-6">
+      <!-- Imagen principal de la pagina de inicio -->
       <img src="https://lukaszadam.com/assets/images/popup.svg" alt="" />
+      <!-- Se cierra la etiqueta de la imagen -->
     </div>
+    <!-- Se ciera la segunda columna del banner -->
   </div>
+  <!-- Se cierra la etiqueta de la fila -->
 </div>
+<!-- Se cierra el contendor del banner -->
+<!-- Se crea etiqueta de las cursos con mayor cantidad de alumnos -->
 <div class="album py-5 bg-light">
+  <!-- Se crea un contenedor para los cursos -->
   <div class="container">
+    <!-- Se crea un fila para colocar información -->
     <div class="row my-2">
+      <!-- Se crea un columa para mostrar el titulo -->
       <div class="col-6">
+        <!-- Titulo de la primera columna -->
         <h3>Cursos más buscados</h3>
+        <!-- Se cierra la etiqueta del titulo -->
       </div>
+      <!-- Se cierra la etiqueta de la primera columa -->
+      <!-- Se crea un segunda columna para referenciar a todos los cursos -->
       <div class="col-6 d-flex flex-row-reverse">
+        <!-- Link hacia todos los cursos -->
         <a class="link" routerLink="/cursos">Ver todos los cursos</a>
+        <!-- Se cierra la etiqueta del link -->
       </div>
+      <!-- Se cierra la etiqueta de la segunda columna -->
     </div>
+    <!-- Se cierra la primera fila -->
+    <!-- Se crea la fila de los cursos -->
     <div class="row">
+      <!-- Se crea el contenedor de un curso -->
       <div class="col-md-6" *ngFor="let c of cursos">
+        <!-- Se crea la tarjeta para mostrar el contenido del curso -->
         <div
           class="
             row
@@ -50,67 +87,116 @@
             h-md-250
           "
         >
+          <!-- Se crea la columna de seis espacios -->
           <div class="col-6 p-4 d-flex flex-column bg-white" id="contenido">
+            <!-- Se crea etiqueta para el nombre del curso -->
             <h4 class="mb-0">{{ c?.curso_nombre }}</h4>
+            <!-- Se cierra la etiqueta del nombre del curso -->
+            <!-- Se crea la etiqueta para mostrar la cateogria del curso -->
             <div class="mb-1 text-muted">
               {{ obtenerCategoria(c?.categoria_id) }}
             </div>
+            <!-- Se cierra la etiqueta de la cateogria -->
+            <!-- Se muestra la descripcion del curso -->
             <p class="card-text mb-auto">
               {{ c?.descripcion }}
             </p>
+            <!-- Se cierra la etiqueta de la descripcion -->
+            <!-- Se crea un link a la información del curso -->
             <a routerLink="/cursos/curso/vista/{{ c?.curso_id }}">Ver curso</a>
+            <!-- Se cierra la etiqueta del link -->
           </div>
+          <!-- Se cierra la primera columna -->
+          <!-- Se crea la segunda columna -->
           <div class="col-6 d-flex justify-content-center" id="imagen">
+            <!-- Se crea la etiqueta de la imagen -->
             <img
               src="{{ c?.imagen }}"
               alt=""
               class="img"
               *ngIf="c?.imagen != null; else noimagen"
             />
+            <!-- Se cierra la etiqueta de la imagen -->
+            <!-- Se crea una alternativa para la imagen -->
             <ng-template #noimagen>
+              <!-- se muestra la imagen alternativa -->
               <img
                 class="img"
                 src="https://revistapym.com.co/wp-content/uploads/2018/10/Digital.jpg"
                 alt=""
               />
+              <!-- Se cierra la etiqueta de la imagen por defecto -->
             </ng-template>
+            <!-- Se cierra el template auxiliar -->
           </div>
+          <!-- Se cierra la segunda columna -->
         </div>
+        <!-- se cierra la tarjeta de los cursos -->
       </div>
+      <!-- Se cierra el contenedor de los cursos -->
     </div>
+    <!-- Se cierra la etiqueta de la fila -->
   </div>
+  <!-- Se cierra la etiqueta del contenedor -->
 </div>
+<!-- Se cierra la etiqueta del album -->
+<!-- Se crea un contenedor para las sugerencias -->
 <div class="container py-5 mb-5">
+  <!-- Se crea una fila para las sugerencias -->
   <div class="row">
+    <!-- Se crea una columna para información -->
     <div class="col-12 my-3">
+      <!-- Se crea el titulo de la columna -->
       <h3 class="text-center">Mejores sugerencias</h3>
+      <!-- Se cierra la etiqueta del titulo -->
     </div>
+    <!-- Se cierra la etiqueta de la columna  -->
   </div>
+  <!-- Se cierra la etiqueta de la fila -->
+  <!-- Se crea una segunda fila para mostrar las sugerencias -->
   <div class="row" *ngIf="sugerencias?.length > 0">
-    <div class="col-12 col-md-4 col-md-4" *ngFor="let s of sugerencias">
+    <!-- Se crea una colunma de doce para mostrar la información -->
+    <div class="col-12 col-md-4" *ngFor="let s of sugerencias">
+      <!-- Se crea una tarjeta -->
       <div class="card border-info mb-3 bg-light">
-        <div class="card-body my-3">
+        <!-- Se crea el cuerpo de la tarjeta -->
+        <div class="card-body my-3 d-flex flex-column justify-content-between">
+          <!-- Se crea el titulo de la sugerencia -->
           <h4 class="card-title text-center">
             {{ s?.sugerencia_nombre_curso }}
           </h4>
-          <p class="card-text text-center">
-            {{ s?.descripcion }}
-          </p>
+          <!-- Se cierra la etiqueta de la sugerencia -->
+          <!-- Se crea el contenedor de la descripcion -->
+          <p class="card-text text-center">"{{ s?.descripcion }}"</p>
+          <!-- Se cierra el contenedor de la descripcion -->
+          <!-- Se crea fila para mostrar la valoración -->
           <div class="row justify-content-center">
-            <em class="uil uil-star h2"></em>
-            <em class="uil uil-star h2"></em>
-            <em class="uil uil-star h2"></em>
-            <em class="uil uil-star h2"></em>
-            <em class="uil uil-star h2"></em>
+            <!-- Etiqueta para mostrar la puntuacion -->
+            <em class="uil uil-star h2" *ngFor="let c of [1, 2, 3, 4, 5]"></em>
+            <!-- Se cierra la etiqueta de puntuacion -->
           </div>
+          <!-- Se cierra la fila para la valoración -->
         </div>
+        <!-- Se cierra la etiqueta del cuerpo de la tarjeta -->
       </div>
+      <!-- Se cierra el contenedor de la tarjeta -->
     </div>
+    <!-- Se cierra la etiqueta de la columna -->
   </div>
+  <!-- Se cierra la segunda fila -->
+  <!-- Se crea una tercera fila -->
   <div class="row">
+    <!-- Se crea una columan de doce espacios -->
     <div class="col-12 d-flex flex-row-reverse">
+      <!-- Se crea un link hacia todas las sugerencias -->
       <a class="link" routerLink="/sugerencias">Ver todas las sugerencias</a>
+      <!-- Se cierra la etiqueta del link -->
     </div>
+    <!-- Se cierra la columna -->
   </div>
+  <!-- Se cierra la etiqueta de la fila -->
 </div>
+<!-- Se cierra el contenedor de las sugerencias -->
+<!-- Se crea una margen inferior -->
 <div class="my-5"></div>
+<!-- Se cierra la etiqueta del margen inferior -->

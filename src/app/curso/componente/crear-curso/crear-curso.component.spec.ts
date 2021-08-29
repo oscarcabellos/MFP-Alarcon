@@ -3,6 +3,7 @@ import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { Curso } from '../../modelo/curso';
 import { CategoriaService } from '../../servicios/categoria.service';
 
 import { CrearCursoComponent } from './crear-curso.component';
@@ -41,5 +42,15 @@ describe('CrearCursoComponent', () => {
     categoriaService.listarCategorias().subscribe(result => 
       expect(result.length).toBeGreaterThan(0));
   }));
+
+  it('Listar categorias total' , () => {
+    let curso= new Curso();
+/*     component.cursoForm.get()
+
+    component.cargarDatosCurso(curso);
+
+    expect(component.cargarDatosCurso(curso)).toHaveClass(curso); */
+    
+  });
 
 });

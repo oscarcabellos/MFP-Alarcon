@@ -19,6 +19,27 @@ export class SugerenciaService extends AppServiceBase {
   }
 
   /**
+   * Servicio para listar las sugerencias
+   * @returns Lista de los votos de la sugerencia
+   */
+  listarSugerenciasVotos(): Observable<any> {
+    return this.get('listarSugerenciasVotos').pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  /**
+   * Servicio para listar los votos del usuario
+   * @param id identificador del usuario
+   * @returns lista con los votos del usuario
+   */
+  listarVotosPorusuario(id: number) {
+    return this.get(`listarVotosUsuario/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  /**
    * Servicio para crear un nueva sugerencia
    * @param sugerencia {Sugerencia} - Objeto con la informacion de la sugerencia
    * @returns Sugerencia creada
@@ -29,7 +50,7 @@ export class SugerenciaService extends AppServiceBase {
     );
   }
   votarSugerencia(sugerencia: Voto): Observable<any> {
-    return this.post('votarSugerencias', sugerencia).pipe(
+    return this.put('votarSugerencias', sugerencia).pipe(
       catchError(this.handleError)
     );
   }

@@ -56,9 +56,7 @@ export class ListaCursoComponent implements OnInit {
       showLoaderOnConfirm: true,
       confirmButtonColor: '#18bc9c',
       preConfirm: (login) => {
-        console.log(login);
         this.codigo.codigo = login;
-        console.log(this.codigo.codigo);
         this.cursoService.unirPorCodigo(this.codigo).subscribe((x) => {
           console.log('M');
         });
@@ -84,6 +82,8 @@ export class ListaCursoComponent implements OnInit {
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
       this.cursos = x['list'];
+      console.log(this.cursos);
+      
       this.listarCursos2(id);
     });
   }

@@ -2,8 +2,6 @@
  * Se importa el modulo de http
  */
 import { HttpClientModule } from '@angular/common/http';
-import { DebugElement } from '@angular/core';
-
 /**
  * Se importa los modulos para la realización de las pruebas
  */
@@ -170,5 +168,12 @@ describe('AgregarUsuarioComponent', () => {
     sessionStorage.setItem('correo', 'correo@gmail');
     component.agregarForm.get('correoUsuario').setValue('correo2');
     component.validarCorreoIngresado();
+  });
+
+  it('Boton agregar', async () => {
+    component.usuarioProfesor = true;
+    component = fixture.componentInstance;
+    const btn = fixture.debugElement.query(By.css('#btnAgregar'));
+    btn.nativeElement.click();
   });
 });

@@ -1,4 +1,5 @@
 export class Sugerencia {
+  sugerencia_id: number;
   categoria_id: number;
   sugerencia_nombre_curso: string;
   sugerencia_puntuacion_curso: number;
@@ -7,5 +8,3 @@ export class Sugerencia {
   descripcion: string;
   sugerencia_fecha_creacion: Date;
 }
-
-

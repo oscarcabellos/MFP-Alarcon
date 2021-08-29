@@ -9,13 +9,21 @@ import { AppServiceBase } from 'src/app/core/appServiceBase';
 })
 export class SugerenciaService extends AppServiceBase {
   /**
+   * Servicio para listar las sugerencias con mas votos
+   * @returns lista con los votos de las sugerencias
+   */
+  listarSugerenciasVotos(): Observable<any> {
+    return this.get('listarSugerenciasMasVotos').pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  /**
    * Servicio para listar las sugerencias con mayor cantidad de votos
    * @returns Lista con las sugerencias con mas votos
    */
   listarSugerencias(): Observable<any> {
-    return this.get('listarSugerenciasMasVotos').pipe(
-      catchError(this.handleError)
-    );
+    return this.get('suggestions').pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
