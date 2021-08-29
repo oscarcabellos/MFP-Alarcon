@@ -139,7 +139,12 @@ export class CursoService {
       .post(`${this.urlApi}join-public-course/${idCurso}`, { idUser })
       .pipe(catchError(this.handleError));
   }
-
+  
+/**
+   * Servicio para unir por codigo
+   * @param codigo es el Identificador 
+   * @returns Mensaje de de confirmación
+   */
   unirPorCodigo(codigo: Codigo) {
     return this.http
       .post(`${this.urlApi}unirPorCodigo`, codigo)

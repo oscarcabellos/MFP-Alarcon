@@ -13,6 +13,10 @@ export class NuevoMaterialService extends AppServiceBase {
     return this.post('creartarea', tarea).pipe(catchError(this.handleError));
   }
 
+  listarMaterial(idcurso: number): Observable<any>{
+    return this.get(`listMaterials/${idcurso}`).pipe(catchError(this.handleError));
+  }
+
   crearMaterialCurso(idCurso: number, material: Tarea) {
     return this.post(`course-material/${idCurso}`, material).pipe(
       catchError(this.handleError)

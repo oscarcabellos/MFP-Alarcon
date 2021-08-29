@@ -49,6 +49,12 @@ export class SugerenciaService extends AppServiceBase {
       catchError(this.handleError)
     );
   }
+
+    /**
+   * Servicio para crear un nueva sugerencia
+   * @param sugerencia {Voto} - Objeto con la informacion del voto
+   * @returns Voto creado
+   */
   votarSugerencia(sugerencia: Voto): Observable<any> {
     return this.put('votarSugerencias', sugerencia).pipe(
       catchError(this.handleError)
