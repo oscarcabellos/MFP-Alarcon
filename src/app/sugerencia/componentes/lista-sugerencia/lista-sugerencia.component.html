@@ -51,7 +51,7 @@
         <button
           class="btn btn-outline-primary"
           (click)="openModal()"
-          [disabled]="usuarioRegistrado"
+          [disabled]="!usuarioRegistrado"
         >
           Nuevo
         </button>
