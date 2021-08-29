@@ -38,32 +38,32 @@ describe('VerCursoComponent', () => {
   });
 
   it('obtener usuario', () => {
-    component.obtenerUsuario(50);
+    component.obtenerUsuario(5);
   });
 
   it('listar cursos', () => {
-    component.listarCursos(10, 10);
+    component.listarCursos(15, 15);
   });
   it('ver curso', () => {
-    component.verCurso(40);
+    component.verCurso(45);
   });
 
   it('buscar categoria', () => {
-    component.buscarCategoria(10);
+    component.buscarCategoria(15);
   });
 
   it('listar curso usuario', () => {
-    component.listarCursoUsuario(10, 10);
+    component.listarCursoUsuario(15, 15);
   });
 
   it('listar curso usuario', () => {
     sessionStorage.setItem('correo', 'correo@gmail');
-    component.unirCurso(1, 1, 50);
+    component.unirCurso(15, 1, 55);
   });
 
   it('listar curso usuario con invitacion', () => {
     sessionStorage.setItem('correo', 'correo@gmail');
 
-    component.unirCurso(1, 5, 50);
+    component.unirCurso(15, 5, 55);
   });
 });
