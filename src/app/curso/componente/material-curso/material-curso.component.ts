@@ -7,6 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
  * Se importa las dependencias para utilizar el modal
  */
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Material } from '../../modelo/material';
+import { NuevoMaterialService } from '../../servicios/nuevo-material.service';
 
 /**
  * Se importa el componente a redireccionar
@@ -27,6 +29,10 @@ import { NuevoMaterialComponent } from '../nuevo-material/nuevo-material.compone
  */
 export class MaterialCursoComponent implements OnInit {
   /**
+   * Parametro recibido desde el padre para obtener el id de curso
+   */
+  @Input() cursoId: number;
+  /**
    * Parametro recibido desde el padre para validar si es usuario es el profesor del curso
    */
   @Input() usuarioProfesor: boolean;
@@ -34,19 +40,32 @@ export class MaterialCursoComponent implements OnInit {
   /**
    * Array con la lista de los materiales del curso
    */
-  material = [];
+  material: Material[];
 
   /**
    * Contructor para incializar el componente
    * @param modalService Dependencias para la utilización del modal
    */
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private materialService: NuevoMaterialService,
+    private modalService: NgbModal) {}
 
   /**
    * Función para incializar las variables necesarios del componente
    */
   ngOnInit(): void {
     // Codigo de inicializacion del componente
+    this.listaMaterial();
+  }
+
+  /**
+   * Función para listar los materiales del curso
+   */
+  listaMaterial(){
+    this.materialService.listarMaterial(this.cursoId).subscribe(
+      result=>{
+        this.material=result;
+      });
   }
 
   /**
