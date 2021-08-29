@@ -89,7 +89,7 @@
           aria-labelledby="home-tab"
         >
           <!-- Se llama al componente para mostrar la funcionalidad de los materiales y se le pasa como parametro si el usuario es el profesor del curso-->
-          <app-material-curso [usuarioProfesor]="pertenece">
+          <app-material-curso [cursoId]="idCurso" [usuarioProfesor]="pertenece">
           </app-material-curso>
           <!-- Se cierrar la etiqueta para llamar al componente -->
         </div>
