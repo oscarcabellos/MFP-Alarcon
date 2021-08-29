@@ -48,7 +48,11 @@
         <!-- Se cierra la etiqueta del nombre a buscar -->
 
         <!-- Se crea un boton para crear una sugerencia -->
-        <button class="btn btn-outline-primary" (click)="openModal()">
+        <button
+          class="btn btn-outline-primary"
+          (click)="openModal()"
+          [disabled]="usuarioRegistrado"
+        >
           Nuevo
         </button>
         <!-- Se cierra la etiqueta del boton -->
@@ -122,7 +126,7 @@
                 <!-- Se muestra un icono por defecto para usuarios no registrados -->
                 <em
                   id="favorito{{ i }}"
-                  class="h5 uil uil-star"
+                  class="h5 uil uil-heart"
                   *ngIf="!usuarioRegistrado"
                 ></em>
                 <!-- Se cierra la etiqueta del icono -->
