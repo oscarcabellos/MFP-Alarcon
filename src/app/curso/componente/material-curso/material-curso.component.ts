@@ -67,13 +67,5 @@ export class MaterialCursoComponent implements OnInit {
     };
 
     modalRef.componentInstance.fromParent = data;
-    modalRef.result.then(
-      (result) => {
-        //Intencional
-      },
-      (reason) => {
-        //Intencional
-      }
-    );
   }
 }

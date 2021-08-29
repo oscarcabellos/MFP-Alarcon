@@ -78,4 +78,8 @@ describe('VerEntregaTareaComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('cerrar modal', () => {
+    component.closeModal('close');
+  });
 });

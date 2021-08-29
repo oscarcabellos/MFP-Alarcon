@@ -26,7 +26,7 @@ export class TareaCursoComponent implements OnInit {
   }
 
   entregar(id: number) {
-    alert('Entregado ' + id);
+    return id;
   }
 
   /**

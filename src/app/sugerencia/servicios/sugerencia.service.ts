@@ -18,6 +18,18 @@ export class SugerenciaService extends AppServiceBase {
     return this.get('suggestions').pipe(catchError(this.handleError));
   }
 
+  listarSugerenciasVotos(): Observable<any> {
+    return this.get('listarSugerenciasVotos').pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  listarVotosPorusuario(id: number) {
+    return this.get(`listarVotosUsuario/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   /**
    * Servicio para crear un nueva sugerencia
    * @param sugerencia {Sugerencia} - Objeto con la informacion de la sugerencia

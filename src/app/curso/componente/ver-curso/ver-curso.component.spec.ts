@@ -36,4 +36,34 @@ describe('VerCursoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('obtener usuario', () => {
+    component.obtenerUsuario(50);
+  });
+
+  it('listar cursos', () => {
+    component.listarCursos(10, 10);
+  });
+  it('ver curso', () => {
+    component.verCurso(40);
+  });
+
+  it('buscar categoria', () => {
+    component.buscarCategoria(10);
+  });
+
+  it('listar curso usuario', () => {
+    component.listarCursoUsuario(10, 10);
+  });
+
+  it('listar curso usuario', () => {
+    sessionStorage.setItem('correo', 'correo@gmail');
+    component.unirCurso(1, 1, 50);
+  });
+
+  it('listar curso usuario con invitacion', () => {
+    sessionStorage.setItem('correo', 'correo@gmail');
+
+    component.unirCurso(1, 5, 50);
+  });
 });

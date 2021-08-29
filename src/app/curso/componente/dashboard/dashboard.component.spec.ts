@@ -76,4 +76,8 @@ describe('DashboardComponent', () => {
      */
     expect(component).toBeTruthy();
   });
+
+  it('cerrar sesión', () => {
+    component.logout();
+  });
 });

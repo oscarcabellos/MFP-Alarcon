@@ -1,6 +1,11 @@
+<!-- Contenedor que se mostrara para la navegacion del sitio web -->
 <header>
+  <!-- Navegacion hacia los modulos de pagina -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark py-2">
+    <!-- Se crea la etiqueta principal de la pagina -->
     <a class="navbar-brand" routerLink="/">Aprende en linea</a>
+    <!-- Se cierra la etiqueta del nombre de la pagina -->
+    <!-- Se crea el boton para dispositivos moviles -->
     <button
       class="navbar-toggler collapsed"
       type="button"
@@ -10,28 +15,51 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
+      <!-- Se muestra el icono del boton -->
       <span class="navbar-toggler-icon"></span>
+      <!-- Se cierra la etiqueta del icono boton -->
     </button>
+    <!-- Se cierra la etiqueta del boton -->
+    <!-- Se crea el navbar colapsable -->
     <div class="navbar-collapse collapse" id="navbarCollapse">
+      <!-- se crea la lista de los elementos de navegacion -->
       <ul class="navbar-nav ml-auto align-items-center">
+        <!-- Primer elemento de la lista -->
         <li class="nav-item align-middle">
+          <!-- Link hacia la sección principal -->
           <a class="nav-link" routerLink="/">Home </a>
+          <!-- Se cierra la etiqueta del primer link  -->
         </li>
+        <!-- Se cierra la etiqueta del primer elemento -->
+        <!-- Segundo elemento de la lista -->
         <li class="nav-item align-middle">
+          <!-- Link hacia la sección cursos -->
           <a class="nav-link" routerLink="/cursos">Cursos</a>
+          <!-- Se cierra la etiqueta del segundo link  -->
         </li>
+        <!-- Se cierra la etiqueta del segundo elemento -->
+        <!-- Tercer elemento de la lista -->
         <li class="nav-item align-middle mr-md-3">
+          <!-- Link hacia la sección sugerencias -->
           <a class="nav-link" routerLink="/sugerencias">Sugerencias</a>
+          <!-- Se cierra la etiqueta del tercer link  -->
         </li>
+        <!-- Se cierra la etiqueta del tercer elemento -->
+        <!-- Cuarto elemento de la lista -->
         <li class="nav-item align-middle" *ngIf="!usuarioRegistrado">
+          <!-- Link hacia la sección login -->
           <a class="btn btn-success my-2 my-sm-0" routerLink="/user/login">
             Iniciar sesión
           </a>
+          <!-- Se cierra la etiqueta del cuarto link  -->
         </li>
+        <!-- Se cierra la etiqueta del cuarto elemento -->
+        <!-- Quinto elemento de la lista -->
         <li
           class="nav-item dropdown align-middle mr-md-5"
           *ngIf="usuarioRegistrado"
         >
+          <!-- Link hacia la sección principal del usuario -->
           <a
             class="nav-link dropdown-toggle align-items-center"
             href="/profiel"
@@ -40,6 +68,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
+            <!-- imagen de perfil del usuario -->
             <img
               src="{{ imagen }}"
               alt="mdo"
@@ -48,7 +77,10 @@
               class="rounded-circle"
               *ngIf="imagen !== 'null'; else noimagen"
             />
+            <!-- Se cierra la etiqueta de la imagen -->
+            <!-- alternativa para la imagen del usuario -->
             <ng-template #noimagen>
+              <!-- imagen por defecto para el usuario -->
               <img
                 src="https://library.kissclipart.com/20191116/wze/kissclipart-avatar-icon-awesome-set-icon-forum-user-icon-18f64889026582d3.png"
                 alt="mdo"
@@ -56,18 +88,36 @@
                 height="32"
                 class="rounded-circle"
               />
+              <!-- se cierra la etiqueta de la imagen -->
             </ng-template>
+            <!-- se cierra la etiqueta del template -->
+            <!-- Se muestra el nombre del usuario -->
             <span class="ml-2">{{ usuario }}</span>
+            <!-- Se cierra la etiqueta que contiene el nombre del usuario -->
           </a>
+          <!-- Se cierra la etiqueta del quinto link  -->
+          <!-- Se crea una lista dropdown -->
           <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <!-- Primer elemento desplegable -->
             <a class="dropdown-item" routerLink="/user/profile">Perfil</a>
+            <!-- Se cierra el link del perfil -->
+            <!-- Segundo elemento hacia el dashboard -->
             <a class="dropdown-item" routerLink="/cursos/dashboard"
               >Mis Cursos</a
             >
+            <!-- Se cierra la etiqueta del dashboard -->
+            <!-- Etiqueta para cerrar sesión -->
             <a class="dropdown-item" href="#" (click)="logout()">Salir</a>
+            <!-- Se cierra la etiqueta del link para cerrar sesión -->
           </div>
+          <!-- Se cierra el menu para usuarios registrados -->
         </li>
+        <!-- Se cierra la etiqueta del quinto elemento -->
       </ul>
+      <!-- Se cierra la lista de navegación -->
     </div>
+    <!-- Se cierra el navbar -->
   </nav>
+  <!-- Se cierra la etiqueta del contenedor -->
 </header>
+<!-- Se cierra la etiqueta del header -->
