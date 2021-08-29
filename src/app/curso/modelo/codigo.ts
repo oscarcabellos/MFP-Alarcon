@@ -1,3 +1,6 @@
 export class Codigo{
-    codigo:any; 
-    usuario_id:any;}
+    //codigo
+    codigo:any;
+    //clave primaria por usuario 
+    usuario_id:any;
+}
