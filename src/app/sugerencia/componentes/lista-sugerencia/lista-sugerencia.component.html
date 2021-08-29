@@ -108,8 +108,8 @@
                 <button
                   class="btn"
                   [ngClass]="{
-                    'btn-ligth': !fakeVotacionesEstado[i],
-                    'btn-danger': fakeVotacionesEstado[i]
+                    'btn-ligth': !obtenerVotoUsuario(s?.sugerencia_id),
+                    'btn-danger': obtenerVotoUsuario(s?.sugerencia_id)
                   }"
                   (click)="cambiarEstado(s?.sugerencia_id)"
                   *ngIf="usuarioRegistrado"
@@ -127,7 +127,9 @@
                 ></em>
                 <!-- Se cierra la etiqueta del icono -->
                 <!-- Se crea un contenedor para el numero de votos -->
-                <span class="mx-2 h5 mt-2">{{ s?.numero_votos }}</span>
+                <span class="mx-2 h5 mt-2">
+                  {{ obtenerCantidadVotos(s?.sugerencia_id) }}
+                </span>
                 <!-- Se cierra la etiqueta del numero de votos -->
               </span>
               <!-- Se cierra la etiqueta del contenido de la sugerencia -->

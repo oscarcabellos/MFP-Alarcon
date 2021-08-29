@@ -91,24 +91,14 @@ export class ListaSugerenciaComponent implements OnInit {
    * Se comprueba si el usuario se ha logeado
    */
   usuarioRegistrado: boolean;
-
-  fakeVotacionesEstado = [
-    true,
-    true,
-    false,
-    true,
-    true,
-    false,
-    true,
-    true,
-    false,
-    true,
-    true,
-    false,
-    true,
-    true,
-    false,
-  ];
+  /**
+   * array con los votos de las sugerencias
+   */
+  sugerenciasVotos: any[];
+  /**
+   * array con los votos de un usuario
+   */
+  usuariosVotos: any[];
 
   /**
    * Constructor para el componente listar sugerencias
@@ -143,6 +133,19 @@ export class ListaSugerenciaComponent implements OnInit {
      */
     this.usuarioRegistrado = +sessionStorage.getItem('usuario_id') !== 0;
     /**
+     * validar usuario registrado
+     */
+    if (this.usuarioRegistrado) {
+      /**
+       * Se llama a la funcion de votos
+       */
+      this.listarVotosUsuarios(+sessionStorage.getItem('usuario_id'));
+    }
+    /**
+     * Se llama a la función para listar votos
+     */
+    this.listarSugerenciasVotos();
+    /**
      * Se almacena el usuario en la sugerencia
      */
     this.sugerencia.usuario_id = +sessionStorage.getItem('usuario_id');
@@ -154,10 +157,6 @@ export class ListaSugerenciaComponent implements OnInit {
      * Se llama a la función para listar las categorias
      */
     this.listarCategorias();
-
-    if (this.usuarioRegistrado) {
-      this.listarVotosUsuarios(5);
-    }
   }
 
   /**
@@ -182,9 +181,20 @@ export class ListaSugerenciaComponent implements OnInit {
    */
   cambiarEstado(id: number) {
     this.sugerencia.sugerencia_id = id;
-    this.fakeVotacionesEstado[id] = !this.fakeVotacionesEstado[id];
     this.sugerenciaService.votarSugerencia(this.sugerencia).subscribe((x) => {
-      console.log(x);
+      /**
+       * Se llama a la función para listar votos
+       */
+      this.listarSugerenciasVotos();
+      /**
+       * Se valida que el usuario haya iniciado sesión
+       */
+      if (this.usuarioRegistrado) {
+        /**
+         * Se llama a la funcion de votos
+         */
+        this.listarVotosUsuarios(+sessionStorage.getItem('usuario_id'));
+      }
     });
   }
 
@@ -219,7 +229,6 @@ export class ListaSugerenciaComponent implements OnInit {
      * Se llama al servicio
      */
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
-      console.log(x);
       /**
        * Se almacena las sugerencias
        */
@@ -228,19 +237,31 @@ export class ListaSugerenciaComponent implements OnInit {
        * Se almacen las sugerencias iniciales
        */
       this.sugerenciasIniciales = x['list'];
-      this.listarSugerenciasVotos();
     });
   }
 
+  /**
+   * Funcion para listar los votos de las sugerencias
+   */
   listarSugerenciasVotos() {
     this.sugerenciaService.listarSugerenciasVotos().subscribe((x) => {
-      console.log(x);
+      /**
+       * Se alamcena la respueta del servicio
+       */
+      this.sugerenciasVotos = x['list'];
     });
   }
 
+  /**
+   * Función para listar los votos de los usuarios
+   * @param id Identificador del usuario
+   */
   listarVotosUsuarios(id: number) {
     this.sugerenciaService.listarVotosPorusuario(id).subscribe((x) => {
-      console.log(x);
+      /**
+       * Se almacena los votos del usuario
+       */
+      this.usuariosVotos = x['list'];
     });
   }
 
@@ -309,5 +330,41 @@ export class ListaSugerenciaComponent implements OnInit {
      * Se asigna la primer pagina como la pagina actual
      */
     this.pageActual = 1;
+  }
+
+  /**
+   * Función para obtner el estado del voto del usuario
+   * @param id identificador de la sugerencia
+   * @returns retorna verdadero o false
+   */
+  obtenerVotoUsuario(id: number) {
+    return (
+      this.usuariosVotos.find((v) => v?.sugerencia_id === id) !== undefined
+    );
+  }
+
+  /**
+   * Función para mostrar los votos de una sugerencia
+   * @param id identificador de la sugenreica
+   * @returns retorna la cantidad de votos de la sugerencia
+   */
+  obtenerCantidadVotos(id: number) {
+    /**
+     * se busca el numero de votos
+     */
+    const votos = this.sugerenciasVotos.find((s) => s?.sugerencia_id === id);
+    /**
+     * Se valida que la cantidad de votos exista
+     */
+    if (votos !== undefined) {
+      /**
+       * Se devuelve la cantidad de votos
+       */
+      return votos['COUNT(sugerencia_id)'];
+    }
+    /**
+     * Se devuelve valor por defecto
+     */
+    return '0';
   }
 }
