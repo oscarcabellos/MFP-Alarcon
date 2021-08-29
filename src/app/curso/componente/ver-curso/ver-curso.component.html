@@ -1,8 +1,15 @@
+<!-- Se crea un margin hacia la parte superior -->
 <div class="mt-5"></div>
+<!-- Se cierra la etiqueta de la parte superior -->
+<!-- Se crea el contenedor general del componente -->
 <div class="container mt-5">
+  <!-- Se crea la primera fila del contendor -->
   <div class="row">
+    <!-- Se crea una columna de siete espacios -->
     <div class="col-md-7 col-lg-8">
+      <!-- Se crea el contenedor de la tarjeta -->
       <div class="card border-primary mb-3 mt-5">
+        <!-- Se crea la cabecera de la tarjeta -->
         <div
           class="
             card-header
@@ -11,23 +18,36 @@
             align-items-center align-middle
           "
         >
+          <!-- Se crea el nombre del curso -->
           <h4>
             {{ curso?.curso_nombre }}
           </h4>
-          <small class="card-title d-block">{{
-            categoria?.categoria_nombre
-          }}</small>
+          <!-- Se crea la etiqueta del nombre del curso -->
+          <!-- Se muestra la categoria del curso -->
+          <small class="card-title d-block">
+            {{ categoria?.categoria_nombre }}
+          </small>
+          <!-- Se cierra la etiqueta de la categoria -->
         </div>
+        <!-- Se crea el cuerpo de la tarjeta -->
         <div class="card-body">
+          <!-- Se crea una fila para mostra la información del curso -->
           <div class="row">
+            <!-- Se crea una columna de doce espacios -->
             <div
               class="col-12 col-md-8 d-flex flex-column justify-content-between"
             >
+              <!-- Se crea la descripción del curso -->
               <p class="card-text">
                 {{ curso?.descripcion }}
               </p>
+              <!-- Se cierra la etiqueta de la descripción -->
+              <!-- Se muestra la cantidad de alumnos -->
               <p>Alumnos matriculados: {{ alumnosMatriculados }}</p>
+              <!-- Se cierra la etiqueta de la cantidad de alumnos -->
+              <!-- Se crea el contenedor del curso -->
               <div>
+                <!-- Se crea el link para ver al curso -->
                 <a
                   class="btn btn-warning"
                   [routerLink]="[
@@ -39,7 +59,10 @@
                 >
                   Ver curso
                 </a>
+                <!-- Se cierra la etiqueta de ver el curso -->
+                <!-- Se crea el template para unirse al curso -->
                 <ng-template #nocurso>
+                  <!-- Se crea el boton para unirse al curso -->
                   <button
                     class="btn btn-warning"
                     (click)="
@@ -55,33 +78,54 @@
                       curso?.privacidad_id === 1 ? "Unirse" : "Solicitar acceso"
                     }}
                   </button>
+                  <!-- Se cierra la etiqueta del boton -->
                 </ng-template>
+                <!-- Se cierra la etiqueta del template -->
               </div>
+              <!-- Se cierra el contenedor del curso -->
             </div>
+            <!-- Se cierra la descripción del curso -->
+            <!-- Se crea la columna de cuatro espacios -->
             <div class="col-4 d-none d-md-block">
+              <!-- se crea la etiqueta de la imagen -->
               <img
                 src="{{ curso?.imagen }}"
                 alt=""
                 class="w-100"
                 *ngIf="curso?.imagen != null; else noimagen"
               />
+              <!-- Se cierra la etiqueta de la imagen -->
+              <!-- Se crea el template de la imagen -->
               <ng-template #noimagen>
+                <!-- Se crea la imagen alternativa -->
                 <img
                   src="https://vilmanunez.com/wp-content/uploads/2016/03/herramientas-y-recursos-para-crear-curso-online.png"
                   alt=""
                   class="w-100"
                 />
+                <!-- Se cierra la etiqueta de la imagen -->
               </ng-template>
+              <!-- Se cierra le template del template -->
             </div>
+            <!-- Se cierra la etiqueta de la columna -->
           </div>
+          <!-- Se cierra la etiqueta de la fila -->
         </div>
+        <!-- se cierra la etiqueta del cuerpo del body -->
       </div>
+      <!-- Se cierra el contenedor de la tarjeta -->
     </div>
+    <!-- se cierra la etiqueta de la columna -->
+    <!-- Se crea la columna de cinco espacios -->
     <div class="col-md-5 col-lg-4">
+      <!-- Se crea la tarjeta para mostrar la información del profesor -->
       <div class="card mb-3 mt-5 border-primary">
+        <!-- se muestra el nombre del usuario -->
         <h4 class="card-header">
           {{ usuario?.usuario_nombre + " " + usuario?.usuario_apellidos }}
         </h4>
+        <!-- Se cierra la etiqueta de la cabecera -->
+        <!-- Se crea la imagen de perfil del usuario -->
         <img
           src="{{ usuario?.url }}"
           alt="mdo"
@@ -93,7 +137,9 @@
             else noimagenuser
           "
         />
+        <!-- Se cierra la etiqueta del template -->
         <ng-template #noimagenuser>
+          <!-- Se crea la imagen alternativa para la foto de perfil -->
           <img
             src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
             alt="mdo"
@@ -101,8 +147,12 @@
             height="80"
             class="rounded-circle mx-auto my-3"
           />
+          <!-- Se cierra la etiqueta de la imagen -->
         </ng-template>
+        <!-- Se cierra la etiqueta del template -->
+        <!-- Se crea una lista para mostrar la información del usuario -->
         <ul class="list-group">
+          <!-- Se crea el primer elemento de la lista -->
           <li
             class="
               list-group-item
@@ -118,6 +168,8 @@
                 : usuario?.descripcion
             }}
           </li>
+          <!-- Se cierra la primera etiqueta de la lista -->
+          <!-- Segundo elemento de la lista -->
           <li
             class="
               list-group-item
@@ -127,10 +179,14 @@
             "
           >
             Numero de cursos
-            <span class="badge p-2 bg-primary text-white">{{
-              cantidadCursosPublicos
-            }}</span>
+            <!-- Se muestra la cantidad de cursos -->
+            <span class="badge p-2 bg-primary text-white">
+              {{ cantidadCursosPublicos }}
+            </span>
+            <!-- Se cierra la etiqueta del numero de cursos -->
           </li>
+          <!-- Se cierra la etiqueta del segundo elemento -->
+          <!-- Se crea el tercer elemento de la lista -->
           <li
             class="
               list-group-item
@@ -140,34 +196,63 @@
             "
           >
             Numero de alumnos
-            <span class="badge p-2 bg-primary text-white">{{
-              cantidadEstudiantes
-            }}</span>
+            <!-- Se muestra la cantidad de alumnos -->
+            <span class="badge p-2 bg-primary text-white">
+              {{ cantidadEstudiantes }}
+            </span>
+            <!-- Se cierra la etiqueta de la cantidad de alumnos -->
           </li>
+          <!-- Se cierra la etiqueta del tercer elemento -->
         </ul>
+        <!-- Se cierra la etiqueta de la lista -->
       </div>
+      <!-- Se cierra el contenedor de la tarjeta -->
     </div>
+    <!-- se cierra la etiqueta de la columna -->
+    <!-- Se crea la etiqueta de una columna de doce espacios -->
     <div class="col-12" *ngIf="cursos?.length > 0">
+      <!-- Se crea el contenedor de cursos alternativos -->
       <div class="container-fluid px-0">
+        <!-- Se crea la fila del contenedor -->
         <div class="row">
+          <!-- Se crea la coluna del titulo -->
           <div class="col-12">
+            <!-- Se muestra el titulo del curso -->
             <h4>Cursos recomendados del profesor</h4>
+            <!-- Se cierra la etiqueta del nombre del curso -->
           </div>
+          <!-- Se cierra la etiqueta del titulo -->
         </div>
+        <!-- Se cierra la etiqueta de la fila -->
+        <!-- Se crea la fila de los cursos -->
         <div class="row mt-2">
+          <!-- Se crea la columna de información -->
           <div class="col-12 col-sm-6 col-md-4" *ngFor="let c of cursos">
+            <!-- Se crea la tarjeta de un curso -->
             <div class="card mb-3 border-primary" id="cursos">
+              <!-- Se muestra el cuerpo de la tarjeta -->
               <div class="card-body d-flex flex-column justify-content-between">
+                <!-- Se muestra el nombre del curso -->
                 <h5 class="card-title">{{ c?.curso_nombre }}</h5>
-
+                <!-- Se cierra la etiqueta del nombre del curso -->
+                <!-- Se crea el boton de mas información -->
                 <button class="btn btn-primary" (click)="verCurso(c?.curso_id)">
                   Mas información
                 </button>
+                <!-- Se cierra la etiqueta del boton -->
               </div>
+              <!-- Se cierra la etiqueta del cuerpo de la tarjeta -->
             </div>
+            <!-- Se cierra la etiqueta de la tarjeta -->
           </div>
+          <!-- se cierra la etiqueta de la columna -->
         </div>
+        <!-- Se cierra la etiqueta de la columna -->
       </div>
+      <!-- Se cierra la etiqueta del contenedor -->
     </div>
+    <!-- Se cierra la etiqueta de la columna  de los cursos -->
   </div>
+  <!-- Se cierra la etiqueta de la fila -->
 </div>
+<!-- Se cierra la etiqueta del contenedor general -->

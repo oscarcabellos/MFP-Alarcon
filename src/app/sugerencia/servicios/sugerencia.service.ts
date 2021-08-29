@@ -24,6 +24,10 @@ export class SugerenciaService extends AppServiceBase {
     );
   }
 
+  listarVotosPorusuario() {
+    return this.get('listarVotosUsuario').pipe(catchError(this.handleError));
+  }
+
   /**
    * Servicio para crear un nueva sugerencia
    * @param sugerencia {Sugerencia} - Objeto con la informacion de la sugerencia

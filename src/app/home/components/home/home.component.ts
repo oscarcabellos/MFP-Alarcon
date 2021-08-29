@@ -106,7 +106,9 @@ export class HomeComponent implements OnInit {
       /**
        * Se alamcena las sugerencias
        */
-      this.sugerencias = x;
+      console.log(x);
+
+      this.sugerencias = x['list'];
     });
   }
 

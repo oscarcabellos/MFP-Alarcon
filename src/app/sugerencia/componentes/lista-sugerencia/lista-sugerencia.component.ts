@@ -154,6 +154,10 @@ export class ListaSugerenciaComponent implements OnInit {
      * Se llama a la función para listar las categorias
      */
     this.listarCategorias();
+
+    if (this.usuarioRegistrado) {
+      this.listarVotosUsuarios();
+    }
   }
 
   /**
@@ -215,6 +219,7 @@ export class ListaSugerenciaComponent implements OnInit {
      * Se llama al servicio
      */
     this.sugerenciaService.listarSugerencias().subscribe((x) => {
+      console.log(x);
       /**
        * Se almacena las sugerencias
        */
@@ -223,6 +228,19 @@ export class ListaSugerenciaComponent implements OnInit {
        * Se almacen las sugerencias iniciales
        */
       this.sugerenciasIniciales = x['list'];
+      this.listarSugerenciasVotos();
+    });
+  }
+
+  listarSugerenciasVotos() {
+    this.sugerenciaService.listarSugerenciasVotos().subscribe((x) => {
+      console.log(x);
+    });
+  }
+
+  listarVotosUsuarios() {
+    this.sugerenciaService.listarVotosPorusuario().subscribe((x) => {
+      console.log(x);
     });
   }
 
