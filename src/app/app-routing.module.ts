@@ -1,4 +1,4 @@
-/*Datos principales del componenete perfil*/
+/*Datos principales del componente de las rutas de la aplicacion*/
 
 /**Importaciones principales del componente**/
 /*Importacion de las principales modulos de angular*/

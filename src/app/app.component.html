@@ -1,13 +1,26 @@
+<!--Se define la clase para el primer div, que determina las dimensiones principales de la pagina web,
+a parte de determinar propiedades especificas con respecto a las columnas-->
 <div class="app w-100 d-flex flex-wrap flex-column justify-content-between">
+  <!--Etiqueta que simula el componente del encabezado para su aparicion fija dentro de la pagina web-->
   <app-header></app-header>
+  <!--Se define la clase que corresponde a los estilos del cuerpo de la pagina web-->
   <main class="app-main">
+    <!--Se define otra clase que determina las dimensiones del cuerpo de la pagina web, asi como propiedades
+    adicionales en su composicion-->
     <div class="wrapper">
+      <!--Se define la clase que apoya lo explicado anteriormente-->
       <div class="page">
+        <!--Se define otra clase para subdividir un espacio definido de los elementos anteriormente
+        explicados-->
         <div class="page-inner">
+          <!--Se aplica el componente Router, para que los diversos componentes que componen el proyecto
+          puedan ser desplegados de manera eficaz-->
           <router-outlet></router-outlet>
         </div>
       </div>
     </div>
   </main>
+  <!--Se define el componente correspondiente al pie de pagina para su aparicion fija en la pagina
+  principal-->
   <app-footer></app-footer>
 </div>
