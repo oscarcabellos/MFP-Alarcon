@@ -108,6 +108,8 @@ export class CrearCursoComponent implements OnInit {
         //se le esta asignando el valor del conocimiento previo del curso del formulario al objeto curso
         //en su variable conoco_previo
         this.curso.conoci_previo = this.cursoForm.get('conoci_previo').value;
+
+        this.curso.privacidad_id = this.cursoForm.get('privacidad_id').value;
         this.actualizarCurso(this.curso);
       } else {
         if (this.image != null || this.image != undefined) {

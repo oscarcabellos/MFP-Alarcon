@@ -24,6 +24,7 @@ export class ListaCursoComponent implements OnInit {
   responsive: boolean;
   nombreFiltro: string;
   codigo= new Codigo();
+  privacidad: string;
   // Declaracion del constructor
   constructor(
     private readonly cursoService: CursoService,
@@ -87,6 +88,8 @@ export class ListaCursoComponent implements OnInit {
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
       this.cursos = x['list'];
+      console.log(this.cursos);
+      
       this.listarCursos2(id);
     });
   }
