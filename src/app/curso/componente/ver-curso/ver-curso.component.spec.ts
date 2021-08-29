@@ -42,7 +42,7 @@ describe('VerCursoComponent', () => {
   });
 
   it('listar cursos', () => {
-    component.listarCursos(15, 15);
+    component.listarCursos(5, 15);
   });
   it('ver curso', () => {
     component.verCurso(45);
@@ -53,17 +53,21 @@ describe('VerCursoComponent', () => {
   });
 
   it('listar curso usuario', () => {
-    component.listarCursoUsuario(15, 15);
+    component.listarCursoUsuario(5, 15);
   });
 
   it('listar curso usuario', () => {
     sessionStorage.setItem('correo', 'correo@gmail');
-    component.unirCurso(15, 1, 55);
+    component.unirCurso(5, 1, 55);
   });
 
   it('listar curso usuario con invitacion', () => {
     sessionStorage.setItem('correo', 'correo@gmail');
 
-    component.unirCurso(15, 5, 55);
+    component.unirCurso(5, 5, 55);
+  });
+
+  it('listar curso', () => {
+    component.listarCurso(5);
   });
 });

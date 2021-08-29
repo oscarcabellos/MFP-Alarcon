@@ -37,4 +37,9 @@ describe('HeaderComponent', () => {
   it('cerrar sesión', () => {
     component.logout();
   });
+
+  it('cerrar sesión', () => {
+    sessionStorage.setItem('usuario_id', '5');
+    component = fixture.componentInstance;
+  });
 });

@@ -82,4 +82,10 @@ describe('NuevoMaterialComponent', () => {
   it('Actualizar tarea', () => {
     component.actualizarTarea();
   });
+
+  it('Actualizar tarea', () => {
+    component.fromParent.editarTarea = true;
+    component.fromParent.contenido = new Tarea();
+    component = fixture.componentInstance;
+  });
 });

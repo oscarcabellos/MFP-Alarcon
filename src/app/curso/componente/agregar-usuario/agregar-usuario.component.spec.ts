@@ -2,8 +2,6 @@
  * Se importa el modulo de http
  */
 import { HttpClientModule } from '@angular/common/http';
-import { DebugElement } from '@angular/core';
-
 /**
  * Se importa los modulos para la realización de las pruebas
  */

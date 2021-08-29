@@ -87,4 +87,8 @@ describe('CursoComponent', () => {
      */
     expect(component).toBeTruthy();
   });
+
+  it('should create', () => {
+    component.obtenerCurso(15);
+  });
 });
