@@ -16,8 +16,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { ValueUnavailableKind } from '@angular/compiler-cli/src/ngtsc/reflection';
 
 /* Elementos del coponente para definir sus rutas especificas de valores */
 @Component({
@@ -205,7 +203,6 @@ export class ProfileComponent implements OnInit {
     if (this.perfilForm.valid){
       let formData = new FormData(evento.target)
       formData.set('url',this.objeto.url)
-      const usuario_id = sessionStorage.getItem('usuario_id');
       /* Se retorna dicho valor al usuario en cuestion */
       this.newUsuarioService.editarUsuario(formData).subscribe((rep) => {
         this.correo = rep['user1'][0]['correo'];
