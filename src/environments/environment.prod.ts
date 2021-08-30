@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   api: {
-    baseUrl: 'http://localhost:3001/',
+    baseUrl: 'https://aprendeenlinea.herokuapp.com/',
   },
 };

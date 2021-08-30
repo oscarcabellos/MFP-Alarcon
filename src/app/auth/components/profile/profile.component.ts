@@ -204,28 +204,29 @@ export class ProfileComponent implements OnInit {
   enviarDatos(evento){
     if (this.perfilForm.valid){
       let formData = new FormData(evento.target)
+      formData.set('url',this.objeto.url)
       const usuario_id = sessionStorage.getItem('usuario_id');
       /* Se retorna dicho valor al usuario en cuestion */
       this.newUsuarioService.editarUsuario(formData).subscribe((rep) => {
-         // this.correo = rep['user1'][0]['correo'];
-        // this.url = rep['user1'][0]['url'];
-        // this.usuario_apellidos = rep['user1'][0]['usuario_apellidos'];
-        // this.usuario_id = rep['user1'][0]['usuario_id'];
-        // this.usuario_nombre = rep['user1'][0]['usuario_nombre'];
-        // this.descripcion = rep['user1'][0]['descripcion'];
+        this.correo = rep['user1'][0]['correo'];
+        this.url = rep['user1'][0]['url'];
+        this.usuario_apellidos = rep['user1'][0]['usuario_apellidos'];
+        this.usuario_id = rep['user1'][0]['usuario_id'];
+        this.usuario_nombre = rep['user1'][0]['usuario_nombre'];
+        this.descripcion = rep['user1'][0]['descripcion'];
 
-        // sessionStorage.setItem('usuario_id', rep['user1'][0]['usuario_id']);
-        // sessionStorage.setItem(
-        //   'usuario_apellidos',
-        //   rep['user1'][0]['usuario_apellidos']
-        // );
-        // sessionStorage.setItem(
-        //   'usuario_nombre',
-        //   rep['user1'][0]['usuario_nombre']
-        // );
-        // sessionStorage.setItem('correo', rep['user1'][0]['correo']);
-        // sessionStorage.setItem('url', rep['user1'][0]['url']);
-        // sessionStorage.setItem('descripcion', rep['user1'][0]['descripcion']);
+        sessionStorage.setItem('usuario_id', rep['user1'][0]['usuario_id']);
+        sessionStorage.setItem(
+          'usuario_apellidos',
+          rep['user1'][0]['usuario_apellidos']
+        );
+        sessionStorage.setItem(
+          'usuario_nombre',
+          rep['user1'][0]['usuario_nombre']
+        );
+        sessionStorage.setItem('correo', rep['user1'][0]['correo']);
+        sessionStorage.setItem('url', rep['user1'][0]['url']);
+        sessionStorage.setItem('descripcion', rep['user1'][0]['descripcion']);
         console.log(rep);
       });
       this.cambio = false;
