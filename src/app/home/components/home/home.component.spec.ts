@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/curso/modelo/categoria';
+import { Sugerencia } from 'src/app/sugerencia/modelos/sugerencia';
 
 import { HomeComponent } from './home.component';
 
@@ -45,5 +46,12 @@ describe('HomeComponent', () => {
 
   it('listar cursos', () => {
     component.listarCursos();
+  });
+
+  it('listar cursos', () => {
+    let newSugerencia = new Sugerencia();
+    newSugerencia.sugerencia_id = 1;
+    component.sugerencias = [newSugerencia];
+    component.listarVotos();
   });
 });

@@ -34,16 +34,25 @@ export class CrearCursoComponent implements OnInit {
   /* Se guarda el nombre de la imagen seleccionada */
   nombreImagen: string;
 
+  /* Parametro de entrada para saber si se esta editando el curso */
   @Input() editar: boolean;
+  /* Parametro de entrada para el curso*/
   @Input() curso: Curso;
+  /* Parametro de salida*/
   @Output() cerrarModal = new EventEmitter<string>();
   @ViewChild('Privacidad3') Privacidad3: ElementRef;
 
+  /* Constructor */
   constructor(
+    /* Servicio de curso */
     private cursoService: CursoService,
+    /* Servicio de cloudinary */
     private cloudBinaryService: CloudBinaryService,
+    /* Router, para la navegacion entre ventanas*/
     private router: Router,
+    /* Construir las validacione del formulario */
     private formBuilder: FormBuilder,
+    /* Servicio de categoria */
     private categoriaService: CategoriaService
   ) {}
 
@@ -66,7 +75,9 @@ export class CrearCursoComponent implements OnInit {
     });
     //Llamada para listar las categorias al inicio
     this.listarCategorias();
+    /* Validacion para saber si se esta editando el curso */
     if (this.editar) {
+      /* Llama al metodo para cargar el datos del curso en caso se este queriendo editar */
       this.cargarDatosCurso(this.curso);
     }
   }
