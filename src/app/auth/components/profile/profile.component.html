@@ -22,6 +22,7 @@
           />
           <!--En caso de no tener una imagen propia, se define una generica-->
           <ng-template #noimagenuser>
+            <!--La imagen generica posee las mismas propiedades que la del usuario si es que tuviera una-->
             <img
               src="https://www.tuexperto.com/wp-content/uploads/2015/07/perfil_01.jpg"
               width="300px"
@@ -54,6 +55,7 @@
               "
             >
               Numero de cursos matriculado
+              <!--Pequeña etiqueta que determina los cursos en los que esta matriculado el usuario-->
               <span class="badge bg-primary text-white p-2">{{ cursosm }}</span>
             </li>
           </ul>
@@ -90,8 +92,9 @@
                   <!--Se modifica el boton para aceptar los cambios de datos del perfil-->
                   <button
                     *ngIf="cambio"
+                    type="sumbit"
+                    form="perfil-form"
                     class="btn btn-outline-dark"
-                    (click)="enviarDatos()"
                   >
                     Aceptar
                   </button>
@@ -100,7 +103,13 @@
               <!--Se coloca un separador en forma de linea horizontal para separar hileras-->
               <hr class="bg-primary" />
               <!--Se crea una hilera dentro de la carta-->
-              <div class="row">
+              <form 
+                class="row" 
+                id="perfil-form" 
+                [formGroup]="perfilForm" 
+                autocomplete="off" 
+                (ngSubmit)="enviarDatos($event)"
+              >
                 <!--Se crea una columna dentro de la hilera del mismo tamaño que la carta-->
                 <div class="col-12 my-2">
                   <h4>Datos personales</h4>
@@ -113,31 +122,43 @@
                 <div class="col-8 my-2">
                   <!--Se coloca el nombre del usuario dentro de un label, en caso de editar el perfil-->
                   <input
-                    [(ngModel)]="objeto.usuario_nombre"
                     *ngIf="cambio"
-                    type="text"
+                    type="email"
+                    name="usuario_nombre"
+                    required
                     pattern="[A-Za-z ]{1,49}"
                     class="form-control"
-                    name=""
-                    id=""
+                    formControlName="usuario_nombre"
+                    placeholder="Nuevo Nombre"
+                    [class.is-invalid]="nombreNoValido"
                   />
+                  <!--Etiqueta que contiene un pequeño mensaje al ingresar un nombre invalido-->
+                  <small class="text-danger mt-3 mt-lg-0" *ngIf="nombreNoValido">
+                    Ingrese un Nombre Valido
+                  </small>
                   <!--Se coloca el nombre del usuario-->
                   <p *ngIf="!cambio">{{ usuario_nombre }}</p>
                 </div>
                 <!--Se aplican los mismos parametros anteriores con respecto a las columnas-->
                 <div class="col-4 my-2">
-                  Apeliido
+                  Apellido
                 </div>
                 <div class="col-8 my-2">
                   <!--Se coloca el apellido del usuario en un label en caso de editar el perfil-->
                   <input
-                    [(ngModel)]="objeto.usuario_apellidos"
                     *ngIf="cambio"
-                    type="text"
+                    type="email"
+                    name="usuario_apellidos"
+                    pattern="[A-Za-z ]{1,49}"
                     class="form-control"
-                    name=""
-                    id=""
+                    formControlName="usuario_apellidos"
+                    placeholder="Nuevo Apellido"
+                    [class.is-invalid]="apellidoNoValido"
                   />
+                  <!--Etiqueta que contiene un pequeño mensaje al ingresar un apellido invalido-->
+                  <small class="text-danger mt-3 mt-lg-0" *ngIf="apellidoNoValido">
+                    Ingrese un Apellido Valido
+                  </small>
                   <!--Se muestra el apellido del usuario-->
                   <p *ngIf="!cambio">{{ usuario_apellidos }}</p>
                 </div>
@@ -148,13 +169,18 @@
                 <div class="col-8 my-2">
                   <!--Se coloca el correo del usuario en un label en caso de editar el perfil-->
                   <input
-                    [(ngModel)]="objeto.correo"
                     *ngIf="cambio"
                     type="email"
+                    name="correo"
                     class="form-control"
-                    name=""
-                    id=""
+                    formControlName="correo"
+                    placeholder="Nuevo Correo"
+                    [class.is-invalid]="correoNoValido"
                   />
+                  <!--Etiqueta que contiene un pequeño mensaje al ingresar un correo invalido-->
+                  <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido">
+                    Ingrese un Correo Valido
+                  </small>
                   <!--Se muestra el correo del usuario-->
                   <p *ngIf="!cambio">{{ correo }}</p>
                 </div>
@@ -166,6 +192,7 @@
                   <!--Se determina un label especial para poder modificar la imagen en caso se edite el perfil-->
                   <div class="input-group">
                     <div class="custom-file">
+                      <!--Input determinado para ingresar una url de la imagen nueva-->
                       <input
                         (change)="modificarImagen($event)"
                         type="file"
@@ -186,14 +213,21 @@
                   <!--Se muestra un label para modificar la descripcion en caso de editar el perfil-->
                   <textarea
                     *ngIf="cambio"
-                    [(ngModel)]="objeto.descripcion"
-                    name=""
+                    type="email"
+                    name="descripcion"
+                    pattern="[A-Za-z ]{1,49}"
                     class="form-control"
-                    id=""
+                    formControlName="descripcion"
+                    placeholder="Nueva Descripcion"
+                    [class.is-invalid]="descripcionNoValido"
                     rows="3"
                   ></textarea>
+                  <!--Etiqueta que contiene un pequeño mensaje al ingresar una descripcion invalida-->
+                  <small class="text-danger mt-3 mt-lg-0" *ngIf="descripcionNoValido">
+                    Ingrese una Descripcion Valida
+                  </small>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
