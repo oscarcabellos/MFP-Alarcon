@@ -1,3 +1,7 @@
+/*Datos principales del componente de las rutas de la aplicacion*/
+
+/**Importaciones principales del componente**/
+/*Importacion de las principales modulos de angular*/
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListaSugerenciaComponent } from './componentes/lista-sugerencia/lista-sugerencia.component';
