@@ -79,6 +79,7 @@ export class ListaCursoComponent implements OnInit {
    * Función para listar los cursos por usuario
    * @param id {Number} - Identificador del usuario
    */
+  //Cambiar a listarCursosPorUsuario()
   listarCursos(id: number) {
     this.cursoService.listarCursosPorUsuario(id).subscribe((x) => {
       this.cursos = x['list'];
@@ -92,6 +93,7 @@ export class ListaCursoComponent implements OnInit {
    * Función para la busqueda de los cursos de un usuario
    * @param id {Number} - Identificador del usuario
    */
+   //Cambiar a listarCursosDeUnUsuario()
   listarCursos2(id: number) {
     this.cursoService.listarCursosPorUsuario2(id).subscribe((x) => {
       this.cursos = this.cursos.concat(x['data']);
